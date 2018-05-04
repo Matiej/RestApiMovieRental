@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>WishList</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="https://www.linkedin.com/in/matiej/"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Linkedin_Shiny_Icon.svg" class="img-rounded"  width="30" height="30"/></a></li>
+            <li><a href="/one/movieslist">DVD Movies</a></li>
+            <li><a href="/two/movieslist">Blue ray Movies</a></li>
+            <li><a href="/online/movielist">OnLine Movies</a></li>
+            <li style="background-color:Grey;"><a href="/wish/wishlist">Movies wish list</a></li>
+            <form class="navbar-form navbar-left" action="/two/movieslistsearch">
+
+                <button onclick="myFunction()">Print this page</button>
+
+                <script>
+                    function myFunction() {
+                        window.print();
+                    }
+                </script>
+            </form>
+        </ul>
+    </div>
+</nav>
+
+<h2 class="movieDet">Movies wish list</h2>
+<!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Movie Id</th>
+        <th>Supplier Id</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Poster</th>
+        <th>Supplier</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="wish, stat :${wishessList}">
+        <td th:text="${wish.id}"></td>
+        <td th:text="${wish.supId}"></td>
+        <td th:text="${wish.title}"></td>
+        <td th:text="${wish.filmGenre}"></td>
+        <td><img class="size" th:src="@{${wish.poster}}" height="19%" width="19%"/></td>
+        <td th:text="${wish.supplier}"></td>
+        <td>
+            <a th:href="@{/wish/delwish?id={id}(id=${wish.id})}"
+               role="button" class="btn btn-danger">
+                <i class="fa fa-info"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

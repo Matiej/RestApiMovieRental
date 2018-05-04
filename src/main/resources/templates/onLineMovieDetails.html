@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>OnLineMoovie_Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #movieTitle {
+            background-color: gray;
+            border: 1px black;
+            margin-left: 15px;
+            color: black;
+            padding: 13px;
+            text-align: center;
+        }
+
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
+
+        .textdet {
+            background-color: white;
+            border: 11px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: black;
+            padding: 1px;
+            text-align: center;
+        }
+        img {
+            position: center;
+            top: 0; bottom:0; left: 400px; child-align: right;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-dark">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="https://www.linkedin.com/in/matiej/"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Linkedin_Shiny_Icon.svg"
+                    class="img-rounded" width="30" height="30"/></a></li>
+            <li><a href="/one/movieslist">DVD Movies</a></li>
+            <li><a href="/two/movieslist">Blue ray Movies</a></li>
+            <li><a href="/online/movielist">OnLine Movies</a></li>
+            <li><a href="/wish/wishlist">Movies wish list</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+<h1 id="movieTitle"><p th:text="${onLineMovieDetails.title}"></p></h1>
+
+<a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${onLineMovieDetails.imdbID})}"
+   type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
+</a>>
+
+<h4 class="movieDet">Supplier id:</h4>
+<pre class="textdet" th:text="${onLineMovieDetails.getImdbID()}"></pre>
+
+<h4 class="movieDet">Year:</h4>
+<pre class="textdet" th:text="${onLineMovieDetails.year}"></pre>
+
+<h4 class="movieDet">Released:</h4>
+<pre class="textdet" th:text="${onLineMovieDetails.released}"></pre>
+
+<h4 class="movieDet">Runtime:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.runtime}"></p>
+
+<h4 class="movieDet">Genre:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.genre}"></p>
+
+<h4 class="movieDet">Writer:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.writer}"></p>
+
+<h4 class="movieDet">Actors:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.actors}"></p>
+
+<h4 class="movieDet">Plot:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.plot}"></p>
+
+<h4 class="movieDet">Language:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.language}"></p>
+
+<h4 class="movieDet">Country:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.country}"></p>
+
+<h4 class="movieDet">Awards:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.awards}"></p>
+
+<h4 class="movieDet">Production:</h4>
+<p class="textdet" th:text="${onLineMovieDetails.production}"></p>
+
+<h4 class="movieDet">POSTER:</h4>
+<img th:src="@{${onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
+
+</body>
+</html>
+
+
