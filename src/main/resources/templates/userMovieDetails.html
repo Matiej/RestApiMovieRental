@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>BlueRay_Details</title>
+    <title>User_MovieDetail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -61,7 +61,7 @@
             <li><a href="/one/movieslist">DVD Movies</a></li>
             <li><a href="/two/movieslist">Blue ray Movies</a></li>
             <li><a href="/online/movielist">OnLine Movies</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Movies<span class="caret"></span></a>
+            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Movies<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li> <a href="/user/addnewmovie">Add new movie</a></li>
                     <li><a href="/user/movieslist">User movies list</a></li>
@@ -73,53 +73,34 @@
     </div>
 </nav>
 <button onclick="myFunction()">Print this page</button>
-<h1 id="movieTitle"><p th:text="${movieDetail.title}"></p></h1>
-
-<a th:href="@{/wish/bluerayaddwishlist?id={id}(id=${movieDetail.id})}"
-   type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
-</a>
+<h1 id="movieTitle"><p th:text="${userMovieDetail.title}"></p></h1>
 
 <h4 class="movieDet">Movie id:</h4>
-<h4 class="textdet" th:text="${movieDetail.id}"></h4>
+<h4 class="textdet" th:text="${userMovieDetail.id}"></h4>
 
 <h4 class="movieDet">Supplier id:</h4>
-<pre class="textdet" th:text="${movieDetail.getImdbID()}"></pre>
+<pre class="textdet" th:text="${userMovieDetail.imdbID}"></pre>
 
 <h4 class="movieDet">Year:</h4>
-<pre class="textdet" th:text="${movieDetail.year}"></pre>
+<pre class="textdet" th:text="${userMovieDetail.year}"></pre>
 
 <h4 class="movieDet">Released:</h4>
-<pre class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().released}"></pre>
+<pre class="textdet" th:text="${userMovieDetail.runtime}"></pre>
 
 <h4 class="movieDet">Runtime:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().runtime}"></p>
+<p class="textdet" th:text="${userMovieDetail.genre}"></p>
 
 <h4 class="movieDet">Genre:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().genre}"></p>
+<p class="textdet" th:text="${userMovieDetail.userOpinion}"></p>
 
 <h4 class="movieDet">Writer:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().writer}"></p>
+<p class="textdet" th:text="${userMovieDetail.actors}"></p>
 
 <h4 class="movieDet">Actors:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().actors}"></p>
-
-<h4 class="movieDet">Plot:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().plot}"></p>
-
-<h4 class="movieDet">Language:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().language}"></p>
-
-<h4 class="movieDet">Country:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().country}"></p>
-
-<h4 class="movieDet">Awards:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().awards}"></p>
-
-<h4 class="movieDet">Production:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().production}"></p>
+<p class="textdet" th:text="${userMovieDetail.plot}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${movieDetail.getBlueRayMovieDetails().getPoster()}}" class="textdet" align="center"/>
+<img th:src="@{${userMovieDetail.poster}}" class="textdet" align="center"/>
 
 </body>
 </html>

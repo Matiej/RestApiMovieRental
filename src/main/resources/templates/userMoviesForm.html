@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>User_Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body >
+<nav class="navbar navbar-inverse">
+    <div class="container-dark">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="https://www.linkedin.com/in/matiej/"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Linkedin_Shiny_Icon.svg"
+                    class="img-rounded" width="30" height="30"/></a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/one/movieslist">DVD Movies</a></li>
+            <li><a href="/two/movieslist">Blue ray Movies</a></li>
+            <li><a href="/online/movielist">OnLine Movies</a></li>
+            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                                                   href="#">User Movies<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li style="background-color:Grey;"><a href="/user/addnewmovie">Add new movie</a></li>
+                    <li><a href="/user/movieslist">User movies list</a></li>
+                </ul>
+            </li>
+            <li><a href="/wish/wishlist">Movies wish list</a></li>
+        </ul>
+    </div>
+</nav>
+
+<datalist id="genre">
+    <select>
+        <option th:each="gen : ${T(pl.testaarosa.movierental.domain.UserMovieGenre).values()}" th:value="${gen}"
+                th:text="${gen.name}"></option>
+    </select>
+</datalist>
+
+<form  th:action="@{/user/addnewmovie}" th:object="${userMovie}" method="post">
+    <div  class="form-row">
+        <div class="form-group col-md-6">
+            <label for="imdbID">User movie Id:</label>
+            <input type="text" class="form-control" th:field="*{imdbID}"/>
+            <td th:if="${#fields.hasErrors('imdbID')}" th:errors="*{imdbID}"></td>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" th:field="*{title}"/>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="year">Year:</label>
+            <input type="text" class="form-control" th:field="*{year}"/>
+            <td th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></td>
+
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="runtime">Runtime:</label>
+            <input type="text" class="form-control" th:field="*{runtime}"/>
+            <td th:if="${#fields.hasErrors('runtime')}" th:errors="*{runtime}"></td>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <div class="thumbnail">
+            <label for="poster">Link to movie poster:</label>
+            <input type="text" class="form-control" th:field="*{poster}"/>
+            <td th:if="${#fields.hasErrors('poster')}" th:errors="*{poster}"></td>
+        </div>
+        <br />
+        <div class="thumbnail">
+            <label for="userOpinion">Your opinion about the movie:</label>
+            <input type="text" class="form-control form-control-lg" th:field="*{userOpinion}"/>
+            <td rowspan="6" th:if="${#fields.hasErrors('runtime')}" th:errors="*{userOpinion}"></td>
+        </div>
+        <br />
+        <div class="thumbnail">
+            <label for="actors">Actors:</label>
+            <input type="text" class="form-control form-control-lg" th:field="*{actors}"/>
+            <td th:if="${#fields.hasErrors('runtime')}" th:errors="*{actors}"></td>
+        </div>
+        <br />
+        <div class="thumbnail">
+            <label for="plot">Plot:</label>
+            <input type="text" class="form-control" th:field="*{plot}"/>
+            <td rowspan="6" th:if="${#fields.hasErrors('plot')}" th:errors="*{plot}"></td>
+        </div>
+    </div>
+
+    <div class="col-xs-4">
+        <label for="genre">Genre:</label>
+        <input list="genre" class="form-control" th:field="*{genre}"/>
+        <br />
+        <button type="submit" class="btn-success btn-lg">Submit</button>
+        <button type="reset" class="btn-danger btn-lg">Reset</button>
+    </div>
+
+</form>
+</body>
+</html>

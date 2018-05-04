@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>WishList</title>
+    <title>BlueRay_Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -34,28 +34,18 @@
             <li><a href="/one/movieslist">DVD Movies</a></li>
             <li><a href="/two/movieslist">Blue ray Movies</a></li>
             <li><a href="/online/movielist">OnLine Movies</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Movies<span class="caret"></span></a>
+            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Movies<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li> <a href="/user/addnewmovie">Add new movie</a></li>
                     <li><a href="/user/movieslist">User movies list</a></li>
                 </ul>
             </li>
-            <li style="background-color:Grey;"><a href="/wish/wishlist">Movies wish list</a></li>
-            <form class="navbar-form navbar-left" action="/two/movieslistsearch">
-
-                <button onclick="myFunction()">Print this page</button>
-
-                <script>
-                    function myFunction() {
-                        window.print();
-                    }
-                </script>
-            </form>
+            <li><a href="/wish/wishlist">Movies wish list</a></li>
         </ul>
     </div>
 </nav>
 
-<h2 class="movieDet">Movies wish list</h2>
+<h2 class="movieDet"> Blue ray movies search result</h2>
 <!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->
 <table class="table table-striped">
     <thead>
@@ -63,26 +53,31 @@
         <th>Movie Id</th>
         <th>Supplier Id</th>
         <th>Title</th>
-        <th>Genre</th>
         <th>Poster</th>
-        <th>Supplier</th>
-        <th>Delete</th>
+        <th>Details</th>
+        <th>Add to wish list</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr th:each="wish, stat :${wishessList}">
-        <td th:text="${wish.id}"></td>
-        <td th:text="${wish.supId}"></td>
-        <td th:text="${wish.title}"></td>
-        <td th:text="${wish.filmGenre}"></td>
-        <td><img class="size" th:src="@{${wish.poster}}" height="19%" width="19%"/></td>
-        <td th:text="${wish.supplier}"></td>
+    <tr th:each="search, stat :${searchresult}">
+        <td th:text="${search.id}"></td>
+        <td th:text="${search.imdbID}"></td>
+        <td th:text="${search.title}"></td>
+        <td><img th:src="@{${search.poster}}" height="20%" width="20%"/></td>
         <td>
-            <a th:href="@{/wish/delwish?id={id}(id=${wish.id})}"
-               role="button" class="btn btn-danger">
+            <a th:href="@{/two/showmovie?id={id}(id=${search.id})}"
+               role="button" class="btn btn-info">
                 <i class="fa fa-info"></i>
             </a>
+
+        </td>
+        <td>
+            <a th:href="@{/wish/bluerayaddwishlist?id={id}(id=${search.id})}"
+               role="button" class="btn btn-success">
+                <i class="fa fa-info"></i>
+            </a>
+
         </td>
     </tr>
     </tbody>
