@@ -103,6 +103,7 @@
     <div class="col-xs-4">
         <label for="genre">Genre:</label>
         <input list="genre" class="form-control" th:field="*{genre}"/>
+        <td rowspan="6" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></td>
         <br />
         <button type="submit" class="btn-success btn-lg">Submit</button>
         <button type="reset" class="btn-danger btn-lg">Reset</button>

@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.testaarosa.movierental.domain.UserMovie;
-import pl.testaarosa.movierental.mapper.UserMovieMapper;
 import pl.testaarosa.movierental.services.UserMovieService;
 
 import javax.validation.Valid;
@@ -18,8 +17,6 @@ import java.util.Map;
 public class UserMovieController {
     @Autowired
     private UserMovieService userMovieService;
-    @Autowired
-    private UserMovieMapper userMovieMapper;
 
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
