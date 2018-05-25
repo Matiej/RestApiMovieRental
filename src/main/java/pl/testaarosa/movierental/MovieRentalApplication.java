@@ -21,9 +21,9 @@ public class MovieRentalApplication implements CommandLineRunner {
 
     public void run(String... strings) throws Exception {
         dvdMovieFillDbProcessor.FillDvdMovieDb();
-       blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
-       blueRayMovieFillDbProcessor.FillBlueRayDb("star");
-       blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
+        blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
+        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
+        blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
 
 
     }
