@@ -1,5 +1,8 @@
 package pl.testaarosa.movierental.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum UserMovieGenre {
     COMEDY("comedy"),
     SCI_FI("sci-fi"),
@@ -14,7 +17,7 @@ public enum UserMovieGenre {
 
     private String name;
 
-    private UserMovieGenre(String name) {
+    UserMovieGenre(String name) {
         this.name = name;
     }
 
