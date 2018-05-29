@@ -27,8 +27,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	//compile group:'org.thymeleaf', name: 'thymeleaf', version: '3.0.9.RELEASE'
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-//	runtime('mysql:mysql-connector-java')
-	compile('org.postgresql:postgresql')
+	runtime('mysql:mysql-connector-java')
+//	compile('org.postgresql:postgresql')
 	compileOnly('org.projectlombok:lombok:1.16.16')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 

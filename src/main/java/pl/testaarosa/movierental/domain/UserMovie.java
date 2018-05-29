@@ -1,18 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "USER_MOVIES")
 public class UserMovie {
@@ -20,24 +9,79 @@ public class UserMovie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "USER_MOVIE_SIGN")
-    @Size(min = 2)
-    @NotEmpty
     private String imdbID;
-    @Size(min = 2)
-    @NotEmpty
     private String title;
-    @Size(min = 4, max = 4, message = "The year must entered it this way (1998)")
-    @NotEmpty
-    private String year;
-    @Size(min = 2, max = 1000)
-    private String poster;
-    private String runtime;
     @Enumerated(value = EnumType.STRING)
     private UserMovieGenre genre;
-    @Column(length = 1000)
-    private String userOpinion;
-    @Column(length = 1000)
-    private String actors;
-    @Column(name = "PLOT", length = 3000)
-    private String plot;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MOVIE_DETAILS_ID")
+    private UserMovieDetails userMovieDetails;
+
+    public UserMovie() {
+    }
+
+    private UserMovie(UserMovieBuilder userMovieBuilder) {
+        this.imdbID = userMovieBuilder.imdbID;
+        this.title = userMovieBuilder.title;
+        this.genre = userMovieBuilder.genre;
+        this.userMovieDetails = userMovieBuilder.userMovieDetails;
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public UserMovieGenre getGenre() {
+        return genre;
+    }
+
+    public UserMovieDetails getUserMovieDetails() {
+        return userMovieDetails;
+    }
+    public void setUserMovieDetails(UserMovieDetails userMovieDetails) {
+        this.userMovieDetails = userMovieDetails;
+    }
+
+    public static class UserMovieBuilder {
+        private Long id;
+        private String imdbID;
+        private String title;
+        private UserMovieGenre genre;
+        private UserMovieDetails userMovieDetails;
+
+
+
+        public UserMovieBuilder imdbID(String imdbID){
+            this.imdbID = imdbID;
+            return this;
+        }
+
+        public UserMovieBuilder title(String title){
+            this.title = title;
+            return this;
+        }
+
+        public UserMovieBuilder genre(UserMovieGenre gener){
+            this.genre = gener;
+            return this;
+        }
+
+        public UserMovieBuilder userMovieDetails(UserMovieDetails userMovieDetails){
+            this.userMovieDetails = userMovieDetails;
+            return this;
+        }
+
+        public UserMovie build(){
+            return new UserMovie(this);
+        }
+    }
 }

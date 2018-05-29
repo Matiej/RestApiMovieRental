@@ -77,29 +77,29 @@
 <h4 class="movieDet">Movie id:</h4>
 <h4 class="textdet" th:text="${userMovieDetail.id}"></h4>
 
-<h4 class="movieDet">Supplier id:</h4>
+<h4 class="movieDet">User movie id:</h4>
 <pre class="textdet" th:text="${userMovieDetail.imdbID}"></pre>
 
 <h4 class="movieDet">Year:</h4>
-<pre class="textdet" th:text="${userMovieDetail.year}"></pre>
-
-<h4 class="movieDet">Released:</h4>
-<pre class="textdet" th:text="${userMovieDetail.runtime}"></pre>
+<pre class="textdet" th:text="${userMovieDetail.getUserMovieDetails().year}"></pre>
 
 <h4 class="movieDet">Runtime:</h4>
-<p class="textdet" th:text="${userMovieDetail.genre}"></p>
+<pre class="textdet" th:text="${userMovieDetail.userMovieDetails.runtime}"></pre>
 
 <h4 class="movieDet">Genre:</h4>
-<p class="textdet" th:text="${userMovieDetail.userOpinion}"></p>
+<p class="textdet" th:text="${userMovieDetail.genre}"></p>
 
-<h4 class="movieDet">Writer:</h4>
-<p class="textdet" th:text="${userMovieDetail.actors}"></p>
+<h4 class="movieDet">Opinion:</h4>
+<p class="textdet" th:text="${userMovieDetail.userMovieDetails.userOpinion}"></p>
 
 <h4 class="movieDet">Actors:</h4>
-<p class="textdet" th:text="${userMovieDetail.plot}"></p>
+<p class="textdet" th:text="${userMovieDetail.userMovieDetails.actors}"></p>
+
+<h4 class="movieDet">Plot:</h4>
+<p class="textdet" th:text="${userMovieDetail.userMovieDetails.plot}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${userMovieDetail.poster}}" class="textdet" align="center"/>
+<img th:src="@{${userMovieDetail.userMovieDetails.poster}}" class="textdet" align="center"/>
 
 </body>
 </html>

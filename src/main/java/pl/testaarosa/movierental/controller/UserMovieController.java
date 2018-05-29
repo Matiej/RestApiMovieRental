@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.testaarosa.movierental.domain.UserMovie;
+import pl.testaarosa.movierental.form.dto.UserrMovieFormDto;
+import pl.testaarosa.movierental.mapper.UserMovieFormDtoMapper;
 import pl.testaarosa.movierental.services.UserMovieService;
 
 import javax.validation.Valid;
@@ -17,6 +19,8 @@ import java.util.Map;
 public class UserMovieController {
     @Autowired
     private UserMovieService userMovieService;
+    @Autowired
+    private UserMovieFormDtoMapper userMovieFormDtoMapper;
 
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
@@ -31,11 +35,11 @@ public class UserMovieController {
     }
 
     @PostMapping("/addnewmovie")
-    public String addNewMovie(Model model, @ModelAttribute @Valid UserMovie userMovie,BindingResult bindingResult){
+    public String addNewMovie(Model model, @ModelAttribute @Valid UserrMovieFormDto userrMovieFormDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "userMoviesForm";
         } else {
-            userMovieService.add(userMovie);
+            userMovieService.add(userMovieFormDtoMapper.mapToUserMovieForm(userrMovieFormDto));
             List<UserMovie> userMovieList = userMovieService.findAll();
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
@@ -44,7 +48,7 @@ public class UserMovieController {
 
     @GetMapping("/addnewmovie")
     public String showForm(Model model){
-        model.addAttribute("userMovie", new UserMovie());
+        model.addAttribute("userMovie", new UserrMovieFormDto());
         return "userMoviesForm";
 
     }
