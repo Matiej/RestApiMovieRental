@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+//TODO wywalić klase cała, przerobić na MoiviesWish. Będzie do kontrolera ewentualnie
 public class MoviesWishListDto {
     private Long id;
     private String supId;

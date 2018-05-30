@@ -2,7 +2,7 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.domain.MoviesWishList;
+import pl.testaarosa.movierental.domain.MoviesWish;
 import pl.testaarosa.movierental.repositories.MoviesWishListRepository;
 
 import java.util.List;
@@ -13,13 +13,13 @@ public class MoviesWishListServiceImpl implements MoviesWishListService{
     private MoviesWishListRepository wishListRepository;
 
     @Override
-    public List<MoviesWishList> findAll() {
+    public List<MoviesWish> findAll() {
         return wishListRepository.findAll();
     }
 
     @Override
-    public void addWish(MoviesWishList moviesWishList) {
-        wishListRepository.save(moviesWishList);
+    public void addWish(MoviesWish moviesWish) {
+        wishListRepository.save(moviesWish);
     }
 
     @Override

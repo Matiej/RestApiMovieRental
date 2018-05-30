@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "WISH_LIST")
-public class MoviesWishList {
+public class MoviesWish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +26,7 @@ public class MoviesWishList {
 
     @Override
     public String toString() {
-        return "MoviesWishList{" +
+        return "MoviesWish{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", filmGenre='" + filmGenre + '\'' +

@@ -8,7 +8,7 @@ public class UserMovie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "USER_MOVIE_SIGN")
+    @Column(name = "USER_MOVIE_ID")
     private String imdbID;
     private String title;
     @Enumerated(value = EnumType.STRING)

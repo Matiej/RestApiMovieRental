@@ -1,16 +1,13 @@
 package pl.testaarosa.movierental.mapper;
 
 import org.springframework.stereotype.Component;
-import pl.testaarosa.movierental.domain.BlueRayMovie;
-import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
-import pl.testaarosa.movierental.domain.DvdMovie;
-import pl.testaarosa.movierental.domain.MoviesWishList;
+import pl.testaarosa.movierental.domain.*;
 
 @Component
 public class MoviesWishListMapper {
 
-    public MoviesWishList mapBlueRayMoviesToWishList(BlueRayMovie blueRay){
-        return MoviesWishList.builder()
+    public MoviesWish mapBlueRayMoviesToWishList(BlueRayMovie blueRay){
+        return MoviesWish.builder()
                 .supId(blueRay.getImdbID())
                 .title(blueRay.getTitle())
                 .filmGenre(blueRay.getBlueRayMovieDetails().getGenre())
@@ -19,8 +16,8 @@ public class MoviesWishListMapper {
                 .build();
     }
 
-    public MoviesWishList mapDvdMoviesToWishList(DvdMovie dvd){
-        return MoviesWishList.builder()
+    public MoviesWish mapDvdMoviesToWishList(DvdMovie dvd){
+        return MoviesWish.builder()
                 .supId(dvd.getMovieId())
                 .title(dvd.getTitle())
                 .filmGenre(dvd.getFilmGenre())
@@ -29,8 +26,8 @@ public class MoviesWishListMapper {
                 .build();
     }
 
-    public MoviesWishList mapOnLineMoviesToWishList(BlueRayMovieDetails blueRay){
-        return MoviesWishList.builder()
+    public MoviesWish mapOnLineMoviesToWishList(OnLineMovieDetails blueRay){
+        return MoviesWish.builder()
                 .supId(blueRay.getImdbID())
                 .title(blueRay.getTitle())
                 .filmGenre(blueRay.getGenre())

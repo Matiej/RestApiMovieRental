@@ -1,11 +1,11 @@
 package pl.testaarosa.movierental.services;
 
-import pl.testaarosa.movierental.domain.MoviesWishList;
+import pl.testaarosa.movierental.domain.MoviesWish;
 
 import java.util.List;
 
 public interface MoviesWishListService {
-    List<MoviesWishList> findAll();
-    void addWish(MoviesWishList moviesWishList);
+    List<MoviesWish> findAll();
+    void addWish(MoviesWish moviesWish);
     void delWish(Long id);
 }

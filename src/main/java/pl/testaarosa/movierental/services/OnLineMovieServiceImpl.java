@@ -2,12 +2,15 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.domain.BlueRayMovie;
-import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
+import pl.testaarosa.movierental.domain.OnLineMovie;
+import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 import pl.testaarosa.movierental.domain.dto.BlueRayMovieDetailsDto;
-import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
+import pl.testaarosa.movierental.domain.dto.OnLineMovieDetailsDto;
+import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
 import pl.testaarosa.movierental.mapper.BlueRayMovieDetailsMapper;
 import pl.testaarosa.movierental.mapper.BlueRayMovieMapper;
+import pl.testaarosa.movierental.mapper.OnLineMovieMapper;
+import pl.testaarosa.movierental.mapper.OneLineMovieDetailsMapper;
 
 import java.util.List;
 
@@ -15,23 +18,25 @@ import java.util.List;
 public class OnLineMovieServiceImpl implements OnLineMovieService {
 
     @Autowired
-    private BlueRayMovieDetailsMapper blueRayDetailsMapper;
+    private BlueRayMovieRetriever blueRayMovieRetriever;
     @Autowired
-    private BlueRayMovieMapper blueRayMovieMapper;
+    private OnLineMovieMapper onLineMovieMapper;
     @Autowired
-    private BlueRayMovieRetriver blueRayMovieRetriver;
+    private OneLineMovieDetailsMapper oneLineMovieDetailsMapper;
+    @Autowired
+    private OnLineMovieRetriever onLineMovieRetriever;
 
     @Override
-    public List<BlueRayMovie> getOnLineMovies(String title){
-        List<BlueRayMovieDto> movieTwoDtoList = blueRayMovieRetriver.getPaginationBlueRay(title)
-                .getBlueRayMovieDtos();
-        return blueRayMovieMapper.mapToBlueRayMoviesList(movieTwoDtoList);
+    public List<OnLineMovie> getOnLineMovies(String title){
+        List<OnLineMovieDto> onLineMovieDtos = onLineMovieRetriever.getPaginationOnlineLine(title);
+        return onLineMovieMapper.mapToOnLineMovieList(onLineMovieDtos);
     }
 
     @Override
-    public BlueRayMovieDetails getOnLineMovieDetails(String movieId){
-        BlueRayMovieDetailsDto movieDetails = blueRayMovieRetriver.getMovieDetails(movieId);
-        return blueRayDetailsMapper.mapToMovieFromSupplierTwoDetails(movieDetails);
+    public OnLineMovieDetails getOnLineMovieDetails(String movieId){
+        BlueRayMovieDetailsDto movieDetails = blueRayMovieRetriever.getMovieDetails(movieId);
+        OnLineMovieDetailsDto onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(movieId);
+        return oneLineMovieDetailsMapper.mapToOnLineMovieDetails(onLineMovieDetails);
     }
 
 }

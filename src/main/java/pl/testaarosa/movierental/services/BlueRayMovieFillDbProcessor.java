@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class BlueRayMovieFillDbProcessor {
     @Autowired
-    private BlueRayMovieRetriver moSuppTwoRetriver;
+    private BlueRayMovieRetriever moSuppTwoRetriver;
     @Autowired
     private BlueRayMovieService blueRayMovieService;
     @Autowired
@@ -23,11 +23,9 @@ public class BlueRayMovieFillDbProcessor {
     private BlueRayMovieDetailsMapper twoDetailsMapper;
 
     public void FillBlueRayDb(String title) {
-        List<BlueRayMovieDto> movieTwoDtoList = moSuppTwoRetriver.getPaginationBlueRay(title)
-                .getBlueRayMovieDtos();
+        List<BlueRayMovieDto> movieTwoDtoList = moSuppTwoRetriver.getPaginationBlueRay(title).getBlueRayMovieDtos();
         for (BlueRayMovieDto blueRayMovieDto : movieTwoDtoList) {
-            BlueRayMovie blueRayMovie = blueRayMovieMapper.
-                    mapToMovieFromSupplierTwo(blueRayMovieDto);
+            BlueRayMovie blueRayMovie = blueRayMovieMapper.mapToMovieFromSupplierTwo(blueRayMovieDto);
             String imdbID = blueRayMovie.getImdbID();
             BlueRayMovieDetails movDetaTwo = twoDetailsMapper.mapToMovieFromSupplierTwoDetails(getDet(imdbID));
             blueRayMovieService.addBlueRayMovies(blueRayMovie, movDetaTwo);

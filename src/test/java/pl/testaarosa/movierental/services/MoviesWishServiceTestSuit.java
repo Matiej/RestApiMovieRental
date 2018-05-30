@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.testaarosa.movierental.domain.MoviesWishList;
+import pl.testaarosa.movierental.domain.MoviesWish;
 import pl.testaarosa.movierental.repositories.MoviesWishListRepository;
 
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MoviesWishListServiceTestSuit {
-    private List<MoviesWishList> moviesWishLists;
+public class MoviesWishServiceTestSuit {
+    private List<MoviesWish> moviesWishes;
 
     @InjectMocks
     private MoviesWishListServiceImpl moviesWishListService;
@@ -27,8 +27,8 @@ public class MoviesWishListServiceTestSuit {
 
     @Before
     public void setUp(){
-        moviesWishLists = new ArrayList<>();
-        MoviesWishList moviesWishList1 = MoviesWishList.builder()
+        moviesWishes = new ArrayList<>();
+        MoviesWish moviesWish1 = MoviesWish.builder()
                 .id(1L)
                 .supId("ATT01")
                 .title("Test Title1")
@@ -36,7 +36,7 @@ public class MoviesWishListServiceTestSuit {
                 .supplier("testSupplier1")
                 .poster("poster1")
                 .build();
-        MoviesWishList moviesWishList2 = MoviesWishList.builder()
+        MoviesWish moviesWish2 = MoviesWish.builder()
                 .id(1L)
                 .supId("ATT02")
                 .title("Test Title2")
@@ -45,17 +45,17 @@ public class MoviesWishListServiceTestSuit {
                 .poster("poster2")
                 .build();
 
-        moviesWishLists.add(moviesWishList1);
-        moviesWishLists.add(moviesWishList2);
+        moviesWishes.add(moviesWish1);
+        moviesWishes.add(moviesWish2);
     }
 
     @Test
     public void testFindAll(){
         //givem
-        when(moviesWishListRepository.findAll()).thenReturn(moviesWishLists);
+        when(moviesWishListRepository.findAll()).thenReturn(moviesWishes);
         //when
-        List<MoviesWishList> result = moviesWishListService.findAll();
-        List<MoviesWishList> expect = moviesWishLists;
+        List<MoviesWish> result = moviesWishListService.findAll();
+        List<MoviesWish> expect = moviesWishes;
         //then
         assertEquals(expect,result);
     }

@@ -17,8 +17,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserMovieForm {
-
-    @Column(name = "USER_MOVIE_SIGN")
+//TODO wyhwalic lomboka zobic pojo
     @Size(min = 2)
     @NotEmpty
     private String imdbID;

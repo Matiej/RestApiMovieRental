@@ -3,7 +3,7 @@ package pl.testaarosa.movierental.domain.dto;
 import lombok.Getter;
 
 import java.util.Optional;
-
+//TODO wywalilc lombok
 @Getter
 public class DvdMovieDto {
     private final String movieId;

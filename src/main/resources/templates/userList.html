@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>User_Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="https://www.linkedin.com/in/matiej/"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Linkedin_Shiny_Icon.svg" class="img-rounded"  width="30" height="30"/></a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/one/movieslist">DVD Movies</a></li>
+            <li><a href="/two/movieslist">Blue ray Movies</a></li>
+            <li><a href="/online/movielist">OnLine Movies</a></li>
+            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Movies<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li> <a href="/user/addnewmovie">Add new movie</a></li>
+                    <li style="background-color:Grey;"  ><a href="/user/movieslist">User movies list</a></li>
+                </ul>
+            </li>
+            <li><a href="/wish/wishlist">Movies wish list</a></li>
+            <form class="navbar-form navbar-left" action="/user/movieslistsearch">
+
+                <button onclick="myFunction()">Print this page</button>
+
+                <script>
+                    function myFunction() {
+                        window.print();
+                    }
+                </script>
+            </form>
+        </ul>
+    </div>
+</nav>
+
+<h2 class="movieDet">Users list</h2>
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th>User Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Register date</th>
+        <th>Birthday date</th>
+        <!--<th>Genre</th>-->
+        <!--<th>Details</th>-->
+        <!--<th>Delete</th>-->
+
+    </tr>
+    </thead>
+    <tbody>
+    <div class="w3-container">
+        <tr th:each="use, stat :${users}">
+            <td th:text="${use.id}"></td>
+            <td  th:text="${use.name}"></td>
+            <td  th:text="${use.surname}"></td>
+            <td  th:text="${use.registerDate}"></td>
+            <td  th:text="${use.getUserDetails().getBrithday()}"></td>
+            <!--<td th:text="${use.g}"></td>-->
+            <!--<td>-->
+                <!--<a th:href="@{/user/showmovie?id={id}(id=${use.id})}"-->
+                   <!--role="button" class="btn btn-info">-->
+                    <!--<i class="fa fa-info"></i>-->
+                <!--</a>-->
+
+            <!--</td>-->
+            <!--<td>-->
+                <!--<a th:href="@{/user/delusermovie?id={id}(id=${use.id})}"-->
+                   <!--role="button" class="btn btn-danger">-->
+                    <!--<i class="fa fa-info"></i>-->
+                <!--</a>-->
+            <!--</td>-->
+        </tr>
+    </div>
+    </tbody>
+</table>
+
+</body>
+</html>

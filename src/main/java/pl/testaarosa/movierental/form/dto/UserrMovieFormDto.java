@@ -11,7 +11,7 @@ import pl.testaarosa.movierental.domain.UserMovieGenre;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserrMovieFormDto {
-
+//TODO wywalić lomboka zrobić pojo
     private Long id;
     private String imdbID;
     private String title;

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "DVD_MOVIES")
-public class DvdMovie {
+public class DvdMovie implements Movies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.testaarosa.movierental.domain.BlueRayMovie;
 import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
 import pl.testaarosa.movierental.domain.DvdMovie;
+import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 import pl.testaarosa.movierental.mapper.MoviesWishListMapper;
 import pl.testaarosa.movierental.services.BlueRayMovieService;
 import pl.testaarosa.movierental.services.DvdMovieService;
@@ -51,7 +52,7 @@ public class MoviesWishListController {
 
     @GetMapping("/onLinAddwishlist")
     public String addOnLineToWishList(Model model, @RequestParam String imdbID){
-        BlueRayMovieDetails onLineMovieDetails = onLineMovieService.getOnLineMovieDetails(imdbID);
+        OnLineMovieDetails onLineMovieDetails = onLineMovieService.getOnLineMovieDetails(imdbID);
         wishListService.addWish(wishListMapper.mapOnLineMoviesToWishList(onLineMovieDetails));
         model.addAttribute("wishessList", wishListService.findAll());
         return "moviesWishList";

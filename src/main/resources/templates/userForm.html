@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>User_Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-dark">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="https://www.linkedin.com/in/matiej/"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Linkedin_Shiny_Icon.svg"
+                    class="img-rounded" width="30" height="30"/></a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/one/movieslist">DVD Movies</a></li>
+            <li><a href="/two/movieslist">Blue ray Movies</a></li>
+            <li><a href="/online/movielist">OnLine Movies</a></li>
+            <li><a href="/user/addnewmovie">Add new movie</a></li>>
+            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                                                   href="#">User<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li style="background-color:Grey;"><a href="/users/adduser">Add new user</a></li>
+                    <li><a href="/user/movieslist">User movies list</a></li>
+                </ul>
+            </li>
+            <li><a href="/wish/wishlist">Movies wish list</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<datalist id="gender">
+    <select>
+        <option th:each="gen : ${T(pl.testaarosa.movierental.domain.UserGender).values()}" th:value="${gen}"
+                th:text="${gen.name}"></option>
+    </select>
+</datalist>
+
+<form  th:action="@{/users/adduser}" th:object="${userM}" method="post">
+    <div  class="form-row">
+        <div class="form-group col-md-6">
+            <label for="name">User name:</label>
+                <input type="text" class="form-control" th:field="*{name}"/>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" th:field="*{surname}"/>
+            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="email">User e-mail:</label>
+            <input type="text" class="form-control" th:field="*{email}"/>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+
+        </div>
+
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <div class="thumbnail">
+            <label for="birthday">Birthday date:</label>
+            <input type="text" class="form-control" th:field="*{brithday}"/>
+            <td th:if="${#fields.hasErrors('brithday')}" th:errors="*{brithday}"></td>
+        </div>
+        <br />
+        <div class="thumbnail">
+            <label for="city">City:</label>
+            <input type="text" class="form-control form-control-lg" th:field="*{city}"/>
+            <td rowspan="6" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
+        </div>
+        <br />
+        <div class="thumbnail">
+            <label for="street">Street:</label>
+            <input type="text" class="form-control form-control-lg" th:field="*{street}"/>
+            <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
+        </div>
+        <br />
+
+    </div>
+
+    <div class="col-xs-4">
+        <label for="gender">Genre:</label>
+        <input list="gender" class="form-control" th:field="*{userGender}"/>
+        <td rowspan="6" th:if="${#fields.hasErrors('userGender')}" th:errors="*{userGender}"></td>
+        <br />
+        <button type="submit" class="btn-success btn-lg">Submit</button>
+        <button type="reset" class="btn-danger btn-lg">Reset</button>
+    </div>
+
+
+</form>
+</body>
+</html>
