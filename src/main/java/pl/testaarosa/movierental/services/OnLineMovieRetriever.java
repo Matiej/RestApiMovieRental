@@ -8,6 +8,7 @@ import pl.testaarosa.movierental.supplier.OnLineMovieSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 public class OnLineMovieRetriever {
@@ -21,17 +22,18 @@ public class OnLineMovieRetriever {
         RestTemplate restTemplate = new RestTemplate();
         String url = supplier.OnlineSupplierSource(1, title);
         OnLineMoviePaginationDto movie = restTemplate.getForObject(url, OnLineMoviePaginationDto.class);
-        int totalResults = Integer.parseInt(movie.getTotalResults())/10;
-        List<OnLineMovieDto> dtos = new ArrayList<>();
-        for(int i = 1; i<= totalResults; i++){
-            String urlpages = supplier.OnlineSupplierSource(i, title);
-            OnLineMoviePaginationDto moviepages = restTemplate.getForObject(urlpages, OnLineMoviePaginationDto.class);
-            dtos.addAll(moviepages.getOnLineMovieDtos());
-        }
-        return dtos;
+        int totalResults = Integer.parseInt(movie.getTotalResults()) / 10;
+        List<OnLineMovieDto> onLineMovieDtoList = new ArrayList<>();
+        IntStream.range(0, totalResults).forEach(m -> {
+                    String urlpages = supplier.OnlineSupplierSource(m, title);
+                    OnLineMoviePaginationDto moviepages = restTemplate.getForObject(urlpages, OnLineMoviePaginationDto.class);
+                    onLineMovieDtoList.addAll(moviepages.getOnLineMovieDtos());
+                }
+        );
+        return onLineMovieDtoList;
     }
 
-    public OnLineMovieDetailsDto getOnLineMovieDetails(String movieId){
+    public OnLineMovieDetailsDto getOnLineMovieDetails(String movieId) {
         String url = supplier.OnLineSourceDetail(movieId);
         return restTemplate.getForObject(url, OnLineMovieDetailsDto.class);
     }

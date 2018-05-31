@@ -1,11 +1,13 @@
 package pl.testaarosa.movierental.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonClassDescription(value = "Search")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OnLineMovieDto {
 
     @JsonProperty("Title")
