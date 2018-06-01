@@ -8,7 +8,7 @@ public class MoviesFactory {
     public final Movies makeMovie(final String movieClass) {
         switch (movieClass) {
             case BLURAYMOIVE:
-//                return new BlueRayMovie();
+                return new BlueRayMovie();
             case DVDMOIVE:
                 return new DvdMovie();
             default:

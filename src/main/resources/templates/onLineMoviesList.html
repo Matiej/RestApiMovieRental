@@ -19,6 +19,15 @@
             padding: 1px;
             text-align: center;
         }
+        .result {
+            background-color: darkgray;
+            border: 11px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: red;
+            padding: 2px;
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -50,8 +59,9 @@
         </form>
     </div>
 </nav>
-
-<h2 class="movieDet">OnLine available movies</h2>
+<h2 class="movieDet"  >OnLine available movies</h2>
+<h4 class="movieDet">Number of results:</h4>
+<h4  class="result"  th:text="${#lists.size(onlinemovieslist)}">[numbers of results]</h4>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -69,7 +79,7 @@
         <td th:text="${on.imdbID}"></td>
         <td th:text="${on.title}"></td>
         <td th:text="${on.year}"></td>
-        <td><img class="size" th:src="@{${on.poster}}" height="20%" width="15%"/></td>
+        <td><img class="size" th:src="@{${on.poster}}" height="20%" width="20%"/></td>
         <td>
             <a th:href="@{/online/onlinedetail?imdbID={id}(id=${on.imdbID})}"
                role="button" class="btn btn-info">

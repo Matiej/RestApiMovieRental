@@ -4,28 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.testaarosa.movierental.domain.dto.*;
-import pl.testaarosa.movierental.supplier.BlueRayMovieSupplier;
+import pl.testaarosa.movierental.supplier.OmbdMovieSupplier;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
 
 @Service
 public class BlueRayMovieRetriever {
-    private RestTemplate restTemplate = new RestTemplate();
     @Autowired
-    private BlueRayMovieSupplier supplier = new BlueRayMovieSupplier();
+    private OmbdMovieSupplier supplier;
+    @Autowired
+    private RestTemplate restTemplate;
 
     public BlueRayMoviePaginationDto getPaginationBlueRay(String title) {
-        String url = supplier.blueRaySupplierSource(1, title);
+        URI url = supplier.OmbdSupplierSource(1, title);
         return restTemplate.getForObject(url, BlueRayMoviePaginationDto.class);
     }
 
-
     public BlueRayMovieDetailsDto getMovieDetails(String movieId) {
-        String url = supplier.blueRaySourceDetail(movieId);
-        BlueRayMovieDetailsDto movieDetails = new BlueRayMovieDetailsDto();
-        movieDetails = restTemplate.getForObject(url, BlueRayMovieDetailsDto.class);
-        return movieDetails;
+        URI url = supplier.OmbdSupplierDetails(movieId);
+        return restTemplate.getForObject(url, BlueRayMovieDetailsDto.class);
     }
 
 
