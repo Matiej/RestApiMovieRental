@@ -17,20 +17,21 @@ public class DvdMovie implements Movies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String movieId;
+    private String imdbID;
     private String title;
     private String countryOfOrigin;
-    private String filmGenre;
+    private String type;
     private double price;
     private String poster;
+    private String supplier;
 
     @Override
     public String toString() {
         return "DvdMovie{" +
-                "movieId='" + movieId + '\'' +
+                "imdbID='" + imdbID + '\'' +
                 ", title='" + title + '\'' +
                 ", countryOfOrigin='" + countryOfOrigin + '\'' +
-                ", filmGenre='" + filmGenre + '\'' +
+                ", filmGenre='" + type + '\'' +
                 ", price=" + price +
                 '}';
     }

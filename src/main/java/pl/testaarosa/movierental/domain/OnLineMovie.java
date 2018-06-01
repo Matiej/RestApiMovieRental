@@ -14,6 +14,7 @@ public class OnLineMovie implements Movies {
     private String imdbID;
     private String type;
     private String poster;
+    private String supplier;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "DETAILS_ID")
     private OnLineMovieDetails onLineMovieDetails;
@@ -75,6 +76,15 @@ public class OnLineMovie implements Movies {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    @Override
+    public String getSupplier() {
+        return "OnLineMovie";
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
     public OnLineMovieDetails getOnLineMovieDetails() {

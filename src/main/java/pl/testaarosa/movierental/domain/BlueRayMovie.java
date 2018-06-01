@@ -22,6 +22,7 @@ public class BlueRayMovie implements Movies{
     private String imdbID;
     private String type;
     private String poster;
+    private String supplier;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "DETAILS_ID")
     private BlueRayMovieDetails blueRayMovieDetails;

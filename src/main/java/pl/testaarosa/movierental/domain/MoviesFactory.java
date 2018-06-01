@@ -10,7 +10,7 @@ public class MoviesFactory {
             case BLURAYMOIVE:
                 return new BlueRayMovie();
             case DVDMOIVE:
-                return new DvdMovie();
+//                return new DvdMovie();
             default:
                 return null;
         }

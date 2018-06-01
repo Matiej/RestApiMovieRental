@@ -23,7 +23,7 @@ public class DvdMovieDto {
     @Override
     public String toString() {
         return "Builder{" +
-                "movieId='" + movieId + '\'' +
+                "imdbID='" + movieId + '\'' +
                 ", title='" + title + '\'' +
                 ", countryOfOrigin='" + countryOfOrigin + '\'' +
                 ", filmGenre='" + filmGenre + '\'' +

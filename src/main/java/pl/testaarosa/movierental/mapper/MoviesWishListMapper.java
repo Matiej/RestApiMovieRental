@@ -18,9 +18,9 @@ public class MoviesWishListMapper {
 
     public MoviesWish mapDvdMoviesToWishList(DvdMovie dvd){
         return MoviesWish.builder()
-                .supId(dvd.getMovieId())
+                .supId(dvd.getImdbID())
                 .title(dvd.getTitle())
-                .filmGenre(dvd.getFilmGenre())
+                .filmGenre(dvd.getType())
                 .poster(dvd.getPoster())
                 .supplier("DVD")
                 .build();

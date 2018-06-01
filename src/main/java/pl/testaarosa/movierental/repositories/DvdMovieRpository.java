@@ -6,7 +6,7 @@ import pl.testaarosa.movierental.domain.DvdMovie;
 import java.util.List;
 
 public interface DvdMovieRpository extends CrudRepository<DvdMovie, Long> {
-    boolean existsAllByMovieId(String movieId);
+    boolean existsAllByImdbID(String movieId);
     List<DvdMovie> findAll();
     List<DvdMovie> findAllByTitleContaining(String title);
 

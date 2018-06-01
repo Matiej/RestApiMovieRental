@@ -61,7 +61,7 @@
     <tbody>
     <tr th:each="one, stat :${searchresult}">
         <td th:text="${one.getId()}"></td>
-        <td th:text="${one.getMovieId()}"></td>
+        <td th:text="${one.getImdbID()}"></td>
         <td th:text="${one.getTitle()}"></td>
         <td>
             <a th:href="@{/one/showmovie?id={id}(id=${one.id})}"
