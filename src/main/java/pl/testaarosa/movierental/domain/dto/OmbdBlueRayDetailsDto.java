@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BlueRayMovieDetailsDto {
+public class OmbdBlueRayDetailsDto {
     @JsonProperty("imdbID")
     private String imdbID;
     @JsonProperty("Title")
@@ -44,7 +44,7 @@ public class BlueRayMovieDetailsDto {
 //TODO zrobić DTI dla kontrolera
     @Override
     public String toString() {
-        return "BlueRayMovieDetailsDto{" +
+        return "OmbdBlueRayDetailsDto{" +
                 "imdbID='" + imdbID + '\'' +
                 ", title='" + title + '\'' +
                 ", year='" + year + '\'' +

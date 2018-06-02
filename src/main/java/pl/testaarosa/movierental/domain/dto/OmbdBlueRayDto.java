@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonClassDescription(value = "Search")
-public class BlueRayMovieDto {
+public class OmbdBlueRayDto {
     @JsonProperty("Title")
     private String title;
     @JsonProperty("Year")

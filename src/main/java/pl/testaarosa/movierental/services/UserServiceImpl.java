@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserDetails;
 import pl.testaarosa.movierental.form.UserForm;
-import pl.testaarosa.movierental.mapper.UserFormMapper;
+import pl.testaarosa.movierental.mapper.form.UserFormMapper;
 import pl.testaarosa.movierental.repositories.UserRepository;
 
 import java.util.List;

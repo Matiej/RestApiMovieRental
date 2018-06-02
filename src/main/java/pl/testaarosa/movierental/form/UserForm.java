@@ -1,12 +1,10 @@
 package pl.testaarosa.movierental.form;
 
-
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-
 
 public class UserForm {
 

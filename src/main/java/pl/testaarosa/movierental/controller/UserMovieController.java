@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.testaarosa.movierental.domain.UserMovie;
-import pl.testaarosa.movierental.form.dto.UserrMovieFormDto;
-import pl.testaarosa.movierental.mapper.UserMovieFormDtoMapper;
+import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
+import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
 import pl.testaarosa.movierental.services.UserMovieService;
 
 import javax.validation.Valid;
@@ -21,7 +21,7 @@ public class UserMovieController {
     private UserMovieService userMovieService;
     @Autowired
     private UserMovieFormDtoMapper userMovieFormDtoMapper;
-
+//TODO zrobić mapper
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
         model.put("userMovies", userMovieService.findAll());
@@ -35,11 +35,11 @@ public class UserMovieController {
     }
 
     @PostMapping("/addnewmovie")
-    public String addNewMovie(Model model, @ModelAttribute @Valid UserrMovieFormDto userrMovieFormDto, BindingResult bindingResult){
+    public String addNewMovie(Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "userMoviesForm";
         } else {
-            userMovieService.add(userMovieFormDtoMapper.mapToUserMovieForm(userrMovieFormDto));
+            userMovieService.add(userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
             List<UserMovie> userMovieList = userMovieService.findAll();
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
@@ -48,7 +48,7 @@ public class UserMovieController {
 
     @GetMapping("/addnewmovie")
     public String showForm(Model model){
-        model.addAttribute("userMovie", new UserrMovieFormDto());
+        model.addAttribute("userMovie", new UserMovieFormDto());
         return "userMoviesForm";
 
     }

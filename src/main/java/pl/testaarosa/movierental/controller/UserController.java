@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.testaarosa.movierental.domain.User;
-import pl.testaarosa.movierental.form.UserForm;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
-import pl.testaarosa.movierental.mapper.UserFormDtoMapper;
+import pl.testaarosa.movierental.mapper.form.UserFormDtoMapper;
 import pl.testaarosa.movierental.services.UserService;
 
 import javax.validation.Valid;

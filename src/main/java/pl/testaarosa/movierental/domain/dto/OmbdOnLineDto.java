@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonClassDescription(value = "Search")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OnLineMovieDto {
+public class OmbdOnLineDto {
 
     @JsonProperty("Title")
     private String title;
@@ -21,10 +21,10 @@ public class OnLineMovieDto {
     @JsonProperty("Poster")
     private String poster;
 
-    public OnLineMovieDto() {
+    public OmbdOnLineDto() {
     }
 
-    public OnLineMovieDto(String title, String year, String imdbID, String type, String poster) {
+    public OmbdOnLineDto(String title, String year, String imdbID, String type, String poster) {
         this.title = title;
         this.year = year;
         this.imdbID = imdbID;

@@ -2,18 +2,18 @@ package pl.testaarosa.movierental.mapper;
 
 import org.springframework.stereotype.Component;
 import pl.testaarosa.movierental.domain.DvdMovie;
-import pl.testaarosa.movierental.domain.dto.DvdMovieDto;
+import pl.testaarosa.movierental.domain.dto.OneDvdDto;
 
 @Component
 public class DvdMovieMapper {
 
-    public DvdMovie mapToMovieFromSupplierOne(DvdMovieDto dvdMovieDto) {
+    public DvdMovie mapToDvdMovie(OneDvdDto oneDvdDto) {
         return DvdMovie.builder()
-                .countryOfOrigin(dvdMovieDto.getCountryOfOrigin())
-                .imdbID(dvdMovieDto.getMovieId())
-                .type(dvdMovieDto.getFilmGenre())
-                .title(dvdMovieDto.getTitle())
-                .price(dvdMovieDto.getPrice())
+                .countryOfOrigin(oneDvdDto.getCountryOfOrigin())
+                .imdbID(oneDvdDto.getMovieId())
+                .type(oneDvdDto.getFilmGenre())
+                .title(oneDvdDto.getTitle())
+                .price(oneDvdDto.getPrice())
                 .poster("http://goshico.com/allegro/questionmarksmall.png")
                 .build();
     }

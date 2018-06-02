@@ -29,6 +29,7 @@ public class BlueRayMovieServiceImpl implements BlueRayMovieService {
         return blueRayMovieRepository.findAll();
     }
 
+    @Override
     public BlueRayMovie findbyId(Long id){
         return blueRayMovieRepository.findOne(id);
     }
@@ -37,6 +38,5 @@ public class BlueRayMovieServiceImpl implements BlueRayMovieService {
     public List<BlueRayMovie> findAllContainsTitle(String title){
         return blueRayMovieRepository.findAllByTitleContaining(title);
     }
-
 
 }

@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.testaarosa.movierental.cfg.OmbdapiConfig;
+import pl.testaarosa.movierental.cfg.OmbdApiConfig;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -21,12 +21,12 @@ public class OmbdMovieSupplierTest {
     private OmbdMovieSupplier ombdMovieSupplier;
 
     @Mock
-    private OmbdapiConfig ombdapiConfig;
+    private OmbdApiConfig ombdApiConfig;
 
     @Before
     public void init() {
-        when(ombdapiConfig.getOmbdEndPoint()).thenReturn("http://test.com/");
-        when(ombdapiConfig.getOmbdKey()).thenReturn("test_apikey");
+        when(ombdApiConfig.getOmbdEndPoint()).thenReturn("http://test.com/");
+        when(ombdApiConfig.getOmbdKey()).thenReturn("test_apikey");
     }
 
     @Test

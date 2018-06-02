@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.mapper;
+package pl.testaarosa.movierental.mapper.form;
 
 import org.springframework.stereotype.Component;
 import pl.testaarosa.movierental.domain.User;

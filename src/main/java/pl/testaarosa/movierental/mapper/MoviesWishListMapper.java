@@ -26,12 +26,12 @@ public class MoviesWishListMapper {
                 .build();
     }
 
-    public MoviesWish mapOnLineMoviesToWishList(OnLineMovieDetails blueRay){
+    public MoviesWish mapOnLineMoviesToWishList(OnLineMovieDetails online){
         return MoviesWish.builder()
-                .supId(blueRay.getImdbID())
-                .title(blueRay.getTitle())
-                .filmGenre(blueRay.getGenre())
-                .poster(blueRay.getPoster())
+                .supId(online.getImdbID())
+                .title(online.getTitle())
+                .filmGenre(online.getGenre())
+                .poster(online.getPoster())
                 .supplier("On Line")
                 .build();
     }

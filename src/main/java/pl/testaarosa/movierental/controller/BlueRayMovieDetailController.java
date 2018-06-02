@@ -10,6 +10,7 @@ import pl.testaarosa.movierental.services.BlueRayMovieService;
 
 @Controller
 @RequestMapping("/two")
+//TODO zmienieć /two na blueray
 public class BlueRayMovieDetailController {
     @Autowired
     private BlueRayMovieService blueRayMovieService;

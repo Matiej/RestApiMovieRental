@@ -80,7 +80,7 @@ public class OnLineMovie implements Movies {
 
     @Override
     public String getSupplier() {
-        return "OnLineMovie";
+        return "On Line";
     }
 
     public void setSupplier(String supplier) {

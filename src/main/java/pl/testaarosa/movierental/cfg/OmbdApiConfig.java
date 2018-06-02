@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OmbdapiConfig {
+public class OmbdApiConfig {
 
     @Value("${ombd.api.endpoint.prod}")
     private String ombdEndPoint;

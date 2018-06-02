@@ -10,7 +10,7 @@ import pl.testaarosa.movierental.domain.UserMovieGenre;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserrMovieFormDto {
+public class UserMovieFormDto {
 //TODO wywalić lomboka zrobić pojo
     private Long id;
     private String imdbID;

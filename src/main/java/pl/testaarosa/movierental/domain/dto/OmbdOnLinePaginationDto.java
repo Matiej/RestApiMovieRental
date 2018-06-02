@@ -5,21 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OnLineMoviePaginationDto {
+public class OmbdOnLinePaginationDto {
 
     @JsonProperty("Search")
-    private List<OnLineMovieDto> onLineMovieDtos = new ArrayList<>();
+    private List<OmbdOnLineDto> ombdOnLineDtos = new ArrayList<>();
     private String totalResults;
 
-    public OnLineMoviePaginationDto() {
+    public OmbdOnLinePaginationDto() {
     }
 
-    public List<OnLineMovieDto> getOnLineMovieDtos() {
-        return onLineMovieDtos;
+    public List<OmbdOnLineDto> getOmbdOnLineDtos() {
+        return ombdOnLineDtos;
     }
 
-    public void setOnLineMovieDtos(List<OnLineMovieDto> onLineMovieDtos) {
-        this.onLineMovieDtos = onLineMovieDtos;
+    public void setOmbdOnLineDtos(List<OmbdOnLineDto> ombdOnLineDtos) {
+        this.ombdOnLineDtos = ombdOnLineDtos;
     }
 
     public String getTotalResults() {
@@ -33,7 +33,7 @@ public class OnLineMoviePaginationDto {
     @Override
     public String toString() {
         return "MovieTwo{" +
-                "onLineMovieDtos=" + onLineMovieDtos +
+                "ombdOnLineDtos=" + ombdOnLineDtos +
                 ", totalResults='" + totalResults + '\'' +
                 '}';
     }

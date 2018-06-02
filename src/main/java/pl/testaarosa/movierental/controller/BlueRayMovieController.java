@@ -12,6 +12,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/two")
+//TODO zmienic two na blueray i do tego templatki
 public class BlueRayMovieController {
     @Autowired
     private BlueRayMovieService blueRayMovieService;

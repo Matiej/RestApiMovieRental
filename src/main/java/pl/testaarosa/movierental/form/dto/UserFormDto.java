@@ -4,7 +4,6 @@ import pl.testaarosa.movierental.domain.UserGender;
 
 import java.time.LocalDateTime;
 
-
 public class UserFormDto {
 
     private String name;

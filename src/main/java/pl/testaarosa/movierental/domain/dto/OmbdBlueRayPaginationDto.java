@@ -12,15 +12,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BlueRayMoviePaginationDto {
+public class OmbdBlueRayPaginationDto {
     @JsonProperty("Search")
-    private List<BlueRayMovieDto> blueRayMovieDtos = new ArrayList<>();
+    private List<OmbdBlueRayDto> ombdBlueRayDtos = new ArrayList<>();
     private String totalResults;
 
     @Override
     public String toString() {
         return "MovieTwo{" +
-                "blueRayMovieDtos=" + blueRayMovieDtos +
+                "ombdBlueRayDtos=" + ombdBlueRayDtos +
                 ", totalResults='" + totalResults + '\'' +
                 '}';
     }

@@ -2,7 +2,7 @@ package pl.testaarosa.movierental.mapper;
 
 import org.springframework.stereotype.Component;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
-import pl.testaarosa.movierental.domain.dto.OnLineMovieDetailsDto;
+import pl.testaarosa.movierental.domain.dto.OmbdOnLineDetailsDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,26 +10,26 @@ import java.util.stream.Collectors;
 @Component
 public class OneLineMovieDetailsMapper {
 
-    public OnLineMovieDetails mapToOnLineMovieDetails(OnLineMovieDetailsDto onLineMovieDetailsDto){
+    public OnLineMovieDetails mapToOnLineMovieDetails(OmbdOnLineDetailsDto ombdOnLineDetailsDto){
 
         return new OnLineMovieDetails(
-                onLineMovieDetailsDto.getImdbID(),
-                onLineMovieDetailsDto.getTitle(),
-                onLineMovieDetailsDto.getYear(),
-                onLineMovieDetailsDto.getReleased(),
-                onLineMovieDetailsDto.getRuntime(),
-                onLineMovieDetailsDto.getGenre(),
-                onLineMovieDetailsDto.getWriter(),
-                onLineMovieDetailsDto.getActors(),
-                onLineMovieDetailsDto.getPlot(),
-                onLineMovieDetailsDto.getLanguage(),
-                onLineMovieDetailsDto.getCountry(),
-                onLineMovieDetailsDto.getAwards(),
-                onLineMovieDetailsDto.getPoster(),
-                onLineMovieDetailsDto.getProduction());
+                ombdOnLineDetailsDto.getImdbID(),
+                ombdOnLineDetailsDto.getTitle(),
+                ombdOnLineDetailsDto.getYear(),
+                ombdOnLineDetailsDto.getReleased(),
+                ombdOnLineDetailsDto.getRuntime(),
+                ombdOnLineDetailsDto.getGenre(),
+                ombdOnLineDetailsDto.getWriter(),
+                ombdOnLineDetailsDto.getActors(),
+                ombdOnLineDetailsDto.getPlot(),
+                ombdOnLineDetailsDto.getLanguage(),
+                ombdOnLineDetailsDto.getCountry(),
+                ombdOnLineDetailsDto.getAwards(),
+                ombdOnLineDetailsDto.getPoster(),
+                ombdOnLineDetailsDto.getProduction());
     }
 
-    public List<OnLineMovieDetails> mapToOnlineMovieDetails(List<OnLineMovieDetailsDto> detailsDtos) {
+    public List<OnLineMovieDetails> mapToOnlineMovieDetails(List<OmbdOnLineDetailsDto> detailsDtos) {
         return detailsDtos.stream()
                 .map(o-> new OnLineMovieDetails(
                         o.getImdbID(),
