@@ -2,7 +2,6 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.mapper.DvdMovieMapper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

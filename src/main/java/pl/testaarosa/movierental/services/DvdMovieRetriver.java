@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.DvdMovie;
 import pl.testaarosa.movierental.domain.dto.OneDvdDto;
-import pl.testaarosa.movierental.mapper.DvdMovieMapper;
+import pl.testaarosa.movierental.mapper.OneDvdMapper;
 import pl.testaarosa.movierental.supplier.DvdMovieSupplier;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class DvdMovieRetriver {
     @Autowired
     private DvdMovieSupplier dvdMovieSupplier;
     @Autowired
-    private DvdMovieMapper dvdMovieMapper;
+    private OneDvdMapper oneDvdMapper;
 
     public List<DvdMovie> DvdFillStructure() throws IOException, URISyntaxException {
         List<DvdMovie> dvdMovies = new ArrayList<>();
@@ -34,7 +34,7 @@ public class DvdMovieRetriver {
                     .filmGenre(value[3])
                     .price(Double.parseDouble(value[4]))
                     .build();
-            dvdMovies.add(dvdMovieMapper.mapToDvdMovie(oneDvdDto));
+            dvdMovies.add(oneDvdMapper.mapToDvdMovie(oneDvdDto));
         });
         return dvdMovies;
     }

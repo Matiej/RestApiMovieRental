@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class BlueRayMovieMapper {
+public class OmbdBlueRayMapper {
 
     public BlueRayMovie mapToBlueRayMovie(final OmbdBlueRayDto ombdBlueRayDto){
         return BlueRayMovie.builder()

@@ -10,8 +10,8 @@ import pl.testaarosa.movierental.domain.BlueRayMovie;
 import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
 import pl.testaarosa.movierental.domain.dto.OmbdBlueRayDetailsDto;
 import pl.testaarosa.movierental.domain.dto.OmbdBlueRayPaginationDto;
-import pl.testaarosa.movierental.mapper.BlueRayMovieDetailsMapper;
-import pl.testaarosa.movierental.mapper.BlueRayMovieMapper;
+import pl.testaarosa.movierental.mapper.OmbdBlueRayDetailsMapper;
+import pl.testaarosa.movierental.mapper.OmbdBlueRayMapper;
 import pl.testaarosa.movierental.supplier.OmbdMovieSupplier;
 
 import java.net.URI;
@@ -30,9 +30,9 @@ public class BlueRayMovieRetriever {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
-    private BlueRayMovieMapper movieMapper;
+    private OmbdBlueRayMapper movieMapper;
     @Autowired
-    private BlueRayMovieDetailsMapper detailsMapper;
+    private OmbdBlueRayDetailsMapper detailsMapper;
 
 
     public List<BlueRayMovie> getPaginationBlueRay(String title) {

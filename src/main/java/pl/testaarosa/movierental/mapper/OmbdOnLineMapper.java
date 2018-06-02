@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class OnLineMovieMapper {
+public class OmbdOnLineMapper {
 
     public OnLineMovie mapToOnLineMovie(OmbdOnLineDto oneLineMovieDto) {
         return new OnLineMovie(oneLineMovieDto.getTitle(),

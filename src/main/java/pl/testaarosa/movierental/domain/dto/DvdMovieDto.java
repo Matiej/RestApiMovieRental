@@ -1,14 +1,16 @@
 package pl.testaarosa.movierental.domain.dto;
 
 import java.util.Optional;
-public class OneDvdDto {
+
+public class DvdMovieDto {
+
     private final String movieId;
     private final String title;
     private final String countryOfOrigin;
     private final String filmGenre;
     private double price;
 
-    private OneDvdDto(final String movieId, final String title, final String countryOfOrigin,
+    private DvdMovieDto(final String movieId, final String title, final String countryOfOrigin,
                       final String filmGenre, final double price) {
         this.movieId = movieId;
         this.title = title;
@@ -35,17 +37,6 @@ public class OneDvdDto {
 
     public double getPrice() {
         return price;
-    }
-
-    @Override
-    public String toString() {
-        return "Builder{" +
-                "imdbID='" + movieId + '\'' +
-                ", title='" + title + '\'' +
-                ", countryOfOrigin='" + countryOfOrigin + '\'' +
-                ", filmGenre='" + filmGenre + '\'' +
-                ", price=" + price +
-                '}';
     }
 
     public static class Builder {
@@ -80,13 +71,13 @@ public class OneDvdDto {
             return this;
         }
 
-        public OneDvdDto build() {
+        public DvdMovieDto build() {
             movieId = Optional.ofNullable(movieId).orElse("no data");
             title = Optional.ofNullable(title).orElse("no data");
             countryOfOrigin = Optional.ofNullable(countryOfOrigin).orElse("no data");
             filmGenre = Optional.ofNullable(filmGenre).orElse("no data");
             price = Optional.ofNullable(price).orElse(Double.valueOf("0.0"));
-            return new OneDvdDto(movieId, title, countryOfOrigin, filmGenre, price);
+            return new DvdMovieDto(movieId, title, countryOfOrigin, filmGenre, price);
         }
     }
 }

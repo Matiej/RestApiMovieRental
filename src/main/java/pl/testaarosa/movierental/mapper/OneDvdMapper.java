@@ -5,7 +5,7 @@ import pl.testaarosa.movierental.domain.DvdMovie;
 import pl.testaarosa.movierental.domain.dto.OneDvdDto;
 
 @Component
-public class DvdMovieMapper {
+public class OneDvdMapper {
 
     public DvdMovie mapToDvdMovie(OneDvdDto oneDvdDto) {
         return DvdMovie.builder()

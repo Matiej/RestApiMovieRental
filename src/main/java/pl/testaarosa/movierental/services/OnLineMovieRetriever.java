@@ -9,8 +9,8 @@ import org.springframework.web.client.RestTemplate;
 import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 import pl.testaarosa.movierental.domain.dto.*;
-import pl.testaarosa.movierental.mapper.OnLineMovieMapper;
-import pl.testaarosa.movierental.mapper.OneLineMovieDetailsMapper;
+import pl.testaarosa.movierental.mapper.OmbdOnLineMapper;
+import pl.testaarosa.movierental.mapper.OmbdOneLineDetailsMapper;
 import pl.testaarosa.movierental.supplier.OmbdMovieSupplier;
 
 import java.net.URI;
@@ -30,9 +30,9 @@ public class OnLineMovieRetriever {
     @Autowired
     private OmbdMovieSupplier supplier;
     @Autowired
-    private OnLineMovieMapper onLineMovieMapper;
+    private OmbdOnLineMapper ombdOnLineMapper;
     @Autowired
-    private OneLineMovieDetailsMapper oneLineMovieDetailsMapper;
+    private OmbdOneLineDetailsMapper ombdOneLineDetailsMapper;
 
     public List<OnLineMovie> getOnLineMovies(String title) {
         List<OnLineMovie> onLineMovieList = new ArrayList<>();
@@ -40,7 +40,7 @@ public class OnLineMovieRetriever {
             IntStream.range(0, getPagination(title) / 10).forEach(m -> {
                 URI urlpages = supplier.OmbdSupplierSource(m, title);
                 OmbdOnLinePaginationDto moviepages = restTemplate.getForObject(urlpages, OmbdOnLinePaginationDto.class);
-                onLineMovieList.addAll(onLineMovieMapper.mapToOnLineMovieList(moviepages.getOmbdOnLineDtos()));
+                onLineMovieList.addAll(ombdOnLineMapper.mapToOnLineMovieList(moviepages.getOmbdOnLineDtos()));
             });
             return onLineMovieList;
         } catch (RestClientException e) {
@@ -57,7 +57,7 @@ public class OnLineMovieRetriever {
     public OnLineMovieDetails getOnLineMovieDetails(String movieId) {
         URI url = supplier.OmbdSupplierDetails(movieId);
         try {
-            OnLineMovieDetails onLineMovieDetails = oneLineMovieDetailsMapper.mapToOnLineMovieDetails
+            OnLineMovieDetails onLineMovieDetails = ombdOneLineDetailsMapper.mapToOnLineMovieDetails
                     (restTemplate.getForObject(url, OmbdOnLineDetailsDto.class));
             return ofNullable(onLineMovieDetails).orElse(new OnLineMovieDetails());
         }   catch (RestClientException e) {

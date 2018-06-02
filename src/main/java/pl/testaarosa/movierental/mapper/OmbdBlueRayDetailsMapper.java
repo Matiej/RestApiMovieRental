@@ -5,7 +5,7 @@ import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
 import pl.testaarosa.movierental.domain.dto.OmbdBlueRayDetailsDto;
 
 @Component
-public class BlueRayMovieDetailsMapper {
+public class OmbdBlueRayDetailsMapper {
 
     public BlueRayMovieDetails mapToBlueRayMovieDetails(final OmbdBlueRayDetailsDto mFSuppDetailsDto){
         return BlueRayMovieDetails.builder()
