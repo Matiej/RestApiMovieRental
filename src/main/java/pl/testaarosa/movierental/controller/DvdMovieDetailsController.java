@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.testaarosa.movierental.mapper.DvdMovieMapper;
 import pl.testaarosa.movierental.services.DvdMovieService;
 
 @Controller
@@ -13,10 +14,12 @@ import pl.testaarosa.movierental.services.DvdMovieService;
 public class DvdMovieDetailsController {
     @Autowired
     private DvdMovieService dvdMovieService;
+    @Autowired
+    private DvdMovieMapper dvdMovieMapper;
 
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-        model.addAttribute("dvdMovieDetail", dvdMovieService.findById(id));
+        model.addAttribute("dvdMovieDetail", dvdMovieMapper.mapToDvdMovieDto(dvdMovieService.findById(id)));
         return "dvdMovieDetails";
     }
 }
