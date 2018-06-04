@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +26,8 @@ public class DvdMovie implements Movies {
     private double price;
     private String poster;
     private String supplier;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dvdMovieList", targetEntity = MovieWish.class)
+    private List<MovieWish> movieWishList = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -35,4 +39,6 @@ public class DvdMovie implements Movies {
                 ", price=" + price +
                 '}';
     }
+
+
 }

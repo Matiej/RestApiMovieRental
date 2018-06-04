@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public List<User> findAllBySurname(String surname) {
+        return userRepository.findAllBySurnameContaining(surname);
+    }
+
 }

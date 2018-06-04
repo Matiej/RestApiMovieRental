@@ -1,6 +1,8 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ONLINE_MOVIES")
@@ -18,6 +20,9 @@ public class OnLineMovie implements Movies {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "DETAILS_ID")
     private OnLineMovieDetails onLineMovieDetails;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "onLineMovies", targetEntity = MovieWish.class)
+    private List<MovieWish> movieWishList = new ArrayList<>();
 
     public OnLineMovie() {
     }
@@ -38,6 +43,7 @@ public class OnLineMovie implements Movies {
         this.id = id;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
@@ -54,6 +60,7 @@ public class OnLineMovie implements Movies {
         this.year = year;
     }
 
+    @Override
     public String getImdbID() {
         return imdbID;
     }
@@ -62,6 +69,7 @@ public class OnLineMovie implements Movies {
         this.imdbID = imdbID;
     }
 
+    @Override
     public String getType() {
         return type;
     }
@@ -70,6 +78,7 @@ public class OnLineMovie implements Movies {
         this.type = type;
     }
 
+    @Override
     public String getPoster() {
         return poster;
     }
@@ -93,6 +102,15 @@ public class OnLineMovie implements Movies {
 
     public void setOnLineMovieDetails(OnLineMovieDetails onLineMovieDetails) {
         this.onLineMovieDetails = onLineMovieDetails;
+    }
+
+    @Override
+    public List<MovieWish> getMovieWishList() {
+        return movieWishList;
+    }
+
+    public void setMovieWishList(List<MovieWish> movieWishList) {
+        this.movieWishList = movieWishList;
     }
 
     @Override

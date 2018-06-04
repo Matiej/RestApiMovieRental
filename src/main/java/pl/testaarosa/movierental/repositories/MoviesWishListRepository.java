@@ -6,6 +6,7 @@ import pl.testaarosa.movierental.domain.MoviesWish;
 import java.util.List;
 
 public interface MoviesWishListRepository extends CrudRepository<MoviesWish, Long> {
+    @Override
     List<MoviesWish> findAll();
 
 }

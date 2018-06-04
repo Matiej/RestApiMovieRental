@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +28,10 @@ public class BlueRayMovie implements Movies{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "DETAILS_ID")
     private BlueRayMovieDetails blueRayMovieDetails;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blueRayMovies", targetEntity = MovieWish.class)
+    private List<MovieWish> movieWishList = new ArrayList<>();
+
 
     @Override
     public String toString() {

@@ -2,6 +2,8 @@ package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,6 +18,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DETAILS_ID")
     private UserDetails userDetails;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<MovieWish> movieWishes = new ArrayList<>();
 
     public User() {
     }
@@ -92,6 +96,4 @@ public class User {
             return new User(this);
         }
     }
-
-
 }

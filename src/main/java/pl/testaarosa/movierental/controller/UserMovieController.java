@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/usermovie")
 public class UserMovieController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class UserMovieController {
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
         model.addAttribute("searchresult", userMovieService.findAllByTitleContaining(title));
-        return "userMovieSearchResult";
+        return "userMoviesSearchResult";
     }
 
     @PostMapping("/addnewmovie")

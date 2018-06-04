@@ -9,6 +9,7 @@ import pl.testaarosa.movierental.mapper.form.UserMovieFormMapper;
 import pl.testaarosa.movierental.repositories.UserMovieRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserMovieServiceImpl implements UserMovieService {

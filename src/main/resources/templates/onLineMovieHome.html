@@ -30,15 +30,17 @@
             <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="https://www.linkedin.com/in/matiej/"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Linkedin_Shiny_Icon.svg" class="img-rounded"  width="30" height="30"/></a></li>
+
             <li><a href="/home">Home</a></li>
             <li><a href="/one/movieslist">DVD Movies</a></li>
             <li><a href="/two/movieslist">Blue ray Movies</a></li>
             <li style="background-color:Grey;"> <a href="/online/movielist">OnLine Movies</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Movies<span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li> <a href="/user/addnewmovie">Add new movie</a></li>
-                    <li><a href="/user/movieslist">User movies list</a></li>
+                    <li> <a href="/users/adduser">Add new user</a></li>
+                    <li> <a href="/users/userslist/">Users list</a></li>
+                    <li> <a href="/usermovie/addnewmovie">Add new movie</a></li>
+                    <li><a href="/usermovie/movieslist">User Movies list</a></li>
                 </ul>
             </li>
             <li><a href="/wish/wishlist">Movies wish list</a></li>
@@ -47,7 +49,7 @@
 </nav>
 <h2 class="movieDet">OnLine section</h2>
 <div class="container">
-    <h1>Seach for movies online</h1>
+    <h1>Seach for blueRayMovies online</h1>
     <form action="/online/movielist">
         <div class="input-group input-group-lg" id="sizing-addon4 ">
             <input type="text" class="form-control"  placeholder="Search by title" name="title"/>
@@ -59,7 +61,7 @@
 </div>
 
 <div class="container">
-    <h1 class="movieDet">Some nice movies :)</h1>
+    <h1 class="movieDet">Some nice blueRayMovies :)</h1>
     <div class="row">
         <div class="col-md-4">
             <div class="thumbnail">

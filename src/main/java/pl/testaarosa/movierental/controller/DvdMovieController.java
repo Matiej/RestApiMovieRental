@@ -20,7 +20,7 @@ public class DvdMovieController {
     private DvdMovieMapper dvdMovieMapper;
 
     @GetMapping("/movieslist")
-    public String showMoviesOneSupplier(Map<String, Object> model){
+    public String showDvdMovies(Map<String, Object> model){
         model.put("dvdMoviesFromSuppliers", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findAll()));
         return "dvdMoviesList";
     }

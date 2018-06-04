@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface DvdMovieRpository extends CrudRepository<DvdMovie, Long> {
     boolean existsAllByImdbID(String movieId);
+    @Override
     List<DvdMovie> findAll();
     List<DvdMovie> findAllByTitleContaining(String title);
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface BlueRayMovieRepository extends CrudRepository<BlueRayMovie, Long> {
     boolean existsAllByImdbID(String movieImdbId);
+    @Override
     List<BlueRayMovie> findAll();
     List<BlueRayMovie> findAllByTitleContaining(String title);
 }
