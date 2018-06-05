@@ -10,4 +10,9 @@ public class WelcomeController {
     public String startMyApp(){
         return "index";
     }
+
+    @RequestMapping("/")
+    public String heroku() {
+        return "index";
+    }
 }
