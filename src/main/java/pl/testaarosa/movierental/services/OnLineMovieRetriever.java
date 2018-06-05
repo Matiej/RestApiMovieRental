@@ -51,7 +51,8 @@ public class OnLineMovieRetriever {
 
     private int getPagination(String title) {
         URI url = supplier.OmbdSupplierSource(1, title);
-        return Integer.parseInt(restTemplate.getForObject(url, OmbdOnLinePaginationDto.class).getTotalResults());
+        return Integer.parseInt(ofNullable(restTemplate.getForObject(url, OmbdOnLinePaginationDto.class)
+                .getTotalResults()).orElse("0"));
     }
 
     public OnLineMovieDetails getOnLineMovieDetails(String movieId) {

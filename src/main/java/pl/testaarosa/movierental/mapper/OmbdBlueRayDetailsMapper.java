@@ -8,21 +8,22 @@ import pl.testaarosa.movierental.domain.dto.OmbdBlueRayDetailsDto;
 public class OmbdBlueRayDetailsMapper {
 
     public BlueRayMovieDetails mapToBlueRayMovieDetails(final OmbdBlueRayDetailsDto mFSuppDetailsDto){
-        return BlueRayMovieDetails.builder()
-                .imdbID(mFSuppDetailsDto.getImdbID())
-                .title(mFSuppDetailsDto.getTitle())
-                .year(mFSuppDetailsDto.getYear())
-                .released(mFSuppDetailsDto.getReleased())
-                .runtime(mFSuppDetailsDto.getRuntime())
-                .genre(mFSuppDetailsDto.getGenre())
-                .writer(mFSuppDetailsDto.getWriter())
-                .actors(mFSuppDetailsDto.getActors())
-                .plot(mFSuppDetailsDto.getPlot())
-                .language(mFSuppDetailsDto.getLanguage())
-                .country(mFSuppDetailsDto.getCountry())
-                .awards(mFSuppDetailsDto.getAwards())
-                .poster(mFSuppDetailsDto.getPoster())
-                .production(mFSuppDetailsDto.getProduction())
-                .build();
+
+        return new BlueRayMovieDetails(
+                mFSuppDetailsDto.getImdbID(),
+                mFSuppDetailsDto.getTitle(),
+                mFSuppDetailsDto.getYear(),
+                mFSuppDetailsDto.getReleased(),
+                mFSuppDetailsDto.getRuntime(),
+                mFSuppDetailsDto.getGenre(),
+                mFSuppDetailsDto.getWriter(),
+                mFSuppDetailsDto.getActors(),
+                mFSuppDetailsDto.getPlot(),
+                mFSuppDetailsDto.getLanguage(),
+                mFSuppDetailsDto.getCountry(),
+                mFSuppDetailsDto.getAwards(),
+                mFSuppDetailsDto.getPoster(),
+                mFSuppDetailsDto.getProduction());
+
     }
 }
