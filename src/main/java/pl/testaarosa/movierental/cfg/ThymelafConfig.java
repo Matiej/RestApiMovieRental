@@ -51,9 +51,9 @@ public class ThymelafConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/").setViewName("index");
-//    }
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("home");
+    }
 
 }
