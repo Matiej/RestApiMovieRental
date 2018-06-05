@@ -40,7 +40,7 @@ public class MoviesWishListController {
             BlueRayMovie movie = blueRayService.findbyId(id);
             wishListService.addWish(wishListMapper.mapBlueRayMoviesToWishList(movie));
             model.addAttribute("wishessList", wishListService.findAll());
-            return "moviesWishList";
+            return "/templates/moviesWishList";
     }
 
     @GetMapping("/dvdaddwishlist")
@@ -48,7 +48,7 @@ public class MoviesWishListController {
         DvdMovie movie = dvdMovieService.findById(id);
         wishListService.addWish(wishListMapper.mapDvdMoviesToWishList(movie));
         model.addAttribute("wishessList", wishListService.findAll());
-        return "moviesWishList";
+        return "/templates/moviesWishList";
     }
 
     @GetMapping("/onLinAddwishlist")
@@ -56,19 +56,19 @@ public class MoviesWishListController {
         OnLineMovieDetails onLineMovieDetails = onLineMovieService.getOnLineMovieDetails(imdbID);
         wishListService.addWish(wishListMapper.mapOnLineMoviesToWishList(onLineMovieDetails));
         model.addAttribute("wishessList", wishListService.findAll());
-        return "moviesWishList";
+        return "/templates/moviesWishList";
     }
 
     @GetMapping("/wishlist")
     public String findAll(Model model){
         model.addAttribute("wishessList", wishListService.findAll());
-        return "moviesWishList";
+        return "/templates/moviesWishList";
     }
 
     @GetMapping("/delwish")
     public String delWish(Model model, @RequestParam final Long id){
         wishListService.delWish(id);
         model.addAttribute("wishessList", wishListService.findAll());
-        return "moviesWishList";
+        return "/templates/moviesWishList";
     }
 }

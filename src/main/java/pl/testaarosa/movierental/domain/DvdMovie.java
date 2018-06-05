@@ -26,8 +26,8 @@ public class DvdMovie implements Movies {
     private double price;
     private String poster;
     private String supplier;
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dvdMovieList", targetEntity = MovieWish.class)
-    private List<MovieWish> movieWishList = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dvdMovieList", targetEntity = MovieWish.class)
+//    private List<MovieWish> movieWishList = new ArrayList<>();
 
     @Override
     public String toString() {

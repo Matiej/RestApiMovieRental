@@ -21,8 +21,8 @@ public class OnLineMovie implements Movies {
     @JoinColumn(name = "DETAILS_ID")
     private OnLineMovieDetails onLineMovieDetails;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "onLineMovies", targetEntity = MovieWish.class)
-    private List<MovieWish> movieWishList = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "onLineMovies", targetEntity = MovieWish.class)
+//    private List<MovieWish> movieWishList = new ArrayList<>();
 
     public OnLineMovie() {
     }
@@ -104,14 +104,14 @@ public class OnLineMovie implements Movies {
         this.onLineMovieDetails = onLineMovieDetails;
     }
 
-    @Override
-    public List<MovieWish> getMovieWishList() {
-        return movieWishList;
-    }
-
-    public void setMovieWishList(List<MovieWish> movieWishList) {
-        this.movieWishList = movieWishList;
-    }
+//    @Override
+//    public List<MovieWish> getMovieWishList() {
+//        return movieWishList;
+//    }
+//
+//    public void setMovieWishList(List<MovieWish> movieWishList) {
+//        this.movieWishList = movieWishList;
+//    }
 
     @Override
     public String toString() {

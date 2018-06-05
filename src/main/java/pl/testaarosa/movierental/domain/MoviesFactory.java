@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 public class MoviesFactory {
+
     public static final String BLURAYMOIVE = "BLURAYMOVIE";
     public static final String DVDMOIVE = "DVDMOIVE";
     public static final String ONLINEMOIVE = "ONLINEMOIVE";

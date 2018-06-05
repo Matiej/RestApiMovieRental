@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Movies_Wish")
+@Table(name = "Movies_Wish_NEW")
 public class MovieWish {
 
     @Id
@@ -73,4 +73,5 @@ public class MovieWish {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

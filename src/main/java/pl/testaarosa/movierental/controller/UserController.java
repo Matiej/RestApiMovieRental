@@ -26,31 +26,31 @@ public class UserController {
     @PostMapping("/adduser")
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            return "userForm";
+            return "/templates/userForm";
         } else {
             userService.add(mapper.mapToUserForm(userFormDto));
             List<User> userList = userService.findAll();
             model.addAttribute("users", userList);
-            return "userList";
+            return "/templates/userList";
         }
     }
 
     @GetMapping("/adduser")
     public String showForm(Model model) {
         model.addAttribute("userFormDto", new UserFormDto());
-        return "userForm";
+        return "/templates/userForm";
     }
 
     @GetMapping("/userslist")
     public String showUserMovies(Map<String, Object> model){
         model.put("users", userService.findAll());
-        return "userList";
+        return "/templates/userList";
     }
 
     @GetMapping(".usersearch")
     public String showSearchUsers(Model model, @RequestParam String surname){
         model.addAttribute("searchresult", userService.findAllBySurname(surname));
-        return "userMovieSearchResult";
+        return "/templates/userMovieSearchResult";
     }
 
 }

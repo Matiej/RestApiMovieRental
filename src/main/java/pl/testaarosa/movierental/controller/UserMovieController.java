@@ -26,43 +26,43 @@ public class UserMovieController {
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
         model.put("userMovies", userMovieService.findAll());
-        return "userMoviesList";
+        return "/templates/userMoviesList";
     }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
         model.addAttribute("searchresult", userMovieService.findAllByTitleContaining(title));
-        return "userMoviesSearchResult";
+        return "/templates/userMoviesSearchResult";
     }
 
     @PostMapping("/addnewmovie")
     public String addNewMovie(Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "userMoviesForm";
+            return "/templates/userMoviesForm";
         } else {
             userMovieService.add(userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
             List<UserMovie> userMovieList = userMovieService.findAll();
             model.addAttribute("userMovies",userMovieList);
-            return "userMoviesList";
+            return "/templates/userMoviesList";
         }
     }
 
     @GetMapping("/addnewmovie")
     public String showForm(Model model){
         model.addAttribute("userMovie", new UserMovieFormDto());
-        return "userMoviesForm";
+        return "/templates/userMoviesForm";
 
     }
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
         model.addAttribute("userMovieDetail", userMovieService.finaOne(id));
-        return "userMovieDetails";
+        return "/templates/userMovieDetails";
     }
 
     @GetMapping("/delusermovie")
     public String delUserMovie(Model model, @RequestParam Long id){
         userMovieService.delete(id);
         model.addAttribute("userMovies",userMovieService.findAll());
-        return "userMoviesList";
+        return "/templates/userMoviesList";
     }
 }

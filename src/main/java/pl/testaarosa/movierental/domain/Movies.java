@@ -8,7 +8,7 @@ public interface Movies {
     String getType();
     String getPoster();
     String getSupplier();
-    List<MovieWish> getMovieWishList();
+//    List<MovieWish> getMovieWishList();
 
 
 }

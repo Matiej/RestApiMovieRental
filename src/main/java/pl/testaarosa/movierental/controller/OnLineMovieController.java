@@ -16,18 +16,18 @@ public class OnLineMovieController {
     @RequestMapping("/movielist")
     public String findOnLineMovies(Model model, String title){
         if(title==null) {
-            return "onLineMovieHome";
+            return "/templates/onLineMovieHome";
         } else if(onLineMovieService.getOnLineMovies(title).size()<1) {
-            return "onLineMoviesError";
+            return "/templates/onLineMoviesError";
         } else {
             model.addAttribute("onlinemovieslist", onLineMovieService.getOnLineMovies(title));
-            return "onLineMoviesList";
+            return "/templates/onLineMoviesList";
         }
     }
 
     @RequestMapping("/onlinedetail")
     public String onLineMovieDetail(Model model, String imdbID){
         model.addAttribute("onLineMovieDetails", onLineMovieService.getOnLineMovieDetails(imdbID));
-        return "onLineMovieDetails";
+        return "/templates/onLineMovieDetails";
     }
 }

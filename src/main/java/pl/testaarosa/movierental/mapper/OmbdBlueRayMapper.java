@@ -13,25 +13,25 @@ import java.util.stream.Collectors;
 public class OmbdBlueRayMapper {
 
     public BlueRayMovie mapToBlueRayMovie(final OmbdBlueRayDto ombdBlueRayDto){
-        return BlueRayMovie.builder()
-                .imdbID(ombdBlueRayDto.getImdbID())
-                .title(ombdBlueRayDto.getTitle())
-                .type(ombdBlueRayDto.getYear())
-                .year(ombdBlueRayDto.getYear())
-                .poster(ombdBlueRayDto.getPoster())
-                .build();
+        return new BlueRayMovie(
+                ombdBlueRayDto.getTitle(),
+                ombdBlueRayDto.getYear(),
+                ombdBlueRayDto.getImdbID(),
+                ombdBlueRayDto.getType(),
+                ombdBlueRayDto.getPoster(),
+                "BluRayMovie");
     }
 
     public List<BlueRayMovie> mapToBlueRayMoviesList(List<OmbdBlueRayDto> blueRayDto){
         List<OmbdBlueRayDto> ombdBlueRayDtoList = Optional.ofNullable(blueRayDto).orElse(new ArrayList<>());
         return ombdBlueRayDtoList.stream()
-                .map(b-> BlueRayMovie.builder()
-                        .imdbID(b.getImdbID())
-                        .title(b.getTitle())
-                        .type(b.getType())
-                        .year(b.getYear())
-                        .poster(b.getPoster())
-                        .build())
+                .map(b-> new BlueRayMovie(
+                        b.getTitle(),
+                        b.getYear(),
+                        b.getImdbID(),
+                        b.getType(),
+                        b.getPoster(),
+                        "BluRayMovie"))
                         .collect(Collectors.toList());
     }
 

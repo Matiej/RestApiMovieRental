@@ -22,13 +22,13 @@ public class DvdMovieController {
     @GetMapping("/movieslist")
     public String showDvdMovies(Map<String, Object> model){
         model.put("dvdMoviesFromSuppliers", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findAll()));
-        return "dvdMoviesList";
+        return "/templates/dvdMoviesList";
     }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
         model.addAttribute("searchresult", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findByTitle(title)));
-        return "dvdMovieSearchResult";
+        return "/templates/dvdMovieSearchResult";
     }
 
 }
