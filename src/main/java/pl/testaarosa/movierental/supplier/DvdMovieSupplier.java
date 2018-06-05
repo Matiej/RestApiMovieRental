@@ -15,7 +15,7 @@ public class DvdMovieSupplier {
 
         List<String> lines = Files.readAllLines(Paths.get(getClass().getClassLoader()
                 .getResource("supOneMovies.txt").toURI()));
-        System.out.println(lines);
+        System.out.println("MATIEJ-LINES FOUNDEREK ##############################" +lines);
         return lines;
 
     }
