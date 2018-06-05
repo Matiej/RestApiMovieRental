@@ -1,10 +1,6 @@
 package pl.testaarosa.movierental.domain;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +13,6 @@ public class User {
     private Long id;
     private String name;
     private String surname;
-    @Email
-    @NotEmpty
-    @Size(min = 2)
     private String email;
     private LocalDateTime registerDate;
     @OneToOne(cascade = CascadeType.ALL)
