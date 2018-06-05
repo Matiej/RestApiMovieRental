@@ -25,7 +25,6 @@ public class MovieRentalApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
 
 //        dvdMovieFillDbProcessor.FillDvdMovieDb();
-        System.out.println(supplier.DvdSupplierSource());
         blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
         blueRayMovieFillDbProcessor.FillBlueRayDb("list");
         blueRayMovieFillDbProcessor.FillBlueRayDb("star");
