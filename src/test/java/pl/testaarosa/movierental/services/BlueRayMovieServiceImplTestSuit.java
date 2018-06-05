@@ -30,38 +30,34 @@ public class BlueRayMovieServiceImplTestSuit {
     @Before
     public void setUp(){
         blueRayMovieList = new LinkedList<>();
-        BlueRayMovie blueRayMovie1 = BlueRayMovie.builder()
-                .id(1L)
-                .imdbID("ttimdBID1")
-                .poster("poster1 https")
-                .title("Test Title1")
-                .type("comedy")
-                .year("2018")
-                .build();
+        BlueRayMovie blueRayMovie1 = new BlueRayMovie();
+        blueRayMovie1.setId(1L);
+        blueRayMovie1.setImdbID("ttimdBID1");
+        blueRayMovie1.setPoster("poster1 https");
+        blueRayMovie1.setTitle("Test Title1");
+        blueRayMovie1.setType("Test Title1");
+        blueRayMovie1.setYear("2018");
 
-        BlueRayMovie blueRayMovie2 = BlueRayMovie.builder()
-                .id(2L)
-                .imdbID("ttimdBID2")
-                .poster("poster2 https")
-                .title("Test Title2")
-                .type("sfc")
-                .year("2015")
-                .build();
+        BlueRayMovie blueRayMovie2 = new BlueRayMovie();
+        blueRayMovie2.setId(2L);
+        blueRayMovie2.setImdbID("ttimdBID2");
+        blueRayMovie2.setPoster("poster2 https");
+        blueRayMovie2.setTitle("Test Title2");
+        blueRayMovie2.setType("Test Title2");
+        blueRayMovie2.setYear("2015");
 
-        BlueRayMovie blueRayMovie3 = BlueRayMovie.builder()
-                .id(3L)
-                .imdbID("ttimdBID2")
-                .poster("poster3 https")
-                .title("Test Title3")
-                .type("drama")
-                .year("2014")
-                .build();
-
+        BlueRayMovie blueRayMovie3 = new BlueRayMovie();
+        blueRayMovie3.setId(3L);
+        blueRayMovie3.setImdbID("ttimdBID3");
+        blueRayMovie3.setPoster("poster3 https");
+        blueRayMovie3.setTitle("Test Title3");
+        blueRayMovie3.setType("Test Title3");
+        blueRayMovie3.setYear("2014");
         blueRayMovieList.add(blueRayMovie1);
         blueRayMovieList.add(blueRayMovie2);
         blueRayMovieList.add(blueRayMovie3);
 
-    }
+   }
 
     @Test
     public void testFindAll(){

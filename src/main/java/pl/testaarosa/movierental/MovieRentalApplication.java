@@ -15,8 +15,6 @@ public class MovieRentalApplication implements CommandLineRunner {
     private DvdMovieFillDbProcessor dvdMovieFillDbProcessor;
     @Autowired
     private BlueRayMovieFillDbProcessor blueRayMovieFillDbProcessor;
-    @Autowired
-    private DvdMovieSupplier supplier;
 
     public static void main(String[] args) {
         SpringApplication.run(MovieRentalApplication.class, args);
@@ -25,9 +23,9 @@ public class MovieRentalApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
 
 //        dvdMovieFillDbProcessor.FillDvdMovieDb();
-        blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("list");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("list");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
     }
 }
