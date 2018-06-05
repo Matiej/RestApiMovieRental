@@ -13,8 +13,7 @@ public class DvdMovieSupplier {
 
     public List<String> DvdSupplierSource() throws URISyntaxException, IOException {
 
-        List<String> lines = Files.readAllLines(Paths.get(getClass().getClassLoader()
-                .getResource("supOneMovies.txt").toURI()));
+        List<String> lines = Files.readAllLines(Paths.get("/resources/supOneMovies.txt"));
         System.out.println("MATIEJ-LINES FOUNDEREK ##############################" +lines);
         return lines;
 
