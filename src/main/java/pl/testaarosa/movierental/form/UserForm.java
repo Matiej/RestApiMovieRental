@@ -1,26 +1,15 @@
 package pl.testaarosa.movierental.form;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class UserForm {
 
-    @NotEmpty
     private String name;
-    @NotEmpty
     private String surname;
-    @Email
-    @NotEmpty
-    @Size(min = 2)
     private String email;
     private LocalDateTime registerDate;
-    @Size(min = 10, max = 10, message = "The year must entered it this way (1990-05-05)")
-    @NotNull
     private String brithday;
     private String city;
     private String street;

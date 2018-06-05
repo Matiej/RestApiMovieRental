@@ -37,7 +37,7 @@ public class UserController {
 
     @GetMapping("/adduser")
     public String showForm(Model model) {
-        model.addAttribute("userM", new UserFormDto());
+        model.addAttribute("userFormDto", new UserFormDto());
         return "userForm";
     }
 

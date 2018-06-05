@@ -45,7 +45,7 @@
     </select>
 </datalist>
 
-<form  th:action="@{/users/adduser}" th:object="${userM}" method="post">
+<form  th:action="@{/users/adduser}" th:object="${userFormDto}" method="post" >
     <div  class="form-row">
         <div class="form-group col-md-6">
             <label for="name">User name:</label>
@@ -92,7 +92,7 @@
     </div>
 
     <div class="col-xs-4">
-        <label for="gender">Genre:</label>
+        <label for="gender">Gender:</label>
         <input list="gender" class="form-control" th:field="*{userGender}"/>
         <td rowspan="6" th:if="${#fields.hasErrors('userGender')}" th:errors="*{userGender}"></td>
         <br />
