@@ -12,7 +12,11 @@ import java.util.List;
 public class DvdMovieSupplier {
 
     public List<String> DvdSupplierSource() throws URISyntaxException, IOException {
-        return Files.readAllLines(Paths.get(getClass().getClassLoader()
+
+        List<String> lines = Files.readAllLines(Paths.get(getClass().getClassLoader()
                 .getResource("supOneMovies.txt").toURI()));
+        System.out.println(lines);
+        return lines;
+
     }
 }
