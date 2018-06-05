@@ -20,6 +20,6 @@ public class DvdMovieDetailsController {
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
         model.addAttribute("dvdMovieDetail", dvdMovieMapper.mapToDvdMovieDto(dvdMovieService.findById(id)));
-        return "/templates/dvdMovieDetails";
+        return "dvdMovieDetails";
     }
 }

@@ -8,6 +8,6 @@ public class WelcomeController {
 
     @RequestMapping("/home")
     public String startMyApp(){
-        return "/templates/index";
+        return "index";
     }
 }

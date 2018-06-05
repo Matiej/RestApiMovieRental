@@ -25,14 +25,14 @@ public class BlueRayMovieController {
     @GetMapping("/movieslist")
     public String showMoviesTwoSupplier(Map<String, Object> model){
         model.put("blueRayMoviesFromSuppliers", mapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAll()));
-        return "/templates/blueRayMoviesList";
+        return "blueRayMoviesList";
     }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
         List<BlueRayMovieDto> movieDtoList = mapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAllContainsTitle(title));
         model.addAttribute("searchresult", movieDtoList);
-        return "/templates/blueRayMovieSearchResult";
+        return "blueRayMovieSearchResult";
     }
 
 

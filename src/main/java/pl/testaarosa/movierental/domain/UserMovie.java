@@ -1,6 +1,8 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "USER_MOVIES")
@@ -13,9 +15,16 @@ public class UserMovie {
     private String title;
     @Enumerated(value = EnumType.STRING)
     private UserMovieGenre genre;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MOVIE_DETAILS_ID")
     private UserMovieDetails userMovieDetails;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "JOIN_USER_USERMOVIE",
+    joinColumns = {@JoinColumn(name = "USERMOVIE_ID", referencedColumnName = "ID")},
+    inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
+    private List<User> userList = new ArrayList<>();
 
     public UserMovie() {
     }
@@ -25,6 +34,7 @@ public class UserMovie {
         this.title = userMovieBuilder.title;
         this.genre = userMovieBuilder.genre;
         this.userMovieDetails = userMovieBuilder.userMovieDetails;
+        this.userList = new ArrayList<>(userMovieBuilder.userList);
 
     }
 
@@ -44,6 +54,11 @@ public class UserMovie {
         return genre;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
+
     public UserMovieDetails getUserMovieDetails() {
         return userMovieDetails;
     }
@@ -57,7 +72,7 @@ public class UserMovie {
         private String title;
         private UserMovieGenre genre;
         private UserMovieDetails userMovieDetails;
-
+        private List<User> userList = new ArrayList<>();
 
 
         public UserMovieBuilder imdbID(String imdbID){
@@ -77,6 +92,11 @@ public class UserMovie {
 
         public UserMovieBuilder userMovieDetails(UserMovieDetails userMovieDetails){
             this.userMovieDetails = userMovieDetails;
+            return this;
+        }
+
+        public UserMovieBuilder userList(User user) {
+            this.userList.add(user);
             return this;
         }
 

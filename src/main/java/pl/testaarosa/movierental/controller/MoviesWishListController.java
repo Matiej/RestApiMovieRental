@@ -62,13 +62,13 @@ public class MoviesWishListController {
     @GetMapping("/wishlist")
     public String findAll(Model model){
         model.addAttribute("wishessList", wishListService.findAll());
-        return "/templates/moviesWishList";
+        return "moviesWishList";
     }
 
     @GetMapping("/delwish")
     public String delWish(Model model, @RequestParam final Long id){
         wishListService.delWish(id);
         model.addAttribute("wishessList", wishListService.findAll());
-        return "/templates/moviesWishList";
+        return "moviesWishList";
     }
 }

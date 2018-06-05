@@ -18,6 +18,6 @@ public class BlueRayMovieDetailController {
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
         model.addAttribute("movieDetail", blueRayMovieService.findbyId(id));
-        return "/templates/blueRayMoviesDetails";
+        return "blueRayMoviesDetails";
     }
 }
