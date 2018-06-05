@@ -13,8 +13,8 @@ public class DvdMovieSupplier {
 
     public List<String> DvdSupplierSource() throws URISyntaxException, IOException {
 
-        return Files.readAllLines(Paths.get(getClass().getClassLoader()
-                .getResource("supOneMovies.txt").toURI()));
+        return Files.readAllLines(Paths.get(String.valueOf(getClass().getClassLoader()
+                .getResourceAsStream("supOneMovies.txt"))));
 
     }
 }
