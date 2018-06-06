@@ -37,7 +37,7 @@ public class UserMovieServiceImpl implements UserMovieService {
         UserMovie userMovie1 = userMovieFormMapper.mapToUserMovie(movieForm);
         UserMovieDetails details = userMovieFormMapper.mapToUserMovieDetails(movieForm);
         userMovie1.setUserMovieDetails(details);
-        userMovie1.getUserList().add(user);
+        userMovie1.setUser(user);
         userMovie1.getUserMovieDetails().setUserMovie(userMovie1);
         userMovieRepository.save(userMovie1);
     }

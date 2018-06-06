@@ -5,43 +5,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "BLUE_RAY_MOVIES")
-public class BlueRayMovie implements Movies{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@DiscriminatorValue("BLUE_RAY_MOVIES")
+public class BlueRayMovie extends Movie{
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+
     private String title;
-    private String year;
     private String imdbID;
-    private String type;
     private String poster;
     private String supplier;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DETAILS_ID")
     private BlueRayMovieDetails blueRayMovieDetails;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blueRayMovies", targetEntity = MovieWish.class)
-    private List<MovieWish> movieWishList = new ArrayList<>();
-
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blueRayMovies", targetEntity = MovieWish.class)
+//    private List<MovieWish> movieWishList = new ArrayList<>();
 
     public BlueRayMovie() {
     }
 
-    public BlueRayMovie(String title, String year, String imdbID, String type, String poster, String supplier) {
+   public BlueRayMovie(String title, String imdbID, String poster, String supplier){
         this.title = title;
-        this.year = year;
         this.imdbID = imdbID;
-        this.type = type;
         this.poster = poster;
         this.supplier = supplier;
-    }
+   }
 
+    @Override
     public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return super.getId();
     }
 
     @Override
@@ -49,16 +42,9 @@ public class BlueRayMovie implements Movies{
         return title;
     }
 
+    @Override
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
     }
 
     @Override
@@ -66,17 +52,9 @@ public class BlueRayMovie implements Movies{
         return imdbID;
     }
 
+    @Override
     public void setImdbID(String imdbID) {
         this.imdbID = imdbID;
-    }
-
-    @Override
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Override
@@ -84,6 +62,7 @@ public class BlueRayMovie implements Movies{
         return poster;
     }
 
+    @Override
     public void setPoster(String poster) {
         this.poster = poster;
     }
@@ -93,6 +72,7 @@ public class BlueRayMovie implements Movies{
         return supplier;
     }
 
+    @Override
     public void setSupplier(String supplier) {
         this.supplier = supplier;
     }
@@ -105,24 +85,23 @@ public class BlueRayMovie implements Movies{
         this.blueRayMovieDetails = blueRayMovieDetails;
     }
 
-    public List<MovieWish> getMovieWishList() {
-        return movieWishList;
-    }
-
-    public void setMovieWishList(List<MovieWish> movieWishList) {
-        this.movieWishList = movieWishList;
-    }
+//    public List<MovieWish> getMovieWishList() {
+//        return movieWishList;
+//    }
+//
+//    public void setMovieWishList(List<MovieWish> movieWishList) {
+//        this.movieWishList = movieWishList;
+//    }
 
     @Override
     public String toString() {
         return "BlueRayMovie{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", year='" + year + '\'' +
+                "title='" + title + '\'' +
                 ", imdbID='" + imdbID + '\'' +
-                ", type='" + type + '\'' +
                 ", poster='" + poster + '\'' +
+                ", supplier='" + supplier + '\'' +
                 ", blueRayMovieDetails=" + blueRayMovieDetails +
+
                 '}';
     }
 }

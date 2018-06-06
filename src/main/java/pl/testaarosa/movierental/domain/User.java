@@ -23,7 +23,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MovieWish> movieWishes = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "userList", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserMovie> userMovies = new ArrayList<>();
 
     public User() {
@@ -51,6 +51,7 @@ public class User {
 
                 '}';
     }
+
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;

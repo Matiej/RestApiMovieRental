@@ -1,44 +1,81 @@
 package pl.testaarosa.movierental.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "DVD_MOVIES")
-public class DvdMovie implements Movies {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@DiscriminatorValue("DVD_MOVIES")
+public class DvdMovie extends Movie {
+    //    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
     private String imdbID;
     private String title;
-    private String countryOfOrigin;
-    private String type;
-    private double price;
     private String poster;
     private String supplier;
-//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dvdMovieList", targetEntity = MovieWish.class)
-//    private List<MovieWish> movieWishList = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "DETAILS_ID")
+    private DvdMovieDetails dvdMovieDetails;
 
-    @Override
-    public String toString() {
-        return "DvdMovie{" +
-                "imdbID='" + imdbID + '\'' +
-                ", title='" + title + '\'' +
-                ", countryOfOrigin='" + countryOfOrigin + '\'' +
-                ", filmGenre='" + type + '\'' +
-                ", price=" + price +
-                '}';
+    public DvdMovie() {
     }
 
+    public DvdMovie(String imdbID, String title, String poster, String supplier) {
+        this.imdbID = imdbID;
+        this.title = title;
+        this.poster = poster;
+        this.supplier = supplier;
+    }
 
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
+
+    @Override
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    @Override
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getPoster() {
+        return poster;
+    }
+
+    @Override
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    @Override
+    public String getSupplier() {
+        return supplier;
+    }
+
+    @Override
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public DvdMovieDetails getDvdMovieDetails() {
+        return dvdMovieDetails;
+    }
+
+    public void setDvdMovieDetails(DvdMovieDetails dvdMovieDetails) {
+        this.dvdMovieDetails = dvdMovieDetails;
+    }
 }

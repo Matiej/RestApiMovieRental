@@ -8,6 +8,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import pl.testaarosa.movierental.domain.BlueRayMovie;
 import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
+import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
 import pl.testaarosa.movierental.domain.dto.OmbdBlueRayDetailsDto;
 import pl.testaarosa.movierental.domain.dto.OmbdBlueRayPaginationDto;
 import pl.testaarosa.movierental.mapper.OmbdBlueRayDetailsMapper;

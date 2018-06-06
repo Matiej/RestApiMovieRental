@@ -8,14 +8,10 @@ import pl.testaarosa.movierental.domain.dto.OneDvdDto;
 public class OneDvdMapper {
 
     public DvdMovie mapToDvdMovie(OneDvdDto oneDvdDto) {
-        return DvdMovie.builder()
-                .countryOfOrigin(oneDvdDto.getCountryOfOrigin())
-                .imdbID(oneDvdDto.getMovieId())
-                .type(oneDvdDto.getFilmGenre())
-                .title(oneDvdDto.getTitle())
-                .price(oneDvdDto.getPrice())
-                .poster("http://goshico.com/allegro/questionmarksmall.png")
-                .build();
+        return new DvdMovie(
+                oneDvdDto.getMovieId(),
+                oneDvdDto.getTitle(),
+                "http://goshico.com/allegro/questionmarksmall.png",
+                "DVD MOVIE");
     }
-
 }

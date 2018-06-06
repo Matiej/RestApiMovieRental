@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ONLINE_MOVIES")
-public class OnLineMovie implements Movies {
+public class OnLineMovie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,6 @@ public class OnLineMovie implements Movies {
         this.id = id;
     }
 
-    @Override
     public String getTitle() {
         return title;
     }
@@ -60,7 +59,6 @@ public class OnLineMovie implements Movies {
         this.year = year;
     }
 
-    @Override
     public String getImdbID() {
         return imdbID;
     }
@@ -69,7 +67,6 @@ public class OnLineMovie implements Movies {
         this.imdbID = imdbID;
     }
 
-    @Override
     public String getType() {
         return type;
     }
@@ -78,7 +75,6 @@ public class OnLineMovie implements Movies {
         this.type = type;
     }
 
-    @Override
     public String getPoster() {
         return poster;
     }
@@ -87,7 +83,6 @@ public class OnLineMovie implements Movies {
         this.poster = poster;
     }
 
-    @Override
     public String getSupplier() {
         return "On Line";
     }

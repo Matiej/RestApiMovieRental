@@ -3,6 +3,7 @@ package pl.testaarosa.movierental.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.DvdMovie;
+import pl.testaarosa.movierental.domain.DvdMovieDetails;
 import pl.testaarosa.movierental.repositories.DvdMovieRpository;
 
 import java.io.IOException;
@@ -15,9 +16,10 @@ public class DvdMovieServiceImpl implements DvdMovieService {
     private DvdMovieRpository dvdMovieRpository;
 
     @Override
-    public void addDvdMovie(final DvdMovie dvdMovie) throws IOException, URISyntaxException {
+    public void addDvdMovie(final DvdMovie dvdMovie, DvdMovieDetails details) throws IOException, URISyntaxException {
         String movieId = dvdMovie.getImdbID();
         if (!dvdMovieRpository.existsAllByImdbID(movieId))
+            dvdMovie.setDvdMovieDetails(details);
             dvdMovieRpository.save(dvdMovie);
     }
 

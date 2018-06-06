@@ -1,8 +1,6 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "USER_MOVIES")
@@ -20,11 +18,9 @@ public class UserMovie {
     @JoinColumn(name = "MOVIE_DETAILS_ID")
     private UserMovieDetails userMovieDetails;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "JOIN_USER_USERMOVIE",
-    joinColumns = {@JoinColumn(name = "USERMOVIE_ID", referencedColumnName = "ID")},
-    inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
-    private List<User> userList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
     public UserMovie() {
     }
@@ -34,7 +30,7 @@ public class UserMovie {
         this.title = userMovieBuilder.title;
         this.genre = userMovieBuilder.genre;
         this.userMovieDetails = userMovieBuilder.userMovieDetails;
-        this.userList = new ArrayList<>(userMovieBuilder.userList);
+        this.user = userMovieBuilder.user;
 
     }
 
@@ -54,8 +50,8 @@ public class UserMovie {
         return genre;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public User getUserList() {
+        return user;
     }
 
 
@@ -66,13 +62,17 @@ public class UserMovie {
         this.userMovieDetails = userMovieDetails;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public static class UserMovieBuilder {
         private Long id;
         private String imdbID;
         private String title;
         private UserMovieGenre genre;
         private UserMovieDetails userMovieDetails;
-        private List<User> userList = new ArrayList<>();
+        private User user;
 
 
         public UserMovieBuilder imdbID(String imdbID){
@@ -95,8 +95,8 @@ public class UserMovie {
             return this;
         }
 
-        public UserMovieBuilder userList(User user) {
-            this.userList.add(user);
+        public UserMovieBuilder user(User user) {
+            this.user = user;
             return this;
         }
 

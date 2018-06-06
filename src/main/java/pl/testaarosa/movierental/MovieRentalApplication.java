@@ -24,8 +24,8 @@ public class MovieRentalApplication implements CommandLineRunner {
 
         dvdMovieFillDbProcessor.FillDvdMovieDb();
         blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("list");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("list");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
+//        blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
     }
 }

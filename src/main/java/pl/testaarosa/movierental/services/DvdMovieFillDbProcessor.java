@@ -2,6 +2,10 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.testaarosa.movierental.domain.DvdMovieDetails;
+import pl.testaarosa.movierental.mapper.DvdMovieMapper;
+import pl.testaarosa.movierental.mapper.OneDvdDetilsMapper;
+import pl.testaarosa.movierental.mapper.OneDvdMapper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -12,11 +16,15 @@ public class DvdMovieFillDbProcessor {
     private DvdMovieService dvdMovieService;
     @Autowired
     private DvdMovieRetriver dvdMovieRetriver;
+    @Autowired
+    private OneDvdMapper dvdMovieMapper;
+    @Autowired
+    private OneDvdDetilsMapper detailsMapper;
 
     public void FillDvdMovieDb() throws IOException, URISyntaxException {
         dvdMovieRetriver.DvdFillStructure().forEach(f-> {
             try {
-                dvdMovieService.addDvdMovie(f);
+                dvdMovieService.addDvdMovie(dvdMovieMapper.mapToDvdMovie(f),detailsMapper.matpToOneDvdDetails(f));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (URISyntaxException e) {

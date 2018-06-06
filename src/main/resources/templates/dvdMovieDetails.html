@@ -85,13 +85,13 @@
 <pre class="textdet" th:text="${dvdMovieDetail.imdbID}"></pre>
 
 <h4 class="movieDet">Country of origin:</h4>
-<pre class="textdet" th:text="${dvdMovieDetail.countryOfOrigin}"></pre>
+<pre class="textdet" th:text="${dvdMovieDetail.dvdMovieDetails.countryOfOrigin}"></pre>
 
 <h4 class="movieDet">Genre:</h4>
-<pre class="textdet" th:text="${dvdMovieDetail.type}"></pre>
+<pre class="textdet" th:text="${dvdMovieDetail.dvdMovieDetails.type}"></pre>
 
 <h4 class="movieDet">DVD price:</h4>
-<p class="textdet" th:text="${dvdMovieDetail.price}"></p>
+<p class="textdet" th:text="${dvdMovieDetail.dvdMovieDetails.price}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
 <img th:src="@{${dvdMovieDetail.getPoster()}}" class="textdet" width="20%" height="20%" align="center"/>

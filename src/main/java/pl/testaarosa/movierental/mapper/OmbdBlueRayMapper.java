@@ -15,9 +15,7 @@ public class OmbdBlueRayMapper {
     public BlueRayMovie mapToBlueRayMovie(final OmbdBlueRayDto ombdBlueRayDto){
         return new BlueRayMovie(
                 ombdBlueRayDto.getTitle(),
-                ombdBlueRayDto.getYear(),
                 ombdBlueRayDto.getImdbID(),
-                ombdBlueRayDto.getType(),
                 ombdBlueRayDto.getPoster(),
                 "BluRayMovie");
     }
@@ -27,9 +25,7 @@ public class OmbdBlueRayMapper {
         return ombdBlueRayDtoList.stream()
                 .map(b-> new BlueRayMovie(
                         b.getTitle(),
-                        b.getYear(),
                         b.getImdbID(),
-                        b.getType(),
                         b.getPoster(),
                         "BluRayMovie"))
                         .collect(Collectors.toList());

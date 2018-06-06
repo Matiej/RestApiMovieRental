@@ -13,23 +13,19 @@ public class BlueRayMovieMapper {
     public BlueRayMovie mapToBlueRayMovie(BlueRayMovieDto blueRayMovieDto) {
         return new BlueRayMovie(
                 blueRayMovieDto.getTitle(),
-                blueRayMovieDto.getYear(),
                 blueRayMovieDto.getImdbID(),
-                blueRayMovieDto.getType(),
                 blueRayMovieDto.getPoster(),
                 "BluRayMovie");
     }
 
-    public BlueRayMovieDto mapToBlueRayMovieDto(BlueRayMovie blueRayMovieDto){
+    public BlueRayMovieDto mapToBlueRayMovieDto(BlueRayMovie blueRayMovie){
         return new BlueRayMovieDto(
-                blueRayMovieDto.getId(),
-                blueRayMovieDto.getTitle(),
-                blueRayMovieDto.getYear(),
-                blueRayMovieDto.getImdbID(),
-                blueRayMovieDto.getType(),
-                blueRayMovieDto.getPoster(),
+                blueRayMovie.getId(),
+                blueRayMovie.getTitle(),
+                blueRayMovie.getImdbID(),
+                blueRayMovie.getPoster(),
                 "BluRayMovie",
-                blueRayMovieDto.getBlueRayMovieDetails());
+                blueRayMovie.getBlueRayMovieDetails());
     }
 
     public List<BlueRayMovieDto> mapToBlueRayMovieDtoList(List<BlueRayMovie> blueRayMovies) {
@@ -37,9 +33,7 @@ public class BlueRayMovieMapper {
                 .map(b-> new BlueRayMovieDto(
                         b.getId(),
                         b.getTitle(),
-                        b.getYear(),
                         b.getImdbID(),
-                        b.getType(),
                         b.getPoster(),
                         "BluRayMovie",
                         b.getBlueRayMovieDetails()))

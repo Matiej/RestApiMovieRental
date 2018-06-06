@@ -3,7 +3,9 @@ package pl.testaarosa.movierental.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.DvdMovie;
+import pl.testaarosa.movierental.domain.DvdMovieDetails;
 import pl.testaarosa.movierental.domain.dto.OneDvdDto;
+import pl.testaarosa.movierental.mapper.OneDvdDetilsMapper;
 import pl.testaarosa.movierental.mapper.OneDvdMapper;
 import pl.testaarosa.movierental.supplier.DvdMovieSupplier;
 
@@ -20,9 +22,11 @@ public class DvdMovieRetriver {
     private DvdMovieSupplier dvdMovieSupplier;
     @Autowired
     private OneDvdMapper oneDvdMapper;
+    @Autowired
+    private OneDvdDetilsMapper dvdDetilsMapper;
 
-    public List<DvdMovie> DvdFillStructure() throws IOException, URISyntaxException {
-        List<DvdMovie> dvdMovies = new ArrayList<>();
+    public List<OneDvdDto> DvdFillStructure() throws IOException, URISyntaxException {
+        List<OneDvdDto> dvdMovies = new ArrayList<>();
         List<String> lines = dvdMovieSupplier.DvdSupplierSource();
         lines.remove(0);
         lines.forEach(l-> {
@@ -34,10 +38,11 @@ public class DvdMovieRetriver {
                     .filmGenre(value[3])
                     .price(Double.parseDouble(value[4]))
                     .build();
-            dvdMovies.add(oneDvdMapper.mapToDvdMovie(oneDvdDto));
+            dvdMovies.add(oneDvdDto);
         });
         return dvdMovies;
     }
+
 
 
 }
