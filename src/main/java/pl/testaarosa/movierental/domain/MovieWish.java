@@ -30,6 +30,7 @@ public class MovieWish {
             inverseJoinColumns = {@JoinColumn(name = "DVD_MOVIE_ID", referencedColumnName = "ID")})
     private List<DvdMovie> dvdMovieList = new ArrayList<>();
 
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;

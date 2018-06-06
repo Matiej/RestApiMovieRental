@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
+import pl.testaarosa.movierental.mapper.BlueRayMovieDetailsMapper;
+import pl.testaarosa.movierental.mapper.BlueRayMovieMapper;
 import pl.testaarosa.movierental.services.BlueRayMovieService;
 
 @Controller
@@ -14,10 +17,13 @@ import pl.testaarosa.movierental.services.BlueRayMovieService;
 public class BlueRayMovieDetailController {
     @Autowired
     private BlueRayMovieService blueRayMovieService;
+    @Autowired
+    private BlueRayMovieMapper movieDetailsMapper;
 
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-        model.addAttribute("movieDetail", blueRayMovieService.findbyId(id));
+        BlueRayMovieDto blueRayMovieDto = movieDetailsMapper.mapToBlueRayMovieDto(blueRayMovieService.findbyId(id));
+        model.addAttribute("movieDetail", blueRayMovieDto);
         return "blueRayMoviesDetails";
     }
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UserMovieService {
     List<UserMovie> findAll();
     UserMovie finaOne(Long id);
-    void add(UserMovieForm userMovie);
+    void add(Long id, UserMovieForm userMovie);
     void delete(Long id);
     List<UserMovie> findAllByTitleContaining(String title);
 }

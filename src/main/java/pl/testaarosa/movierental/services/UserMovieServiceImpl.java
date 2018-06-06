@@ -2,6 +2,7 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.domain.UserMovieDetails;
 import pl.testaarosa.movierental.form.UserMovieForm;
@@ -17,6 +18,8 @@ public class UserMovieServiceImpl implements UserMovieService {
     private UserMovieRepository userMovieRepository;
     @Autowired
     private UserMovieFormMapper userMovieFormMapper;
+    @Autowired
+    private UserService userService;
 
     @Override
     public List<UserMovie> findAll() {
@@ -29,10 +32,12 @@ public class UserMovieServiceImpl implements UserMovieService {
     }
 
     @Override
-    public void add(UserMovieForm movieForm) {
+    public void add(Long id, UserMovieForm movieForm) {
+        User user = userService.findOne(id);
         UserMovie userMovie1 = userMovieFormMapper.mapToUserMovie(movieForm);
         UserMovieDetails details = userMovieFormMapper.mapToUserMovieDetails(movieForm);
         userMovie1.setUserMovieDetails(details);
+        userMovie1.getUserList().add(user);
         userMovie1.getUserMovieDetails().setUserMovie(userMovie1);
         userMovieRepository.save(userMovie1);
     }

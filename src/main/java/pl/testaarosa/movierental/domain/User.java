@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "RENTAL_USER")
+//@Table(name = "RENTAL_USER") -> only for heroku
 public class User {
 
     @Id
@@ -37,6 +37,19 @@ public class User {
         this.registerDate = userBuilder.registerDate;
         this.movieWishes = new ArrayList<>(userBuilder.movieWishes);
         this.userMovies = new ArrayList<>(userBuilder.userMovies);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", registerDate=" + registerDate +
+                ", userDetails=" + userDetails +
+
+                '}';
     }
 
     public void setUserDetails(UserDetails userDetails) {
@@ -115,15 +128,6 @@ public class User {
             return new User(this);
         }
 
-        @Override
-        public String toString() {
-            return "UserBuilder{" +
-                    "name='" + name + '\'' +
-                    ", surname='" + surname + '\'' +
-                    ", email='" + email + '\'' +
-                    ", userDetails=" + userDetails +
-                    ", registerDate=" + registerDate +
-                    '}';
-        }
+
     }
 }

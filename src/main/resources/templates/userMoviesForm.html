@@ -44,6 +44,12 @@
     </select>
 </datalist>
 
+<datalist id="usersList">
+    <option th:each="u : ${usersList}" th:value="${u.id}"
+            th:label="${u}" th:tabindex="${u.name}"></option>
+
+</datalist>
+
 <form  th:action="@{/usermovie/addnewmovie}" th:object="${userMovie}" method="post">
     <div  class="form-row">
         <div class="form-group col-md-6">
@@ -98,11 +104,18 @@
             <td rowspan="6" th:if="${#fields.hasErrors('plot')}" th:errors="*{plot}"></td>
         </div>
     </div>
+    <div class="col-xs-4">
+        <label for="user">Users:</label>
+        <input list="usersList" class="form-control" name="userId"/>
+
+    </div>
 
     <div class="col-xs-4">
         <label for="genre">Genre:</label>
         <input list="genre" class="form-control" th:field="*{genre}"/>
         <td rowspan="6" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></td>
+
+
         <br />
         <button type="submit" class="btn-success btn-lg">Submit</button>
         <button type="reset" class="btn-danger btn-lg">Reset</button>

@@ -9,6 +9,7 @@ import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
 import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
 import pl.testaarosa.movierental.services.UserMovieService;
+import pl.testaarosa.movierental.services.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,7 +23,9 @@ public class UserMovieController {
     private UserMovieService userMovieService;
     @Autowired
     private UserMovieFormDtoMapper userMovieFormDtoMapper;
-//TODO zrobić mapper
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
         model.put("userMovies", userMovieService.findAll());
@@ -36,11 +39,12 @@ public class UserMovieController {
     }
 
     @PostMapping("/addnewmovie")
-    public String addNewMovie(Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto, BindingResult bindingResult){
+    public String addNewMovie(Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto,
+                              BindingResult bindingResult,@RequestParam Long userId){
         if(bindingResult.hasErrors()){
             return "userMoviesForm";
         } else {
-            userMovieService.add(userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
+            userMovieService.add(userId,(userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto)));
             List<UserMovie> userMovieList = userMovieService.findAll();
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
@@ -50,6 +54,7 @@ public class UserMovieController {
     @GetMapping("/addnewmovie")
     public String showForm(Model model){
         model.addAttribute("userMovie", new UserMovieFormDto());
+        model.addAttribute("usersList", userService.findAll());
         return "userMoviesForm";
 
     }
