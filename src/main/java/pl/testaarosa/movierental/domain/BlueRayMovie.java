@@ -7,20 +7,15 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("BLUE_RAY_MOVIES")
 public class BlueRayMovie extends Movie{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
 
     private String title;
     private String imdbID;
     private String poster;
     private String supplier;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "DETAILS_ID")
-    private BlueRayMovieDetails blueRayMovieDetails;
 
-//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "blueRayMovies", targetEntity = MovieWish.class)
-//    private List<MovieWish> movieWishList = new ArrayList<>();
+    @JoinColumn(name = "BLUE_DET_ID")
+    private BlueRayMovieDetails blueRayMovieDetails;
 
     public BlueRayMovie() {
     }

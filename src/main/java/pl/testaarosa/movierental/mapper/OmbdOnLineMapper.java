@@ -24,8 +24,8 @@ public class OmbdOnLineMapper {
                         o.getTitle(),
                         o.getYear(),
                         o.getImdbID(),
-                        o.getType(),
-                        o.getPoster()))
+                        o.getPoster(),
+                        "ONLINE MOVIE"))
                 .collect(Collectors.toList());
     }
 }

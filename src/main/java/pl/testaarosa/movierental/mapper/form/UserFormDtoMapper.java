@@ -8,7 +8,6 @@ import pl.testaarosa.movierental.form.dto.UserFormDto;
 public class UserFormDtoMapper {
 
     public UserForm mapToUserForm(UserFormDto userFormDto) {
-
         return new UserForm(userFormDto.getName(),
                 userFormDto.getSurname(),
                 userFormDto.getEmail(),

@@ -8,18 +8,17 @@ public class OnLineMovieDto {
     private String title;
     private String year;
     private String imdbID;
-    private String type;
+//    private String type;
     private String poster;
     private String supplier;
     private OnLineMovieDetails onLineMovieDetails;
 
-    public OnLineMovieDto(Long id, String title, String year, String imdbID, String type, String poster,
+    public OnLineMovieDto(Long id, String year, String title, String imdbID, String poster,
                           String supplier, OnLineMovieDetails onLineMovieDetails) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.imdbID = imdbID;
-        this.type = type;
         this.poster = poster;
         this.supplier = supplier;
         this.onLineMovieDetails = onLineMovieDetails;
@@ -57,13 +56,13 @@ public class OnLineMovieDto {
         this.imdbID = imdbID;
     }
 
-    public String getType() {
-        return type;
-    }
+//    public String getType() {
+//        return type;
+//    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+//    public void setType(String type) {
+//        this.type = type;
+//    }
 
     public String getPoster() {
         return poster;

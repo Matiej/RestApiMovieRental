@@ -16,7 +16,6 @@ public class OnLineMovieMapper {
                 onLineMovie.getTitle(),
                 onLineMovie.getYear(),
                 onLineMovie.getImdbID(),
-                onLineMovie.getType(),
                 onLineMovie.getPoster(),
                 onLineMovie.getSupplier(),
                 onLineMovie.getOnLineMovieDetails());
@@ -29,7 +28,6 @@ public class OnLineMovieMapper {
                         o.getTitle(),
                         o.getYear(),
                         o.getImdbID(),
-                        o.getType(),
                         o.getPoster(),
                         o.getSupplier(),
                         o.getOnLineMovieDetails()))

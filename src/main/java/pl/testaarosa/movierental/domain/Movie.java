@@ -1,10 +1,13 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "MOVIES")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value="movie")
 public class Movie {
 
@@ -12,11 +15,11 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-//    private String year;
     private String imdbID;
-//    private String type;
     private String poster;
     private String supplier;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "moviesList", targetEntity = MovieWish.class)
+    private List<MovieWish> movieWishList = new ArrayList<>();
 
     public Movie() {
     }

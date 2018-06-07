@@ -5,42 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ONLINE_MOVIES")
-public class OnLineMovie {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//@Table(name = "ONLINE_MOVIES")
+@DiscriminatorValue("ONLINE_MOVIES")
+public class OnLineMovie extends Movie{
     private String title;
     private String year;
     private String imdbID;
-    private String type;
     private String poster;
     private String supplier;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "DETAILS_ID")
-    private OnLineMovieDetails onLineMovieDetails;
 
-//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "onLineMovies", targetEntity = MovieWish.class)
-//    private List<MovieWish> movieWishList = new ArrayList<>();
+    @JoinColumn(name = "ONLINE_DET_ID")
+    private OnLineMovieDetails onLineMovieDetails;
 
     public OnLineMovie() {
     }
 
-    public OnLineMovie(String title, String year, String imdbID, String type, String poster) {
+    public OnLineMovie(String title, String year, String imdbID, String poster, String supplier) {
         this.title = title;
         this.year = year;
         this.imdbID = imdbID;
-        this.type = type;
         this.poster = poster;
+        this.supplier = supplier;
     }
+
+
 
     public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return super.getId();
     }
 
     public String getTitle() {
@@ -67,14 +59,6 @@ public class OnLineMovie {
         this.imdbID = imdbID;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getPoster() {
         return poster;
     }
@@ -99,25 +83,12 @@ public class OnLineMovie {
         this.onLineMovieDetails = onLineMovieDetails;
     }
 
-//    @Override
-//    public List<MovieWish> getMovieWishList() {
-//        return movieWishList;
-//    }
-//
-//    public void setMovieWishList(List<MovieWish> movieWishList) {
-//        this.movieWishList = movieWishList;
-//    }
-
     @Override
     public String toString() {
         return "BlueRayMovie{" +
-                "id=" + id +
                 ", title='" + title + '\'' +
-                ", year='" + year + '\'' +
                 ", imdbID='" + imdbID + '\'' +
-                ", type='" + type + '\'' +
                 ", poster='" + poster + '\'' +
-                ", onLineMovieDetails=" + onLineMovieDetails +
-                '}';
+                ", onLineMovieDetails=" + onLineMovieDetails;
     }
 }

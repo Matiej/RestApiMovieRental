@@ -10,6 +10,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .button {
+            display: block;
+            height: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 30px;
+            width: 350px;
+            margin: 20px;
+
+            color: #BF3F6A;
+            text-align: center;
+            border: solid #427AA8 1px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
+
+        img {
+            position: center;
+            top: 0; bottom:0; left: 400px; child-align: right;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -43,8 +76,22 @@
                 th:text="${gen.name}"></option>
     </select>
 </datalist>
+<h3>Click the button to display date and time right now :).</h3>
 
+<button class="button" onclick="myFunction()">Don't be afraid, just click it</button>
+
+<p style="font-size:19px;color:blue"  id="time"></p>
+
+<script>
+    function myFunction() {
+        var d = new Date();
+        var n = d.getMinutes();
+        document.getElementById("time").innerHTML = d;
+    }
+</script>
 <form  th:action="@{/users/adduser}" th:object="${userFormDto}" method="post" >
+    <h2 class="movieDet">Create new user:</h2>
+
     <div  class="form-row">
         <div class="form-group col-md-6">
             <label for="name">User name:</label>
@@ -98,6 +145,7 @@
         <button type="submit" class="btn-success btn-lg">Submit</button>
         <button type="reset" class="btn-danger btn-lg">Reset</button>
     </div>
+
 
 
 </form>

@@ -6,6 +6,7 @@ import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OnLineMovieServiceImpl implements OnLineMovieService {
@@ -15,7 +16,7 @@ public class OnLineMovieServiceImpl implements OnLineMovieService {
 
     @Override
     public List<OnLineMovie> getOnLineMovies(String title){
-        return onLineMovieRetriever.getOnLineMovies(title);
+            return onLineMovieRetriever.getOnLineMovies(title);
     }
 
     @Override

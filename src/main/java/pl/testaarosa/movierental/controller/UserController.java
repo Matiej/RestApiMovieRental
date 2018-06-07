@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.testaarosa.movierental.domain.User;
+import pl.testaarosa.movierental.domain.dto.UserDto;
+import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
 import pl.testaarosa.movierental.mapper.form.UserFormDtoMapper;
 import pl.testaarosa.movierental.services.UserService;
@@ -19,18 +21,16 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    private UserService userService;
-    @Autowired
-    private UserFormDtoMapper mapper;
+    private UserFacade userFacade;
 
     @PostMapping("/adduser")
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "userForm";
         } else {
-            userService.add(mapper.mapToUserForm(userFormDto));
-            List<User> userList = userService.findAll();
-            model.addAttribute("users", userList);
+            userFacade.add(userFormDto);
+            List<UserDto> userDtos = userFacade.findAll();
+            model.addAttribute("users", userDtos);
             return "userList";
         }
     }
@@ -43,14 +43,14 @@ public class UserController {
 
     @GetMapping("/userslist")
     public String showUserMovies(Map<String, Object> model){
-        model.put("users", userService.findAll());
+        model.put("users", userFacade.findAll());
         return "userList";
     }
-
-    @GetMapping(".usersearch")
-    public String showSearchUsers(Model model, @RequestParam String surname){
-        model.addAttribute("searchresult", userService.findAllBySurname(surname));
-        return "userMovieSearchResult";
-    }
+//
+//    @GetMapping("usersearch")
+//    public String showSearchUsers(Model model, @RequestParam String surname){
+//        model.addAttribute("searchresult", userService.findAllBySurname(surname));
+//        return "userMovieSearchResult";
+//    }
 
 }

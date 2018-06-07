@@ -5,15 +5,13 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("DVD_MOVIES")
 public class DvdMovie extends Movie {
-    //    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+
     private String imdbID;
     private String title;
     private String poster;
     private String supplier;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "DETAILS_ID")
+    @JoinColumn(name = "DVD_DET_ID")
     private DvdMovieDetails dvdMovieDetails;
 
     public DvdMovie() {

@@ -40,7 +40,8 @@ public class OnLineMovieRetriever {
             IntStream.range(0, getPagination(title) / 10).forEach(m -> {
                 URI urlpages = supplier.OmbdSupplierSource(m, title);
                 OmbdOnLinePaginationDto moviepages = restTemplate.getForObject(urlpages, OmbdOnLinePaginationDto.class);
-                onLineMovieList.addAll(ombdOnLineMapper.mapToOnLineMovieList(moviepages.getOmbdOnLineDtos()));
+                List<OmbdOnLineDto> list = moviepages.getOmbdOnLineDtos();
+                onLineMovieList.addAll(ombdOnLineMapper.mapToOnLineMovieList(list));
             });
             return onLineMovieList;
         } catch (RestClientException e) {

@@ -46,17 +46,19 @@ public class UserServiceImpl implements UserService {
         sendEmail(userForm);
     }
 
+    //TODO coś tutaj ładniej zrobić bo syfiasto jest, przeniesc do EmailService?
     private void sendEmail(UserForm userForm) {
         String subject = "Welcome " + userForm.getName() + ", Testaarosa movierental app created Yours account";
+
         StringBuilder message = new StringBuilder("Yours account created as above: " + "\n"
                 + "Name: " + userForm.getName() + ",  surname: " + userForm.getSurname() + "\n"
                 + "City: " + userForm.getCity() + ",  street: " + userForm.getStreet() + "\n"
                 + " ** Birthday: " +userForm.getBrithday() + "\n"
                 + "User email: " + userForm.getEmail() + " \n Date of registration: " + userForm.getRegisterDate() + "\n\n"
                 + "############################################## \n" + "YOU CAN FIND ME HERE:  http://www.testaarosa.pl");
+
                 ofNullable(userForm).ifPresent(c-> emailService.send(new Mail(
                 c.getEmail(), subject, message.toString(), adminConfig.getAdminMail())));
-
     }
 
     @Override
