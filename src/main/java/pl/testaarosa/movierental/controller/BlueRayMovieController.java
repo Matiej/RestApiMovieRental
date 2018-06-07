@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/two")
+@RequestMapping("/blueray")
 //TODO zmienic two na blueray i do tego templatki
 public class BlueRayMovieController {
 
