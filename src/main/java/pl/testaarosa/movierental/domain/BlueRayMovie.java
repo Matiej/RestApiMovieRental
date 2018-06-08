@@ -8,12 +8,7 @@ import java.util.List;
 @DiscriminatorValue("BLUE_RAY_MOVIES")
 public class BlueRayMovie extends Movie{
 
-    private String title;
-    private String imdbID;
-    private String poster;
-    private String supplier;
     @OneToOne(cascade = CascadeType.ALL)
-
     @JoinColumn(name = "BLUE_DET_ID")
     private BlueRayMovieDetails blueRayMovieDetails;
 
@@ -21,11 +16,10 @@ public class BlueRayMovie extends Movie{
     }
 
    public BlueRayMovie(String title, String imdbID, String poster, String supplier){
-        this.title = title;
-        this.imdbID = imdbID;
-        this.poster = poster;
-        this.supplier = supplier;
+        super(title,imdbID,poster,supplier);
    }
+
+
 
     @Override
     public Long getId() {
@@ -34,42 +28,47 @@ public class BlueRayMovie extends Movie{
 
     @Override
     public String getTitle() {
-        return title;
+        return super.getTitle();
+    }
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
     }
 
     @Override
     public void setTitle(String title) {
-        this.title = title;
+        super.setTitle(title);
     }
 
     @Override
     public String getImdbID() {
-        return imdbID;
+        return super.getImdbID();
     }
 
     @Override
     public void setImdbID(String imdbID) {
-        this.imdbID = imdbID;
+        super.setImdbID(imdbID);
     }
 
     @Override
     public String getPoster() {
-        return poster;
+        return super.getPoster();
     }
 
     @Override
     public void setPoster(String poster) {
-        this.poster = poster;
+        super.setPoster(poster);
     }
 
     @Override
     public String getSupplier() {
-        return supplier;
+        return super.getSupplier();
     }
 
     @Override
     public void setSupplier(String supplier) {
-        this.supplier = supplier;
+        super.setSupplier(supplier);
     }
 
     public BlueRayMovieDetails getBlueRayMovieDetails() {
@@ -80,23 +79,11 @@ public class BlueRayMovie extends Movie{
         this.blueRayMovieDetails = blueRayMovieDetails;
     }
 
-//    public List<MovieWish> getMovieWishList() {
-//        return movieWishList;
-//    }
-//
-//    public void setMovieWishList(List<MovieWish> movieWishList) {
-//        this.movieWishList = movieWishList;
-//    }
-
     @Override
     public String toString() {
         return "BlueRayMovie{" +
-                "title='" + title + '\'' +
-                ", imdbID='" + imdbID + '\'' +
-                ", poster='" + poster + '\'' +
-                ", supplier='" + supplier + '\'' +
-                ", blueRayMovieDetails=" + blueRayMovieDetails +
-
+                "blueRayMovieDetails=" + blueRayMovieDetails +
                 '}';
     }
 }
+
