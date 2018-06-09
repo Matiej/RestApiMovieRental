@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.testaarosa.movierental.domain.dto.OnLineMovieDetailsDto;
 import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
-import pl.testaarosa.movierental.facade.OnLineMovieFacade;
-import pl.testaarosa.movierental.mapper.OnLineMovieDetailsMapper;
-import pl.testaarosa.movierental.mapper.OnLineMovieMapper;
-import pl.testaarosa.movierental.services.OnLineMovieService;
+import pl.testaarosa.movierental.facade.MoviesFacade;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ import java.util.List;
 public class OnLineMovieController {
 
     @Autowired
-    private OnLineMovieFacade onLineMovieFacade;
+    private MoviesFacade onLineMovieFacade;
 
     @RequestMapping("/movielist")
     public String findOnLineMovies(Model model, String title) {

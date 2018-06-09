@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.testaarosa.movierental.facade.DvdMoviesFacade;
+import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.mapper.DvdMovieMapper;
 import pl.testaarosa.movierental.services.DvdMovieService;
 
@@ -17,23 +17,19 @@ import java.util.Map;
 public class DvdMovieController {
 
     @Autowired
-    private DvdMoviesFacade dvdMoviesFacade;
-    @Autowired
-    private DvdMovieService dvdMovieService;
-    @Autowired
-    private DvdMovieMapper dvdMovieMapper;
+    private MoviesFacade dvdMoviesFacade;
 
     @GetMapping("/movieslist")
     public String showDvdMovies(Map<String, Object> model){
-//        model.put("dvdMoviesFromSuppliers", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findAll()));
-        model.put("dvdMoviesFromSuppliers", dvdMoviesFacade.findAll());
+//        model.put("dvdMoviesFromSuppliers", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findAllDvd()));
+        model.put("dvdMoviesFromSuppliers", dvdMoviesFacade.findAllDvd());
         return "dvdMoviesList";
     }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
-//        model.addAttribute("searchresult", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findByTitle(title)));
-        model.addAttribute("searchresult", dvdMoviesFacade.findByTitle(title));
+//        model.addAttribute("searchresult", dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findDvdByTitle(title)));
+        model.addAttribute("searchresult", dvdMoviesFacade.findDvdByTitle(title));
         return "dvdMovieSearchResult";
     }
 

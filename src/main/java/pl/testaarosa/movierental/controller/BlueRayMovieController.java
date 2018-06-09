@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
-import pl.testaarosa.movierental.facade.BluRayMoviesFacade;
-import pl.testaarosa.movierental.mapper.BlueRayMovieMapper;
-import pl.testaarosa.movierental.services.BlueRayMovieService;
+import pl.testaarosa.movierental.facade.MoviesFacade;
 
 import java.util.List;
 import java.util.Map;
@@ -20,15 +18,11 @@ import java.util.Map;
 public class BlueRayMovieController {
 
     @Autowired
-    private BluRayMoviesFacade bluRayMoviesFacade;
-    @Autowired
-    private BlueRayMovieService blueRayMovieService;
-    @Autowired
-    private BlueRayMovieMapper mapper;
+    private MoviesFacade bluRayMoviesFacade;
 
     @GetMapping("/movieslist")
     public String showBlueRayMovies(Map<String, Object> model){
-//        model.put("blueRayMoviesFromSuppliers", mapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAll()));
+//        model.put("blueRayMoviesFromSuppliers", mapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAllDvd()));
         model.put("blueRayMoviesFromSuppliers", bluRayMoviesFacade.findAll());
         return "blueRayMoviesList";
     }
