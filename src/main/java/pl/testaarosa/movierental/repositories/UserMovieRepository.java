@@ -14,4 +14,5 @@ public interface UserMovieRepository extends CrudRepository<UserMovie, Long> {
     UserMovie findById(Long id);
 
     List<UserMovie> findAllByTitleContaining(String title);
+
 }

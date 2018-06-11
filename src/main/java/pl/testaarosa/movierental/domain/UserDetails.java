@@ -58,7 +58,11 @@ public class UserDetails {
         return user;
     }
 
-    public static class UserDetailsBuilder {
+    public static NeedBrithday builder() {
+        return new UserDetailsBuilder();
+    }
+
+    private static class UserDetailsBuilder implements NeedBrithday, NeedCity, NeedStreet, NeedUserGender, CanBeBuild {
         private LocalDate brithday;
         private String city;
         private String street;
@@ -85,13 +89,41 @@ public class UserDetails {
             return this;
         }
 
-        public UserDetailsBuilder user(User user){
+        @Override
+        public UserDetailsBuilder and() {
+            return this;
+        }
+
+        public UserDetailsBuilder user(User user) {
             this.user = user;
             return this;
         }
 
-        public UserDetails build(){
+        public UserDetails build() {
             return new UserDetails(this);
         }
     }
+
+    public interface NeedBrithday {
+        public NeedCity birthday(LocalDate brithday);
+    }
+
+    public interface NeedCity {
+        NeedStreet city(String city);
+    }
+
+    public interface NeedStreet {
+        NeedUserGender street(String street);
+    }
+
+    public interface NeedUserGender {
+        CanBeBuild userGender(UserGender userGender);
+        CanBeBuild and();
+    }
+
+    public interface CanBeBuild {
+        CanBeBuild user(User user);
+        UserDetails build();
+    }
 }
+

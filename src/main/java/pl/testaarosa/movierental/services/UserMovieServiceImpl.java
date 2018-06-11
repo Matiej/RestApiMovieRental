@@ -10,7 +10,6 @@ import pl.testaarosa.movierental.mapper.form.UserMovieFormMapper;
 import pl.testaarosa.movierental.repositories.UserMovieRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserMovieServiceImpl implements UserMovieService {
@@ -32,14 +31,15 @@ public class UserMovieServiceImpl implements UserMovieService {
     }
 
     @Override
-    public void add(Long id, UserMovieForm movieForm) {
+    public UserMovie add(Long id, UserMovieForm movieForm) {
         User user = userService.findOne(id);
         UserMovie userMovie1 = userMovieFormMapper.mapToUserMovie(movieForm);
         UserMovieDetails details = userMovieFormMapper.mapToUserMovieDetails(movieForm);
         userMovie1.setUserMovieDetails(details);
         userMovie1.setUser(user);
         userMovie1.getUserMovieDetails().setUserMovie(userMovie1);
-        userMovieRepository.save(userMovie1);
+        return userMovieRepository.save(userMovie1);
+
     }
 
     @Override

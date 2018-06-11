@@ -9,15 +9,22 @@ import pl.testaarosa.movierental.form.UserMovieForm;
 public class UserMovieFormMapper {
 
     public UserMovie mapToUserMovie(UserMovieForm userMovieForm){
-        return new UserMovie.UserMovieBuilder()
+        return UserMovie.builder()
+                .imdbID(userMovieForm.getImdbID())
                 .title(userMovieForm.getTitle())
                 .genre(userMovieForm.getGenre())
-                .imdbID(userMovieForm.getImdbID())
+                .and()
                 .build();
+
+//        return new UserMovie.UserMovieBuilder()
+//                .title(userMovieForm.getTitle())
+//                .genre(userMovieForm.getGenre())
+//                .imdbID(userMovieForm.getImdbID())
+//                .build();
     }
 
     public UserMovieDetails mapToUserMovieDetails(UserMovieForm userMovieForm){
-        return new UserMovieDetails.UserMovieDetailsBuilder()
+        return UserMovieDetails.builder()
                 .year(userMovieForm.getYear())
                 .poster(userMovieForm.getPoster())
                 .runtime(userMovieForm.getRuntime())
@@ -25,6 +32,5 @@ public class UserMovieFormMapper {
                 .actors(userMovieForm.getActors())
                 .plot(userMovieForm.getPlot())
                 .build();
-
     }
 }

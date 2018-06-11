@@ -15,17 +15,18 @@ public class UserFormMapper {
     private final LocalDateTime currentDate = LocalDateTime.now().withNano(0);
 
     public User mapToUser(UserForm userForm) {
-        return new User.UserBuilder()
+        return User.builder()
                 .name(userForm.getName())
                 .surname(userForm.getSurname())
                 .email(userForm.getEmail())
                 .registerDate(currentDate)
+                .and()
                 .build();
     }
 
     public UserDetails mapToUserDetails(UserForm userForm){
         LocalDate localDate = LocalDate.parse(userForm.getBrithday(), formatter);
-        return new UserDetails.UserDetailsBuilder()
+        return UserDetails.builder()
                 .birthday(localDate)
                 .city(userForm.getCity())
                 .street(userForm.getStreet())

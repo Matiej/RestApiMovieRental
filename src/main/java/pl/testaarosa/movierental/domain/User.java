@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 //@Table(name = "RENTAL_USER") -> only for heroku
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,8 +32,8 @@ public class User {
         this.name = userBuilder.name;
         this.surname = userBuilder.surname;
         this.email = userBuilder.email;
-        this.userDetails = userBuilder.userDetails;
         this.registerDate = userBuilder.registerDate;
+        this.userDetails = userBuilder.userDetails;
         this.movieWishes = new ArrayList<>(userBuilder.movieWishes);
         this.userMovies = new ArrayList<>(userBuilder.userMovies);
     }
@@ -52,6 +51,13 @@ public class User {
                 '}';
     }
 
+    public void setMovieWishes(List<MovieWish> movieWishes) {
+        this.movieWishes = movieWishes;
+    }
+
+    public void setUserMovies(List<UserMovie> userMovies) {
+        this.userMovies = userMovies;
+    }
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
@@ -81,7 +87,19 @@ public class User {
         return registerDate;
     }
 
-    public static class UserBuilder{
+    public List<MovieWish> getMovieWishes() {
+        return movieWishes;
+    }
+
+    public List<UserMovie> getUserMovies() {
+        return userMovies;
+    }
+
+    public static NeedName builder(){
+        return new UserBuilder();
+    }
+
+    private static class UserBuilder implements NeedName,NeedSurname,NeedEmail, NeedRegisterDate, CanBeBuild {
         private String name;
         private String surname;
         private String email;
@@ -90,43 +108,80 @@ public class User {
         private List<MovieWish> movieWishes = new ArrayList<>();
         private List<UserMovie> userMovies = new ArrayList<>();
 
+        @Override
         public UserBuilder name(String name){
             this.name = name;
             return this;
         }
 
+        @Override
         public UserBuilder surname(String surname){
             this.surname = surname;
             return this;
         }
 
+        @Override
         public UserBuilder email(String email){
             this.email = email;
             return this;
         }
 
+        @Override
         public UserBuilder userDetails(UserDetails userDetails){
             this.userDetails = userDetails;
             return this;
         }
 
+        @Override
         public UserBuilder registerDate(LocalDateTime registerDate){
             this.registerDate = registerDate;
             return this;
         }
 
+        @Override
         public UserBuilder movieWishes(MovieWish movieWish) {
             this.movieWishes.add(movieWish);
             return this;
         }
 
+        @Override
         public UserBuilder userMovies(UserMovie userMovie) {
             this.userMovies.add(userMovie);
             return this;
         }
 
+        @Override
+        public UserBuilder and() {
+            return this;
+        }
+
+        @Override
         public User build(){
             return new User(this);
         }
+    }
+
+    public interface NeedName {
+        public NeedSurname name(String name);
+    }
+
+    public interface NeedSurname {
+        NeedEmail surname(String surname);
+    }
+
+    public  interface NeedEmail {
+        NeedRegisterDate email(String email);
+    }
+
+    public interface NeedRegisterDate{
+        NeedRegisterDate registerDate(LocalDateTime registerDate);
+        CanBeBuild and();
+    }
+
+    public interface CanBeBuild {
+        CanBeBuild userDetails(UserDetails userDetails);
+        CanBeBuild movieWishes(MovieWish movieWish);
+        CanBeBuild userMovies(UserMovie userMovie);
+        User build();
     }
 }

@@ -28,8 +28,8 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return "userForm";
         } else {
-            userFacade.add(userFormDto);
-            List<UserDto> userDtos = userFacade.findAll();
+            userFacade.addUser(userFormDto);
+            List<UserDto> userDtos = userFacade.findAllUsers();
             model.addAttribute("users", userDtos);
             return "userList";
         }
@@ -43,7 +43,7 @@ public class UserController {
 
     @GetMapping("/userslist")
     public String showUserMovies(Map<String, Object> model){
-        model.put("users", userFacade.findAll());
+        model.put("users", userFacade.findAllUsers());
         return "userList";
     }
 //

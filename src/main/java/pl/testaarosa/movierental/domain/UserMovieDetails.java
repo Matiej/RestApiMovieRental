@@ -69,8 +69,11 @@ public class UserMovieDetails {
         return userMovie;
     }
 
-    public static class UserMovieDetailsBuilder{
-        private Long id;
+    public static NeedYear builder() {
+        return new UserMovieDetailsBuilder();
+    }
+
+    private static class UserMovieDetailsBuilder implements NeedYear, NeedPoster, NeedRuntime, NeedUserOpinion, NeedActors, NeedPlot, CanBeBuild{
         private String year;
         private String poster;
         private String runtime;
@@ -99,23 +102,62 @@ public class UserMovieDetails {
             return this;
         }
 
+        @Override
         public UserMovieDetailsBuilder actors(String actors){
             this.actors = actors;
             return this;
         }
 
+        @Override
         public UserMovieDetailsBuilder plot(String plot){
             this.plot = plot;
             return this;
         }
 
+        @Override
         public UserMovieDetailsBuilder userMovie(UserMovie userMovie){
             this.userMovie = userMovie;
             return this;
         }
 
+        @Override
         public UserMovieDetails build(){
             return new UserMovieDetails(this);
         }
+
+        @Override
+        public CanBeBuild and() {
+            return null;
+        }
+    }
+
+    public interface NeedYear {
+        public NeedPoster year(String year);
+    }
+
+    public interface NeedPoster {
+        NeedRuntime poster(String poster);
+    }
+
+    public interface NeedRuntime {
+        NeedUserOpinion runtime(String runtime);
+    }
+
+    public interface NeedUserOpinion {
+        NeedActors userOpinion(String userOpinion);
+    }
+
+    public interface NeedActors {
+        NeedPlot actors(String actors);
+    }
+
+    public interface NeedPlot {
+        CanBeBuild plot(String plot);
+        CanBeBuild and();
+    }
+
+    public interface CanBeBuild {
+        CanBeBuild userMovie(UserMovie userMovie);
+        UserMovieDetails build();
     }
 }

@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -29,19 +28,6 @@ public class UserFormDto {
     private UserGender userGender;
 
     public UserFormDto() {
-    }
-
-    public UserFormDto(String name, String surname, String email,
-                       LocalDateTime registerDate, String brithday,
-                       String city, String street, UserGender userGender) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.registerDate = registerDate;
-        this.brithday = brithday;
-        this.city = city;
-        this.street = street;
-        this.userGender = userGender;
     }
 
     public String getName() {

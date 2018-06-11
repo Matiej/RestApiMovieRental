@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class UserDtoMapper {
+public class UserMapper {
 
     public List<UserDto> userList(List<User> userList) {
         return userList.stream()
@@ -18,7 +18,9 @@ public class UserDtoMapper {
                         u.getSurname(),
                         u.getEmail(),
                         u.getRegisterDate(),
-                        u.getUserDetails()))
+                        u.getUserDetails(),
+                        u.getMovieWishes(),
+                        u.getUserMovies()))
                 .collect(Collectors.toList());
     }
 }

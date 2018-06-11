@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.testaarosa.movierental.domain.UserMovie;
+import pl.testaarosa.movierental.domain.dto.UserMovieDto;
+import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
 import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
 import pl.testaarosa.movierental.services.UserMovieService;
@@ -20,21 +22,18 @@ import java.util.Map;
 public class UserMovieController {
 
     @Autowired
-    private UserMovieService userMovieService;
-    @Autowired
-    private UserMovieFormDtoMapper userMovieFormDtoMapper;
-    @Autowired
-    private UserService userService;
+    private UserFacade userFacade;
 
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
-        model.put("userMovies", userMovieService.findAll());
+//        model.put("userMovies", userMovieService.findAll());
+        model.put("userMovies", userFacade.findAllUserMovies());
         return "userMoviesList";
     }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
-        model.addAttribute("searchresult", userMovieService.findAllByTitleContaining(title));
+        model.addAttribute("searchresult", userFacade.findAllUserMoviesByTitleContaining(title));
         return "userMoviesSearchResult";
     }
 
@@ -44,8 +43,8 @@ public class UserMovieController {
         if(bindingResult.hasErrors()){
             return "userMoviesForm";
         } else {
-            userMovieService.add(userId,(userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto)));
-            List<UserMovie> userMovieList = userMovieService.findAll();
+            userFacade.addUserMovie(userId,userMovieFormDto);
+            List<UserMovieDto> userMovieList = userFacade.findAllUserMovies();
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
         }
@@ -54,20 +53,20 @@ public class UserMovieController {
     @GetMapping("/addnewmovie")
     public String showForm(Model model){
         model.addAttribute("userMovie", new UserMovieFormDto());
-        model.addAttribute("usersList", userService.findAll());
+        model.addAttribute("usersList", userFacade.findAllUsers());
         return "userMoviesForm";
 
     }
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-        model.addAttribute("userMovieDetail", userMovieService.finaOne(id));
+        model.addAttribute("userMovieDetail", userFacade.finaOneUserMovie(id));
         return "userMovieDetails";
     }
 
     @GetMapping("/delusermovie")
     public String delUserMovie(Model model, @RequestParam Long id){
-        userMovieService.delete(id);
-        model.addAttribute("userMovies",userMovieService.findAll());
+        userFacade.deleteUserMovie(id);
+        model.addAttribute("userMovies",userFacade.findAllUserMovies());
         return "userMoviesList";
     }
 }

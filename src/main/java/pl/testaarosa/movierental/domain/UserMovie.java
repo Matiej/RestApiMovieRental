@@ -13,7 +13,6 @@ public class UserMovie {
     private String title;
     @Enumerated(value = EnumType.STRING)
     private UserMovieGenre genre;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MOVIE_DETAILS_ID")
     private UserMovieDetails userMovieDetails;
@@ -31,7 +30,6 @@ public class UserMovie {
         this.genre = userMovieBuilder.genre;
         this.userMovieDetails = userMovieBuilder.userMovieDetails;
         this.user = userMovieBuilder.user;
-
     }
 
     public Long getId() {
@@ -50,14 +48,14 @@ public class UserMovie {
         return genre;
     }
 
-    public User getUserList() {
+    public User getUser() {
         return user;
     }
-
 
     public UserMovieDetails getUserMovieDetails() {
         return userMovieDetails;
     }
+
     public void setUserMovieDetails(UserMovieDetails userMovieDetails) {
         this.userMovieDetails = userMovieDetails;
     }
@@ -66,42 +64,76 @@ public class UserMovie {
         this.user = user;
     }
 
-    public static class UserMovieBuilder {
-        private Long id;
+    public static NeedImdbID builder() {
+        return new UserMovieBuilder();
+    }
+
+    private static class UserMovieBuilder implements NeedImdbID, NeedTitle, NeedGenre, CanBuild {
         private String imdbID;
         private String title;
         private UserMovieGenre genre;
         private UserMovieDetails userMovieDetails;
         private User user;
 
-
+        @Override
         public UserMovieBuilder imdbID(String imdbID){
             this.imdbID = imdbID;
             return this;
         }
 
+        @Override
         public UserMovieBuilder title(String title){
             this.title = title;
             return this;
         }
 
+        @Override
         public UserMovieBuilder genre(UserMovieGenre gener){
             this.genre = gener;
             return this;
         }
 
+        @Override
         public UserMovieBuilder userMovieDetails(UserMovieDetails userMovieDetails){
             this.userMovieDetails = userMovieDetails;
             return this;
         }
 
+        @Override
         public UserMovieBuilder user(User user) {
             this.user = user;
             return this;
         }
 
+        @Override
         public UserMovie build(){
             return new UserMovie(this);
         }
+
+        @Override
+        public CanBuild and() {
+            return this;
+        }
     }
+
+    public interface NeedImdbID {
+        NeedTitle imdbID(String imdbID);
+    }
+
+    public interface NeedTitle {
+        NeedGenre title(String title);
+    }
+
+    public interface NeedGenre{
+        NeedGenre genre(UserMovieGenre genre);
+        CanBuild and();
+    }
+
+    public interface CanBuild {
+        CanBuild userMovieDetails(UserMovieDetails userMovieDetails);
+        CanBuild user(User user);
+        UserMovie build();
+
+    }
+
 }

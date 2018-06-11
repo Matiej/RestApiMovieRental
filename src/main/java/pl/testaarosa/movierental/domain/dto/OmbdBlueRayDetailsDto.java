@@ -41,7 +41,7 @@ public class OmbdBlueRayDetailsDto {
     private String poster;
     @JsonProperty("Production")
     private String production;
-//TODO zrobić DTI dla kontrolera
+
     @Override
     public String toString() {
         return "OmbdBlueRayDetailsDto{" +
