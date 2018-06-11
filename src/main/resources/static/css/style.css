@@ -1,0 +1,38 @@
+.no-repeat {
+    background-repeat: no-repeat !important;
+}
+
+.cover {
+    background-size: cover !important;
+}
+
+.background__start {
+    background: url("https://www.enterprise.com/content/dam/ecom/utilitarian/common/exotics/mtf-exotics-landrover-rangerover.png.wrend.1280.720.png");
+}
+
+.background__form {
+    background: url("http://www.europeocars.com/pl/wp-content/uploads/sites/5/2017/06/group-D-slide.png");
+}
+/*
+.background__form_client {
+    background: url("https://cdn0.iconfinder.com/data/icons/driving-safety-guide-do-and-don-t/236/driver-safety-012-512.png);
+    background-position: right;
+ */
+
+
+.background__find {
+    background: url("https://s.aolcdn.com/commerce/autodata/images/USC60BMC471A021001.jpg");
+}
+.background__find_client {
+    background: url("../images/people.png");
+    background-position: center;
+}
+
+form {
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+section {
+    margin: 2%;
+}

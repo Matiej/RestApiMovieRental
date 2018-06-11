@@ -6,14 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.testaarosa.movierental.domain.BlueRayMovie;
-import pl.testaarosa.movierental.domain.DvdMovie;
-import pl.testaarosa.movierental.domain.OnLineMovieDetails;
+import pl.testaarosa.movierental.domain.*;
 import pl.testaarosa.movierental.mapper.MoviesWishListMapper;
-import pl.testaarosa.movierental.services.BlueRayMovieService;
-import pl.testaarosa.movierental.services.DvdMovieService;
-import pl.testaarosa.movierental.services.MoviesWishListService;
-import pl.testaarosa.movierental.services.OnLineMovieService;
+import pl.testaarosa.movierental.services.*;
 
 @Controller
 @RequestMapping("/wish")
@@ -34,10 +29,10 @@ public class MoviesWishListController {
     @Autowired
     private OnLineMovieService onLineMovieService;
 
-
     @GetMapping("/bluerayaddwishlist")
     public String addBlueRayToWishList(Model model, @RequestParam Long id){
             BlueRayMovie movie = blueRayService.findbyId(id);
+//            Movie movie1 = blueRayService.findbyId(id);
             wishListService.addWish(wishListMapper.mapBlueRayMoviesToWishList(movie));
             model.addAttribute("wishessList", wishListService.findAll());
             return "moviesWishList";

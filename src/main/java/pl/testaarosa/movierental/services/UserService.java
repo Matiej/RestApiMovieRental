@@ -8,6 +8,6 @@ import java.util.List;
 public interface UserService {
     List<User> findAll();
     User findOne(Long id);
-    void add(UserForm userForm);
+    User add(UserForm userForm);
     List<User> findAllBySurname(String surname);
 }

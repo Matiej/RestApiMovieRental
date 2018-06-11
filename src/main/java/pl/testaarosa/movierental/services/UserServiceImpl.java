@@ -1,7 +1,6 @@
 package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.cfg.AdminConfig;
 import pl.testaarosa.movierental.domain.Mail;
@@ -38,14 +37,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(UserForm userForm) {
+    public User add(UserForm userForm) {
         User user = userFormMapper.mapToUser(userForm);
         UserDetails userDetails = userFormMapper.mapToUserDetails(userForm);
         user.setUserDetails(userDetails);
         user.getUserDetails().setUser(user);
         userRepository.save(user);
         sendEmail(userForm);
-//        return user;
+        return user;
     }
 
     //TODO coś tutaj ładniej zrobić bo syfiasto jest, przeniesc do EmailService?

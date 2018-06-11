@@ -14,7 +14,6 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/blueray")
-//TODO zmienic two na blueray i do tego templatki
 public class BlueRayMovieController {
 
     @Autowired
@@ -22,14 +21,12 @@ public class BlueRayMovieController {
 
     @GetMapping("/movieslist")
     public String showBlueRayMovies(Map<String, Object> model){
-//        model.put("blueRayMoviesFromSuppliers", mapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAllDvd()));
         model.put("blueRayMoviesFromSuppliers", bluRayMoviesFacade.findAll());
         return "blueRayMoviesList";
     }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(Model model, @RequestParam String title){
-//        List<BlueRayMovieDto> movieDtoList = mapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAllContainsTitle(title));
         List<BlueRayMovieDto> movieDtoList = bluRayMoviesFacade.findAllContainsTitle(title);
         model.addAttribute("searchresult", movieDtoList);
         return "blueRayMovieSearchResult";

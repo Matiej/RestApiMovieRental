@@ -17,7 +17,7 @@ public class OmbdBlueRayMapper {
                 ombdBlueRayDto.getTitle(),
                 ombdBlueRayDto.getImdbID(),
                 ombdBlueRayDto.getPoster(),
-                "BluRayMovie");
+                "BlueRayMovie");
     }
 
     public List<BlueRayMovie> mapToBlueRayMoviesList(List<OmbdBlueRayDto> blueRayDto){
@@ -27,7 +27,7 @@ public class OmbdBlueRayMapper {
                         b.getTitle(),
                         b.getImdbID(),
                         b.getPoster(),
-                        "BluRayMovie"))
+                        "BlueRayMovie"))
                         .collect(Collectors.toList());
     }
 

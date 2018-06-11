@@ -28,7 +28,7 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return "userForm";
         } else {
-            userFacade.addUser(userFormDto);
+            userFacade.addUserAndWish(userFormDto);
             List<UserDto> userDtos = userFacade.findAllUsers();
             model.addAttribute("users", userDtos);
             return "userList";

@@ -15,7 +15,7 @@ public class BlueRayMovieMapper {
                 blueRayMovieDto.getTitle(),
                 blueRayMovieDto.getImdbID(),
                 blueRayMovieDto.getPoster(),
-                "BluRayMovie");
+                "BlueRayMovie");
     }
 
     public BlueRayMovieDto mapToBlueRayMovieDto(BlueRayMovie blueRayMovie){
@@ -24,7 +24,7 @@ public class BlueRayMovieMapper {
                 blueRayMovie.getTitle(),
                 blueRayMovie.getImdbID(),
                 blueRayMovie.getPoster(),
-                "BluRayMovie",
+                "BlueRayMovie",
                 blueRayMovie.getBlueRayMovieDetails());
     }
 
@@ -35,7 +35,7 @@ public class BlueRayMovieMapper {
                         b.getTitle(),
                         b.getImdbID(),
                         b.getPoster(),
-                        "BluRayMovie",
+                        "BlueRayMovie",
                         b.getBlueRayMovieDetails()))
                 .collect(Collectors.toList());
     }

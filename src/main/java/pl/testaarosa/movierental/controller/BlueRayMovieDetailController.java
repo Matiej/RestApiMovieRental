@@ -19,7 +19,6 @@ public class BlueRayMovieDetailController {
 
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-//        BlueRayMovieDto blueRayMovieDto = movieDetailsMapper.mapToBlueRayMovieDto(blueRayMovieService.findbyId(id));
         BlueRayMovieDto blueRayMovieDto = bluRayMoviesFacade.findbyId(id);
         model.addAttribute("movieDetail", blueRayMovieDto);
         return "blueRayMoviesDetails";

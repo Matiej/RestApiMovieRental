@@ -26,7 +26,6 @@ public class UserMovieController {
 
     @GetMapping("/movieslist")
     public String showUserMovies(Map<String, Object> model){
-//        model.put("userMovies", userMovieService.findAll());
         model.put("userMovies", userFacade.findAllUserMovies());
         return "userMoviesList";
     }

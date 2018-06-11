@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,9 @@ public class MovieWish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String wishName;
+    @Column(name = "WISH_DESCRIPTION", length = 1000)
+    private String wishDesc;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "JOIN_WISH_MOVIE",
@@ -46,4 +51,19 @@ public class MovieWish {
         this.user = user;
     }
 
+    public String getWishName() {
+        return wishName;
+    }
+
+    public void setWishName(String wishName) {
+        this.wishName = wishName;
+    }
+
+    public String getWishDesc() {
+        return wishDesc;
+    }
+
+    public void setWishDesc(String wishDesc) {
+        this.wishDesc = wishDesc;
+    }
 }

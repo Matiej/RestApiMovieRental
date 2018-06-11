@@ -19,8 +19,6 @@ public class BlueRayMovie extends Movie{
         super(title,imdbID,poster,supplier);
    }
 
-
-
     @Override
     public Long getId() {
         return super.getId();
