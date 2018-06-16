@@ -80,11 +80,13 @@
         <td th:text="${wish.filmGenre}"></td>
         <td><img class="size" th:src="@{${wish.poster}}" height="19%" width="19%"/></td>
         <td th:text="${wish.supplier}"></td>
-        <td>
-            <a th:href="@{/wish/delwish?id={id}(id=${wish.id})}"
-               role="button" class="btn btn-danger">
-                <i class="fa fa-info"></i>
-            </a>
+        <td><form th:action="@{/wish/delwish?id={id}(id=${wish.id})}" method="post">
+            <button type="submit" class="btn btn-dark">Remove</button>
+        </form>
+            <!--<a th:href="@{/wish/delwish?id={id}(id=${wish.id})}"-->
+               <!--role="button" class="btn btn-danger">-->
+                <!--<i class="fa fa-info"></i>-->
+            <!--</a>-->
         </td>
     </tr>
     </tbody>

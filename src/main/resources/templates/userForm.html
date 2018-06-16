@@ -39,7 +39,10 @@
 
         img {
             position: center;
-            top: 0; bottom:0; left: 400px; child-align: right;
+            top: 0;
+            bottom: 0;
+            left: 400px;
+            child-align: right;
             margin: auto;
         }
     </style>
@@ -56,11 +59,12 @@
             <li><a href="/one/movieslist">DVD Movies</a></li>
             <li><a href="/blueray/movieslist">Blue ray Movies</a></li>
             <li><a href="/online/movielist">OnLine Movies</a></li>
-            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>
+            <li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                                                   href="#">User<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li> <a href="/users/adduser">Add new user</a></li>
-                    <li> <a href="/users/userslist">Users list</a></li>
-                    <li> <a href="/usermovie/addnewmovie">Add new movie</a></li>
+                    <li><a href="/users/adduser">Add new user</a></li>
+                    <li><a href="/users/userslist">Users list</a></li>
+                    <li><a href="/usermovie/addnewmovie">Add new movie</a></li>
                     <li><a href="/usermovie/movieslist">User Movies list</a></li>
                 </ul>
             </li>
@@ -80,7 +84,7 @@
 
 <button class="button" onclick="myFunction()">Don't be afraid, just click it</button>
 
-<p style="font-size:19px;color:blue"  id="time"></p>
+<p style="font-size:19px;color:blue" id="time"></p>
 
 <script>
     function myFunction() {
@@ -89,13 +93,13 @@
         document.getElementById("time").innerHTML = d;
     }
 </script>
-<form  th:action="@{/users/adduser}" th:object="${userFormDto}" method="post" >
+<form th:action="@{/users/adduser}" th:object="${userFormDto}" method="post">
     <h2 class="movieDet">Create new user:</h2>
 
-    <div  class="form-row">
+    <div class="form-row">
         <div class="form-group col-md-6">
             <label for="name">User name:</label>
-                <input type="text" class="form-control" th:field="*{name}"/>
+            <input type="text" class="form-control" th:field="*{name}"/>
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
 
         </div>
@@ -114,26 +118,33 @@
 
         </div>
         <div class="col-xs-4">
+            <label for="email">Password:</label>
+            <input type="password" class="form-control" placeholder="email"
+                   th:field="*{password}"/>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+
+        </div>
+        <div class="col-xs-4">
             <label for="birthday">Birthday date:</label>
-            <input type="text" class="form-control" placeholder="input birthdate in format yyyy-mm-dd"
+            <input type="date" class="form-control" placeholder="input birthdate in format yyyy-mm-dd"
                    pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" th:field="*{brithday}"/>
             <td th:if="${#fields.hasErrors('brithday')}" th:errors="*{brithday}"></td>
         </div>
-        <br />
+        <br/>
         <div class="col-xs-4">
             <label for="city">City:</label>
             <input type="text" class="form-control" placeholder="city"
                    th:field="*{city}"/>
             <td rowspan="6" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
         </div>
-        <br />
+        <br/>
         <div class="col-xs-4">
             <label for="street">Street:</label>
             <input type="text" class="form-control" placeholder="street number/flat"
                    th:field="*{street}"/>
             <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
         </div>
-        <br />
+        <br/>
 
     </div>
 
@@ -141,12 +152,11 @@
         <label for="gender">Gender:</label>
         <input list="gender" class="form-control" th:field="*{userGender}"/>
         <td rowspan="6" th:if="${#fields.hasErrors('userGender')}" th:errors="*{userGender}"></td>
-        <br />
-        <button type="submit" class="btn-success btn-lg">Submit</button>
-        <button type="reset" class="btn-danger btn-lg">Reset</button>
+        <br/>
+
+        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Register</button>
+        <button type="reset" class="btn btn-lg btn-block btn-warning">Reset</button>
     </div>
-
-
 
 </form>
 </body>

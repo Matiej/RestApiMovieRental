@@ -6,34 +6,39 @@ import pl.testaarosa.movierental.domain.*;
 @Component
 public class MoviesWishListMapper {
 
-    public MoviesWish mapBlueRayMoviesToWishList(BlueRayMovie blueRay){
-        return MoviesWish.builder()
-                .supId(blueRay.getImdbID())
-                .title(blueRay.getTitle())
-                .filmGenre(blueRay.getBlueRayMovieDetails().getGenre())
-                .poster(blueRay.getPoster())
-                .supplier("Blue Ray")
-                .build();
+    public MoviesWish mapBlueRayMoviesToWishList(BlueRayMovie blueRay) {
+        return new MoviesWish(
+                blueRay.getImdbID(),
+                blueRay.getTitle(),
+                blueRay.getBlueRayMovieDetails().getGenre(),
+                blueRay.getPoster(),
+                "Blue Ray");
     }
 
-    public MoviesWish mapDvdMoviesToWishList(DvdMovie dvd){
-        return MoviesWish.builder()
-                .supId(dvd.getImdbID())
-                .title(dvd.getTitle())
-                .filmGenre(dvd.getDvdMovieDetails().getType())
-                .poster(dvd.getPoster())
-                .supplier("DVD")
-                .build();
+//        return MoviesWish.builder()
+//                .supId(blueRay.getImdbID())
+//                .title(blueRay.getTitle())
+//                .filmGenre(blueRay.getBlueRayMovieDetails().getGenre())
+//                .poster(blueRay.getPoster())
+//                .supplier("Blue Ray")
+//                .build();
+//    }
+
+    public MoviesWish mapDvdMoviesToWishList(DvdMovie dvd) {
+        return new MoviesWish(
+                dvd.getImdbID(),
+                dvd.getTitle(),
+                dvd.getDvdMovieDetails().getType(),
+                dvd.getPoster(),
+                "Dvd Movie");
     }
 
-    public MoviesWish mapOnLineMoviesToWishList(OnLineMovieDetails online){
-        return MoviesWish.builder()
-                .supId(online.getImdbID())
-                .title(online.getTitle())
-                .filmGenre(online.getGenre())
-                .poster(online.getPoster())
-                .supplier("On Line")
-                .build();
+    public MoviesWish mapOnLineMoviesToWishList(OnLineMovieDetails dvd) {
+        return new MoviesWish(
+                dvd.getImdbID(),
+                dvd.getTitle(),
+                dvd.getGenre(),
+                dvd.getPoster(),
+                "On Line");
     }
-
 }

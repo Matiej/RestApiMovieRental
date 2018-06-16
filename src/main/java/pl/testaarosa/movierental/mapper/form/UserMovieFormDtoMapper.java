@@ -18,17 +18,6 @@ public class UserMovieFormDtoMapper {
                 userMovieFormDto.getUserOpinion(),
                 userMovieFormDto.getActors(),
                 userMovieFormDto.getPlot());
-//
-//        return UserMovieForm.builder()
-//                .imdbID(userMovieFormDto.getImdbID())
-//                .title(userMovieFormDto.getTitle())
-//                .year(userMovieFormDto.getYear())
-//                .plot(userMovieFormDto.getPlot())
-//                .genre(userMovieFormDto.getGenre())
-//                .runtime(userMovieFormDto.getRuntime())
-//                .userOpinion(userMovieFormDto.getUserOpinion())
-//                .actors(userMovieFormDto.getActors())
-//                .poster(userMovieFormDto.getPoster())
-//                .build();
+
     }
 }

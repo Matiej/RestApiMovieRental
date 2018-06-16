@@ -19,6 +19,9 @@ public class UserFormDto {
     @NotEmpty
     @Size(min = 5, message = "Yours email address is expected here")
     private String email;
+    @NotEmpty
+    @Size(min = 4, message = "just type password")
+    private String password;
     private LocalDateTime registerDate;
     @Size(min = 10, max = 10, message = "The year must entered in this way (yyyy-MM-dd)")
     @NotEmpty
@@ -92,6 +95,14 @@ public class UserFormDto {
 
     public void setUserGender(UserGender userGender) {
         this.userGender = userGender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

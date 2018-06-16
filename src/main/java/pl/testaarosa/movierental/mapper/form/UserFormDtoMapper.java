@@ -11,6 +11,7 @@ public class UserFormDtoMapper {
         return new UserForm(userFormDto.getName(),
                 userFormDto.getSurname(),
                 userFormDto.getEmail(),
+                userFormDto.getPassword(),
                 userFormDto.getRegisterDate(),
                 userFormDto.getBrithday(),
                 userFormDto.getCity(),

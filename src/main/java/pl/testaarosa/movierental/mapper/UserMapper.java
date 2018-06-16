@@ -17,10 +17,13 @@ public class UserMapper {
                         u.getName(),
                         u.getSurname(),
                         u.getEmail(),
+                        u.getPassword(),
+                        u.isEnabled(),
                         u.getRegisterDate(),
                         u.getUserDetails(),
                         u.getMovieWishes(),
-                        u.getUserMovies()))
+                        u.getUserMovies(),
+                        u.getRole()))
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.MovieWish;
+import pl.testaarosa.movierental.domain.Role;
 import pl.testaarosa.movierental.domain.UserDetails;
 import pl.testaarosa.movierental.domain.UserMovie;
 
@@ -14,21 +15,29 @@ public class UserDto {
     private String name;
     private String surname;
     private String email;
+
+    private String password;
+    private boolean isEnabled;
+
     private LocalDateTime registerDate;
     private UserDetails userDetails;
     private List<MovieWish> movieWishes = new ArrayList<>();
     private List<UserMovie> userMovies = new ArrayList<>();
+    private Role role;
 
-    public UserDto(Long id, String name, String surname, String email, LocalDateTime registerDate,
-                   UserDetails userDetails, List<MovieWish> movieWishes, List<UserMovie> userMovies) {
+    public UserDto(Long id, String name, String surname, String email, String password, boolean isEnabled, LocalDateTime registerDate,
+                   UserDetails userDetails, List<MovieWish> movieWishes, List<UserMovie> userMovies, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.password = password;
+        this.isEnabled = isEnabled;
         this.registerDate = registerDate;
         this.userDetails = userDetails;
         this.movieWishes = movieWishes;
         this.userMovies = userMovies;
+        this.role = role;
     }
 
     public Long getId() {
@@ -93,6 +102,30 @@ public class UserDto {
 
     public void setUserMovies(List<UserMovie> userMovies) {
         this.userMovies = userMovies;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override

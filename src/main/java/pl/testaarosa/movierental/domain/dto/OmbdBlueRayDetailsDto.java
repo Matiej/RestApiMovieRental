@@ -3,13 +3,7 @@ package pl.testaarosa.movierental.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OmbdBlueRayDetailsDto {
@@ -41,6 +35,62 @@ public class OmbdBlueRayDetailsDto {
     private String poster;
     @JsonProperty("Production")
     private String production;
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public String getReleased() {
+        return released;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getAwards() {
+        return awards;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public String getProduction() {
+        return production;
+    }
 
     @Override
     public String toString() {

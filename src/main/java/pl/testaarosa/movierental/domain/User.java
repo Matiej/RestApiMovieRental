@@ -14,16 +14,19 @@ public class User {
     private String name;
     private String surname;
     private String email;
+    private String password;
+    private boolean enabled;
     private LocalDateTime registerDate;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DETAILS_ID")
     private UserDetails userDetails;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MovieWish> movieWishes = new ArrayList<>();
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserMovie> userMovies = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "ROLE_ID")
+    private Role role;
 
     public User() {
     }
@@ -31,11 +34,14 @@ public class User {
     private User(UserBuilder userBuilder) {
         this.name = userBuilder.name;
         this.surname = userBuilder.surname;
+        this.password = userBuilder.password;
+        this.enabled = userBuilder.enabled;
         this.email = userBuilder.email;
         this.registerDate = userBuilder.registerDate;
         this.userDetails = userBuilder.userDetails;
         this.movieWishes = new ArrayList<>(userBuilder.movieWishes);
         this.userMovies = new ArrayList<>(userBuilder.userMovies);
+        this.role = userBuilder.role;
     }
 
     @Override
@@ -61,6 +67,14 @@ public class User {
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean enabled() {
+        return enabled;
     }
 
     public Long getId() {
@@ -95,18 +109,29 @@ public class User {
         return userMovies;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
     public static NeedName builder(){
         return new UserBuilder();
     }
 
-    private static class UserBuilder implements NeedName,NeedSurname,NeedEmail, NeedRegisterDate, CanBeBuild {
+    private static class UserBuilder implements NeedName,NeedSurname,NeedEmail, NeedPassword, NeedRegisterDate, CanBeBuild {
         private String name;
         private String surname;
         private String email;
+        private String password;
+        private boolean enabled;
         private UserDetails userDetails;
         private LocalDateTime registerDate;
         private List<MovieWish> movieWishes = new ArrayList<>();
         private List<UserMovie> userMovies = new ArrayList<>();
+        private Role role;
 
         @Override
         public UserBuilder name(String name){
@@ -123,6 +148,18 @@ public class User {
         @Override
         public UserBuilder email(String email){
             this.email = email;
+            return this;
+        }
+
+        @Override
+        public UserBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        @Override
+        public UserBuilder enabled(boolean enabled){
+            this.enabled = enabled;
             return this;
         }
 
@@ -151,6 +188,12 @@ public class User {
         }
 
         @Override
+        public UserBuilder role(Role role) {
+            this.role = role;
+            return this;
+        }
+
+        @Override
         public UserBuilder and() {
             return this;
         }
@@ -170,7 +213,11 @@ public class User {
     }
 
     public  interface NeedEmail {
-        NeedRegisterDate email(String email);
+        NeedPassword email(String email);
+    }
+
+    public interface NeedPassword {
+        NeedRegisterDate password(String password);
     }
 
     public interface NeedRegisterDate{
@@ -179,9 +226,11 @@ public class User {
     }
 
     public interface CanBeBuild {
+        CanBeBuild enabled(boolean enabled);
         CanBeBuild userDetails(UserDetails userDetails);
         CanBeBuild movieWishes(MovieWish movieWish);
         CanBeBuild userMovies(UserMovie userMovie);
+        CanBeBuild role(Role role);
         User build();
     }
 }

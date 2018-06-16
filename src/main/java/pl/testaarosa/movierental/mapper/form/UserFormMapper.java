@@ -19,6 +19,7 @@ public class UserFormMapper {
                 .name(userForm.getName())
                 .surname(userForm.getSurname())
                 .email(userForm.getEmail())
+                .password(userForm.getPassword())
                 .registerDate(currentDate)
                 .and()
                 .build();
