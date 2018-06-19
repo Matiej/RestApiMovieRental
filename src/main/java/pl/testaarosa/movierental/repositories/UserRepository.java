@@ -1,6 +1,5 @@
 package pl.testaarosa.movierental.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import pl.testaarosa.movierental.domain.User;
 
@@ -12,4 +11,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     List<User> findAll();
     List<User> findAllBySurnameContaining(String surname);
+    Optional<User> findByName(String userName);
+    Optional<User> findByEmail(String email);
 }

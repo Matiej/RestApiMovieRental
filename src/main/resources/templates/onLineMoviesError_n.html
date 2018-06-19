@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>OnLineHome</title>
+    <title>OnLineErr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -23,12 +23,12 @@
 
     </style>
 </head>
-<body>
-<div th:include="navi :: menu"></div>
+<body background="http://goshico.com/allegro/wrong1.jpg">
+<div th:include="navi_n :: menu_n"></div>
 
 <h2 class="movieDet">OnLine section</h2>
 <div class="container">
-    <h1>Seach for blueRayMovies online</h1>
+    <h1><font  color="red">Something went wrong?!?  Try again. :) </font></h1>
     <form action="/online/movielist">
         <div class="input-group input-group-lg" id="sizing-addon4 ">
             <input type="text" class="form-control"  placeholder="Search by title" name="title"/>
@@ -38,9 +38,15 @@
         </div>
     </form>
 </div>
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <div class="container">
-    <h1 class="movieDet">Some nice blueRayMovies :)</h1>
+    <h2>Some nice blueRayMovies :)</h2>
     <div class="row">
         <div class="col-md-4">
             <div class="thumbnail">

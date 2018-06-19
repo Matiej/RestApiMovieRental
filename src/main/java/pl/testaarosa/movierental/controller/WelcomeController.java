@@ -13,6 +13,11 @@ public class WelcomeController {
 
     @RequestMapping("/")
     public String heroku() {
-        return "index";
+        return "index_n";
+    }
+
+    @RequestMapping("/home_n")
+    public String startMyAppN(){
+        return "index_n";
     }
 }

@@ -32,10 +32,32 @@ public class OnLineMovieController {
         }
     }
 
+    @RequestMapping("/movielist_n")
+    public String findOnLineMoviesN(Model model, String title) {
+        if (title == null) {
+            return "onLineMovieHome_n";
+        } else {
+            List<OnLineMovieDto> onLineMovies = onLineMovieFacade.getOnLineMovies(title);
+            if (onLineMovies.size() < 1) {
+                return "onLineMoviesError_n";
+            } else {
+                model.addAttribute("onlinemovieslist", onLineMovies);
+                return "onLineMoviesList_n";
+            }
+        }
+    }
+
     @RequestMapping("/onlinedetail")
     public String onLineMovieDetail(Model model, String imdbID) {
         OnLineMovieDetailsDto movieDetDto = onLineMovieFacade.getOnLineMovieDetails(imdbID);
         model.addAttribute("onLineMovieDetails", movieDetDto);
         return "onLineMovieDetails";
+    }
+
+    @RequestMapping("/onlinedetail_n")
+    public String onLineMovieDetailN(Model model, String imdbID) {
+        OnLineMovieDetailsDto movieDetDto = onLineMovieFacade.getOnLineMovieDetails(imdbID);
+        model.addAttribute("onLineMovieDetails", movieDetDto);
+        return "onLineMovieDetails_n";
     }
 }

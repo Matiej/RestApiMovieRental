@@ -23,39 +23,40 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>
-        </div>
-        <ul class="nav navbar-nav">
+<div th:include="navi :: menu"></div>
+<!--<nav class="navbar navbar-inverse">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>-->
+        <!--</div>-->
+        <!--<ul class="nav navbar-nav">-->
 
-            <li><a href="/home">Home</a></li>
-            <li><a href="/one/movieslist">DVD Movies</a></li>
-            <li><a href="/blueray/movieslist">Blue ray Movies</a></li>
-            <li><a href="/online/movielist">OnLine Movies</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li> <a href="/users/adduser">Add new user</a></li>
-                    <li> <a href="/users/userslist">Users list</a></li>
-                    <li> <a href="/usermovie/addnewmovie">Add new movie</a></li>
-                    <li><a href="/usermovie/movieslist">User Movies list</a></li>
-                </ul>
-            </li>
-            <li style="background-color:Grey;"><a href="/wish/wishlist">Movies wish list</a></li>
-            <form class="navbar-form navbar-left" action="/blueray/movieslistsearch">
+            <!--<li><a href="/home">Home</a></li>-->
+            <!--<li><a href="/one/movieslist">DVD Movies</a></li>-->
+            <!--<li><a href="/blueray/movieslist">Blue ray Movies</a></li>-->
+            <!--<li><a href="/online/movielist">OnLine Movies</a></li>-->
+            <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu">-->
+                    <!--<li> <a href="/users/adduser">Add new user</a></li>-->
+                    <!--<li> <a href="/users/userslist">Users list</a></li>-->
+                    <!--<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>-->
+                    <!--<li><a href="/usermovie/movieslist">User Movies list</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li style="background-color:Grey;"><a href="/wish/wishlist">Movies wish list</a></li>-->
+            <!--<form class="navbar-form navbar-left" action="/blueray/movieslistsearch">-->
 
-                <button onclick="myFunction()">Print this page</button>
+                <!--<button onclick="myFunction()">Print this page</button>-->
 
-                <script>
-                    function myFunction() {
-                        window.print();
-                    }
-                </script>
-            </form>
-        </ul>
-    </div>
-</nav>
+                <!--<script>-->
+                    <!--function myFunction() {-->
+                        <!--window.print();-->
+                    <!--}-->
+                <!--</script>-->
+            <!--</form>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</nav>-->
 
 <h2 class="movieDet">Movies new wish list</h2>
 <!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->

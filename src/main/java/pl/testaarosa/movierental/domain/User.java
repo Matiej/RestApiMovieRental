@@ -1,13 +1,17 @@
 package pl.testaarosa.movierental.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 //@Table(name = "RENTAL_USER") -> only for heroku
-public class User {
+public class User implements org.springframework.security.core.userdetails.UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -57,6 +61,14 @@ public class User {
                 '}';
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public void setMovieWishes(List<MovieWish> movieWishes) {
         this.movieWishes = movieWishes;
     }
@@ -69,8 +81,35 @@ public class User {
         this.userDetails = userDetails;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
+        return authorities;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
     public boolean enabled() {
@@ -109,6 +148,11 @@ public class User {
         return userMovies;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
     public boolean isEnabled() {
         return enabled;
     }

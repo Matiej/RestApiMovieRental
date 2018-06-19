@@ -48,7 +48,7 @@
     </style>
 </head>
 <body>
-<div th:include="navi :: menu"></div>
+<div th:include="navi_n :: menu_n"></div>
 
 <datalist id="gender">
     <select>
@@ -69,7 +69,7 @@
         document.getElementById("time").innerHTML = d;
     }
 </script>
-<form th:action="@{/users/adduser}" th:object="${userFormDto}" method="post">
+<form th:action="@{/users/adduser_n}" th:object="${userFormDto}" method="post">
     <h2 class="movieDet">Create new user:</h2>
 
     <div class="form-row">

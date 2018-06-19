@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class UserFormMapper {
+
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final LocalDateTime currentDate = LocalDateTime.now().withNano(0);
 
