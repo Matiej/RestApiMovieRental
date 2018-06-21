@@ -1,6 +1,9 @@
 package pl.testaarosa.movierental.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.DvdMovie;
 import pl.testaarosa.movierental.domain.DvdMovieDetails;
@@ -13,19 +16,20 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 
 @Service
 public class DvdMovieRetriver {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DvdMovieRetriver.class);
+
     @Autowired
     private DvdMovieSupplier dvdMovieSupplier;
-    @Autowired
-    private OneDvdMapper oneDvdMapper;
-    @Autowired
-    private OneDvdDetilsMapper dvdDetilsMapper;
 
-    public List<OneDvdDto> DvdFillStructure() throws IOException, URISyntaxException {
+    @Async
+    public CompletableFuture<List<OneDvdDto>> DvdFillStructure() throws IOException, URISyntaxException {
+        LOGGER.info("Lokiing up for DVDS ");
         List<OneDvdDto> dvdMovies = new ArrayList<>();
         List<String> lines = dvdMovieSupplier.DvdSupplierSource();
         lines.remove(0);
@@ -40,9 +44,6 @@ public class DvdMovieRetriver {
                     .build();
             dvdMovies.add(oneDvdDto);
         });
-        return dvdMovies;
+        return CompletableFuture.completedFuture(dvdMovies);
     }
-
-
-
 }
