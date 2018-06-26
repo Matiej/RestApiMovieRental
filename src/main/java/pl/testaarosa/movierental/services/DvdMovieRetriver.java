@@ -29,7 +29,7 @@ public class DvdMovieRetriver {
 
     @Async
     public CompletableFuture<List<OneDvdDto>> DvdFillStructure() throws IOException, URISyntaxException {
-        LOGGER.info("Lokiing up for DVDS ");
+        LOGGER.info("\033[35m Lokiing up for DVDS ");
         List<OneDvdDto> dvdMovies = new ArrayList<>();
         List<String> lines = dvdMovieSupplier.DvdSupplierSource();
         lines.remove(0);

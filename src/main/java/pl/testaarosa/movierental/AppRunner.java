@@ -25,9 +25,6 @@ public class AppRunner implements CommandLineRunner {
     @Autowired
     private BlueRayMovieFillDbProcessor blueRayMovieFillDbProcessor;
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
     private UserFacade userFacade;
 
     @Override
@@ -46,12 +43,11 @@ public class AppRunner implements CommandLineRunner {
         userFacade.addUserAndWish(user);
 
         long start = System.currentTimeMillis();
+        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
         blueRayMovieFillDbProcessor.FillBlueRayDb("iron");
         dvdMovieFillDbProcessor.FillDvdMovieDb();
         blueRayMovieFillDbProcessor.FillBlueRayDb("indiana");
-        blueRayMovieFillDbProcessor.FillBlueRayDb("star");
-        LOGGER.info("Elapsed time for fill db dvd+ blureay x3: " + (System.currentTimeMillis() - start));
-
+        LOGGER.info("\33[33m Elapsed time for fill db dvd+ blureay x3: " + (System.currentTimeMillis() - start));
 
         CompletableFuture.allOf().join();
     }

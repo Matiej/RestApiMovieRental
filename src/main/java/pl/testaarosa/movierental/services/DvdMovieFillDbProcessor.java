@@ -23,7 +23,6 @@ public class DvdMovieFillDbProcessor {
     @Autowired
     private OneDvdDetilsMapper detailsMapper;
 
-//    @Async
     public void FillDvdMovieDb() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         dvdMovieRetriver.DvdFillStructure().get().forEach(f-> {
             try {

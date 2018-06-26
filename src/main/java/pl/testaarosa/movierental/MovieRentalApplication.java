@@ -22,6 +22,7 @@ public class MovieRentalApplication  {
         executor.setCorePoolSize(4);
         executor.setMaxPoolSize(8);
         executor.setQueueCapacity(500);
+        executor.setCorePoolSize(4);
         executor.setThreadNamePrefix("Fill DataBase-> ");
         executor.initialize();
         return executor;

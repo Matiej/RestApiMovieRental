@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
