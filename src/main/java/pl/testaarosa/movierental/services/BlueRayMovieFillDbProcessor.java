@@ -17,7 +17,7 @@ public class BlueRayMovieFillDbProcessor {
     @Autowired
     private BlueRayMovieService blueRayMovieService;
 
-    public void FillBlueRayDb(String title) throws ExecutionException, InterruptedException {
+    public void fillBlueRayDb(String title) throws ExecutionException, InterruptedException {
         CompletableFuture<List<BlueRayMovie>> paginationBlueRay = blueRayMovieRetriever.getPaginationBlueRay(title);
         paginationBlueRay.get().forEach(b->{
             String imdbID = b.getImdbID();

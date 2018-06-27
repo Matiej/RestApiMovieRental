@@ -8,8 +8,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 
-@EnableAsync
 @SpringBootApplication
+@EnableAsync
 public class MovieRentalApplication  {
 
     public static void main(String[] args) {
@@ -20,13 +20,11 @@ public class MovieRentalApplication  {
     public Executor asyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(4);
-        executor.setMaxPoolSize(8);
+        executor.setMaxPoolSize(40);
         executor.setQueueCapacity(500);
-        executor.setCorePoolSize(4);
         executor.setThreadNamePrefix("Fill DataBase-> ");
         executor.initialize();
         return executor;
     }
-
 }
 

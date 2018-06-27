@@ -53,6 +53,7 @@ public class BlueRayMovieRetriever {
         }
     }
 
+    @Async
     public CompletableFuture<BlueRayMovieDetails> getMovieDetails(String movieId) {
         LOGGER.info("\033[33m Looking for movie id: " + movieId + " \033[33m details");
         URI url = supplier.OmbdSupplierDetails(movieId);
