@@ -89,11 +89,6 @@ public class UserDetails {
             return this;
         }
 
-        @Override
-        public UserDetailsBuilder and() {
-            return this;
-        }
-
         public UserDetailsBuilder user(User user) {
             this.user = user;
             return this;
@@ -118,7 +113,6 @@ public class UserDetails {
 
     public interface NeedUserGender {
         CanBeBuild userGender(UserGender userGender);
-        CanBeBuild and();
     }
 
     public interface CanBeBuild {

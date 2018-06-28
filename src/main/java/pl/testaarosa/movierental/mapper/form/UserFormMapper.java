@@ -22,7 +22,6 @@ public class UserFormMapper {
                 .email(userForm.getEmail())
                 .password(userForm.getPassword())
                 .registerDate(currentDate)
-                .and()
                 .build();
     }
 

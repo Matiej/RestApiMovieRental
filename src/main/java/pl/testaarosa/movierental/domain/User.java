@@ -238,11 +238,6 @@ public class User implements org.springframework.security.core.userdetails.UserD
         }
 
         @Override
-        public UserBuilder and() {
-            return this;
-        }
-
-        @Override
         public User build(){
             return new User(this);
         }
@@ -265,8 +260,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
     }
 
     public interface NeedRegisterDate{
-        NeedRegisterDate registerDate(LocalDateTime registerDate);
-        CanBeBuild and();
+        CanBeBuild registerDate(LocalDateTime registerDate);
     }
 
     public interface CanBeBuild {
