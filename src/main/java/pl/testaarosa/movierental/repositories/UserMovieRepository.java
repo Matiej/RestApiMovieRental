@@ -15,12 +15,9 @@ public interface UserMovieRepository extends CrudRepository<UserMovie, Long> {
 
     @Override
     List<UserMovie> findAll();
-
     UserMovie findById(Long id);
-
-    List<UserMovie> findAllByTitleContaining(String title);
-
-    @Query(nativeQuery = true)
+    @Query
+    List<UserMovie> findAllUserMoviesByTitleContaining(@Param("userId") Long userId, @Param("title") String title);
+    @Query
     List<UserMovie> findAllUsersMoviesForGivenUser(@Param("userId") Long userId);
-
 }

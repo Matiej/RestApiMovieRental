@@ -49,8 +49,8 @@ public class UserFacade {
         return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAllUsersMoviesForGivenUser(remoteUser));
     }
 
-    public List<UserMovieDto> findAllUserMoviesByTitleContaining(String title) {
-        return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAllByTitleContaining(title));
+    public List<UserMovieDto> findAllUserMoviesByTitleContaining(String remoteUser, String title) {
+        return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAllUserMoviesByTitleContaining(remoteUser, title));
     }
 
     public UserMovie addUserMovie(String remoteUser, UserMovieFormDto userMovieFormDto) {

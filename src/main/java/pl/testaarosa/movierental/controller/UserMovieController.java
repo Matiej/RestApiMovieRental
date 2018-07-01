@@ -29,8 +29,9 @@ public class UserMovieController {
     }
 
     @GetMapping("/movieslistsearch")
-    public String showSearchTitleResult(Model model, @RequestParam String title){
-        model.addAttribute("searchresult", userFacade.findAllUserMoviesByTitleContaining(title));
+    public String showSearchTitleResult(HttpServletRequest request, Model model, @RequestParam String title){
+        String remoteUser = request.getRemoteUser();
+        model.addAttribute("searchresult", userFacade.findAllUserMoviesByTitleContaining(remoteUser,title));
         return "userMoviesSearchResult";
     }
 

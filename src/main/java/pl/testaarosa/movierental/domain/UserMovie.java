@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(name = "UserMovie.findAllUsersMoviesForGivenUser", query = "FROM UserMovie WHERE user.id = :userId"),
+        @NamedQuery(name = "UserMovie.findAllUserMoviesByTitleContaining", query = "FROM UserMovie " +
+                "WHERE user.id = :userId AND title LIKE CONCAT('%',:title,'%')"),
 })
 
 @Entity
