@@ -62,13 +62,13 @@
 //    @Test
 //    public void testFindAll(){
 //        //given
-//        when(movieRepository.findAll()).thenReturn(blueRayMovieList);
+//        when(movieRepository.findAllUsersMoviesForGivenUser()).thenReturn(blueRayMovieList);
 //        //when
-//        int result = movieService.findAll().size();
+//        int result = movieService.findAllUsersMoviesForGivenUser().size();
 //        int expect = 3;
 //        //then
 //        assertEquals(expect,result);
-//        assertEquals(blueRayMovieList, movieRepository.findAll());
+//        assertEquals(blueRayMovieList, movieRepository.findAllUsersMoviesForGivenUser());
 //    }
 //
 //    @Test

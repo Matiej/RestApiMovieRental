@@ -58,13 +58,12 @@
     <!--</div>-->
 <!--</nav>-->
 
-<h2 class="movieDet">Movies new wish list</h2>
+<h2 class="movieDet">All users wish list for watch</h2>
 <!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->
 <table class="table table-striped">
     <thead>
     <tr>
         <th>Wish Id</th>
-        <th>Name</th>
         <th>User name</th>
         <th>User surname</th>
         <th>No of movies</th>
@@ -76,7 +75,6 @@
     <tbody>
     <tr th:each="wish, stat :${wishes}">
         <td th:text="${wish.id}"></td>
-        <td th:text="${wish.wishName}"></td>
         <td th:text="${wish.user.name}"></td>
         <td th:text="${wish.user.surname}"></td>
         <td th:text="${wish.moviesList.size()}"></td>

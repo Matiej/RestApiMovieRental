@@ -25,40 +25,17 @@
 </head>
 <body>
 <div th:include="navi :: menu"></div>
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>-->
-        <!--</div>-->
-        <!--<ul class="nav navbar-nav">-->
 
-            <!--<li><a href="/home">Home</a></li>-->
-            <!--<li><a href="/one/movieslist">DVD Movies</a></li>-->
-            <!--<li><a href="/blueray/movieslist">Blue ray Movies</a></li>-->
-            <!--<li><a href="/online/movielist">OnLine Movies</a></li>-->
-            <!--<li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>-->
-                <!--<ul class="dropdown-menu">-->
-                    <!--<li> <a href="/users/adduser">Add new user</a></li>-->
-                    <!--<li> <a href="/users/userslist/">Users list</a></li>-->
-                    <!--<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>-->
-                    <!--<li><a href="/usermovie/movieslist">User Movies list</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li><a href="/wish/wishlist">Movies wish list</a></li>-->
-            <!--<form class="navbar-form navbar-left" action="/user/movieslistsearch">-->
-
-                <!--<button onclick="myFunction()">Print this page</button>-->
-
-                <!--<script>-->
-                    <!--function myFunction() {-->
-                        <!--window.print();-->
-                    <!--}-->
-                <!--</script>-->
-            <!--</form>-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--</nav>-->
-
+<form class="navbar-form navbar-left" action="/usermovie/movieslistsearch">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search by title" name="title"></input>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<br />
+<br />
+<br />
+<br />
 <h2 class="movieDet">User movies list</h2>
 <table class="table table-striped table-dark">
     <thead>

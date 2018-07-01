@@ -45,16 +45,16 @@ public class UserFacade {
         movieWishService.createMowieWish(user);
     }
 
-    public List<UserMovieDto> findAllUserMovies() {
-        return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAll());
+    public List<UserMovieDto> findAllUserMoviesForGivenUser(String remoteUser) {
+        return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAllUsersMoviesForGivenUser(remoteUser));
     }
 
     public List<UserMovieDto> findAllUserMoviesByTitleContaining(String title) {
         return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAllByTitleContaining(title));
     }
 
-    public UserMovie addUserMovie(Long id, UserMovieFormDto userMovieFormDto) {
-       return userMovieService.add(id, userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
+    public UserMovie addUserMovie(String remoteUser, UserMovieFormDto userMovieFormDto) {
+       return userMovieService.add(remoteUser, userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
     }
 
     public UserMovieDto finaOneUserMovie(Long id) {

@@ -80,11 +80,11 @@
 //    @Test
 //    public void testFindAll(){
 //        //given
-//        when(dvdMovieRpository.findAll()).thenReturn(dvdMovieList);
+//        when(dvdMovieRpository.findAllUsersMoviesForGivenUser()).thenReturn(dvdMovieList);
 //        //when
-//        int result = dvdMovieService.findAll().size();
+//        int result = dvdMovieService.findAllUsersMoviesForGivenUser().size();
 //        int expect = 4;
-//        List<DvdMovie> resultList = dvdMovieRpository.findAll();
+//        List<DvdMovie> resultList = dvdMovieRpository.findAllUsersMoviesForGivenUser();
 //        //then
 //        assertEquals(expect,result);
 //        assertEquals(dvdMovieList, resultList);

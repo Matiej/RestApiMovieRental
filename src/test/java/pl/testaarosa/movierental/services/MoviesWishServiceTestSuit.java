@@ -52,9 +52,9 @@
 //    @Test
 //    public void testFindAll(){
 //        //givem
-//        when(moviesWishListRepository.findAll()).thenReturn(moviesWishes);
+//        when(moviesWishListRepository.findAllUsersMoviesForGivenUser()).thenReturn(moviesWishes);
 //        //when
-//        List<MoviesWish> result = moviesWishListService.findAll();
+//        List<MoviesWish> result = moviesWishListService.findAllUsersMoviesForGivenUser();
 //        List<MoviesWish> expect = moviesWishes;
 //        //then
 //        assertEquals(expect,result);

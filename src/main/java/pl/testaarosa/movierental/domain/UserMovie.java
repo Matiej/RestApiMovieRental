@@ -2,6 +2,10 @@ package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "UserMovie.findAllUsersMoviesForGivenUser", query = "FROM UserMovie WHERE user.id = :userId"),
+})
+
 @Entity
 @Table(name = "USER_MOVIES")
 public class UserMovie {

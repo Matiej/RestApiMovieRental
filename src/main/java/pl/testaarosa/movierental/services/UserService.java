@@ -11,4 +11,5 @@ public interface UserService extends UserDetailsService {
     User findOne(Long id);
     User add(UserForm userForm);
     List<User> findAllBySurname(String surname);
+    User findRemoteUser(String remoteUser);
 }

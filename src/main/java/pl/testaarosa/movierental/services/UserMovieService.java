@@ -6,9 +6,9 @@ import pl.testaarosa.movierental.form.UserMovieForm;
 import java.util.List;
 
 public interface UserMovieService {
-    List<UserMovie> findAll();
+    List<UserMovie> findAllUsersMoviesForGivenUser(String remoteUser);
     UserMovie finaOne(Long id);
-    UserMovie add(Long id, UserMovieForm userMovie);
+    UserMovie add(String remoteUser, UserMovieForm userMovie);
     void delete(Long id);
     List<UserMovie> findAllByTitleContaining(String title);
 }

@@ -15,7 +15,6 @@ public class MovieWishServiceImpl {
 
     @Autowired
     private MovieWishRepository movieWishRepository;
-
     @Autowired
     private MovieRepository movieRepository;
 

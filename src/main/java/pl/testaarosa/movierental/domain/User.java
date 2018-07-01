@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(name = "User.findRemoteUser", query = "FROM User " +
+                "WHERE email = :remoteUser")})
+
 @Entity
-//@Table(name = "RENTAL_USER") -> only for heroku
+@Table(name = "RENTAL_USER")
 public class User implements org.springframework.security.core.userdetails.UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

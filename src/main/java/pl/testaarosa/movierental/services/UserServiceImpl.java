@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
 //        Set<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
         return user.get();
     }
+
+    @Override
+    public User findRemoteUser(String remoteUser){
+        return userRepository.findRemoteUser(remoteUser);
+    }
 }

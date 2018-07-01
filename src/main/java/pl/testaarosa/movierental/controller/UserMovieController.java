@@ -5,14 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.domain.dto.UserMovieDto;
 import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
-import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
-import pl.testaarosa.movierental.services.UserMovieService;
-import pl.testaarosa.movierental.services.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +22,9 @@ public class UserMovieController {
     private UserFacade userFacade;
 
     @GetMapping("/movieslist")
-    public String showUserMovies(Map<String, Object> model){
-        model.put("userMovies", userFacade.findAllUserMovies());
+    public String showUserMovies(HttpServletRequest request, Map<String, Object> model){
+        String remoteUser = request.getRemoteUser();
+        model.put("userMovies", userFacade.findAllUserMoviesForGivenUser(remoteUser));
         return "userMoviesList";
     }
 
@@ -37,13 +35,14 @@ public class UserMovieController {
     }
 
     @PostMapping("/addnewmovie")
-    public String addNewMovie(Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto,
-                              BindingResult bindingResult,@RequestParam Long userId){
+    public String addNewMovie(HttpServletRequest request, Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto,
+                              BindingResult bindingResult){
+        String remoteUser = request.getRemoteUser();
         if(bindingResult.hasErrors()){
             return "userMoviesForm";
         } else {
-            userFacade.addUserMovie(userId,userMovieFormDto);
-            List<UserMovieDto> userMovieList = userFacade.findAllUserMovies();
+            userFacade.addUserMovie(remoteUser,userMovieFormDto);
+            List<UserMovieDto> userMovieList = userFacade.findAllUserMoviesForGivenUser(remoteUser);
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
         }
@@ -63,9 +62,10 @@ public class UserMovieController {
     }
 
     @GetMapping("/delusermovie")
-    public String delUserMovie(Model model, @RequestParam Long id){
+    public String delUserMovie(HttpServletRequest request,Model model, @RequestParam Long id){
+        String remoteUser = request.getRemoteUser();
         userFacade.deleteUserMovie(id);
-        model.addAttribute("userMovies",userFacade.findAllUserMovies());
+        model.addAttribute("userMovies",userFacade.findAllUserMoviesForGivenUser(remoteUser));
         return "userMoviesList";
     }
 }

@@ -22,8 +22,10 @@ public class UserMovieServiceImpl implements UserMovieService {
     private UserService userService;
 
     @Override
-    public List<UserMovie> findAll() {
-        return userMovieRepository.findAll();
+    public List<UserMovie> findAllUsersMoviesForGivenUser(String remoteUser) {
+        User user = userService.findRemoteUser(remoteUser);
+
+        return userMovieRepository.findAllUsersMoviesForGivenUser(user.getId());
     }
 
     @Override
@@ -32,8 +34,8 @@ public class UserMovieServiceImpl implements UserMovieService {
     }
 
     @Override
-    public UserMovie add(Long id, UserMovieForm movieForm) {
-        User user = userService.findOne(id);
+    public UserMovie add(String remoteUser, UserMovieForm movieForm) {
+        User user = userService.findRemoteUser(remoteUser);
         UserMovie userMovie1 = userMovieFormMapper.mapToUserMovie(movieForm);
         UserMovieDetails details = userMovieFormMapper.mapToUserMovieDetails(movieForm);
         userMovie1.setUserMovieDetails(details);
@@ -52,4 +54,6 @@ public class UserMovieServiceImpl implements UserMovieService {
     public List<UserMovie> findAllByTitleContaining(String title) {
         return userMovieRepository.findAllByTitleContaining(title);
     }
+
+
 }
