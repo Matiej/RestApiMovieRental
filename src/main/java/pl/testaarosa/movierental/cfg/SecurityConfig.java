@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .disable()
                 .authorizeRequests()
                     .antMatchers("/users/adduser_n", "/online/movielist_n","/online/onlinedetail_n",
-                            "/users/login" ).permitAll()
+                            "/users/login", "/home_n" ).permitAll()
                 .anyRequest().hasAnyAuthority("ADMIN", "USER","TESTER")
                 .and()
                 .formLogin()

@@ -54,7 +54,7 @@ public class OnLineMovieController {
         return "onLineMovieDetails";
     }
 
-    @RequestMapping("/onlinedetail_n")
+        @RequestMapping("/onlinedetail_n")
     public String onLineMovieDetailN(Model model, String imdbID) {
         OnLineMovieDetailsDto movieDetDto = onLineMovieFacade.getOnLineMovieDetails(imdbID);
         model.addAttribute("onLineMovieDetails", movieDetDto);
