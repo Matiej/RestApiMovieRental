@@ -1,8 +1,6 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @DiscriminatorValue("BLUE_RAY_MOVIES")
@@ -20,53 +18,8 @@ public class BlueRayMovie extends Movie{
    }
 
     @Override
-    public Long getId() {
-        return super.getId();
-    }
-
-    @Override
-    public String getTitle() {
-        return super.getTitle();
-    }
-
-    @Override
-    public void setId(Long id) {
-        super.setId(id);
-    }
-
-    @Override
-    public void setTitle(String title) {
-        super.setTitle(title);
-    }
-
-    @Override
-    public String getImdbID() {
-        return super.getImdbID();
-    }
-
-    @Override
-    public void setImdbID(String imdbID) {
-        super.setImdbID(imdbID);
-    }
-
-    @Override
-    public String getPoster() {
-        return super.getPoster();
-    }
-
-    @Override
-    public void setPoster(String poster) {
-        super.setPoster(poster);
-    }
-
-    @Override
     public String getSupplier() {
-        return super.getSupplier();
-    }
-
-    @Override
-    public void setSupplier(String supplier) {
-        super.setSupplier(supplier);
+        return "BluRay supplier";
     }
 
     public BlueRayMovieDetails getBlueRayMovieDetails() {
