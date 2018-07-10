@@ -24,35 +24,6 @@
 </head>
 <body>
 <div th:include="navi :: menu"></div>
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>-->
-        <!--</div>-->
-        <!--<ul class="nav navbar-nav">-->
-
-            <!--<li><a href="/home">Home</a></li>-->
-            <!--<li style="background-color:Grey;"><a href="/one/movieslist">DVD Movies</a></li>-->
-            <!--<li><a href="/blueray/movieslist">Blue ray Movies</a></li>-->
-            <!--<li><a href="/online/movielist">OnLine Movies</a></li>-->
-            <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>-->
-                <!--<ul class="dropdown-menu">-->
-                    <!--<li> <a href="/users/adduser">Add new user</a></li>-->
-                    <!--<li> <a href="/users/userslist">Users list</a></li>-->
-                    <!--<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>-->
-                    <!--<li><a href="/usermovie/movieslist">User Movies list</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li><a href="/wish/wishlist">Movies wish list</a></li>-->
-        <!--</ul>-->
-        <!--<form class="navbar-form navbar-left" action="/one/movieslistsearch">-->
-            <!--<div class="form-group">-->
-                <!--<input type="text" class="form-control" placeholder="Search by title" name="title"></input>-->
-            <!--</div>-->
-            <!--<button type="submit" class="btn btn-default">Submit</button>-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</nav>-->
     <h2 class="movieDet">DVD available Movies</h2>
     <table class="table table-striped">
         <thead>
@@ -73,15 +44,11 @@
             <td><img class="size" th:src="@{${one.poster}}" height="20%" width="20%"/></td>
             <td>
                 <a th:href="@{/one/showmovie?id={id}(id=${one.id})}"
-                   role="button" class="btn btn-info">
-                    <i class="fa fa-info"></i>
-                </a>
+                   role="button" class="btn btn-info">Details</a>
             </td>
             <td>
-                <a th:href="@{/wish/dvdaddwishlist?id={id}(id=${one.id})}"
-                   role="button" class="btn btn-success">
-                    <i class="fa fa-info"></i>
-                </a>
+                <a th:href="@{/watchwish/addmovie?id={id}(id=${one.id})}"
+                   role="button" class="btn btn-success">Add to wish list</a>
 
             </td>
         </tr>

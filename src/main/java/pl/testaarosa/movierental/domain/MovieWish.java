@@ -1,10 +1,12 @@
 package pl.testaarosa.movierental.domain;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+@NamedQueries({
+        @NamedQuery(name = "MovieWish.findAllUsersWishForGivenUser", query = "FROM MovieWish WHERE user.id = :userId"),
+})
 
 @Entity
 @Table(name = "Movies_Wish_NEW")
@@ -17,13 +19,13 @@ public class MovieWish {
     @Column(name = "WISH_DESCRIPTION", length = 1000)
     private String wishDesc;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "JOIN_WISH_MOVIE",
     joinColumns = {@JoinColumn(name = "WISH_ID", referencedColumnName = "ID")},
     inverseJoinColumns = {@JoinColumn(name = "MOVIES_ID", referencedColumnName = "ID")})
     private List<Movie> moviesList = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
 

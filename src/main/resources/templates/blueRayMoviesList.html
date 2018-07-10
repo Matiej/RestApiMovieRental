@@ -36,7 +36,6 @@
             <th>Poster</th>
             <th>Details</th>
             <th>Add to wish list</th>
-            <th>Add to NEW WISH list</th>
 
         </tr>
         </thead>
@@ -52,15 +51,15 @@
 
             </td>
             <td>
-                <a th:href="@{/wish/bluerayaddwishlist?id={id}(id=${two.id})}"
+                <a th:href="@{/watchwish/addmovie?id={id}(id=${two.id})}"
                    role="button" class="btn btn-success">Add to wish list</a>
 
             </td>
-            <td>
-                <a th:href="@{/watchwish/addmovie?id={id}(id=${two.id})}"
-                   role="button" class="btn btn-dark">Test ADD to wish</a>
+            <!--<td>-->
+                <!--<a th:href="@{/watchwish/addmovie?id={id}(id=${two.id})}"-->
+                   <!--role="button" class="btn btn-dark">Test ADD to wish</a>-->
 
-            </td>
+            <!--</td>-->
         </tr>
         </tbody>
     </table>

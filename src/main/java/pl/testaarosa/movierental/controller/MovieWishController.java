@@ -11,6 +11,7 @@ import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.services.BlueRayMovieService;
 import pl.testaarosa.movierental.services.MovieWishServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -24,30 +25,38 @@ public class MovieWishController {
     private MovieWishServiceImpl moviesWishListService;
 
     @GetMapping("/addmovie")
-    public String addBlueRayToWishList(Model model, @RequestParam Long id){
-        Movie movie = blueRayService.findbyId(id);
-        moviesWishListService.addMovie(movie);
-        List<MovieWish> allWishes = moviesWishListService.findAllWishes();
-        model.addAttribute("wishes", allWishes);
-        return "movieWishList";
+    public String addMovieToWishList(HttpServletRequest request, Model model, @RequestParam Long id){
+        String remoteUser = request.getRemoteUser();
+//        Movie movie = blueRayService.findbyId(id);
+        moviesWishListService.addMovie(remoteUser, id);
+        MovieWish allWishes = moviesWishListService.findUsersWishForGivenUser(remoteUser);
+        model.addAttribute("userWishes", allWishes);
+        return "movieUserWishes";
     }
-
-    @GetMapping("/wishlist")
-    public String showUserMovies(Map<String, Object> model){
+    //for admin
+    @GetMapping("/wishlistadmin")
+    public String showWishes(Map<String, Object> model){
         model.put("wishes", moviesWishListService.findAllWishes());
-        return "movieWishList";
+        return "movieWishListAdmin";
     }
 
+    @GetMapping("/userwishes")
+    public String showUserWishes(HttpServletRequest request, Map<String, Object> model) {
+        String remoteUser = request.getRemoteUser();
+        model.put("userWishes", moviesWishListService.findUsersWishForGivenUser(remoteUser));
+        return "movieUserWishes";
+    }
 
+    //for admin
     @GetMapping("/wishdetails")
     public String wishDetail(Model model, @RequestParam Long id) {
         MovieWish wish = moviesWishListService.findById(id);
         model.addAttribute("wishDetails", wish);
         List<Movie> movieList = wish.getMoviesList();
-        model.addAttribute("wishDetailsMovies", movieList);
-        return "movieWishDetails";
+        model.addAttribute( "wishDetailsMovies", movieList);
+        return "movieWishDetailsAdmin";
     }
-
+    //TODO tym czasem dla blueRay. Zroić dla każdej grupy.
     @GetMapping("/moviedetails")
     public String movie(Model model, @RequestParam Long id){
         Movie movie = moviesWishListService.findMovieById(id);

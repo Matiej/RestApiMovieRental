@@ -60,6 +60,15 @@ public class OnLineMovieRetriever {
         URI url = supplier.OmbdSupplierSource(1, title);
         return Integer.parseInt(ofNullable(restTemplate.getForObject(url, OmbdOnLinePaginationDto.class)
                 .getTotalResults()).orElse("1"));
+
+        //specjalnie zrobione tak aby podzielić ilośc wyników. Strona ombd przy duzej ilosc stron
+        //zawiesza się i nic nie znajduje.
+//        if(pages >= 1) {
+//            return pages;
+//        } else {
+//
+//            return pages/2;
+//        }
     }
 
     public OnLineMovieDetails getOnLineMovieDetails(String movieId) {

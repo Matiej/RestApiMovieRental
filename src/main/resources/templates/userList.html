@@ -34,11 +34,12 @@
         <th>User Id</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>E-mail</th>
         <th>Register date</th>
-        <!--<th>Birthday date</th>-->
-        <!--<th>Genre</th>-->
-        <!--<th>Details</th>-->
-        <!--<th>Delete</th>-->
+        <th>No of movies</th>
+        <th>User details</th>
+        <th>Delete user</th>
+
 
     </tr>
     </thead>
@@ -48,6 +49,7 @@
             <td th:text="${use.id}"></td>
             <td  th:text="${use.name}"></td>
             <td  th:text="${use.surname}"></td>
+            <td  th:text="${use.email}"></td>
             <td  th:text="${use.registerDate}"></td>
             <!--<td  th:text="${use.getUserDetails().getBrithday()}"></td>-->
             <!--<td th:text="${use.g}"></td>-->

@@ -20,6 +20,10 @@ public class OnLineMovie extends Movie{
         this.year = year;
     }
 
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
 
     public String getYear() {
         return year;

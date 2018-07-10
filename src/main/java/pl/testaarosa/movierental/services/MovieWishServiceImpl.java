@@ -17,9 +17,16 @@ public class MovieWishServiceImpl {
     private MovieWishRepository movieWishRepository;
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private UserService userService;
 
     public List<MovieWish> findAllWishes() {
         return movieWishRepository.findAll();
+    }
+
+    public MovieWish findUsersWishForGivenUser(String remoteUser) {
+        Long id = userService.findRemoteUser(remoteUser).getId();
+        return movieWishRepository.findAllUsersWishForGivenUser(id);
     }
 
     public MovieWish createMowieWish(User user) {
@@ -28,8 +35,10 @@ public class MovieWishServiceImpl {
         return movieWishRepository.save(movieWish);
     }
 
-    public MovieWish addMovie(Movie movie) {
-        MovieWish one = movieWishRepository.findOne(1L);
+    public MovieWish addMovie(String remoteUser, Long movieId) {
+        Long remoteUserId = userService.findRemoteUser(remoteUser).getId();
+        Movie movie = movieRepository.findOne(movieId);
+        MovieWish one = movieWishRepository.findAllUsersWishForGivenUser(remoteUserId);
         one.getMoviesList().add(movie);
         return movieWishRepository.save(one);
     }

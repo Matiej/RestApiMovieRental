@@ -18,9 +18,10 @@ public class DvdMovieServiceImpl implements DvdMovieService {
     @Override
     public void addDvdMovie(final DvdMovie dvdMovie, DvdMovieDetails details) throws IOException, URISyntaxException {
         String movieId = dvdMovie.getImdbID();
-        if (!dvdMovieRpository.existsAllByImdbID(movieId))
+        if (!dvdMovieRpository.existsAllByImdbID(movieId)) {
             dvdMovie.setDvdMovieDetails(details);
             dvdMovieRpository.save(dvdMovie);
+        }
     }
 
     @Override

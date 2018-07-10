@@ -9,8 +9,8 @@ public class OneDvdMapper {
 
     public DvdMovie mapToDvdMovie(OneDvdDto oneDvdDto) {
         return new DvdMovie(
-                oneDvdDto.getMovieId(),
                 oneDvdDto.getTitle(),
+                oneDvdDto.getMovieId(),
                 "http://goshico.com/allegro/questionmarksmall.png",
                 "DVD MOVIE");
     }

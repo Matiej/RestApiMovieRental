@@ -39,10 +39,28 @@
             padding: 1px;
             text-align: center;
         }
+
+        .textdetb {
+            background-color: black;
+            border: 11px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: black;
+            padding: 1px;
+            text-align: center;
+        }
         img {
             position: center;
             top: 0; bottom:0; left: 400px; child-align: right;
             margin: auto;
+        }
+
+        body {
+            background: #43cea2;
+            background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+            background: linear-gradient(to right, #185a9d, #43cea2);
+            color: #fff;
+            text-align: center;
         }
     </style>
 
@@ -73,54 +91,52 @@
 
     <!--</div>-->
 <!--</nav>-->
-<h2 class="movieDet">Watchwish details</h2>
-<h1 id="movieTitle"><p th:text="${wishDetails.wishName}"></p></h1>
+<h2 class="movieDet">Watchwish list owner</h2>
+<!--<h1 id="movieTitle"><p th:text="${wishDetails.wishName}"></p></h1>-->
 
 <!--<a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${onLineMovieDetails.imdbID})}"-->
    <!--type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>-->
 <!--</a>>-->
 
-<h4 class="movieDet">Wish id:</h4>
-<pre class="textdet" th:text="${wishDetails.id}"></pre>
+<!--<h4 class="movieDet">Wish id:</h4>-->
+<!--<pre class="textdet" th:text="${wishDetails.id}"></pre>-->
 
-<h4 class="movieDet">Name:</h4>
-<pre class="textdet" th:text="${wishDetails.wishName}"></pre>
+<!--<h4 class="movieDet">Name:</h4>-->
+<!--<pre class="textdet" th:text="${wishDetails.wishName}"></pre>-->
 
-<h4 class="movieDet">Description:</h4>
-<pre class="textdet" th:text="${wishDetails.wishDesc}"></pre>
-<h2 class="movieDet">User details</h2>
+<!--<h4 class="movieDet">Description:</h4>-->
+<!--<pre class="textdet" th:text="${wishDetails.wishDesc}"></pre>-->
 <h4 class="movieDet">e-mail:</h4>
 <p class="textdet" th:text="${wishDetails.user.email}"></p>
-
 <h4 class="movieDet">Name:</h4>
 <p class="textdet" th:text="${wishDetails.user.name}"></p>
-
 <h4 class="movieDet">Surname:</h4>
 <p class="textdet" th:text="${wishDetails.user.surname}"></p>
+<h4 class="movieDet">Date of registration: </h4>
+<p class="textdet" th:text="${wishDetails.user.registerDate}"></p>
 <br />
-<br />
-<h1 id="movieTitle2"><p th:text="${wishDetails.wishName}"></p></h1>
+
 <h2 class="movieDet">Watchwish movies list:</h2>
 
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Movie Id</th>
-        <th>Supplier</th>
-        <th>Supplier Id</th>
-        <th>Title</th>
-        <th>Poster</th>
-        <th>Details</th>
-        <th>Del from wish</th>
+        <th class="textdetb" >Movie Id</th>
+        <th class="textdetb" >Supplier</th>
+        <th class="textdetb" >Supplier Id</th>
+        <th class="textdetb" >Title</th>
+        <th class="textdetb" >Poster</th>
+        <th class="textdetb" >Details</th>
+        <th class="textdetb" >Del from wish</th>
 
     </tr>
     </thead>
     <tbody>
     <tr th:each="wish, stat :${wishDetailsMovies}">
-        <td th:text="${wish.id}"></td>
-        <td th:text="${wish.supplier}"></td>
-        <td th:text="${wish.imdbID}"></td>
-        <td th:text="${wish.title}"></td>
+        <td class="textdetb" th:text="${wish.id}"></td>
+        <td class="textdetb" th:text="${wish.supplier}"></td>
+        <td class="textdetb" th:text="${wish.imdbID}"></td>
+        <td class="textdetb" th:text="${wish.title}"></td>
         <td><img class="size" th:src="@{${wish.poster}}" height="19%" width="19%"/></td>
         <td>
             <a th:href="@{/watchwish/moviedetails?id={id}(id=${wish.id})}"
