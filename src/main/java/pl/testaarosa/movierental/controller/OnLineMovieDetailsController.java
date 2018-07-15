@@ -8,7 +8,7 @@ import pl.testaarosa.movierental.domain.dto.OnLineMovieDetailsDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 
 @Controller
-@RequestMapping
+@RequestMapping("/online")
 public class OnLineMovieDetailsController {
 
     @Autowired
