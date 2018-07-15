@@ -3,17 +3,14 @@ package pl.testaarosa.movierental.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import pl.testaarosa.movierental.cfg.CoreConfig;
 import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
-import pl.testaarosa.movierental.domain.dto.OmbdOnLineDetailsDto;
-import pl.testaarosa.movierental.domain.dto.OmbdOnLineDto;
-import pl.testaarosa.movierental.domain.dto.OmbdOnLinePaginationDto;
+import pl.testaarosa.movierental.domain.dto.OmdbOnLineDetailsDto;
+import pl.testaarosa.movierental.domain.dto.OmdbOnLineDto;
+import pl.testaarosa.movierental.domain.dto.OmdbOnLinePaginationDto;
 import pl.testaarosa.movierental.mapper.OmbdOnLineMapper;
 import pl.testaarosa.movierental.mapper.OmbdOneLineDetailsMapper;
 import pl.testaarosa.movierental.supplier.OmbdMovieSupplier;
@@ -45,8 +42,8 @@ public class OnLineMovieRetriever {
             IntStream.range(0, (getPagination(title) / 10)).forEach(m -> {
                 URI urlpages = supplier.OmbdSupplierSource(m, title);
 
-                OmbdOnLinePaginationDto moviepages = restTemplate.getForObject(urlpages, OmbdOnLinePaginationDto.class);
-                List<OmbdOnLineDto> list = moviepages.getOmbdOnLineDtos();
+                OmdbOnLinePaginationDto moviepages = restTemplate.getForObject(urlpages, OmdbOnLinePaginationDto.class);
+                List<OmdbOnLineDto> list = moviepages.getOmdbOnLineDtos();
                 onLineMovieList.addAll(ombdOnLineMapper.mapToOnLineMovieList(list));
             });
             return onLineMovieList;
@@ -58,7 +55,7 @@ public class OnLineMovieRetriever {
 
     private int getPagination(String title) {
         URI url = supplier.OmbdSupplierSource(1, title);
-        return Integer.parseInt(ofNullable(restTemplate.getForObject(url, OmbdOnLinePaginationDto.class)
+        return Integer.parseInt(ofNullable(restTemplate.getForObject(url, OmdbOnLinePaginationDto.class)
                 .getTotalResults()).orElse("1"));
 
         //specjalnie zrobione tak aby podzielić ilośc wyników. Strona ombd przy duzej ilosc stron
@@ -75,7 +72,7 @@ public class OnLineMovieRetriever {
         URI url = supplier.OmbdSupplierDetails(movieId);
         try {
             OnLineMovieDetails onLineMovieDetails = ombdOneLineDetailsMapper.mapToOnLineMovieDetails
-                    (restTemplate.getForObject(url, OmbdOnLineDetailsDto.class));
+                    (restTemplate.getForObject(url, OmdbOnLineDetailsDto.class));
             return ofNullable(onLineMovieDetails).orElse(new OnLineMovieDetails());
         }   catch (RestClientException e) {
             LOGGER.error(e.getMessage(),e);

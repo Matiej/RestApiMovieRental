@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 
 @Controller
-@RequestMapping("one")
+@RequestMapping("/one")
 public class DvdMovieDetailsController {
 
     @Autowired

@@ -11,8 +11,7 @@ import pl.testaarosa.movierental.facade.MoviesFacade;
 
 @Controller
 @RequestMapping("/blueray")
-//TODO zmienieć /two na blueray
-public class BlueRayMovieDetailController {
+public class BlueRayMovieDetailsController {
 
     @Autowired
     private MoviesFacade bluRayMoviesFacade;

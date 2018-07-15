@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonClassDescription(value = "Search")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OmbdOnLineDto {
+public class OmdbOnLineDto {
 
     @JsonProperty("Title")
     private String title;
@@ -21,10 +21,10 @@ public class OmbdOnLineDto {
     @JsonProperty("Poster")
     private String poster;
 
-    public OmbdOnLineDto() {
+    public OmdbOnLineDto() {
     }
 
-    public OmbdOnLineDto(String title, String year, String imdbID, String type, String poster) {
+    public OmdbOnLineDto(String title, String year, String imdbID, String type, String poster) {
         this.title = title;
         this.year = year;
         this.imdbID = imdbID;

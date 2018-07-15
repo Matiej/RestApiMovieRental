@@ -49,30 +49,6 @@
 </head>
 <body>
 <div th:include="navi :: menu"></div>
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-dark">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>-->
-        <!--</div>-->
-        <!--<ul class="nav navbar-nav">-->
-
-            <!--<li><a href="/home">Home</a></li>-->
-            <!--<li><a href="/one/movieslist">DVD Movies</a></li>-->
-            <!--<li><a href="/blueray/movieslist">Blue ray Movies</a></li>-->
-            <!--<li><a href="/online/movielist">OnLine Movies</a></li>-->
-            <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>-->
-                <!--<ul class="dropdown-menu">-->
-                    <!--<li> <a href="/users/adduser">Add new user</a></li>-->
-                    <!--<li> <a href="/users/userslist">Users list</a></li>-->
-                    <!--<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>-->
-                    <!--<li><a href="/usermovie/movieslist">User Movies list</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li><a href="/wish/wishlist">Movies wish list</a></li>-->
-        <!--</ul>-->
-
-    <!--</div>-->
-<!--</nav>-->
 
 <h1 id="movieTitle"><p th:text="${dvdMovieDetail.title}"></p></h1>
 <a th:href="@{/wish/dvdaddwishlist?id={id}(id=${dvdMovieDetail.id})}"

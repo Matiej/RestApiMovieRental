@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OmbdBlueRayDetailsDto {
+public class OmdbBlueRayDetailsDto {
     @JsonProperty("imdbID")
     private String imdbID;
     @JsonProperty("Title")
@@ -94,7 +94,7 @@ public class OmbdBlueRayDetailsDto {
 
     @Override
     public String toString() {
-        return "OmbdBlueRayDetailsDto{" +
+        return "OmdbBlueRayDetailsDto{" +
                 "imdbID='" + imdbID + '\'' +
                 ", title='" + title + '\'' +
                 ", year='" + year + '\'' +

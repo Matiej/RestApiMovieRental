@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.testaarosa.movierental.domain.Movie;
 import pl.testaarosa.movierental.domain.MovieWish;
+import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.services.BlueRayMovieService;
+import pl.testaarosa.movierental.services.DvdMovieService;
 import pl.testaarosa.movierental.services.MovieWishServiceImpl;
+import pl.testaarosa.movierental.services.OnLineMovieService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.ref.ReferenceQueue;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +27,31 @@ public class MovieWishController {
     private BlueRayMovieService blueRayService;
     @Autowired
     private MovieWishServiceImpl moviesWishListService;
+    @Autowired
+    private OnLineMovieService onLineMovieService;
+    @Autowired
+    private DvdMovieService dvdMovieService;
 
     @GetMapping("/addmovie")
     public String addMovieToWishList(HttpServletRequest request, Model model, @RequestParam Long id){
         String remoteUser = request.getRemoteUser();
-//        Movie movie = blueRayService.findbyId(id);
         moviesWishListService.addMovie(remoteUser, id);
         MovieWish allWishes = moviesWishListService.findUsersWishForGivenUser(remoteUser);
         model.addAttribute("userWishes", allWishes);
         return "movieUserWishes";
     }
+
+    @GetMapping("/addonline")
+    public String addOnlineMovieToWishList(HttpServletRequest request, Model model, @RequestParam String imdbID) {
+        String remoteUser = request.getRemoteUser();
+        OnLineMovie onLineMovie = onLineMovieService.addOnLineMovieToDb(imdbID);
+        moviesWishListService.addMovie(remoteUser,onLineMovie.getId());
+        MovieWish allWishes = moviesWishListService.findUsersWishForGivenUser(remoteUser);
+        model.addAttribute("userWishes", allWishes);
+        return "movieUserWishes";
+
+    }
+
     //for admin
     @GetMapping("/wishlistadmin")
     public String showWishes(Map<String, Object> model){
@@ -56,22 +75,23 @@ public class MovieWishController {
         model.addAttribute( "wishDetailsMovies", movieList);
         return "movieWishDetailsAdmin";
     }
-    //TODO tym czasem dla blueRay. Zroić dla każdej grupy.
+
     @GetMapping("/moviedetails")
     public String movie(Model model, @RequestParam Long id){
         Movie movie = moviesWishListService.findMovieById(id);
-        if(movie.getSupplier().toLowerCase().contains("ray")){
-            model.addAttribute("movieDetail", blueRayService.findbyId(id));
-            return "blueRayMoviesDetails";
-        } else {
-            return "index";
+
+        switch (movie.getSupplier().toLowerCase()) {
+            case "bluray supplier":
+                model.addAttribute("movieDetail", blueRayService.findbyId(id));
+                return "blueRayMoviesDetails";
+            case "on line":
+                model.addAttribute("onLineMovieDetailsDb", onLineMovieService.findById(id));
+                return "onLineMovieDetailsDb";
+            case "dvd supplier":
+                model.addAttribute("dvdMovieDetail", dvdMovieService.findById(id));
+                return "dvdMovieDetails";
+            default:
+                return "index";
         }
     }
-
-//    @GetMapping("/moviedetailsb")
-//    public String movieb(Model model, @RequestParam Long id){
-//            model.addAttribute("movieDetail", blueRayService.findbyId(id));
-//            return "blueRayMoviesDetails";
-//    }
-
 }

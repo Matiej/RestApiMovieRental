@@ -8,4 +8,6 @@ import java.util.List;
 public interface OnLineMovieService {
     List<OnLineMovie> getOnLineMovies(String title);
     OnLineMovieDetails getOnLineMovieDetails(String movieId);
+    OnLineMovie addOnLineMovieToDb(String imbdId);
+    OnLineMovie findById(Long id);
 }

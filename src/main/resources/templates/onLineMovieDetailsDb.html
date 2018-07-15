@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>BlueRay_Details</title>
+    <title>OnLineMoovie_Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -47,60 +47,50 @@
     </style>
 
 </head>
-
 <body>
 <div th:include="navi :: menu"></div>
 
-<button onclick="myFunction()">Print this page</button>
-<h1 id="movieTitle"><p th:text="${movieDetail.title}"></p></h1>
+<h1 id="movieTitle"><p th:text="${onLineMovieDetailsDb.title}"></p></h1>
 
-<a th:href="@{/wish/bluerayaddwishlist?id={id}(id=${movieDetail.id})}"
-   type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
-</a>
-
-<h4 class="movieDet">Movie id:</h4>
-<h4 class="textdet" th:text="${movieDetail.id}"></h4>
 
 <h4 class="movieDet">Supplier id:</h4>
-<pre class="textdet" th:text="${movieDetail.getImdbID()}"></pre>
+<pre class="textdet" th:text="${onLineMovieDetailsDb.getImdbID()}"></pre>
 
 <h4 class="movieDet">Year:</h4>
-<pre class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().year}"></pre>
+<pre class="textdet" th:text="${onLineMovieDetailsDb.year}"></pre>
 
 <h4 class="movieDet">Released:</h4>
-<pre class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().released}"></pre>
+<pre class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.released}"></pre>
 
 <h4 class="movieDet">Runtime:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().runtime}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.runtime}"></p>
 
 <h4 class="movieDet">Genre:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().genre}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.genre}"></p>
 
 <h4 class="movieDet">Writer:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().writer}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.writer}"></p>
 
 <h4 class="movieDet">Actors:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().actors}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.actors}"></p>
 
 <h4 class="movieDet">Plot:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().plot}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.plot}"></p>
 
 <h4 class="movieDet">Language:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().language}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.language}"></p>
 
 <h4 class="movieDet">Country:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().country}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.country}"></p>
 
 <h4 class="movieDet">Awards:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().awards}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.awards}"></p>
 
 <h4 class="movieDet">Production:</h4>
-<p class="textdet" th:text="${movieDetail.getBlueRayMovieDetails().production}"></p>
+<p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.production}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${movieDetail.getBlueRayMovieDetails().getPoster()}}" class="textdet" align="center"/>
+<img th:src="@{${onLineMovieDetailsDb.onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
 
 </body>
 </html>
-
-

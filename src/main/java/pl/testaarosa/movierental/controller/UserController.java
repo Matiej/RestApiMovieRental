@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("/adduser")
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                           WebRequest request, Errors errors) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "userForm";
         } else {
             userFacade.addUserAndWish(userFormDto);
@@ -52,8 +52,8 @@ public class UserController {
     @Transactional
     @PostMapping("/adduser_n")
     public String addUserN(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
-                          WebRequest request, Errors errors) {
-        if(bindingResult.hasErrors()){
+                           WebRequest request, Errors errors) {
+        if (bindingResult.hasErrors()) {
             return "userForm_n";
         } else {
             userFacade.addUserAndWish(userFormDto);
@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @GetMapping("/userslist")
-    public String showUserMovies(Map<String, Object> model){
+    public String showUserMovies(Map<String, Object> model) {
         model.put("users", userFacade.findAllUsers());
         return "userList";
     }
@@ -87,7 +87,7 @@ public class UserController {
             Object flash = httpServletRequest.getSession().getAttribute("flash");
             model.addAttribute("flash", flash);
             httpServletRequest.getSession().removeAttribute("flash");
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
         return "login";
@@ -106,12 +106,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/accesdenied", method = RequestMethod.GET)
-    public String accesDenied(){
-        return "acces denided";
+    public String accesDenied() {
+        return "accesdenided";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);

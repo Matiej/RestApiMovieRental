@@ -2,12 +2,12 @@ package pl.testaarosa.movierental.mapper;
 
 import org.springframework.stereotype.Component;
 import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
-import pl.testaarosa.movierental.domain.dto.OmbdBlueRayDetailsDto;
+import pl.testaarosa.movierental.domain.dto.OmdbBlueRayDetailsDto;
 
 @Component
 public class OmbdBlueRayDetailsMapper {
 
-    public BlueRayMovieDetails mapToBlueRayMovieDetails(final OmbdBlueRayDetailsDto mFSuppDetailsDto){
+    public BlueRayMovieDetails mapToBlueRayMovieDetails(final OmdbBlueRayDetailsDto mFSuppDetailsDto){
 
         return new BlueRayMovieDetails(
                 mFSuppDetailsDto.getImdbID(),

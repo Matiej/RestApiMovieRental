@@ -13,7 +13,7 @@ import pl.testaarosa.movierental.services.*;
 
 @Controller
 @RequestMapping("/wish")
-public class MoviesWishListController {
+public class    MoviesWishListController {
 
     @Autowired
     private MoviesWishListService wishListService;

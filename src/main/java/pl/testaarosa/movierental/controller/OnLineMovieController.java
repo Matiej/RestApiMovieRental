@@ -46,18 +46,4 @@ public class OnLineMovieController {
             }
         }
     }
-
-    @RequestMapping("/onlinedetail")
-    public String onLineMovieDetail(Model model, String imdbID) {
-        OnLineMovieDetailsDto movieDetDto = onLineMovieFacade.getOnLineMovieDetails(imdbID);
-        model.addAttribute("onLineMovieDetails", movieDetDto);
-        return "onLineMovieDetails";
-    }
-
-        @RequestMapping("/onlinedetail_n")
-    public String onLineMovieDetailN(Model model, String imdbID) {
-        OnLineMovieDetailsDto movieDetDto = onLineMovieFacade.getOnLineMovieDetails(imdbID);
-        model.addAttribute("onLineMovieDetails", movieDetDto);
-        return "onLineMovieDetails_n";
-    }
 }

@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OmbdBlueRayPaginationDto {
+public class OmdbBlueRayPaginationDto {
     @JsonProperty("Search")
-    private List<OmbdBlueRayDto> ombdBlueRayDtos = new ArrayList<>();
+    private List<OmdbBlueRayDto> omdbBlueRayDtos = new ArrayList<>();
     private String totalResults;
 
-    public List<OmbdBlueRayDto> getOmbdBlueRayDtos() {
-        return ombdBlueRayDtos;
+    public List<OmdbBlueRayDto> getOmdbBlueRayDtos() {
+        return omdbBlueRayDtos;
     }
 
     public String getTotalResults() {
@@ -21,7 +21,7 @@ public class OmbdBlueRayPaginationDto {
     @Override
     public String toString() {
         return "MovieTwo{" +
-                "ombdBlueRayDtos=" + ombdBlueRayDtos +
+                "omdbBlueRayDtos=" + omdbBlueRayDtos +
                 ", totalResults='" + totalResults + '\'' +
                 '}';
     }

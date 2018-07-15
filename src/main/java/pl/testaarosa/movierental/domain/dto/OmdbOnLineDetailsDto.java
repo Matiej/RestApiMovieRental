@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OmbdOnLineDetailsDto {
+public class OmdbOnLineDetailsDto {
     @JsonProperty("imdbID")
     private String imdbID;
     @JsonProperty("Title")
@@ -36,10 +36,10 @@ public class OmbdOnLineDetailsDto {
     @JsonProperty("Production")
     private String production;
 
-    public OmbdOnLineDetailsDto() {
+    public OmdbOnLineDetailsDto() {
     }
 
-    public OmbdOnLineDetailsDto(String imdbID, String title, String year, String released,
+    public OmdbOnLineDetailsDto(String imdbID, String title, String year, String released,
                                 String runtime, String genre, String writer, String actors,
                                 String plot, String language, String country, String awards,
                                 String poster, String production) {
@@ -173,7 +173,7 @@ public class OmbdOnLineDetailsDto {
 
     @Override
     public String toString() {
-        return "OmbdBlueRayDetailsDto{" +
+        return "OmdbBlueRayDetailsDto{" +
                 "imdbID='" + imdbID + '\'' +
                 ", title='" + title + '\'' +
                 ", year='" + year + '\'' +

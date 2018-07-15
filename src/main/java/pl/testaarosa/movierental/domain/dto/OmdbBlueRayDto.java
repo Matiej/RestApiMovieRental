@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonClassDescription(value = "Search")
-public class OmbdBlueRayDto {
+public class OmdbBlueRayDto {
     @JsonProperty("Title")
     private String title;
     @JsonProperty("Year")
