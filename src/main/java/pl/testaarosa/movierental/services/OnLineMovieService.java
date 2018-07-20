@@ -4,10 +4,11 @@ import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface OnLineMovieService {
-    List<OnLineMovie> getOnLineMovies(String title);
-    OnLineMovieDetails getOnLineMovieDetails(String movieId);
-    OnLineMovie addOnLineMovieToDb(String imbdId);
+    List<OnLineMovie> getOnLineMovies(String title) throws ExecutionException, InterruptedException;
+    OnLineMovieDetails getOnLineMovieDetails(String movieId) throws ExecutionException, InterruptedException;
+    OnLineMovie addOnLineMovieToDb(String imbdId) throws ExecutionException, InterruptedException;
     OnLineMovie findById(Long id);
 }

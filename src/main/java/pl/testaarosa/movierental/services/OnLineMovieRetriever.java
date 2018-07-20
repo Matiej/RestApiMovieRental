@@ -3,6 +3,7 @@ package pl.testaarosa.movierental.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +19,7 @@ import pl.testaarosa.movierental.supplier.OmbdMovieSupplier;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 
 import static java.util.Optional.ofNullable;
@@ -36,7 +38,9 @@ public class OnLineMovieRetriever {
     @Autowired
     private OmbdOneLineDetailsMapper ombdOneLineDetailsMapper;
 
-    public List<OnLineMovie> getOnLineMovies(String title) {
+    @Async
+    public CompletableFuture<List<OnLineMovie>> getOnLineMovies(String title) {
+        LOGGER.info("\033[33m Loooking for movie: " + title);
         List<OnLineMovie> onLineMovieList = new ArrayList<>();
         try {
             IntStream.range(0, (getPagination(title) / 10)).forEach(m -> {
@@ -46,10 +50,10 @@ public class OnLineMovieRetriever {
                 List<OmdbOnLineDto> list = moviepages.getOmdbOnLineDtos();
                 onLineMovieList.addAll(ombdOnLineMapper.mapToOnLineMovieList(list));
             });
-            return onLineMovieList;
+            return CompletableFuture.completedFuture(ofNullable(onLineMovieList).orElse(new ArrayList<>()));
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
-            return new ArrayList<>();
+            return new CompletableFuture<>();
         }
     }
 
@@ -67,16 +71,17 @@ public class OnLineMovieRetriever {
 //            return pages/2;
 //        }
     }
-
-    public OnLineMovieDetails getOnLineMovieDetails(String movieId) {
+    @Async
+    public CompletableFuture<OnLineMovieDetails> getOnLineMovieDetails(String movieId) {
+        LOGGER.info("\033[33m Loooking for movie ID: " + movieId);
         URI url = supplier.OmbdSupplierDetails(movieId);
         try {
             OnLineMovieDetails onLineMovieDetails = ombdOneLineDetailsMapper.mapToOnLineMovieDetails
                     (restTemplate.getForObject(url, OmdbOnLineDetailsDto.class));
-            return ofNullable(onLineMovieDetails).orElse(new OnLineMovieDetails());
-        }   catch (RestClientException e) {
-            LOGGER.error(e.getMessage(),e);
-            return new OnLineMovieDetails();
+            return CompletableFuture.completedFuture(ofNullable(onLineMovieDetails).orElse(new OnLineMovieDetails()));
+        } catch (RestClientException e) {
+            LOGGER.error(e.getMessage(), e);
+            return new CompletableFuture<>();
         }
     }
 }

@@ -15,6 +15,7 @@ import pl.testaarosa.movierental.services.DvdMovieService;
 import pl.testaarosa.movierental.services.OnLineMovieService;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class MoviesFacade {
@@ -59,11 +60,11 @@ public class MoviesFacade {
         return dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findByTitle(title));
     }
 
-    public List<OnLineMovieDto> getOnLineMovies(String title) {
+    public List<OnLineMovieDto> getOnLineMovies(String title) throws ExecutionException, InterruptedException {
         return mapper.mapToOnLineMovieDtoList(onLineMovieService.getOnLineMovies(title));
     }
 
-    public OnLineMovieDetailsDto getOnLineMovieDetails(String movieId) {
+    public OnLineMovieDetailsDto getOnLineMovieDetails(String movieId) throws ExecutionException, InterruptedException {
         return detailsMapper.mapToOnLineDetalisDto(onLineMovieService.getOnLineMovieDetails(movieId));
     }
 }

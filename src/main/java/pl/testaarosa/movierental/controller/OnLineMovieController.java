@@ -9,6 +9,7 @@ import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/online")
@@ -22,7 +23,14 @@ public class OnLineMovieController {
         if (title == null) {
             return "onLineMovieHome";
         } else {
-            List<OnLineMovieDto> onLineMovies = onLineMovieFacade.getOnLineMovies(title);
+            List<OnLineMovieDto> onLineMovies = null;
+            try {
+                onLineMovies = onLineMovieFacade.getOnLineMovies(title);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (onLineMovies.size() < 1) {
                 return "onLineMoviesError";
             } else {
@@ -37,7 +45,14 @@ public class OnLineMovieController {
         if (title == null) {
             return "onLineMovieHome_n";
         } else {
-            List<OnLineMovieDto> onLineMovies = onLineMovieFacade.getOnLineMovies(title);
+            List<OnLineMovieDto> onLineMovies = null;
+            try {
+                onLineMovies = onLineMovieFacade.getOnLineMovies(title);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (onLineMovies.size() < 1) {
                 return "onLineMoviesError_n";
             } else {

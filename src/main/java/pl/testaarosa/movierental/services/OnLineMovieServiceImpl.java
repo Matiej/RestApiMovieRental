@@ -10,6 +10,8 @@ import pl.testaarosa.movierental.mapper.OnLineMovieMapper;
 import pl.testaarosa.movierental.repositories.OnLineMovieRepository;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,21 +25,23 @@ public class OnLineMovieServiceImpl implements OnLineMovieService {
     private OmbdOnLineMapper onLineMovieMapper;
 
     @Override
-    public List<OnLineMovie> getOnLineMovies(String title){
-            return onLineMovieRetriever.getOnLineMovies(title);
+    public List<OnLineMovie> getOnLineMovies(String title) throws ExecutionException, InterruptedException {
+        CompletableFuture<List<OnLineMovie>> onLine = onLineMovieRetriever.getOnLineMovies(title);
+            return onLine.get();
     }
 
     @Override
-    public OnLineMovieDetails getOnLineMovieDetails(String movieId){
-        return onLineMovieRetriever.getOnLineMovieDetails(movieId);
+    public OnLineMovieDetails getOnLineMovieDetails(String movieId) throws ExecutionException, InterruptedException {
+        CompletableFuture<OnLineMovieDetails> onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(movieId);
+        return onLineMovieDetails.get();
     }
 
     @Override
-    public OnLineMovie addOnLineMovieToDb(String imdbID) {
-        OnLineMovieDetails onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(imdbID);
-        OnLineMovie onLineMovie = onLineMovieMapper.mapToOnLineMovie(onLineMovieDetails);
+    public OnLineMovie addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
+        CompletableFuture<OnLineMovieDetails> onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(imdbID);
+        OnLineMovie onLineMovie = onLineMovieMapper.mapToOnLineMovie(onLineMovieDetails.get());
         if(!onLineMovieRepository.existsAllByImdbID(imdbID)) {
-            onLineMovie.setOnLineMovieDetails(onLineMovieDetails);
+            onLineMovie.setOnLineMovieDetails(onLineMovieDetails.get());
             onLineMovieRepository.save(onLineMovie);
             return onLineMovie;
         } else {

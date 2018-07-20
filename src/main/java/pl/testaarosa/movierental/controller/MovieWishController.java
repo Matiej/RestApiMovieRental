@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.ref.ReferenceQueue;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/watchwish")
@@ -44,7 +45,14 @@ public class MovieWishController {
     @GetMapping("/addonline")
     public String addOnlineMovieToWishList(HttpServletRequest request, Model model, @RequestParam String imdbID) {
         String remoteUser = request.getRemoteUser();
-        OnLineMovie onLineMovie = onLineMovieService.addOnLineMovieToDb(imdbID);
+        OnLineMovie onLineMovie = null;
+        try {
+            onLineMovie = onLineMovieService.addOnLineMovieToDb(imdbID);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         moviesWishListService.addMovie(remoteUser,onLineMovie.getId());
         MovieWish allWishes = moviesWishListService.findUsersWishForGivenUser(remoteUser);
         model.addAttribute("userWishes", allWishes);

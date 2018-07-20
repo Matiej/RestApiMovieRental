@@ -11,6 +11,8 @@ import pl.testaarosa.movierental.domain.*;
 import pl.testaarosa.movierental.mapper.MoviesWishListMapper;
 import pl.testaarosa.movierental.services.*;
 
+import java.util.concurrent.ExecutionException;
+
 @Controller
 @RequestMapping("/wish")
 public class    MoviesWishListController {
@@ -49,7 +51,14 @@ public class    MoviesWishListController {
 
     @GetMapping("/onLinAddwishlist")
     public String addOnLineToWishList(Model model, @RequestParam String imdbID){
-        OnLineMovieDetails onLineMovieDetails = onLineMovieService.getOnLineMovieDetails(imdbID);
+        OnLineMovieDetails onLineMovieDetails = null;
+        try {
+            onLineMovieDetails = onLineMovieService.getOnLineMovieDetails(imdbID);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         wishListService.addWish(wishListMapper.mapOnLineMoviesToWishList(onLineMovieDetails));
         model.addAttribute("wishessList", wishListService.findAll());
         return "moviesWishList";
