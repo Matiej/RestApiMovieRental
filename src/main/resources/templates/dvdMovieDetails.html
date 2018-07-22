@@ -51,9 +51,12 @@
 <div th:include="navi :: menu"></div>
 
 <h1 id="movieTitle"><p th:text="${dvdMovieDetail.title}"></p></h1>
-<a th:href="@{/wish/dvdaddwishlist?id={id}(id=${dvdMovieDetail.id})}"
-   type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
-</a>
+
+<div class="textdet">
+    <a th:href="@{/watchwish/addmovie?id={id}(id=${dvdMovieDetail.id})}"
+       type="button" class="btn btn-primary btn-lg">Add this movie to wish list<i></i>
+    </a>
+</div>
 
 <h4 class="movieDet">Movie id:</h4>
 <h4 class="textdet" th:text="${dvdMovieDetail.id}"></h4>
@@ -71,8 +74,13 @@
 <p class="textdet" th:text="${dvdMovieDetail.dvdMovieDetails.price}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${dvdMovieDetail.getPoster()}}" class="textdet" width="20%" height="20%" align="center"/>
 
+<section class="movieDet" style="display-outside: ruby">
+    <a th:href="@{/watchwish/addmovie?id={id}(id=${dvdMovieDetail.id})}"
+       type="button" class="btn btn-primary btn-lg">Add this movie to wish list<i></i>
+    </a>
+    <img th:src="@{${dvdMovieDetail.getPoster()}}" class="textdet" width="20%" height="20%" align="center"/>
+</section>
 </body>
 </html>
 

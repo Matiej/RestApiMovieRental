@@ -70,15 +70,13 @@
         <td><img th:src="@{${search.poster}}" height="20%" width="20%"/></td>
         <td>
             <a th:href="@{/two/showmovie?id={id}(id=${search.id})}"
-               role="button" class="btn btn-info">
-                <i class="fa fa-info"></i>
+               role="button" target="_blank" class="btn btn-info">Details</a>
             </a>
 
         </td>
         <td>
             <a th:href="@{/wish/bluerayaddwishlist?id={id}(id=${search.id})}"
-               role="button" class="btn btn-success">
-                <i class="fa fa-info"></i>
+               role="button" class="btn btn-success">Add to wish list</a>
             </a>
 
         </td>

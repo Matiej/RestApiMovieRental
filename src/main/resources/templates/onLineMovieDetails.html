@@ -45,18 +45,17 @@
             margin: auto;
         }
     </style>
-
 </head>
 <body>
 <div th:include="navi :: menu"></div>
-
 <h1 id="movieTitle"><p th:text="${onLineMovieDetails.title}"></p></h1>
-
-<a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${onLineMovieDetails.imdbID})}"
-   type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
-</a>>
-
-<h4 class="movieDet">Supplier id:</h4>
+<div class="textdet">
+    <a th:href="@{/watchwish/addonline?imdbID={id}(id=${onLineMovieDetails.imdbID})}"
+       type="button" class="btn btn-primary btn-lg">Add this movie to wish list<i></i>
+    </a>
+</div>
+<h4 class="movieDet">Supplier id:
+</h4>
 <pre class="textdet" th:text="${onLineMovieDetails.getImdbID()}"></pre>
 
 <h4 class="movieDet">Year:</h4>
@@ -93,8 +92,12 @@
 <p class="textdet" th:text="${onLineMovieDetails.production}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
-
+<section class="movieDet" style="display-outside: ruby">
+    <a  th:href="@{/watchwish/addonline?imdbID={id}(id=${onLineMovieDetails.imdbID})}"
+        type="button" class="btn btn-primary btn-lg">Add this movie to wish list<i></i>
+    </a>
+    <img th:src="@{${onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
+</section>
 </body>
 </html>
 

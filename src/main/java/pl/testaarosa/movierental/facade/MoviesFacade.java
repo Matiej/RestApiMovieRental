@@ -32,19 +32,19 @@ public class MoviesFacade {
     @Autowired
     private OnLineMovieService onLineMovieService;
     @Autowired
-    private OnLineMovieMapper mapper;
+    private OnLineMovieMapper onLineMovieMapper;
     @Autowired
     private OnLineMovieDetailsMapper detailsMapper;
 
-    public List<BlueRayMovieDto> findAll() {
+    public List<BlueRayMovieDto> findAllBlueRay() {
         return blueRayMovieMapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAll());
     }
 
-    public List<BlueRayMovieDto> findAllContainsTitle(String title) {
+    public List<BlueRayMovieDto> findAllBlueRayContainsTitle(String title) {
         return blueRayMovieMapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAllContainsTitle(title));
     }
 
-    public BlueRayMovieDto findbyId(Long id) {
+    public BlueRayMovieDto findBlueRaById(Long id) {
         return blueMovieDetailsMapper.mapToBlueRayMovieDto(blueRayMovieService.findbyId(id));
     }
 
@@ -61,10 +61,18 @@ public class MoviesFacade {
     }
 
     public List<OnLineMovieDto> getOnLineMovies(String title) throws ExecutionException, InterruptedException {
-        return mapper.mapToOnLineMovieDtoList(onLineMovieService.getOnLineMovies(title));
+        return onLineMovieMapper.mapToOnLineMovieDtoList(onLineMovieService.getOnLineMovies(title));
     }
 
     public OnLineMovieDetailsDto getOnLineMovieDetails(String movieId) throws ExecutionException, InterruptedException {
         return detailsMapper.mapToOnLineDetalisDto(onLineMovieService.getOnLineMovieDetails(movieId));
+    }
+
+    public OnLineMovieDto findOnLineById(Long id) {
+        return onLineMovieMapper.mapToOnlineMovieDto(onLineMovieService.findById(id));
+    }
+
+    public OnLineMovieDto addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
+        return onLineMovieMapper.mapToOnlineMovieDto(onLineMovieService.addOnLineMovieToDb(imdbID));
     }
 }

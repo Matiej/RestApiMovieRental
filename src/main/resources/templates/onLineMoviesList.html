@@ -57,11 +57,11 @@
         <td><img class="size" th:src="@{${on.poster}}" height="20%" width="20%"/></td>
         <td>
             <a th:href="@{/online/onlinedetail?imdbID={id}(id=${on.imdbID})}"
-               role="button" class="btn btn-info">Details</a>
+               role="button" target="_blank" class="btn btn-info">Details</a>
         </td>
         <td>
             <a th:href="@{/watchwish/addonline?imdbID={id}(id=${on.imdbID})}"
-               role="button" class="btn btn-success">Add to wish list</a>
+               role="button" target="_blank" class="btn btn-success">Add to wish list</a>
 
         </td>
     </tr>

@@ -45,7 +45,7 @@
         <th>Year</th>
         <th>Poster</th>
         <th>Details</th>
-        <th>Add to wish list</th>
+        <!--<th>Add to wish list</th>-->
 
     </tr>
     </thead>
@@ -57,18 +57,18 @@
         <td><img class="size" th:src="@{${on.poster}}" height="20%" width="20%"/></td>
         <td>
             <a th:href="@{/online/onlinedetail_n?imdbID={id}(id=${on.imdbID})}"
-               role="button" class="btn btn-info">
+               role="button" target="_blank" class="btn btn-info">
                 <i class="fa fa-info"></i>
             </a>
 
         </td>
-        <td>
-            <a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${on.imdbID})}"
-               role="button" class="btn btn-success">
-                <i class="fa fa-info"></i>
-            </a>
+        <!--<td>-->
+            <!--<a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${on.imdbID})}"-->
+               <!--role="button" target="_blank" class="btn btn-success">-->
+                <!--<i class="fa fa-info"></i>-->
+            <!--</a>-->
 
-        </td>
+        <!--</td>-->
     </tr>
     </tbody>
 </table>

@@ -90,7 +90,10 @@
 <p class="textdet" th:text="${onLineMovieDetailsDb.onLineMovieDetails.production}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${onLineMovieDetailsDb.onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
+<section class="movieDet" style="display-outside: ruby">
+    <img th:src="@{${onLineMovieDetailsDb.onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
+</section>
+
 
 </body>
 </html>

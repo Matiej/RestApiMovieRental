@@ -47,13 +47,11 @@
             <td><img class="size" th:src="@{${two.poster}}" height="20%" width="20%"/></td>
             <td>
                 <a th:href="@{/blueray/showmovie?id={id}(id=${two.id})}"
-                   role="button" class="btn btn-info">Details</a>
-
+                   role="button" target="_blank" class="btn btn-info">Details</a>
             </td>
             <td>
                 <a th:href="@{/watchwish/addmovie?id={id}(id=${two.id})}"
                    role="button" class="btn btn-success">Add to wish list</a>
-
             </td>
             <!--<td>-->
                 <!--<a th:href="@{/watchwish/addmovie?id={id}(id=${two.id})}"-->

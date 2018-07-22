@@ -76,7 +76,7 @@
 //        //given
 //        when(movieRepository.findOne(2L)).thenReturn(blueRayMovieList.get(1));
 //        //when
-//        BlueRayMovie result = movieService.findbyId(2L);
+//        BlueRayMovie result = movieService.findBlueRaById(2L);
 //        //then
 //        assertEquals(blueRayMovieList.get(1), result);
 //
@@ -87,7 +87,7 @@
 //        //given
 //        when(movieRepository.findAllByTitleContaining("Title3")).thenReturn(blueRayMovieList);
 //        //when
-//        List<BlueRayMovie> result = movieService.findAllContainsTitle("Title3");
+//        List<BlueRayMovie> result = movieService.findAllBlueRayContainsTitle("Title3");
 //        List<BlueRayMovie> wrongResult = movieRepository.findAllByTitleContaining("Title4");
 //        //then
 //        assertEquals(blueRayMovieList, result);

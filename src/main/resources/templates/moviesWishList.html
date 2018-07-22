@@ -1,97 +1,97 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>WishList</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        .movieDet {
-            background-color: darkgray;
-            border: 5px black;
-            margin-left: 150px;
-            margin-right: 150px;
-            color: white;
-            padding: 1px;
-            text-align: center;
-        }
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+      <!--xmlns="http://www.w3.org/1999/xhtml"-->
+      <!--xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8"/>-->
+    <!--<title>WishList</title>-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--<style>-->
+        <!--.movieDet {-->
+            <!--background-color: darkgray;-->
+            <!--border: 5px black;-->
+            <!--margin-left: 150px;-->
+            <!--margin-right: 150px;-->
+            <!--color: white;-->
+            <!--padding: 1px;-->
+            <!--text-align: center;-->
+        <!--}-->
 
-    </style>
-</head>
-<body>
-<div th:include="navi :: menu"></div>
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>-->
-        <!--</div>-->
-        <!--<ul class="nav navbar-nav">-->
+    <!--</style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div th:include="navi :: menu"></div>-->
+<!--&lt;!&ndash;<nav class="navbar navbar-inverse">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="container-fluid">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="navbar-header">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<ul class="nav navbar-nav">&ndash;&gt;-->
 
-            <!--<li><a href="/home">Home</a></li>-->
-            <!--<li><a href="/one/movieslist">DVD Movies</a></li>-->
-            <!--<li><a href="/blueray/movieslist">Blue ray Movies</a></li>-->
-            <!--<li><a href="/online/movielist">OnLine Movies</a></li>-->
-            <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>-->
-                <!--<ul class="dropdown-menu">-->
-                    <!--<li> <a href="/users/adduser">Add new user</a></li>-->
-                    <!--<li> <a href="/users/userslist">Users list</a></li>-->
-                    <!--<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>-->
-                    <!--<li><a href="/usermovie/movieslist">User Movies list</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li style="background-color:Grey;"><a href="/wish/wishlist">Movies wish list</a></li>-->
-            <!--<form class="navbar-form navbar-left" action="/two/movieslistsearch">-->
+            <!--&lt;!&ndash;<li><a href="/home">Home</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="/one/movieslist">DVD Movies</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="/blueray/movieslist">Blue ray Movies</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="/online/movielist">OnLine Movies</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li> <a href="/users/adduser">Add new user</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li> <a href="/users/userslist">Users list</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="/usermovie/movieslist">User Movies list</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li style="background-color:Grey;"><a href="/wish/wishlist">Movies wish list</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<form class="navbar-form navbar-left" action="/two/movieslistsearch">&ndash;&gt;-->
 
-                <!--<button onclick="myFunction()">Print this page</button>-->
+                <!--&lt;!&ndash;<button onclick="myFunction()">Print this page</button>&ndash;&gt;-->
 
-                <!--<script>-->
-                    <!--function myFunction() {-->
-                        <!--window.print();-->
-                    <!--}-->
-                <!--</script>-->
-            <!--</form>-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--</nav>-->
+                <!--&lt;!&ndash;<script>&ndash;&gt;-->
+                    <!--&lt;!&ndash;function myFunction() {&ndash;&gt;-->
+                        <!--&lt;!&ndash;window.print();&ndash;&gt;-->
+                    <!--&lt;!&ndash;}&ndash;&gt;-->
+                <!--&lt;!&ndash;</script>&ndash;&gt;-->
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</nav>&ndash;&gt;-->
 
-<h2 class="movieDet">Movies wish list</h2>
-<!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Movie Id</th>
-        <th>Supplier Id</th>
-        <th>Title</th>
-        <th>Genre</th>
-        <th>Poster</th>
-        <th>Supplier</th>
-        <th>Delete</th>
+<!--<h2 class="movieDet">Movies wish list</h2>-->
+<!--&lt;!&ndash;<p>The .table-striped class adds zebra-stripes to a table:</p>&ndash;&gt;-->
+<!--<table class="table table-striped">-->
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th>Movie Id</th>-->
+        <!--<th>Supplier Id</th>-->
+        <!--<th>Title</th>-->
+        <!--<th>Genre</th>-->
+        <!--<th>Poster</th>-->
+        <!--<th>Supplier</th>-->
+        <!--<th>Delete</th>-->
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="wish, stat :${wishessList}">
-        <td th:text="${wish.id}"></td>
-        <td th:text="${wish.supId}"></td>
-        <td th:text="${wish.title}"></td>
-        <td th:text="${wish.filmGenre}"></td>
-        <td><img class="size" th:src="@{${wish.poster}}" height="19%" width="19%"/></td>
-        <td th:text="${wish.supplier}"></td>
-        <td><form th:action="@{/wish/delwish?id={id}(id=${wish.id})}" method="post">
-            <button type="submit" class="btn btn-dark">Remove</button>
-        </form>
-            <!--<a th:href="@{/wish/delwish?id={id}(id=${wish.id})}"-->
-               <!--role="button" class="btn btn-danger">-->
-                <!--<i class="fa fa-info"></i>-->
-            <!--</a>-->
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr th:each="wish, stat :${wishessList}">-->
+        <!--<td th:text="${wish.id}"></td>-->
+        <!--<td th:text="${wish.supId}"></td>-->
+        <!--<td th:text="${wish.title}"></td>-->
+        <!--<td th:text="${wish.filmGenre}"></td>-->
+        <!--<td><img class="size" th:src="@{${wish.poster}}" height="19%" width="19%"/></td>-->
+        <!--<td th:text="${wish.supplier}"></td>-->
+        <!--<td><form th:action="@{/wish/delwish?id={id}(id=${wish.id})}" method="post">-->
+            <!--<button type="submit" class="btn btn-dark">Remove</button>-->
+        <!--</form>-->
+            <!--&lt;!&ndash;<a th:href="@{/wish/delwish?id={id}(id=${wish.id})}"&ndash;&gt;-->
+               <!--&lt;!&ndash;role="button" class="btn btn-danger">&ndash;&gt;-->
+                <!--&lt;!&ndash;<i class="fa fa-info"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+<!--</table>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

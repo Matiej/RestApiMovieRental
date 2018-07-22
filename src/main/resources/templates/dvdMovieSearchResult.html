@@ -68,14 +68,12 @@
         <td th:text="${one.getTitle()}"></td>
         <td>
             <a th:href="@{/one/showmovie?id={id}(id=${one.id})}"
-               role="button" class="btn btn-info">
-                <i class="fa fa-info"></i>
+               role="button" target="_blank" class="btn btn-info">Details</a>
             </a>
         </td>
         <td>
             <a th:href="@{/wish/dvdaddwishlist?id={id}(id=${one.id})}"
-               role="button" class="btn btn-success">
-                <i class="fa fa-info"></i>
+               role="button" class="btn btn-success">Add to wish list</a>
             </a>
 
         </td>

@@ -14,7 +14,7 @@
 <body background="https://www.goshico.com/allegro/tt.jpg">
 <div th:include="navi_n :: menu_n"></div>
 <div class="container">
-<h2> log in to the application </h2>
+<h1> Log in to the Testaarosa movie rental </h1>
 <form class="form-signin" method="POST" th:action="@{/users/login}">
     <span id="reauth-email" class="reauth-email"></span>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

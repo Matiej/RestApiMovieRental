@@ -9,40 +9,41 @@ import java.util.List;
 })
 
 @Entity
-@Table(name = "Movies_Wish_NEW")
+@Table(name = "MOVIES_WISH")
 public class MovieWish {
-
+//TODO builder idiotoodportnego zrobić
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String wishName;
-    @Column(name = "WISH_DESCRIPTION", length = 1000)
-    private String wishDesc;
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "JOIN_WISH_MOVIE",
     joinColumns = {@JoinColumn(name = "WISH_ID", referencedColumnName = "ID")},
     inverseJoinColumns = {@JoinColumn(name = "MOVIES_ID", referencedColumnName = "ID")})
     private List<Movie> moviesList = new ArrayList<>();
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    public MovieWish() {
+    }
+
+    private MovieWish(MovieWishBuilder movieWishBuilder) {
+        this.wishName = movieWishBuilder.wishName;
+        this.moviesList = new ArrayList<>(movieWishBuilder.moviesList);
+        this.user = movieWishBuilder.user;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getWishName() {
+        return wishName;
     }
 
     public List<Movie> getMoviesList() {
         return moviesList;
-    }
-
-    public void setMoviesList(List<Movie> moviesList) {
-        this.moviesList = moviesList;
     }
 
     public User getUser() {
@@ -53,19 +54,32 @@ public class MovieWish {
         this.user = user;
     }
 
-    public String getWishName() {
-        return wishName;
-    }
-
     public void setWishName(String wishName) {
         this.wishName = wishName;
     }
 
-    public String getWishDesc() {
-        return wishDesc;
-    }
+    public static class MovieWishBuilder {
+        private String wishName;
+        private List<Movie> moviesList = new ArrayList<>();
+        private User user;
 
-    public void setWishDesc(String wishDesc) {
-        this.wishDesc = wishDesc;
+        public MovieWishBuilder wishName(String wishName) {
+            this.wishName = wishName;
+            return this;
+        }
+
+        public MovieWishBuilder movieList(List<Movie> movieList) {
+            this.moviesList = movieList;
+            return this;
+        }
+
+        public MovieWishBuilder user(User user) {
+            this.user = user;
+            return this;
+        }
+
+        public MovieWish builder() {
+            return new MovieWish(this);
+        }
     }
 }

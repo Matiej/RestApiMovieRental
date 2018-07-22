@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
+import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.domain.dto.UserMovieDto;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
+import pl.testaarosa.movierental.mapper.MovieWishMapper;
 import pl.testaarosa.movierental.mapper.UserMapper;
 import pl.testaarosa.movierental.mapper.UserMovieMapper;
 import pl.testaarosa.movierental.mapper.form.UserFormDtoMapper;
@@ -35,6 +37,11 @@ public class UserFacade {
     private UserMovieMapper userMovieMapper;
     @Autowired
     private MovieWishServiceImpl movieWishService;
+    @Autowired
+    private MovieWishServiceImpl moviesWishListService;
+    @Autowired
+    private MovieWishMapper movieWishMapper;
+
 
     public List<UserDto> findAllUsers() {
         return userMapper.userList(userService.findAll());
@@ -64,4 +71,23 @@ public class UserFacade {
     public void deleteUserMovie(Long id) {
         userMovieService.delete(id);
     }
+
+    public MovieWishDto addMovie(String remoteUser, Long id) {
+        return movieWishMapper.mapToMovieWishDto(moviesWishListService.addMovie(remoteUser, id));
+    }
+
+    public MovieWishDto findUsersWishForGivenUser(String remoteUser) {
+        return movieWishMapper.mapToMovieWishDto(moviesWishListService.findUsersWishForGivenUser(remoteUser));
+    }
+
+    public List<MovieWishDto> findAllWishes() {
+        return movieWishMapper.mapToMovieWishDtoList(moviesWishListService.findAllWishes());
+    }
+
+    public MovieWishDto findById(Long id) {
+        return movieWishMapper.mapToMovieWishDto(moviesWishListService.findById(id));
+    }
+
+
+
 }

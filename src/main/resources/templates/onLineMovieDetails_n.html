@@ -53,7 +53,7 @@
 <h1 id="movieTitle"><p th:text="${onLineMovieDetails.title}"></p></h1>
 
 <a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${onLineMovieDetails.imdbID})}"
-   type="button" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
+   type="button" target="_blank" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
 </a>>
 
 <h4 class="movieDet">Supplier id:</h4>
@@ -93,7 +93,10 @@
 <p class="textdet" th:text="${onLineMovieDetails.production}"></p>
 
 <h4 class="movieDet">POSTER:</h4>
-<img th:src="@{${onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
+
+<section class="movieDet" style="display-outside: ruby">
+    <img th:src="@{${onLineMovieDetails.getPoster()}}" class="textdet" align="center"/>
+</section>
 
 </body>
 </html>

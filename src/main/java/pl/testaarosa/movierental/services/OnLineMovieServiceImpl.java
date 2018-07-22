@@ -27,18 +27,21 @@ public class OnLineMovieServiceImpl implements OnLineMovieService {
     @Override
     public List<OnLineMovie> getOnLineMovies(String title) throws ExecutionException, InterruptedException {
         CompletableFuture<List<OnLineMovie>> onLine = onLineMovieRetriever.getOnLineMovies(title);
+        CompletableFuture.allOf(onLine);
             return onLine.get();
     }
 
     @Override
     public OnLineMovieDetails getOnLineMovieDetails(String movieId) throws ExecutionException, InterruptedException {
         CompletableFuture<OnLineMovieDetails> onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(movieId);
+        CompletableFuture.allOf(onLineMovieDetails);
         return onLineMovieDetails.get();
     }
 
     @Override
     public OnLineMovie addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
         CompletableFuture<OnLineMovieDetails> onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(imdbID);
+        CompletableFuture.allOf(onLineMovieDetails);
         OnLineMovie onLineMovie = onLineMovieMapper.mapToOnLineMovie(onLineMovieDetails.get());
         if(!onLineMovieRepository.existsAllByImdbID(imdbID)) {
             onLineMovie.setOnLineMovieDetails(onLineMovieDetails.get());
