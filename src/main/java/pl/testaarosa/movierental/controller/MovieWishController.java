@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.testaarosa.movierental.domain.Movie;
-import pl.testaarosa.movierental.domain.OnLineMovie;
+import pl.testaarosa.movierental.domain.dto.MovieDto;
 import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.facade.UserFacade;
-import pl.testaarosa.movierental.mapper.MovieWishMapper;
 import pl.testaarosa.movierental.services.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,17 +24,15 @@ import java.util.concurrent.ExecutionException;
 public class MovieWishController {
 
     @Autowired
-    private UserFacade movieWishFacade;
-    @Autowired
-    private MovieService movieService;
+    private UserFacade userFacade;
     @Autowired
     private MoviesFacade moviesFacade;
 
     @GetMapping("/addmovie")
     public String addMovieToWishList(HttpServletRequest request, Model model, @RequestParam Long id){
         String remoteUser = request.getRemoteUser();
-        movieWishFacade.addMovie(remoteUser,id);
-        MovieWishDto allWishes = movieWishFacade.findUsersWishForGivenUser(remoteUser);
+        userFacade.addMovie(remoteUser,id);
+        MovieWishDto allWishes = userFacade.findUsersWishForGivenUser(remoteUser);
         model.addAttribute("userWishes", allWishes);
         return "movieUserWishes";
     }
@@ -51,8 +48,8 @@ public class MovieWishController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        movieWishFacade.addMovie(remoteUser,onLineMovie.getId());
-        MovieWishDto allWishes = movieWishFacade.findUsersWishForGivenUser(remoteUser);
+        userFacade.addMovie(remoteUser,onLineMovie.getId());
+        MovieWishDto allWishes = userFacade.findUsersWishForGivenUser(remoteUser);
         model.addAttribute("userWishes", allWishes);
         return "movieUserWishes";
 
@@ -61,7 +58,7 @@ public class MovieWishController {
     //for admin
     @GetMapping("/wishlistadmin")
     public String showWishes(Map<String, Object> model){
-        List<MovieWishDto> allWishes = movieWishFacade.findAllWishes();
+        List<MovieWishDto> allWishes = userFacade.findAllWishes();
         model.put("wishes", allWishes);
         return "movieWishListAdmin";
     }
@@ -69,7 +66,7 @@ public class MovieWishController {
     @GetMapping("/userwishes")
     public String showUserWishes(HttpServletRequest request, Map<String, Object> model) {
         String remoteUser = request.getRemoteUser();
-        MovieWishDto wish = movieWishFacade.findUsersWishForGivenUser(remoteUser);
+        MovieWishDto wish = userFacade.findUsersWishForGivenUser(remoteUser);
         model.put("userWishes", wish);
         return "movieUserWishes";
     }
@@ -77,7 +74,7 @@ public class MovieWishController {
     //for admin
     @GetMapping("/wishdetails")
     public String wishDetail(Model model, @RequestParam Long id) {
-        MovieWishDto wish = movieWishFacade.findById(id);
+        MovieWishDto wish = userFacade.findById(id);
         model.addAttribute("wishDetails", wish);
         //TODO movieDTo machen
         List<Movie> movieList = wish.getMoviesList();
@@ -88,7 +85,7 @@ public class MovieWishController {
     @GetMapping("/moviedetails")
     public String movie(Model model, @RequestParam Long id){
         //TODO movie DTO machen
-        Movie movie = movieService.findById(id);
+        MovieDto movie = moviesFacade.findMovieById(id);
         switch (movie.getSupplier().toLowerCase()) {
             case "bluray supplier":
                 model.addAttribute("movieDetail", moviesFacade.findBlueRaById(id));

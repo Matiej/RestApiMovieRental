@@ -40,6 +40,7 @@ public class MovieWishServiceImpl {
         Long remoteUserId = userService.findRemoteUser(remoteUser).getId();
         Movie movie = movieService.findById(movieId);
         MovieWish one = movieWishRepository.findAllUsersWishForGivenUser(remoteUserId);
+        movie.getMovieWishList().add(one);
         one.getMoviesList().add(movie);
         return movieWishRepository.save(one);
     }

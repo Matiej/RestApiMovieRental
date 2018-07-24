@@ -1,36 +1,29 @@
-package pl.testaarosa.movierental.domain;
+package pl.testaarosa.movierental.domain.dto;
 
-import javax.persistence.*;
+import pl.testaarosa.movierental.domain.MovieWish;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "MOVIES")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue(value="movie")
-public class Movie {
+public class MovieDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String imdbID;
     private String poster;
     private String supplier;
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "moviesList", targetEntity = MovieWish.class)
     private List<MovieWish> movieWishList = new ArrayList<>();
 
-    public Movie() {
-    }
-
-    public Movie(String title, String imdbID, String poster, String supplier) {
+    public MovieDto(Long id, String title, String imdbID, String poster, String supplier, List<MovieWish> movieWishList) {
+        this.id = id;
         this.title = title;
         this.imdbID = imdbID;
         this.poster = poster;
         this.supplier = supplier;
+        this.movieWishList = movieWishList;
     }
-
 
     public Long getId() {
         return id;

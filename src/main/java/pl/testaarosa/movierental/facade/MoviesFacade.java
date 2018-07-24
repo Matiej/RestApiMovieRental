@@ -2,16 +2,12 @@ package pl.testaarosa.movierental.facade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
-import pl.testaarosa.movierental.domain.dto.DvdMovieDto;
-import pl.testaarosa.movierental.domain.dto.OnLineMovieDetailsDto;
-import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
-import pl.testaarosa.movierental.mapper.BlueRayMovieMapper;
-import pl.testaarosa.movierental.mapper.DvdMovieMapper;
-import pl.testaarosa.movierental.mapper.OnLineMovieDetailsMapper;
-import pl.testaarosa.movierental.mapper.OnLineMovieMapper;
+import pl.testaarosa.movierental.domain.Movie;
+import pl.testaarosa.movierental.domain.dto.*;
+import pl.testaarosa.movierental.mapper.*;
 import pl.testaarosa.movierental.services.BlueRayMovieService;
 import pl.testaarosa.movierental.services.DvdMovieService;
+import pl.testaarosa.movierental.services.MovieService;
 import pl.testaarosa.movierental.services.OnLineMovieService;
 
 import java.util.List;
@@ -35,6 +31,10 @@ public class MoviesFacade {
     private OnLineMovieMapper onLineMovieMapper;
     @Autowired
     private OnLineMovieDetailsMapper detailsMapper;
+    @Autowired
+    private MovieService movieService;
+    @Autowired
+    private MovieMapper movieMapper;
 
     public List<BlueRayMovieDto> findAllBlueRay() {
         return blueRayMovieMapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAll());
@@ -74,5 +74,9 @@ public class MoviesFacade {
 
     public OnLineMovieDto addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
         return onLineMovieMapper.mapToOnlineMovieDto(onLineMovieService.addOnLineMovieToDb(imdbID));
+    }
+
+    public MovieDto findMovieById(Long id) {
+        return movieMapper.mapToMovieDto(movieService.findById(id));
     }
 }

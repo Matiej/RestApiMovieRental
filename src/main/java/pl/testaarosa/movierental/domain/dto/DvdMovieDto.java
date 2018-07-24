@@ -9,9 +9,6 @@ public class DvdMovieDto {
     private Long id;
     private String title;
     private String imdbID;
-//    private final String countryOfOrigin;
-//    private final String type;
-//    private double price;
     private String poster;
     private String supplier;
     private DvdMovieDetails dvdMovieDetails;
