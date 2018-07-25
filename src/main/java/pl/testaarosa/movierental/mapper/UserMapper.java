@@ -18,6 +18,7 @@ public class UserMapper {
                         u.getSurname(),
                         u.getEmail(),
                         u.getPassword(),
+                        u.getMatchingPassword(),
                         u.isEnabled(),
                         u.getRegisterDate(),
                         u.getUserDetails(),

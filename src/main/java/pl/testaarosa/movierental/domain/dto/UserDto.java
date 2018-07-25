@@ -15,23 +15,23 @@ public class UserDto {
     private String name;
     private String surname;
     private String email;
-
     private String password;
+    private String matchingPassword;
     private boolean isEnabled;
-
     private LocalDateTime registerDate;
     private UserDetails userDetails;
     private List<MovieWish> movieWishes = new ArrayList<>();
     private List<UserMovie> userMovies = new ArrayList<>();
     private Role role;
 
-    public UserDto(Long id, String name, String surname, String email, String password, boolean isEnabled, LocalDateTime registerDate,
+    public UserDto(Long id, String name, String surname, String email, String password, String matchingPassword, boolean isEnabled, LocalDateTime registerDate,
                    UserDetails userDetails, List<MovieWish> movieWishes, List<UserMovie> userMovies, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.matchingPassword = matchingPassword;
         this.isEnabled = isEnabled;
         this.registerDate = registerDate;
         this.userDetails = userDetails;
@@ -110,6 +110,14 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 
     public boolean isEnabled() {

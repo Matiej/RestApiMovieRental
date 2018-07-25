@@ -21,6 +21,7 @@ public class UserFormMapper {
                 .surname(userForm.getSurname())
                 .email(userForm.getEmail())
                 .password(userForm.getPassword())
+                .matchingpassword(userForm.getMatchingPassword())
                 .registerDate(currentDate)
                 .build();
     }

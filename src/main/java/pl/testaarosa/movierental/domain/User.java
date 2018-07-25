@@ -23,6 +23,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
     private String surname;
     private String email;
     private String password;
+    private String matchingPassword;
     private boolean enabled;
     private LocalDateTime registerDate;
     @OneToOne(cascade = CascadeType.ALL)
@@ -43,6 +44,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
         this.name = userBuilder.name;
         this.surname = userBuilder.surname;
         this.password = userBuilder.password;
+        this.matchingPassword = userBuilder.matchingPassword;
         this.enabled = userBuilder.enabled;
         this.email = userBuilder.email;
         this.registerDate = userBuilder.registerDate;
@@ -156,6 +158,14 @@ public class User implements org.springframework.security.core.userdetails.UserD
         this.password = password;
     }
 
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
+    }
+
     @Override
     public boolean isEnabled() {
         return enabled;
@@ -169,11 +179,12 @@ public class User implements org.springframework.security.core.userdetails.UserD
         return new UserBuilder();
     }
 
-    private static class UserBuilder implements NeedName,NeedSurname,NeedEmail, NeedPassword, NeedRegisterDate, CanBeBuild {
+    private static class UserBuilder implements NeedName,NeedSurname,NeedEmail, NeedPassword, NeedMatchingPassword, NeedRegisterDate, CanBeBuild {
         private String name;
         private String surname;
         private String email;
         private String password;
+        private String matchingPassword;
         private boolean enabled;
         private UserDetails userDetails;
         private LocalDateTime registerDate;
@@ -202,6 +213,12 @@ public class User implements org.springframework.security.core.userdetails.UserD
         @Override
         public UserBuilder password(String password) {
             this.password = password;
+            return this;
+        }
+
+        @Override
+        public NeedRegisterDate matchingpassword(String matchingPassword) {
+            this.matchingPassword = matchingPassword;
             return this;
         }
 
@@ -260,7 +277,11 @@ public class User implements org.springframework.security.core.userdetails.UserD
     }
 
     public interface NeedPassword {
-        NeedRegisterDate password(String password);
+        NeedMatchingPassword password(String password);
+    }
+
+    public interface NeedMatchingPassword {
+        NeedRegisterDate matchingpassword(String matchingpassword);
     }
 
     public interface NeedRegisterDate{

@@ -22,6 +22,8 @@ public class UserFormDto {
     @NotEmpty
     @Size(min = 4, message = "just type password")
     private String password;
+    @Size(min = 4, message = "just retype password")
+    private String matchingPassword;
     private LocalDateTime registerDate;
     @Size(min = 10, max = 10, message = "The year must entered in this way (yyyy-MM-dd)")
     @NotEmpty
@@ -103,6 +105,14 @@ public class UserFormDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 
     @Override

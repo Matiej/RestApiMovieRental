@@ -10,19 +10,21 @@ public class UserForm {
     private String surname;
     private String email;
     private String password;
+    private String matchingPassword;
     private LocalDateTime registerDate;
     private String brithday;
     private String city;
     private String street;
     private UserGender userGender;
 
-    public UserForm(String name, String surname, String email, String password,
+    public UserForm(String name, String surname, String email, String password, String matchingPassword,
                     LocalDateTime registerDate, String brithday,
                     String city, String street, UserGender userGender) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.matchingPassword = matchingPassword;
         this.registerDate = registerDate;
         this.brithday = brithday;
         this.city = city;
@@ -100,6 +102,14 @@ public class UserForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 
     @Override

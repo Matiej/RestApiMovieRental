@@ -12,6 +12,7 @@ public class UserFormDtoMapper {
                 userFormDto.getSurname(),
                 userFormDto.getEmail(),
                 userFormDto.getPassword(),
+                userFormDto.getMatchingPassword(),
                 userFormDto.getRegisterDate(),
                 userFormDto.getBrithday(),
                 userFormDto.getCity(),

@@ -94,12 +94,21 @@
 
         </div>
         <div class="col-xs-4">
-            <label for="email">Password:</label>
+            <label for="password">Password:</label>
             <input type="password" class="form-control" placeholder="password"
                    th:field="*{password}"/>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
 
         </div>
+
+        <div class="col-xs-4">
+            <label for="matchingPassword">Matching Password:</label>
+            <input type="password" class="form-control" placeholder="matchingPassword"
+                   th:field="*{matchingPassword}"/>
+            <td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"></td>
+
+        </div>
+
         <div class="col-xs-4">
             <label for="birthday">Birthday date:</label>
             <input type="date" class="form-control" placeholder="input birthdate in format yyyy-mm-dd"
