@@ -41,7 +41,7 @@ public class BlueRayMovieRetriever {
         URI url = supplier.OmbdSupplierSource(1, title);
 
         try {
-            LOGGER.info("\033[33m Loooking for movies: " + title);
+            LOGGER.info("\033[33m Loooking for movies: \033[0m" + title);
             OmdbBlueRayPaginationDto omdbBlueRayPaginationDto = restTemplate.getForObject(url, OmdbBlueRayPaginationDto.class);
             List<BlueRayMovie> blueRayMovie = movieMapper.mapToBlueRayMoviesList(omdbBlueRayPaginationDto.getOmdbBlueRayDtos());
             //TODO wywalic to. Tylko dla sprawdzenia czy działa
@@ -55,7 +55,7 @@ public class BlueRayMovieRetriever {
 
     @Async
     public CompletableFuture<BlueRayMovieDetails> getMovieDetails(String movieId) {
-        LOGGER.info("\033[33m Looking for movie id: " + movieId + " \033[33m details");
+        LOGGER.info("\033[33m Looking for movie id: " + movieId + " details \033[0m");
         URI url = supplier.OmbdSupplierDetails(movieId);
 
         try {

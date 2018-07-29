@@ -1,12 +1,10 @@
 package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.cfg.AdminConfig;
-import pl.testaarosa.movierental.domain.Mail;
+import pl.testaarosa.movierental.controller.EmailExistsException;
 import pl.testaarosa.movierental.domain.Role;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserDetails;
@@ -15,12 +13,9 @@ import pl.testaarosa.movierental.mapper.form.UserFormMapper;
 import pl.testaarosa.movierental.repositories.RoleRepository;
 import pl.testaarosa.movierental.repositories.UserRepository;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Optional.ofNullable;
+import java.lang.RuntimeException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,7 +42,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User add(UserForm userForm) {
+    public User add(UserForm userForm) throws EmailExistsException {
+        if(isUserExist(userForm.getEmail())) {
+            throw new EmailExistsException(
+                    "There is an account with that email address: "
+                            +  userForm.getEmail());
+        }
         User user = userFormMapper.mapToUser(userForm);
         UserDetails userDetails = userFormMapper.mapToUserDetails(userForm);
         user.setUserDetails(userDetails);
@@ -59,6 +59,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         emailNotifierService.sendEmail(userForm);
         return user;
+    }
+
+    private boolean isUserExist(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        return (user.isPresent());
     }
 
     @Override

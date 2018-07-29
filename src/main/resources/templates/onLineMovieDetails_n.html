@@ -44,6 +44,13 @@
             top: 0; bottom:0; left: 400px; child-align: right;
             margin: auto;
         }
+                body {
+            background: #43cea2;
+            background: -webkit-linear-gradient(to left, #4b4b4b, #9fb4ad);
+            background: linear-gradient(to left, #4b4b4b, #9fb4ad);
+            color: #fff;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -51,10 +58,6 @@
 <div th:include="navi_n :: menu_n"></div>
 
 <h1 id="movieTitle"><p th:text="${onLineMovieDetails.title}"></p></h1>
-
-<a th:href="@{/wish/onLinAddwishlist?imdbID={imdbID}(imdbID=${onLineMovieDetails.imdbID})}"
-   type="button" target="_blank" class="btn btn-primary btn-lg btn-block">Add this movie to wish list<i></i>
-</a>>
 
 <h4 class="movieDet">Supplier id:</h4>
 <pre class="textdet" th:text="${onLineMovieDetails.getImdbID()}"></pre>

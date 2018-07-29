@@ -90,3 +90,5 @@ NK2005	Duma i uprzedzenie	Wielka Brytania	melodramat	7
 NN1994	Leon Zawodowiec	Francja	dramat	7
 NN2006	Asterix i wikingowie	Francja	komedia	6
 XY2006	Bolek i Lolek	Polska	komedia	6
+XY2007	Rumcajs	Polska	komedia	2
+XY2008	Zmiennicy	Polska	komedia	12

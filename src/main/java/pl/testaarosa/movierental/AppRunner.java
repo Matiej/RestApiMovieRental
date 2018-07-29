@@ -5,13 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.testaarosa.movierental.domain.UserGender;
+import pl.testaarosa.movierental.domain.BlueRayMovie;
 import pl.testaarosa.movierental.facade.UserFacade;
-import pl.testaarosa.movierental.form.dto.UserFormDto;
 import pl.testaarosa.movierental.services.BlueRayMovieFillDbProcessor;
 import pl.testaarosa.movierental.services.DvdMovieFillDbProcessor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Component
@@ -42,12 +41,15 @@ public class AppRunner implements CommandLineRunner {
 //        userFacade.addUserAndWish(user);
 
         long start = System.currentTimeMillis();
-        blueRayMovieFillDbProcessor.fillBlueRayDb("star");
-        blueRayMovieFillDbProcessor.fillBlueRayDb("iron");
+        CompletableFuture<List<BlueRayMovie>> bb0 = blueRayMovieFillDbProcessor.fillBlueRayDb("star");
+        CompletableFuture<List<BlueRayMovie>> bb1 = blueRayMovieFillDbProcessor.fillBlueRayDb("iron");
         dvdMovieFillDbProcessor.fillDvdMovieDb();
-        blueRayMovieFillDbProcessor.fillBlueRayDb("indiana");
-        LOGGER.info("\33[33m Elapsed time for fill db dvd+ blureay x3: " + (System.currentTimeMillis() - start));
-        CompletableFuture.allOf().join();
+        CompletableFuture<List<BlueRayMovie>> bb2 =blueRayMovieFillDbProcessor.fillBlueRayDb("indiana");
+        CompletableFuture.allOf(bb0, bb1, bb2).join();
+        bb0.get();
+        bb1.get();
+        bb2.get();
+        LOGGER.info("\33[33m Elapsed time for fill db dvd+ blureay x3: " + (System.currentTimeMillis() - start) + "\033[0m");
     }
 }
 

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
@@ -33,13 +34,18 @@ public class UserController {
     @PostMapping("/adduser")
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                           WebRequest request, Errors errors) {
-        if (bindingResult.hasErrors()) {
+        User registerUser = new User();
+        if(!bindingResult.hasErrors()) {
+            registerUser = userFacade.addUserAndWish(userFormDto);
+        }
+        if (registerUser==null) {
+            bindingResult.rejectValue("email", "message.regError");
+        }
+        if(bindingResult.hasErrors()) {
             return "userForm";
         } else {
-            userFacade.addUserAndWish(userFormDto);
-            List<UserDto> userDtos = userFacade.findAllUsers();
-            model.addAttribute("users", userDtos);
-            return "login_new";
+            model.addAttribute("userFormDto",registerUser);
+            return "successRegister";
         }
     }
 
@@ -52,15 +58,32 @@ public class UserController {
     @Transactional
     @PostMapping("/adduser_n")
     public String addUserN(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
-                           WebRequest request, Errors errors) {
-        if (bindingResult.hasErrors()) {
+                           WebRequest request, Errors errors) throws EmailExistsException {
+        User registerUser = new User();
+
+        if(!bindingResult.hasErrors()) {
+            registerUser = createUserAccout(userFormDto);
+        }
+        if (registerUser==null) {
+            bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
+                    + userFormDto.getEmail());
+        }
+        if(bindingResult.hasErrors()) {
             return "userForm_n";
         } else {
-            userFacade.addUserAndWish(userFormDto);
-            List<UserDto> userDtos = userFacade.findAllUsers();
-            model.addAttribute("users", userDtos);
-            return "login";
+            model.addAttribute("userFormDto",registerUser);
+            return "successRegister";
         }
+    }
+
+    private User createUserAccout(UserFormDto userFormDto) {
+        User reg = null;
+        try {
+            reg = userFacade.addUserAndWish(userFormDto);
+        } catch (EmailExistsException e) {
+            return null;
+        }
+        return reg;
     }
 
     @GetMapping("/adduser_n")

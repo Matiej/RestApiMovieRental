@@ -18,13 +18,13 @@ public class EmailService {
     private JavaMailSender javaMailSender;
 
     public void send(final Mail mail) {
-        LOGGER.info("\033[34m Movierental is starting email preparation....");
+        LOGGER.info("\033[34m Movierental is starting email preparation....\033[0m");
         try {
             SimpleMailMessage mailMessage = getSimpleMailMessage(mail);
             javaMailSender.send(mailMessage);
-            LOGGER.info("\033[34m Email has been sent to -> " + mail.getMailTo() + " \033[34m and CC to -> " + mail.getToCc());
+            LOGGER.info("\033[34m Email has been sent to -> " + mail.getMailTo() + " \033[34m and CC to -> \033[0m" + mail.getToCc());
         } catch (MailException e) {
-            LOGGER.error("\033[31m Failed to process email sending ", e.getMessage(), e);
+            LOGGER.error("\033[31m Failed to process email sending \033[0m", e.getMessage(), e);
         }
     }
 

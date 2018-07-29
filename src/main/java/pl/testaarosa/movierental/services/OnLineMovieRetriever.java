@@ -40,7 +40,7 @@ public class OnLineMovieRetriever {
 
     @Async
     public CompletableFuture<List<OnLineMovie>> getOnLineMovies(String title) {
-        LOGGER.info("\033[33m Loooking for movie: " + title);
+        LOGGER.info("\033[33m Loooking for movie: \033[0m" + title);
         List<OnLineMovie> onLineMovieList = new ArrayList<>();
         try {
             IntStream.range(0, (getPagination(title) / 10)).forEach(m -> {
@@ -73,7 +73,7 @@ public class OnLineMovieRetriever {
     }
     @Async
     public CompletableFuture<OnLineMovieDetails> getOnLineMovieDetails(String movieId) {
-        LOGGER.info("\033[33m Loooking for movie ID: " + movieId);
+        LOGGER.info("\033[33m Loooking for movie ID: \033[0m" + movieId);
         URI url = supplier.OmbdSupplierDetails(movieId);
         try {
             OnLineMovieDetails onLineMovieDetails = ombdOneLineDetailsMapper.mapToOnLineMovieDetails

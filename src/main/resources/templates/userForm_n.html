@@ -45,6 +45,13 @@
             child-align: right;
             margin: auto;
         }
+        body {
+            background: #43cea2;
+            background: -webkit-linear-gradient(to left, #4b4b4b, #9fb4ad);
+            background: linear-gradient(to left, #4b4b4b, #9fb4ad);
+            color: #fff;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -69,61 +76,99 @@
         document.getElementById("time").innerHTML = d;
     }
 </script>
+<div class="container">
 <form th:action="@{/users/adduser_n}" th:object="${userFormDto}" method="post">
     <h2 class="movieDet">Create new user:</h2>
-
+    <br/>
+    <br/>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="name">User name:</label>
             <input type="text" class="form-control" th:field="*{name}"/>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
-
+            <font color="red" > <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+            </font>
         </div>
         <div class="form-group col-md-6">
             <label for="surname">Surname:</label>
             <input type="text" class="form-control"
                    th:field="*{surname}"/>
-            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
-
+            <font color="red" > <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
+            </font>
         </div>
-        <div class="col-xs-4">
-            <label for="email">User e-mail:</label>
-            <input type="text" class="form-control" placeholder="email"
-                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" th:field="*{email}"/>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+    <div class="form-row">
+            <div class="col-xs-4">
+                <label for="email">User e-mail:</label>
+                <!--<input type="email" class="form-control" placeholder="email" th:field="*{email}"/>-->
+                 <input type="email" class="form-control" placeholder="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" th:field="*{email}"/>
+                <font color="red" > <td th:each="error : ${#fields.errors('email')}"  th:errors="*{email}"></td></font>
+            </div>
 
-        </div>
-        <div class="col-xs-4">
-            <label for="email">Password:</label>
-            <input type="password" class="form-control" placeholder="password"
+             <div class="col-xs-4">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" placeholder="password"
                    th:field="*{password}"/>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                 <font color="red" > <td th:if="${#fields.hasErrors('password')}" bgcolor="red" th:errors="*{password}"></td>
+                 </font>
 
-        </div>
-        <div class="col-xs-4">
-            <label for="birthday">Birthday date:</label>
-            <input type="date" class="form-control" placeholder="input birthdate in format yyyy-mm-dd"
+             </div>
+
+            <div class="col-xs-4">
+                <label for="matchingPassword">Matching Password:</label>
+                <input type="password" class="form-control" placeholder="matchingPassword"
+                   th:field="*{matchingPassword}"/>
+                <font color="red" > <td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"></td>
+                </font>
+            </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+        <div class="form-row">
+
+            <div class="col-xs-2">
+                 <label for="birthday">Birthday date:</label>
+                 <input type="date" class="form-control" placeholder="input birthdate in format yyyy-mm-dd"
                    pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" th:field="*{brithday}"/>
-            <td th:if="${#fields.hasErrors('brithday')}" th:errors="*{brithday}"></td>
-        </div>
-        <br/>
-        <div class="col-xs-4">
-            <label for="city">City:</label>
-            <input type="text" class="form-control" placeholder="city"
-                   th:field="*{city}"/>
-            <td rowspan="6" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
-        </div>
-        <br/>
-        <div class="col-xs-4">
-            <label for="street">Street:</label>
-            <input type="text" class="form-control" placeholder="street number/flat"
-                   th:field="*{street}"/>
-            <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
-        </div>
-        <br/>
+                <font color="red" > <td th:if="${#fields.hasErrors('brithday')}" th:errors="*{brithday}"></td>
+                </font>
+             </div>
 
+             <div class="col-xs-4">
+                 <label for="city">City:</label>
+                 <input type="text" class="form-control" placeholder="city"
+                   th:field="*{city}"/>
+                 <font color="red" > <td rowspan="6" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
+                 </font>
+             </div>
+
+            <div class="col-xs-4">
+                <label for="street">Street:</label>
+                <input type="text" class="form-control" placeholder="street number/flat"
+                   th:field="*{street}"/>
+                <font color="red" > <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
+                </font>
+             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
     </div>
 
+    <div class="form-row">
     <div class="col-xs-4">
         <label for="gender">Gender:</label>
         <input list="gender" class="form-control" th:field="*{userGender}"/>
@@ -133,7 +178,9 @@
         <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Register</button>
         <button type="reset" class="btn btn-lg btn-block btn-warning">Reset</button>
     </div>
+    </div>
 
 </form>
+</div>
 </body>
 </html>

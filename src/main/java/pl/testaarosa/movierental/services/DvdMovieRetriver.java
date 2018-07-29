@@ -5,11 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.domain.DvdMovie;
-import pl.testaarosa.movierental.domain.DvdMovieDetails;
 import pl.testaarosa.movierental.domain.dto.OneDvdDto;
-import pl.testaarosa.movierental.mapper.OneDvdDetilsMapper;
-import pl.testaarosa.movierental.mapper.OneDvdMapper;
 import pl.testaarosa.movierental.supplier.DvdMovieSupplier;
 
 import java.io.IOException;
@@ -29,7 +25,7 @@ public class DvdMovieRetriver {
 
     @Async
     public CompletableFuture<List<OneDvdDto>> DvdFillStructure() throws IOException, URISyntaxException {
-        LOGGER.info("\033[35m Lokiing up for DVDS ");
+        LOGGER.info("\033[35m Lokiing up for DVDS \033[0m");
         List<OneDvdDto> dvdMovies = new ArrayList<>();
         List<String> lines = dvdMovieSupplier.DvdSupplierSource();
         lines.remove(0);

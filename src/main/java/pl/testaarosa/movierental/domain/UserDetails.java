@@ -2,7 +2,6 @@ package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class UserDetails {
@@ -10,7 +9,7 @@ public class UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate brithday;
+    private LocalDate birthday;
     private String city;
     private String street;
     @Enumerated(EnumType.STRING)
@@ -23,7 +22,7 @@ public class UserDetails {
     }
 
     private UserDetails(UserDetailsBuilder userDetailsBuilder) {
-        this.brithday = userDetailsBuilder.brithday;
+        this.birthday = userDetailsBuilder.brithday;
         this.city = userDetailsBuilder.city;
         this.street = userDetailsBuilder.street;
         this.userGender = userDetailsBuilder.userGender;
@@ -38,8 +37,8 @@ public class UserDetails {
         return id;
     }
 
-    public LocalDate getBrithday() {
-        return brithday;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
     public String getCity() {

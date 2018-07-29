@@ -47,9 +47,10 @@ public class UserFacade {
         return userMapper.userList(userService.findAll());
     }
 
-    public void addUserAndWish(UserFormDto userFormDto) {
+    public User addUserAndWish(UserFormDto userFormDto) {
         User user = userService.add(userFormDtoMapper.mapToUserForm(userFormDto));
         movieWishService.createMowieWish(user);
+        return user;
     }
 
     public List<UserMovieDto> findAllUserMoviesForGivenUser(String remoteUser) {

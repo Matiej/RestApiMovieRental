@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register_success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #movieTitle {
+            background-color: gray;
+            border: 1px black;
+            margin-left: 15px;
+            color: black;
+            padding: 13px;
+            text-align: center;
+        }
+
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
+
+        .textdet {
+            background-color: white;
+            border: 11px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: black;
+            padding: 1px;
+            text-align: center;
+        }
+        img {
+            position: center;
+            top: 0; bottom:0; left: 400px; child-align: right;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+<div th:include="navi_n :: menu_n"></div>
+
+<h1 id="movieTitle">Thank you registering <p th:text="${userFormDto.email}"></p>Account details:</h1>
+<!--<h1>Account details:</h1>-->
+
+<h4 class="movieDet">Name:</h4>
+<h4 class="textdet" th:text="${userFormDto.name}"></h4>
+
+<h4 class="movieDet">Surname:</h4>
+<pre class="textdet" th:text="${userFormDto.surname}"></pre>
+
+<h4 class="movieDet">Email:</h4>
+<pre class="textdet" th:text="${userFormDto.email}"></pre>
+
+<h4 class="movieDet">City:</h4>
+<pre class="textdet" th:text="${userFormDto.userDetails.city}"></pre>
+
+<h4 class="movieDet">Street:</h4>
+<p class="textdet" th:text="${userFormDto.userDetails.street}"></p>
+
+<h4 class="movieDet">Birthday:</h4>
+<p class="textdet" th:text="${userFormDto.userDetails.birthday}"></p>
+
+<h4 class="movieDet">Gender:</h4>
+<p class="textdet" th:text="${userFormDto.userDetails.userGender}"></p>
+
+<div class="container">
+    <h1> Log in to the Testaarosa movie rental </h1>
+    <form class="form-signin" method="POST" th:action="@{/users/login}">
+        <span id="reauth-email" class="reauth-email"></span>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input
+                type="text" id="inputUsername" class="form-control" name="username"
+                th:placeholder="#{login}" autofocus="autofocus"/>
+
+        <input
+                type="password" id="inputPassword" class="form-control" name="password"
+                th:placeholder="#{pass}"/>
+        <div id="remember" class="checkbox">
+        </div>
+        <div th:replace="navi :: flash"></div>
+        <button class="btn btn-lg btn-primary btn-block btn-signin"
+                type="submit">Log in</button>
+
+    </form>
+</div>
+
+</body>
+</html>
+
+

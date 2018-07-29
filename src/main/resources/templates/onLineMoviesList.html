@@ -28,13 +28,19 @@
             padding: 2px;
             text-align: center;
         }
-
+                body {
+            background: #43cea2;
+            background: -webkit-linear-gradient(to left, #4b4b4b, #9fb4ad);
+            background: linear-gradient(to left, #4b4b4b, #9fb4ad);
+            color: #fff;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div th:include="navi :: menu"></div>
 
-<h2 class="movieDet"  >OnLine available blueRayMovies</h2>
+<h2 class="movieDet"  >OnLine available movies</h2>
 <h4 class="movieDet">Number of results:</h4>
 <h4  class="result"  th:text="${#lists.size(onlinemovieslist)}">[numbers of results]</h4>
 <table class="table table-striped">
