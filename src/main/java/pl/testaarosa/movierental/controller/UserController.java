@@ -68,6 +68,9 @@ public class UserController {
             bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
                     + userFormDto.getEmail());
         }
+        if(errors.hasErrors()) {
+            bindingResult.rejectValue("password","message.reError", "Passwords don't match!!");
+        }
         if(bindingResult.hasErrors()) {
             return "userForm_n";
         } else {

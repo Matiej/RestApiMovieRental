@@ -2,11 +2,14 @@ package pl.testaarosa.movierental.form.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
+import pl.testaarosa.movierental.validator.PasswordMatches;
 import pl.testaarosa.movierental.validator.ValidEmail;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+@PasswordMatches()
 public class UserFormDto {
 
     @Size(min = 2, message = "I'm sorry dear user, name size must by min 2 chars here")
@@ -16,9 +19,9 @@ public class UserFormDto {
     @ValidEmail
     @NotEmpty
     private String email;
-    @Size(min = 4, message = "just type password")
+    @NotEmpty
     private String password;
-    @Size(min = 4, message = "just retype password")
+    @Size(min = 4, message = "password min size is 4")
     private String matchingPassword;
     private LocalDateTime registerDate;
     @Size(min = 10, max = 10, message = "The year must entered in this way (yyyy-MM-dd)")

@@ -5,14 +5,11 @@ import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 import pl.testaarosa.movierental.mapper.OmbdOnLineMapper;
-import pl.testaarosa.movierental.mapper.OmbdOneLineDetailsMapper;
-import pl.testaarosa.movierental.mapper.OnLineMovieMapper;
 import pl.testaarosa.movierental.repositories.OnLineMovieRepository;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 @Service
 public class OnLineMovieServiceImpl implements OnLineMovieService {

@@ -113,9 +113,9 @@
 
              <div class="col-xs-4">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" placeholder="password"
-                   th:field="*{password}"/>
-                 <font color="red" > <td th:if="${#fields.hasErrors('password')}" bgcolor="red" th:errors="*{password}"></td>
+                <input type="password" class="form-control" placeholder="password" th:field="*{password}"/>
+                 <font color="red" >
+                     <td th:each="error : ${#fields.errors('password')}"  th:errors="*{password}"></td>
                  </font>
 
              </div>
@@ -124,7 +124,8 @@
                 <label for="matchingPassword">Matching Password:</label>
                 <input type="password" class="form-control" placeholder="matchingPassword"
                    th:field="*{matchingPassword}"/>
-                <font color="red" > <td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"></td>
+                <font color="red" >
+                    <td th:each="error : ${#fields.errors('matchingPassword')}" th:errors="*{matchingPassword}"></td>
                 </font>
             </div>
         <br />

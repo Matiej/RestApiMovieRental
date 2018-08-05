@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
         user.getUserDetails().setUser(user);
         user.setEnabled(true);
         user.setPassword(encode.encode(userForm.getPassword()));
+        user.setMatchingPassword(encode.encode(userForm.getMatchingPassword()));
         Role role = roleRepository.findByName("USER");
         user.setRole(role);
         userRepository.save(user);

@@ -4,13 +4,16 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = EmailRentalUserValidator.class)
-@Documented
-public @interface ValidEmail {
+import static java.lang.annotation.ElementType.TYPE;
 
-    String message() default "Invalid e-email format";
+@Target({TYPE, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = PasswordRentalUserValidator.class)
+@Documented
+public @interface PasswordMatches {
+
+    String message() default "Passwords don't match each others";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
 }
