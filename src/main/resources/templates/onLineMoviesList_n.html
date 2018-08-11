@@ -19,6 +19,14 @@
             padding: 1px;
             text-align: center;
         }
+        .movietr {
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: black;
+            padding: 1px;
+            text-align: center;
+        }
         .result {
             background-color: darkgray;
             border: 11px black;
@@ -55,7 +63,7 @@
 
     </tr>
     </thead>
-    <tbody>
+    <tbody class="movietr">
     <tr th:each="on:${onlinemovieslist}">
         <td th:text="${on.imdbID}"></td>
         <td th:text="${on.title}"></td>
