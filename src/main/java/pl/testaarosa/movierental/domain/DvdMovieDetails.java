@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "DVD_MOVIE_DETAILS")
@@ -92,5 +93,25 @@ public class DvdMovieDetails {
 
     public void setSupplier(String supplier) {
         this.supplier = supplier;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DvdMovieDetails that = (DvdMovieDetails) o;
+        return Double.compare(that.price, price) == 0 &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(countryOfOrigin, that.countryOfOrigin) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(supplier, that.supplier);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imdbID, title, countryOfOrigin, type, price, poster, supplier);
     }
 }

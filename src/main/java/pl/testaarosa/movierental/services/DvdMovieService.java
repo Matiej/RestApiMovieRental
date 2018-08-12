@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 public interface DvdMovieService {
-    void addDvdMovie(final DvdMovie dvdMovie, DvdMovieDetails details) throws IOException, URISyntaxException;
+    DvdMovie addDvdMovie(final DvdMovie dvdMovie, DvdMovieDetails details) throws IOException, URISyntaxException;
     List<DvdMovie> findAll();
     DvdMovie findById(Long id);
     List<DvdMovie> findByTitle(String title);

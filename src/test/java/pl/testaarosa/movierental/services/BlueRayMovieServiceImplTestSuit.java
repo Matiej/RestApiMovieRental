@@ -73,19 +73,22 @@ public class BlueRayMovieServiceImplTestSuit {
     @Test
     public void testAddBlueRayMoviesTrue() {
         //given
+        BlueRayMovie emptyMovie = new BlueRayMovie();
         BlueRayMovie blueRayMovie1 = blueRayMovie.blueRayMovieList().get(1);
-        when(blueRayMovieRepository.existsAllByImdbID("imdbID_2")).thenReturn(true);
+        when(blueRayMovieRepository.save(blueRayMovie1)).thenReturn(emptyMovie);
+        when(blueRayMovieRepository.existsAllByImdbID(blueRayMovie1.getImdbID())).thenReturn(true);
         //when
         BlueRayMovie result = blueRayMovieService.addBlueRayMovies(blueRayMovie1, blueRayMovie1.getBlueRayMovieDetails());
         //then
-        assertNotEquals(blueRayMovie1,result);
+        assertEquals(emptyMovie,result);
     }
 
     @Test
     public void testAddBlueRayMoviesFalse() {
         //given
         BlueRayMovie blueRayMovie1 = blueRayMovie.blueRayMovieList().get(1);
-        when(blueRayMovieRepository.existsAllByImdbID("imdbID_2")).thenReturn(false);
+        when(blueRayMovieRepository.existsAllByImdbID(blueRayMovie1.getImdbID())).thenReturn(false);
+        when(blueRayMovieRepository.save(blueRayMovie1)).thenReturn(blueRayMovie1);
         //when
         BlueRayMovie result = blueRayMovieService.addBlueRayMovies(blueRayMovie1, blueRayMovie1.getBlueRayMovieDetails());
         //then

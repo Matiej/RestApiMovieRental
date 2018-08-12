@@ -6,6 +6,7 @@ import pl.testaarosa.movierental.domain.DvdMovie;
 import java.util.List;
 
 public interface DvdMovieRpository extends PagingAndSortingRepository<DvdMovie, Long> {
+
     boolean existsAllByImdbID(String movieId);
     @Override
     List<DvdMovie> findAll();

@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @DiscriminatorValue("DVD_MOVIES")
@@ -28,5 +29,25 @@ public class DvdMovie extends Movie {
 
     public void setDvdMovieDetails(DvdMovieDetails dvdMovieDetails) {
         this.dvdMovieDetails = dvdMovieDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "DvdMovie{" + getTitle() +
+                ", dvdMovieDetails=" + dvdMovieDetails +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DvdMovie dvdMovie = (DvdMovie) o;
+        return Objects.equals(dvdMovieDetails, dvdMovie.dvdMovieDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dvdMovieDetails);
     }
 }
