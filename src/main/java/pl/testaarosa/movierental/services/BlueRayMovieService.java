@@ -6,7 +6,7 @@ import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
 import java.util.List;
 
 public interface BlueRayMovieService {
-    void addBlueRayMovies(BlueRayMovie blueRayMovie,
+    BlueRayMovie addBlueRayMovies(BlueRayMovie blueRayMovie,
                           BlueRayMovieDetails blueRayMovieDetails);
     List<BlueRayMovie> findAll();
     BlueRayMovie findbyId(Long id);

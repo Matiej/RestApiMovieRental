@@ -14,14 +14,15 @@ public class BlueRayMovieServiceImpl implements BlueRayMovieService {
     @Autowired
     private BlueRayMovieRepository blueRayMovieRepository;
 
-    public void addBlueRayMovies(BlueRayMovie blueRayMovie,
-                                 BlueRayMovieDetails blueRayMovieDetails) {
+    public BlueRayMovie addBlueRayMovies(BlueRayMovie blueRayMovie, BlueRayMovieDetails blueRayMovieDetails) {
         String imdbID = blueRayMovie.getImdbID();
+        BlueRayMovie blueRayMovie1 = new BlueRayMovie();
         if(!blueRayMovieRepository.existsAllByImdbID(imdbID)){
-            BlueRayMovie movieFromTwo = blueRayMovie;
-            movieFromTwo.setBlueRayMovieDetails(blueRayMovieDetails);
-            blueRayMovieRepository.save(movieFromTwo);
+            blueRayMovie1 = blueRayMovie;
+            blueRayMovie1.setBlueRayMovieDetails(blueRayMovieDetails);
+            blueRayMovieRepository.save(blueRayMovie1);
         }
+        return blueRayMovie1;
     }
 
     @Override

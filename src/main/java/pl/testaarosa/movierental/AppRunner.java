@@ -45,10 +45,12 @@ public class AppRunner implements CommandLineRunner {
         CompletableFuture<List<BlueRayMovie>> bb1 = blueRayMovieFillDbProcessor.fillBlueRayDb("iron");
         dvdMovieFillDbProcessor.fillDvdMovieDb();
         CompletableFuture<List<BlueRayMovie>> bb2 =blueRayMovieFillDbProcessor.fillBlueRayDb("indiana");
-        CompletableFuture.allOf(bb0, bb1, bb2).join();
+        CompletableFuture<List<BlueRayMovie>> bb3 =blueRayMovieFillDbProcessor.fillBlueRayDb("commando");
+        CompletableFuture.allOf(bb0, bb1, bb2, bb3).join();
         bb0.get();
         bb1.get();
         bb2.get();
+        bb3.get();
         LOGGER.info("\33[33m Elapsed time for fill db dvd+ blureay x3: " + (System.currentTimeMillis() - start) + "\033[0m");
     }
 }

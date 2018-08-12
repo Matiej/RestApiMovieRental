@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @DiscriminatorValue("BLUE_RAY_MOVIES")
@@ -35,6 +36,19 @@ public class BlueRayMovie extends Movie{
         return "BlueRayMovie{" +
                 "blueRayMovieDetails=" + blueRayMovieDetails +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BlueRayMovie that = (BlueRayMovie) o;
+        return Objects.equals(blueRayMovieDetails, that.blueRayMovieDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(blueRayMovieDetails);
     }
 }
 
