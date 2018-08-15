@@ -16,7 +16,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,12 +28,6 @@ public class DvdMovieServiceTestSuit {
 
     @Mock
     private DvdMovieRpository dvdMovieRpository;
-
-    @Before
-    public void setUp() {
-
-    }
-
 
     @Test
     public void testFindAll(){

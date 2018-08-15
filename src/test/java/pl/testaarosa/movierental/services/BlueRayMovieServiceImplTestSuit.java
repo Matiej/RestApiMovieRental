@@ -1,6 +1,5 @@
 package pl.testaarosa.movierental.services;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -26,11 +25,6 @@ public class BlueRayMovieServiceImplTestSuit {
 
     @Mock
     private BlueRayMovieRepository blueRayMovieRepository;
-
-    @Before
-    public void setUp(){
-
-   }
 
     @Test
     public void testFindAll(){

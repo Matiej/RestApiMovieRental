@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 //@Table(name = "ONLINE_MOVIES")
@@ -43,5 +44,19 @@ public class OnLineMovie extends Movie{
 
     public void setOnLineMovieDetails(OnLineMovieDetails onLineMovieDetails) {
         this.onLineMovieDetails = onLineMovieDetails;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OnLineMovie that = (OnLineMovie) o;
+        return Objects.equals(year, that.year) &&
+                Objects.equals(onLineMovieDetails, that.onLineMovieDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, onLineMovieDetails);
     }
 }
