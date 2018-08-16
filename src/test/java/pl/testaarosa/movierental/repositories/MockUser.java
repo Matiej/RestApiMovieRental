@@ -4,12 +4,14 @@ import pl.testaarosa.movierental.domain.User;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MockUser {
 
     private MockUserDetails mockUserDetails = new MockUserDetails();
 
-    public User mockUser() {
+    public List<User> mockUser() {
         LocalDateTime userDate = LocalDateTime.of(2018, Month.MARCH,11,11,33,44);
         User mockUser1 = User.builder()
                 .name("Maciek")
@@ -19,8 +21,23 @@ public class MockUser {
                 .matchingpassword("password")
                 .registerDate(userDate)
                 .enabled(true)
-                .userDetails(mockUserDetails.userDetails())
+                .userDetails(mockUserDetails.userDetails().get(0))
                 .build();
-        return mockUser1;
+
+        User mockUser2 = User.builder()
+                .name("Maciek2")
+                .surname("Wójcik2")
+                .email("znikenson2@gmail.com")
+                .password("password2")
+                .matchingpassword("password2")
+                .registerDate(userDate)
+                .enabled(true)
+                .userDetails(mockUserDetails.userDetails().get(1))
+                .build();
+
+        List<User> userList = new ArrayList<>();
+        userList.add(mockUser1);
+        userList.add(mockUser2);
+        return userList;
     }
 }

@@ -12,7 +12,7 @@ public class MockMovieWish {
     public List<MovieWish> mockMovieWish() {
 
         MovieWish movieWish = new MovieWish();
-        movieWish.setUser(mockUser.mockUser());
+        movieWish.setUser(mockUser.mockUser().get(0));
         movieWish.setWishName("NameWish1");
 
         List<MovieWish> movieWishList = new ArrayList<>();

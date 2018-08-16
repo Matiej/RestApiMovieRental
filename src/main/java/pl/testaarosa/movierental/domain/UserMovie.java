@@ -115,11 +115,6 @@ public class UserMovie {
         public UserMovie build(){
             return new UserMovie(this);
         }
-
-        @Override
-        public CanBuild and() {
-            return this;
-        }
     }
 
     public interface NeedImdbID {
@@ -131,9 +126,9 @@ public class UserMovie {
     }
 
     public interface NeedGenre{
-        NeedGenre genre(UserMovieGenre genre);
-        CanBuild and();
+        CanBuild genre(UserMovieGenre genre);
     }
+
 
     public interface CanBuild {
         CanBuild userMovieDetails(UserMovieDetails userMovieDetails);

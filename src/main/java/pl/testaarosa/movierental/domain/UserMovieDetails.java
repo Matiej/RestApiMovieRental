@@ -124,11 +124,6 @@ public class UserMovieDetails {
         public UserMovieDetails build(){
             return new UserMovieDetails(this);
         }
-
-        @Override
-        public CanBeBuild and() {
-            return null;
-        }
     }
 
     public interface NeedYear {
@@ -153,7 +148,6 @@ public class UserMovieDetails {
 
     public interface NeedPlot {
         CanBeBuild plot(String plot);
-        CanBeBuild and();
     }
 
     public interface CanBeBuild {

@@ -13,8 +13,7 @@ public class UserMovieFormMapper {
                 .imdbID(userMovieForm.getImdbID())
                 .title(userMovieForm.getTitle())
                 .genre(userMovieForm.getGenre())
-                .and()
-                .build();
+                .   build();
 
 //        return new UserMovie.UserMovieBuilder()
 //                .title(userMovieForm.getTitle())
