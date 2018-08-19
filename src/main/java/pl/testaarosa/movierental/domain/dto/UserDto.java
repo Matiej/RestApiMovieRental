@@ -2,7 +2,7 @@ package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.Role;
-import pl.testaarosa.movierental.domain.UserDetails;
+import pl.testaarosa.movierental.domain.UserRentalDetails;
 import pl.testaarosa.movierental.domain.UserMovie;
 
 import java.time.LocalDateTime;
@@ -19,13 +19,13 @@ public class UserDto {
     private String matchingPassword;
     private boolean isEnabled;
     private LocalDateTime registerDate;
-    private UserDetails userDetails;
+    private UserRentalDetails userRentalDetails;
     private List<MovieWish> movieWishes = new ArrayList<>();
     private List<UserMovie> userMovies = new ArrayList<>();
     private Role role;
 
     public UserDto(Long id, String name, String surname, String email, String password, String matchingPassword, boolean isEnabled, LocalDateTime registerDate,
-                   UserDetails userDetails, List<MovieWish> movieWishes, List<UserMovie> userMovies, Role role) {
+                   UserRentalDetails userRentalDetails, List<MovieWish> movieWishes, List<UserMovie> userMovies, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -34,7 +34,7 @@ public class UserDto {
         this.matchingPassword = matchingPassword;
         this.isEnabled = isEnabled;
         this.registerDate = registerDate;
-        this.userDetails = userDetails;
+        this.userRentalDetails = userRentalDetails;
         this.movieWishes = movieWishes;
         this.userMovies = userMovies;
         this.role = role;
@@ -80,12 +80,12 @@ public class UserDto {
         this.registerDate = registerDate;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public UserRentalDetails getUserRentalDetails() {
+        return userRentalDetails;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setUserRentalDetails(UserRentalDetails userRentalDetails) {
+        this.userRentalDetails = userRentalDetails;
     }
 
     public List<MovieWish> getMovieWishes() {

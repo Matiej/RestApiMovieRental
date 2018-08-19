@@ -3,6 +3,7 @@ package pl.testaarosa.movierental.form;
 import pl.testaarosa.movierental.domain.UserGender;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class UserForm {
 
@@ -124,5 +125,27 @@ public class UserForm {
                 ", street='" + street + '\'' +
                 ", userGender=" + userGender +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserForm userForm = (UserForm) o;
+        return Objects.equals(name, userForm.name) &&
+                Objects.equals(surname, userForm.surname) &&
+                Objects.equals(email, userForm.email) &&
+                Objects.equals(password, userForm.password) &&
+                Objects.equals(matchingPassword, userForm.matchingPassword) &&
+                Objects.equals(registerDate, userForm.registerDate) &&
+                Objects.equals(brithday, userForm.brithday) &&
+                Objects.equals(city, userForm.city) &&
+                Objects.equals(street, userForm.street) &&
+                userGender == userForm.userGender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, email, password, matchingPassword, registerDate, brithday, city, street, userGender);
     }
 }

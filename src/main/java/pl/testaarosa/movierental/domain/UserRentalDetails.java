@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class UserDetails {
+@Table(name = "USER_DETAILS")
+public class UserRentalDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +19,10 @@ public class UserDetails {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    public UserDetails() {
+    public UserRentalDetails() {
     }
 
-    private UserDetails(UserDetailsBuilder userDetailsBuilder) {
+    private UserRentalDetails(UserDetailsBuilder userDetailsBuilder) {
         this.birthday = userDetailsBuilder.brithday;
         this.city = userDetailsBuilder.city;
         this.street = userDetailsBuilder.street;
@@ -93,8 +94,8 @@ public class UserDetails {
             return this;
         }
 
-        public UserDetails build() {
-            return new UserDetails(this);
+        public UserRentalDetails build() {
+            return new UserRentalDetails(this);
         }
     }
 
@@ -116,7 +117,7 @@ public class UserDetails {
 
     public interface CanBeBuild {
         CanBeBuild user(User user);
-        UserDetails build();
+        UserRentalDetails build();
     }
 }
 

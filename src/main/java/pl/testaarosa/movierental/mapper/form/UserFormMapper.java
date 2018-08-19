@@ -2,7 +2,7 @@ package pl.testaarosa.movierental.mapper.form;
 
 import org.springframework.stereotype.Component;
 import pl.testaarosa.movierental.domain.User;
-import pl.testaarosa.movierental.domain.UserDetails;
+import pl.testaarosa.movierental.domain.UserRentalDetails;
 import pl.testaarosa.movierental.form.UserForm;
 
 import java.time.LocalDate;
@@ -26,9 +26,9 @@ public class UserFormMapper {
                 .build();
     }
 
-    public UserDetails mapToUserDetails(UserForm userForm){
+    public UserRentalDetails mapToUserDetails(UserForm userForm){
         LocalDate localDate = LocalDate.parse(userForm.getBrithday(), formatter);
-        return UserDetails.builder()
+        return UserRentalDetails.builder()
                 .birthday(localDate)
                 .city(userForm.getCity())
                 .street(userForm.getStreet())

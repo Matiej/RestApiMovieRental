@@ -21,7 +21,7 @@ public class UserMapper {
                         u.getMatchingPassword(),
                         u.isEnabled(),
                         u.getRegisterDate(),
-                        u.getUserDetails(),
+                        u.getUserRentalDetails(),
                         u.getMovieWishes(),
                         u.getUserMovies(),
                         u.getRole()))

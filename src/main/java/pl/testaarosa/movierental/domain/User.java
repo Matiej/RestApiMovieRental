@@ -28,7 +28,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
     private LocalDateTime registerDate;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DETAILS_ID")
-    private UserDetails userDetails;
+    private UserRentalDetails userRentalDetails;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MovieWish> movieWishes = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -48,7 +48,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
         this.enabled = userBuilder.enabled;
         this.email = userBuilder.email;
         this.registerDate = userBuilder.registerDate;
-        this.userDetails = userBuilder.userDetails;
+        this.userRentalDetails = userBuilder.userRentalDetails;
         this.movieWishes = new ArrayList<>(userBuilder.movieWishes);
         this.userMovies = new ArrayList<>(userBuilder.userMovies);
         this.role = userBuilder.role;
@@ -62,7 +62,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", registerDate=" + registerDate +
-                ", userDetails=" + userDetails +
+                ", userRentalDetails=" + userRentalDetails +
 
                 '}';
     }
@@ -83,8 +83,8 @@ public class User implements org.springframework.security.core.userdetails.UserD
         this.userMovies = userMovies;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setUserRentalDetails(UserRentalDetails userRentalDetails) {
+        this.userRentalDetails = userRentalDetails;
     }
 
     @Override
@@ -138,8 +138,8 @@ public class User implements org.springframework.security.core.userdetails.UserD
         return email;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public UserRentalDetails getUserRentalDetails() {
+        return userRentalDetails;
     }
 
     public LocalDateTime getRegisterDate() {
@@ -186,7 +186,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
         private String password;
         private String matchingPassword;
         private boolean enabled;
-        private UserDetails userDetails;
+        private UserRentalDetails userRentalDetails;
         private LocalDateTime registerDate;
         private List<MovieWish> movieWishes = new ArrayList<>();
         private List<UserMovie> userMovies = new ArrayList<>();
@@ -229,8 +229,8 @@ public class User implements org.springframework.security.core.userdetails.UserD
         }
 
         @Override
-        public UserBuilder userDetails(UserDetails userDetails){
-            this.userDetails = userDetails;
+        public UserBuilder userDetails(UserRentalDetails userRentalDetails){
+            this.userRentalDetails = userRentalDetails;
             return this;
         }
 
@@ -290,7 +290,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
 
     public interface CanBeBuild {
         CanBeBuild enabled(boolean enabled);
-        CanBeBuild userDetails(UserDetails userDetails);
+        CanBeBuild userDetails(UserRentalDetails userRentalDetails);
         CanBeBuild movieWishes(MovieWish movieWish);
         CanBeBuild userMovies(UserMovie userMovie);
         CanBeBuild role(Role role);

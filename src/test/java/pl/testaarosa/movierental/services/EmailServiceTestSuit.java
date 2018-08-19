@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(MockitoJUnitRunner.class)
-public class EmailServiceTest {
+public class EmailServiceTestSuit {
 
     @InjectMocks
     private EmailService emailService;

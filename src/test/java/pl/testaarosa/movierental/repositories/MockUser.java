@@ -10,6 +10,7 @@ import java.util.List;
 public class MockUser {
 
     private MockUserDetails mockUserDetails = new MockUserDetails();
+    private MockRole role = new MockRole();
 
     public List<User> mockUser() {
         LocalDateTime userDate = LocalDateTime.of(2018, Month.MARCH,11,11,33,44);
@@ -23,6 +24,7 @@ public class MockUser {
                 .enabled(true)
                 .userDetails(mockUserDetails.userDetails().get(0))
                 .build();
+        mockUser1.setRole(role.getRole());
 
         User mockUser2 = User.builder()
                 .name("Maciek2")
