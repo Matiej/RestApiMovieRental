@@ -40,10 +40,11 @@ public class OnLineMovieServiceImplTestSuit {
     @Test
     public void testGetOnLineMovies() throws ExecutionException, InterruptedException {
         //given
-        CompletableFuture<List<OnLineMovie>> expectList = mockOnLineMovie.onLineMovieList();
-        when(onLineMovieRetriever.getOnLineMovies("Online TestTitle1")).thenReturn(expectList);
+        CompletableFuture<List<OnLineMovie>> list = mockOnLineMovie.onLineMovieList();
+        when(onLineMovieRetriever.getOnLineMovies("Online TestTitle1")).thenReturn(list);
         List<OnLineMovie> resultList = onLineMovieService.getOnLineMovies("Online TestTitle1");
         //when
+        CompletableFuture<List<OnLineMovie>> expectList = mockOnLineMovie.onLineMovieList();
         int result = resultList.size();
         int expect = 2;
         //then
