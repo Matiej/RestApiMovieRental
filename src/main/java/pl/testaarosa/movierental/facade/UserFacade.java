@@ -74,7 +74,7 @@ public class UserFacade {
     }
 
     public MovieWishDto addMovie(String remoteUser, Long id) {
-        return movieWishMapper.mapToMovieWishDto(moviesWishListService.addMovie(remoteUser, id));
+        return movieWishMapper.mapToMovieWishDto(moviesWishListService.addMovieToWish(remoteUser, id));
     }
 
     public MovieWishDto findUsersWishForGivenUser(String remoteUser) {

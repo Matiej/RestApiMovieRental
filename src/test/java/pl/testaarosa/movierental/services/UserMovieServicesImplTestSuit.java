@@ -38,10 +38,10 @@ public class UserMovieServicesImplTestSuit {
     public void testFindAllUsersMoviesForGivenUser() {
         //given
         List<UserMovie> expectUserMovieList = mockUserMovie.userMovieList();
-        when(userService.findRemoteUser("remote1")).thenReturn(expectUserMovieList.get(0).getUser());
-        when(userMovieRepository.findAllUsersMoviesForGivenUser(null)).thenReturn(expectUserMovieList);
+        when(userService.findRemoteUser("znikenson@gmail.com")).thenReturn(expectUserMovieList.get(0).getUser());
+        when(userMovieRepository.findAllUsersMoviesForGivenUser(1L)).thenReturn(expectUserMovieList);
         //when
-        List<UserMovie> result = userMovieService.findAllUsersMoviesForGivenUser("remote1");
+        List<UserMovie> result = userMovieService.findAllUsersMoviesForGivenUser("znikenson@gmail.com");
         //then
         assertEquals(expectUserMovieList,result);
         assertEquals(2, result.size());

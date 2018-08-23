@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.Movie;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.User;
-import pl.testaarosa.movierental.repositories.MovieRepository;
 import pl.testaarosa.movierental.repositories.MovieWishRepository;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class MovieWishServiceImpl {
         return movieWishRepository.save(movieWish);
     }
 
-    public MovieWish addMovie(String remoteUser, Long movieId) {
+    public MovieWish addMovieToWish(String remoteUser, Long movieId) {
         Long remoteUserId = userService.findRemoteUser(remoteUser).getId();
         Movie movie = movieService.findById(movieId);
         MovieWish one = movieWishRepository.findAllUsersWishForGivenUser(remoteUserId);

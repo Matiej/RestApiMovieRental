@@ -25,6 +25,7 @@ public class MockUser {
                 .userDetails(mockUserDetails.userDetails().get(0))
                 .build();
         mockUser1.setRole(role.getRole());
+        mockUser1.setId(1L);
 
         User mockUser2 = User.builder()
                 .name("Maciek2")
@@ -36,6 +37,7 @@ public class MockUser {
                 .enabled(true)
                 .userDetails(mockUserDetails.userDetails().get(1))
                 .build();
+        mockUser2.setId(2L);
 
         List<User> userList = new ArrayList<>();
         userList.add(mockUser1);

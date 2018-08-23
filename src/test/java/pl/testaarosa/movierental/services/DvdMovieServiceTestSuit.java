@@ -12,6 +12,7 @@ import pl.testaarosa.movierental.repositories.MockDvdMovie;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -29,7 +30,7 @@ public class DvdMovieServiceTestSuit {
     private DvdMovieRpository dvdMovieRpository;
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() throws ExecutionException, InterruptedException {
         //given
         when(dvdMovieRpository.findAll()).thenReturn(mockDvdMovie.dvdMovieList());
         //when
@@ -43,7 +44,7 @@ public class DvdMovieServiceTestSuit {
     }
 
     @Test
-    public void testFindById(){
+    public void testFindById() throws ExecutionException, InterruptedException {
         //given
         when(dvdMovieRpository.findOne(2L)).thenReturn(mockDvdMovie.dvdMovieList().get(1));
         //when
@@ -55,7 +56,7 @@ public class DvdMovieServiceTestSuit {
     }
 
     @Test
-    public void testFindByTitle(){
+    public void testFindByTitle() throws ExecutionException, InterruptedException {
         //given
         when(dvdMovieRpository.findAllByTitleContaining("DvdMovie2")).thenReturn(mockDvdMovie.dvdMovieList());
         //when
@@ -67,7 +68,7 @@ public class DvdMovieServiceTestSuit {
     }
 
     @Test
-    public void testAddDvdMovieTrue() throws IOException, URISyntaxException {
+    public void testAddDvdMovieTrue() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         //given
         DvdMovie emptyMovie = new DvdMovie();
         DvdMovie addMovie = mockDvdMovie.dvdMovieList().get(0);
@@ -80,7 +81,7 @@ public class DvdMovieServiceTestSuit {
     }
 
     @Test
-    public void testAddDvdMovieFalse() throws IOException, URISyntaxException {
+    public void testAddDvdMovieFalse() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         //given
         DvdMovie addMovie = mockDvdMovie.dvdMovieList().get(1);
         when(dvdMovieRpository.save(addMovie)).thenReturn(addMovie);

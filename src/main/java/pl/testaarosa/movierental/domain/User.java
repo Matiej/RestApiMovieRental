@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @NamedQueries({
         @NamedQuery(name = "User.findRemoteUser", query = "FROM User " +
@@ -69,6 +70,10 @@ public class User implements org.springframework.security.core.userdetails.UserD
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setRole(Role role) {
@@ -164,6 +169,30 @@ public class User implements org.springframework.security.core.userdetails.UserD
 
     public void setMatchingPassword(String matchingPassword) {
         this.matchingPassword = matchingPassword;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return enabled == user.enabled &&
+                Objects.equals(id, user.id) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(matchingPassword, user.matchingPassword) &&
+                Objects.equals(registerDate, user.registerDate) &&
+                Objects.equals(userRentalDetails, user.userRentalDetails) &&
+                Objects.equals(movieWishes, user.movieWishes) &&
+                Objects.equals(userMovies, user.userMovies) &&
+                Objects.equals(role, user.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, email, password, matchingPassword, enabled, registerDate, userRentalDetails, movieWishes, userMovies, role);
     }
 
     @Override

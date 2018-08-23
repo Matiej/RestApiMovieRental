@@ -3,6 +3,7 @@ package pl.testaarosa.movierental.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @NamedQueries({
         @NamedQuery(name = "MovieWish.findAllUsersWishForGivenUser", query = "FROM MovieWish WHERE user.id = :userId"),
@@ -81,5 +82,21 @@ public class MovieWish {
         public MovieWish builder() {
             return new MovieWish(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MovieWish movieWish = (MovieWish) o;
+        return Objects.equals(id, movieWish.id) &&
+                Objects.equals(wishName, movieWish.wishName) &&
+                Objects.equals(moviesList, movieWish.moviesList) &&
+                Objects.equals(user, movieWish.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, wishName, moviesList, user);
     }
 }

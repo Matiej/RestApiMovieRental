@@ -2,6 +2,7 @@ package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "USER_DETAILS")
@@ -118,6 +119,24 @@ public class UserRentalDetails {
     public interface CanBeBuild {
         CanBeBuild user(User user);
         UserRentalDetails build();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRentalDetails that = (UserRentalDetails) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(birthday, that.birthday) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(street, that.street) &&
+                userGender == that.userGender &&
+                Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, birthday, city, street, userGender, user);
     }
 }
 
