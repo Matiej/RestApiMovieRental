@@ -16,7 +16,6 @@ public class MockMovieWish {
 
         movieWish.setUser(user.get(0));
         movieWish.setWishName(user.get(0).getEmail() + ", " + user.get(0).getSurname());
-//        movieWish.getMoviesList().add(new Movie());
 
         MovieWish movieWish2 = new MovieWish();
         movieWish2.setUser(user.get(1));

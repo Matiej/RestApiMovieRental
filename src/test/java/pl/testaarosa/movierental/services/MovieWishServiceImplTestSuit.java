@@ -90,4 +90,17 @@ public class MovieWishServiceImplTestSuit {
         //then
         assertEquals(movieWish,result);
     }
+
+    @Test
+    public void testFindById() {
+        //given
+        MovieWish movieWish = mockMovieWish.mockMovieWish().get(0);
+        when(movieWishRepository.findOne(null)).thenReturn(movieWish);
+        //when
+        MovieWish expect = mockMovieWish.mockMovieWish().get(0);
+        MovieWish result = movieWishService.findById(null);
+        //then
+        assertEquals(expect,result);
+        assertEquals(expect.getWishName(), result.getWishName());
+    }
 }
