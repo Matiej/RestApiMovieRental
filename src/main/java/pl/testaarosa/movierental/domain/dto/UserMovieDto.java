@@ -4,6 +4,8 @@ import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovieDetails;
 import pl.testaarosa.movierental.domain.UserMovieGenre;
 
+import java.util.Objects;
+
 public class UserMovieDto {
 
     private Long id;
@@ -68,5 +70,35 @@ public class UserMovieDto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "UserMovieDto{" +
+                "id=" + id +
+                ", imdbID='" + imdbID + '\'' +
+                ", title='" + title + '\'' +
+                ", genre=" + genre +
+                ", userMovieDetails=" + userMovieDetails +
+                ", user=" + user +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMovieDto that = (UserMovieDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(title, that.title) &&
+                genre == that.genre &&
+                Objects.equals(userMovieDetails, that.userMovieDetails) &&
+                Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imdbID, title, genre, userMovieDetails, user);
     }
 }
