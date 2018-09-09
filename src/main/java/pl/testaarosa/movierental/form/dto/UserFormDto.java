@@ -5,7 +5,6 @@ import pl.testaarosa.movierental.domain.UserGender;
 import pl.testaarosa.movierental.validator.PasswordMatches;
 import pl.testaarosa.movierental.validator.ValidEmail;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -34,6 +33,8 @@ public class UserFormDto {
 
     public UserFormDto() {
     }
+
+
 
     public String getName() {
         return name;

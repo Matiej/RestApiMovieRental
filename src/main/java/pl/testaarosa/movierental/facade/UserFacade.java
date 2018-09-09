@@ -65,7 +65,7 @@ public class UserFacade {
        return userMovieService.add(remoteUser, userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
     }
 
-    public UserMovieDto finaOneUserMovie(Long id) {
+    public UserMovieDto findOneUserMovie(Long id) {
         return userMovieMapper.mapToUserMovieDto(userMovieService.finaOne(id));
     }
 

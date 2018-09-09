@@ -52,13 +52,12 @@ public class UserMovieController {
     @GetMapping("/addnewmovie")
     public String showForm(Model model){
         model.addAttribute("userMovie", new UserMovieFormDto());
-        model.addAttribute("usersList", userFacade.findAllUsers());
         return "userMoviesForm";
 
     }
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-        model.addAttribute("userMovieDetail", userFacade.finaOneUserMovie(id));
+        model.addAttribute("userMovieDetail", userFacade.findOneUserMovie(id));
         return "userMovieDetails";
     }
 

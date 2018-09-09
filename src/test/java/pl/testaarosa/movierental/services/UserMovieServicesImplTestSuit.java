@@ -9,7 +9,7 @@ import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.form.UserMovieForm;
 import pl.testaarosa.movierental.mapper.form.UserMovieFormMapper;
-import pl.testaarosa.movierental.repositories.MockMovieForm;
+import pl.testaarosa.movierental.repositories.MockUserMovieForm;
 import pl.testaarosa.movierental.repositories.MockUserMovie;
 import pl.testaarosa.movierental.repositories.UserMovieRepository;
 
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 public class UserMovieServicesImplTestSuit {
 
     private MockUserMovie mockUserMovie = new MockUserMovie();
-    private MockMovieForm mockMovieForm = new MockMovieForm();
+    private MockUserMovieForm mockUserMovieForm = new MockUserMovieForm();
 
     @InjectMocks
     private UserMovieServiceImpl userMovieService;
@@ -63,7 +63,7 @@ public class UserMovieServicesImplTestSuit {
         //given
         UserMovie expectUserMovieList = mockUserMovie.userMovieList().get(0);
         when(userService.findRemoteUser("remote1")).thenReturn(expectUserMovieList.getUser());
-        List<UserMovieForm> userMovieFormList = mockMovieForm.userMovieFormList();
+        List<UserMovieForm> userMovieFormList = mockUserMovieForm.userMovieFormList();
         when(userMovieFormMapper.mapToUserMovie(userMovieFormList.get(0))).thenReturn(expectUserMovieList);
         when(userMovieFormMapper.mapToUserMovieDetails(userMovieFormList.get(0))).thenReturn(expectUserMovieList.getUserMovieDetails());
         when(userMovieRepository.save(expectUserMovieList)).thenReturn(expectUserMovieList);
@@ -80,6 +80,7 @@ public class UserMovieServicesImplTestSuit {
         userMovieRepository.delete(1L);
         //then
         verify(userMovieRepository, times(1)).delete(1L);
+        verifyNoMoreInteractions(userMovieRepository);
     }
 
     @Test

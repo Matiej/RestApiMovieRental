@@ -14,29 +14,6 @@
 
 <body >
 <div th:include="navi :: menu"></div>
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-dark">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="http://www.testaarosa.pl/">Testaarosa Movies Rental</a>-->
-        <!--</div>-->
-        <!--<ul class="nav navbar-nav">-->
-
-            <!--<li><a href="/home">Home</a></li>-->
-            <!--<li><a href="/one/movieslist">DVD Movies</a></li>-->
-            <!--<li><a href="/blueray/movieslist">Blue ray Movies</a></li>-->
-            <!--<li><a href="/online/movielist">OnLine Movies</a></li>-->
-            <!--<li style="background-color:Grey;" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>-->
-                <!--<ul class="dropdown-menu">-->
-                    <!--<li> <a href="/users/adduser">Add new user</a></li>-->
-                    <!--<li> <a href="/users/userslist">Users list</a></li>-->
-                    <!--<li> <a href="/usermovie/addnewmovie">Add new movie</a></li>-->
-                    <!--<li><a href="/usermovie/movieslist">User Movies list</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li><a href="/wish/wishlist">Movies wish list</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--</nav>-->
 
 <datalist id="genre">
     <select>
@@ -45,11 +22,11 @@
     </select>
 </datalist>
 
-<datalist id="usersList">
-    <option th:each="u : ${usersList}" th:value="${u.id}"
-            th:label="${u}" th:tabindex="${u}"></option>
+<!--<datalist id="usersList">-->
+    <!--<option th:each="u : ${usersList}" th:value="${u.id}"-->
+            <!--th:label="${u}" th:tabindex="${u}"></option>-->
 
-</datalist>
+<!--</datalist>-->
 
 <form  th:action="@{/usermovie/addnewmovie}" th:object="${userMovie}" method="post">
     <div  class="form-row">
@@ -105,18 +82,11 @@
             <td rowspan="6" th:if="${#fields.hasErrors('plot')}" th:errors="*{plot}"></td>
         </div>
     </div>
-    <!--<div class="col-xs-4">-->
-        <!--<label for="user">Users:</label>-->
-        <!--<input list="usersList" class="form-control" name="userId"/>-->
-
-    <!--</div>-->
 
     <div class="col-xs-4">
         <label for="genre">Genre:</label>
         <input list="genre" class="form-control" th:field="*{genre}"/>
         <td rowspan="6" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></td>
-
-
         <br />
         <button type="submit" class="btn-success btn-lg">Submit</button>
         <button type="reset" class="btn-danger btn-lg">Reset</button>

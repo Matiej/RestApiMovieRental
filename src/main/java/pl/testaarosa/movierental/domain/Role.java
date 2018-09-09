@@ -43,6 +43,6 @@ public class Role {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, user);
+        return Objects.hash(id, name);
     }
 }

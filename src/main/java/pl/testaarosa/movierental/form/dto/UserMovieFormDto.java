@@ -1,6 +1,9 @@
 package pl.testaarosa.movierental.form.dto;
 
 import pl.testaarosa.movierental.domain.UserMovieGenre;
+
+import java.util.Objects;
+
 //TODO walidacja
 public class UserMovieFormDto {
 
@@ -110,6 +113,44 @@ public class UserMovieFormDto {
 
     public void setPlot(String plot) {
         this.plot = plot;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMovieFormDto that = (UserMovieFormDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(poster, that.poster) &&
+                genre == that.genre &&
+                Objects.equals(runtime, that.runtime) &&
+                Objects.equals(userOpinion, that.userOpinion) &&
+                Objects.equals(actors, that.actors) &&
+                Objects.equals(plot, that.plot);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imdbID, title, year, poster, genre, runtime, userOpinion, actors, plot);
+    }
+
+    @Override
+    public String toString() {
+        return "UserMovieFormDto{" +
+                "id=" + id +
+                ", imdbID='" + imdbID + '\'' +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", poster='" + poster + '\'' +
+                ", genre=" + genre +
+                ", runtime='" + runtime + '\'' +
+                ", userOpinion='" + userOpinion + '\'' +
+                ", actors='" + actors + '\'' +
+                ", plot='" + plot + '\'' +
+                '}';
     }
 }
 

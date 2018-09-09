@@ -136,7 +136,7 @@ public class UserRentalDetails {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, birthday, city, street, userGender, user);
+        return Objects.hash(id, birthday, city, street, userGender);
     }
 }
 

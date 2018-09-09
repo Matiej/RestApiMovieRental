@@ -6,7 +6,7 @@ import pl.testaarosa.movierental.form.UserMovieForm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockMovieForm {
+public class MockUserMovieForm {
 
     public List<UserMovieForm> userMovieFormList() {
 
