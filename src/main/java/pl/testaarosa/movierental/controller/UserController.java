@@ -12,14 +12,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import pl.testaarosa.movierental.domain.User;
-import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -29,17 +27,20 @@ public class UserController {
     @Autowired
     private UserFacade userFacade;
 
-    //TODO landing page after new user
     @Transactional
     @PostMapping("/adduser")
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                           WebRequest request, Errors errors) {
         User registerUser = new User();
         if(!bindingResult.hasErrors()) {
-            registerUser = userFacade.addUserAndWish(userFormDto);
+            registerUser = createUserAccout(userFormDto);
         }
         if (registerUser==null) {
-            bindingResult.rejectValue("email", "message.regError");
+            bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
+                    + userFormDto.getEmail());
+        }
+        if(errors.hasErrors()) {
+            bindingResult.rejectValue("password","message.regError", "Passwords don't match!!");
         }
         if(bindingResult.hasErrors()) {
             return "userForm";
@@ -69,7 +70,7 @@ public class UserController {
                     + userFormDto.getEmail());
         }
         if(errors.hasErrors()) {
-            bindingResult.rejectValue("password","message.reError", "Passwords don't match!!");
+            bindingResult.rejectValue("password","message.regError", "Passwords don't match!!");
         }
         if(bindingResult.hasErrors()) {
             return "userForm_n";
@@ -96,7 +97,7 @@ public class UserController {
     }
 
     @GetMapping("/userslist")
-    public String showUserMovies(Map<String, Object> model) {
+    public String showUsers(Map<String, Object> model) {
         model.put("users", userFacade.findAllUsers());
         return "userList";
     }
@@ -116,7 +117,7 @@ public class UserController {
         } catch (Exception e) {
 
         }
-        return "login";
+        return "login_u";
     }
 
     @RequestMapping(value = "/login_new", method = RequestMethod.GET)
@@ -142,6 +143,6 @@ public class UserController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "logout";
+        return "logout_";
     }
 }

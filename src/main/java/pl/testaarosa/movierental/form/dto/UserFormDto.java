@@ -7,6 +7,7 @@ import pl.testaarosa.movierental.validator.ValidEmail;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @PasswordMatches()
 public class UserFormDto {
@@ -34,7 +35,19 @@ public class UserFormDto {
     public UserFormDto() {
     }
 
-
+    public UserFormDto(String name, String surname, String email, String password, String matchingPassword,
+                       LocalDateTime registerDate, String brithday, String city, String street, UserGender userGender) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.matchingPassword = matchingPassword;
+        this.registerDate = registerDate;
+        this.brithday = brithday;
+        this.city = city;
+        this.street = street;
+        this.userGender = userGender;
+    }
 
     public String getName() {
         return name;
@@ -128,5 +141,27 @@ public class UserFormDto {
                 ", street='" + street + '\'' +
                 ", userGender=" + userGender +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserFormDto that = (UserFormDto) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(surname, that.surname) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(matchingPassword, that.matchingPassword) &&
+                Objects.equals(registerDate, that.registerDate) &&
+                Objects.equals(brithday, that.brithday) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(street, that.street) &&
+                userGender == that.userGender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, email, password, matchingPassword, registerDate, brithday, city, street, userGender);
     }
 }

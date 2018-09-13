@@ -79,7 +79,7 @@
     <form class="form-signin" method="POST" th:action="@{/users/login}">
         <span id="reauth-email" class="reauth-email"></span>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input
+        <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 type="text" id="inputUsername" class="form-control" name="username"
                 th:placeholder="#{login}" autofocus="autofocus"/>
 
