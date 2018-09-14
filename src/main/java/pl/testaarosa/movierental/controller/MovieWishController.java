@@ -12,7 +12,6 @@ import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.facade.UserFacade;
-import pl.testaarosa.movierental.services.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -84,7 +83,6 @@ public class MovieWishController {
 
     @GetMapping("/moviedetails")
     public String movie(Model model, @RequestParam Long id){
-        //TODO movie DTO machen
         MovieDto movie = moviesFacade.findMovieById(id);
         switch (movie.getSupplier().toLowerCase()) {
             case "bluray supplier":
