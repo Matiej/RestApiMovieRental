@@ -37,7 +37,6 @@ public class MockOnLineMovie {
         List<OnLineMovie> onLineMovieList = new ArrayList<>();
         onLineMovieList.add(onLineMovie1);
         onLineMovieList.add(onLineMovie2);
-//        return onLineMovieList;
         return CompletableFuture.completedFuture(ofNullable(onLineMovieList).orElse(new ArrayList<>()));
     }
 }
