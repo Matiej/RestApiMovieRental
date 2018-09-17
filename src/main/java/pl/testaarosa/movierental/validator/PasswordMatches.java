@@ -12,7 +12,7 @@ import static java.lang.annotation.ElementType.TYPE;
 @Documented
 public @interface PasswordMatches {
 
-    String message() default "Passwords don't match each others";
+    String message() default "Passwords doesn't match each others";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 

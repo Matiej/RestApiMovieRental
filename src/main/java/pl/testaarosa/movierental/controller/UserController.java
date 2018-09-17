@@ -39,8 +39,9 @@ public class UserController {
             bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
                     + userFormDto.getEmail());
         }
-        if(errors.hasErrors()) {
-            bindingResult.rejectValue("password","message.regError", "Passwords don't match!!");
+        if(errors.hasGlobalErrors()) {
+            bindingResult.rejectValue("password","message.passError");
+            bindingResult.rejectValue("matchingPassword","message.passError");
         }
         if(bindingResult.hasErrors()) {
             return "userForm";
@@ -69,8 +70,9 @@ public class UserController {
             bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
                     + userFormDto.getEmail());
         }
-        if(errors.hasErrors()) {
-            bindingResult.rejectValue("password","message.regError", "Passwords don't match!!");
+        if(errors.hasGlobalErrors()) {
+            bindingResult.rejectValue("password","message.passError");
+            bindingResult.rejectValue("matchingPassword","message.passError");
         }
         if(bindingResult.hasErrors()) {
             return "userForm_n";

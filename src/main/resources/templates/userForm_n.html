@@ -76,11 +76,13 @@
         document.getElementById("time").innerHTML = d;
     }
 </script>
+
 <div class="container">
 <form th:action="@{/users/adduser_n}" th:object="${userFormDto}" method="post">
     <h2 class="movieDet">Create new user:</h2>
     <br/>
     <br/>
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="name">User name:</label>
@@ -115,7 +117,8 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" placeholder="password" th:field="*{password}"/>
                  <font color="red" >
-                     <td th:each="error : ${#fields.errors('password')}"  th:errors="*{password}"></td>
+                     <!--<td th:each="error : ${#fields.errors('password')}"  th:errors="*{password}"></td>-->
+                     <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
                  </font>
 
              </div>
@@ -125,7 +128,8 @@
                 <input type="password" class="form-control" placeholder="matchingPassword"
                    th:field="*{matchingPassword}"/>
                 <font color="red" >
-                    <td th:each="error : ${#fields.errors('matchingPassword')}" th:errors="*{matchingPassword}"></td>
+                    <!--<td th:each="error : ${#fields.errors('matchingPassword')}" th:errors="*{matchingPassword}"></td>-->
+                    <td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"></td>
                 </font>
             </div>
         <br />
