@@ -17,7 +17,7 @@ public class MockDvdMovie {
         dvdMovie1.setTitle("DvdMovie1");
         dvdMovie1.setImdbID("DvdImdbID_1");
         dvdMovie1.setPoster("www.DvdPoster");
-        dvdMovie1.setSupplier("ONE Supplier");
+        dvdMovie1.setSupplier("dvd supplier");
         dvdMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
         dvdMovie1.setDvdMovieDetails(mockDvdMovieDetails.dvdMovieDetailsList().get(0));
 
@@ -26,7 +26,7 @@ public class MockDvdMovie {
         dvdMovie1.setTitle("DvdMovie2");
         dvdMovie1.setImdbID("DvdImdbID_2");
         dvdMovie1.setPoster("www.DvdPoster2");
-        dvdMovie1.setSupplier("ONE Supplier");
+        dvdMovie1.setSupplier("dvd supplier");
         dvdMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
         dvdMovie1.setDvdMovieDetails(mockDvdMovieDetails.dvdMovieDetailsList().get(1));
 

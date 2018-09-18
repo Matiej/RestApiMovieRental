@@ -21,7 +21,7 @@ public class MockOnLineMovie {
         onLineMovie1.setTitle("Online TestTitle1");
         onLineMovie1.setImdbID("imdbID_O1");
         onLineMovie1.setPoster("www.Online-poster11");
-        onLineMovie1.setSupplier("OnLine supplier");
+        onLineMovie1.setSupplier("On line");
         onLineMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
         onLineMovie1.setOnLineMovieDetails(onLineMovieDetails.onLineMovieDetails().get().get(0));
 
@@ -30,7 +30,7 @@ public class MockOnLineMovie {
         onLineMovie1.setTitle("Online TestTitle2");
         onLineMovie1.setImdbID("imdbID_O2");
         onLineMovie1.setPoster("www.Online-poster12");
-        onLineMovie1.setSupplier("OnLine supplier");
+        onLineMovie1.setSupplier("On line");
         onLineMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
         onLineMovie1.setOnLineMovieDetails(onLineMovieDetails.onLineMovieDetails().get().get(1));
 

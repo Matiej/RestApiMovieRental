@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
+import pl.testaarosa.movierental.domain.dto.MovieDto;
 import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.domain.dto.UserMovieDto;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
+import pl.testaarosa.movierental.mapper.MovieMapper;
 import pl.testaarosa.movierental.mapper.MovieWishMapper;
 import pl.testaarosa.movierental.mapper.UserMapper;
 import pl.testaarosa.movierental.mapper.UserMovieMapper;
@@ -41,6 +43,8 @@ public class UserFacade {
     private MovieWishServiceImpl moviesWishListService;
     @Autowired
     private MovieWishMapper movieWishMapper;
+    @Autowired
+    private MovieMapper movieMapper;
 
 
     public List<UserDto> findAllUsers() {
@@ -89,6 +93,8 @@ public class UserFacade {
         return movieWishMapper.mapToMovieWishDto(moviesWishListService.findById(id));
     }
 
-
-
+    public List<MovieDto> findMoviesForWishByWishId(Long id) {
+        MovieWishDto movieWishDto = movieWishMapper.mapToMovieWishDto(moviesWishListService.findById(id));
+        return movieMapper.mapTOMovieDtoList(movieWishDto.getMoviesList());
+    }
 }

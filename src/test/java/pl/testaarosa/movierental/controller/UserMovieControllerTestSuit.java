@@ -66,7 +66,6 @@ public class UserMovieControllerTestSuit {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("userMovies", userMovieDtoList))
                 .andExpect(model().attribute("userMovies", hasSize(2)))
-                .andExpect(view().name("userMoviesList"))
                 .andExpect(MockMvcResultMatchers.view().name("userMoviesList"));
         //then
         verify(userFacade, times(1)).findAllUserMoviesForGivenUser(null);
@@ -84,7 +83,6 @@ public class UserMovieControllerTestSuit {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("searchresult", userMovieDtoList))
                 .andExpect(model().attribute("searchresult", hasSize(2)))
-                .andExpect(view().name("userMoviesSearchResult"))
                 .andExpect(MockMvcResultMatchers.view().name("userMoviesSearchResult"));
         //then
         verify(userFacade, times(1)).findAllUserMoviesByTitleContaining(null,
