@@ -20,8 +20,8 @@ public class MockUser {
                 .email("znikenson@gmail.com")
                 .password("password")
                 .matchingpassword("password")
-                .registerDate(userDate)
-                .enabled(true)
+                .registerDate(LocalDateTime.now().withNano(0))
+                .enabled(false)
                 .userDetails(mockUserDetails.userDetails().get(0))
                 .build();
         mockUser1.setRole(role.getRole());

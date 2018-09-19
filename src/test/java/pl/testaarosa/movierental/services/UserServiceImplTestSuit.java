@@ -147,7 +147,7 @@ public class UserServiceImplTestSuit {
         //then
         assertEquals(expectUser,remoteUser);
         assertNotEquals(mockUser.mockUser().get(1),remoteUser);
-        assertTrue(remoteUser.isEnabled());
+        assertTrue(!remoteUser.isEnabled());
     }
 
 }
