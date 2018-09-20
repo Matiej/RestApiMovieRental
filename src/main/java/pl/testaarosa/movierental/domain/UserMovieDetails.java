@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class UserMovieDetails {
@@ -153,5 +154,37 @@ public class UserMovieDetails {
     public interface CanBeBuild {
         CanBeBuild userMovie(UserMovie userMovie);
         UserMovieDetails build();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMovieDetails that = (UserMovieDetails) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(runtime, that.runtime) &&
+                Objects.equals(userOpinion, that.userOpinion) &&
+                Objects.equals(actors, that.actors) &&
+                Objects.equals(plot, that.plot);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, year, poster, runtime, userOpinion, actors, plot);
+    }
+
+    @Override
+    public String toString() {
+        return "UserMovieDetails{" +
+                "id=" + id +
+                ", year='" + year + '\'' +
+                ", poster='" + poster + '\'' +
+                ", runtime='" + runtime + '\'' +
+                ", userOpinion='" + userOpinion + '\'' +
+                ", actors='" + actors + '\'' +
+                ", plot='" + plot + '\'' +
+                '}';
     }
 }

@@ -8,12 +8,12 @@ import pl.testaarosa.movierental.form.UserMovieForm;
 @Component
 public class UserMovieFormMapper {
 
-    public UserMovie mapToUserMovie(UserMovieForm userMovieForm){
+    public UserMovie mapToUserMovie(UserMovieForm userMovieForm) {
         return UserMovie.builder()
                 .imdbID(userMovieForm.getImdbID())
                 .title(userMovieForm.getTitle())
                 .genre(userMovieForm.getGenre())
-                .   build();
+                .build();
 
 //        return new UserMovie.UserMovieBuilder()
 //                .title(userMovieForm.getTitle())
@@ -22,7 +22,7 @@ public class UserMovieFormMapper {
 //                .build();
     }
 
-    public UserMovieDetails mapToUserMovieDetails(UserMovieForm userMovieForm){
+    public UserMovieDetails mapToUserMovieDetails(UserMovieForm userMovieForm) {
         return UserMovieDetails.builder()
                 .year(userMovieForm.getYear())
                 .poster(userMovieForm.getPoster())

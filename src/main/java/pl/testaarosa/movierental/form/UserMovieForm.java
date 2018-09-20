@@ -1,33 +1,19 @@
 package pl.testaarosa.movierental.form;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserMovieGenre;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.Size;
+import java.util.Objects;
 
 public class UserMovieForm {
 
-    @Size(min = 2)
-    @NotEmpty
     private String imdbID;
-    @Size(min = 2)
-    @NotEmpty
     private String title;
-    @Size(min = 4, max = 4, message = "The year must entered it this way (1998)")
-    @NotEmpty
     private String year;
-    @Size(min = 2, max = 1000)
     private String poster;
-    @Enumerated(value = EnumType.STRING)
     private UserMovieGenre genre;
     private String runtime;
     private String userOpinion;
-    @Column(length = 1000)
     private String actors;
-    @Column(name = "PLOT", length = 3000)
     private String plot;
 
     public UserMovieForm(String imdbID, String title, String year, String poster, UserMovieGenre genre,
@@ -113,5 +99,41 @@ public class UserMovieForm {
 
     public void setPlot(String plot) {
         this.plot = plot;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMovieForm that = (UserMovieForm) o;
+        return Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(poster, that.poster) &&
+                genre == that.genre &&
+                Objects.equals(runtime, that.runtime) &&
+                Objects.equals(userOpinion, that.userOpinion) &&
+                Objects.equals(actors, that.actors) &&
+                Objects.equals(plot, that.plot);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(imdbID, title, year, poster, genre, runtime, userOpinion, actors, plot);
+    }
+
+    @Override
+    public String toString() {
+        return "UserMovieForm{" +
+                "imdbID='" + imdbID + '\'' +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", poster='" + poster + '\'' +
+                ", genre=" + genre +
+                ", runtime='" + runtime + '\'' +
+                ", userOpinion='" + userOpinion + '\'' +
+                ", actors='" + actors + '\'' +
+                ", plot='" + plot + '\'' +
+                '}';
     }
 }

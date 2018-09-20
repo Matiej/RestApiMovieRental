@@ -1,6 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @NamedQueries({
         @NamedQuery(name = "UserMovie.findAllUsersMoviesForGivenUser", query = "FROM UserMovie WHERE user.id = :userId"),
@@ -137,4 +138,33 @@ public class UserMovie {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMovie userMovie = (UserMovie) o;
+        return Objects.equals(id, userMovie.id) &&
+                Objects.equals(imdbID, userMovie.imdbID) &&
+                Objects.equals(title, userMovie.title) &&
+                genre == userMovie.genre &&
+                Objects.equals(userMovieDetails, userMovie.userMovieDetails) &&
+                Objects.equals(user, userMovie.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imdbID, title, genre, userMovieDetails, user);
+    }
+
+    @Override
+    public String toString() {
+        return "UserMovie{" +
+                "id=" + id +
+                ", imdbID='" + imdbID + '\'' +
+                ", title='" + title + '\'' +
+                ", genre=" + genre +
+                ", userMovieDetails=" + userMovieDetails +
+                ", user=" + user +
+                '}';
+    }
 }

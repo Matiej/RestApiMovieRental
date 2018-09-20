@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -48,6 +50,7 @@ public class UserMovieControllerTestSuit {
     private List<UserMovieFormDto> mockMovieFormList = new ArrayList<>();
     private MockUserMovie mockUserMovie = new MockUserMovie();
     private List<UserMovie> userMovieList = new ArrayList<>();
+    private MockHttpServletRequest request = new MockHttpServletRequest();
 
     @Before
     public void init() {
@@ -96,9 +99,13 @@ public class UserMovieControllerTestSuit {
         UserMovieFormDto userMovieForm = mockMovieFormList.get(1);
         UserMovie expect = userMovieList.get(0);
         when(userFacade.addUserMovie("znikenson@gmail.com", userMovieForm)).thenReturn(expect);
-        when(userFacade.findAllUserMoviesForGivenUser(null)).thenReturn(userMovieDtoList);
+        when(userFacade.findAllUserMoviesForGivenUser(request.getRemoteUser())).thenReturn(userMovieDtoList);
         //when
-        mockMvc.perform(MockMvcRequestBuilders.post("/usermovie/addnewmovie"))
+        mockMvc.perform(MockMvcRequestBuilders.post("/usermovie/addnewmovie")
+                .param("imdbID","xxx1")
+                .param("title","My Nice Movie1")
+                .param("year","1999")
+                .accept(MediaType.TEXT_HTML))
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(model().attribute("userMovies", userMovieDtoList))
                 .andExpect(model().attribute("userMovies", hasSize(2)))
