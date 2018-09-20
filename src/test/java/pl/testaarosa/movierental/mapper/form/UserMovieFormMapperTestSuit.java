@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.mapper;
+package pl.testaarosa.movierental.mapper.form;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +7,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.domain.UserMovieDetails;
 import pl.testaarosa.movierental.form.UserMovieForm;
-import pl.testaarosa.movierental.mapper.form.UserMovieFormMapper;
 import pl.testaarosa.movierental.repositories.MockUserMovie;
 import pl.testaarosa.movierental.repositories.MockUserMovieDetails;
 import pl.testaarosa.movierental.repositories.MockUserMovieForm;

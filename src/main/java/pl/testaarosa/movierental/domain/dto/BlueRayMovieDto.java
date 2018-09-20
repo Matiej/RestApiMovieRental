@@ -2,6 +2,8 @@ package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
 
+import java.util.Objects;
+
 public class BlueRayMovieDto {
 
     private Long id;
@@ -69,5 +71,35 @@ public class BlueRayMovieDto {
 
     public void setBlueRayMovieDetails(BlueRayMovieDetails blueRayMovieDetails) {
         this.blueRayMovieDetails = blueRayMovieDetails;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BlueRayMovieDto that = (BlueRayMovieDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(supplier, that.supplier) &&
+                Objects.equals(blueRayMovieDetails, that.blueRayMovieDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, imdbID, poster, supplier, blueRayMovieDetails);
+    }
+
+    @Override
+    public String toString() {
+        return "BlueRayMovieDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", imdbID='" + imdbID + '\'' +
+                ", poster='" + poster + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", blueRayMovieDetails=" + blueRayMovieDetails +
+                '}';
     }
 }

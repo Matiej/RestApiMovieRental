@@ -17,7 +17,7 @@ public class MockBlueRayMovie {
         blueRayMovie1.setTitle("TestTitle1");
         blueRayMovie1.setImdbID("imdbID_1");
         blueRayMovie1.setPoster("www.poster11");
-        blueRayMovie1.setSupplier("BlueRay");
+        blueRayMovie1.setSupplier("BlueRayMovie");
         blueRayMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
         blueRayMovie1.setBlueRayMovieDetails(mockBlueRayMovieDetails.blueRayMovieDetails().get(0));
 
@@ -26,6 +26,7 @@ public class MockBlueRayMovie {
         blueRayMovie2.setTitle("TestTitle2");
         blueRayMovie2.setImdbID("imdbID_2");
         blueRayMovie2.setPoster("www.poster12");
+        blueRayMovie2.setSupplier("BlueRayMovie");
         blueRayMovie2.setMovieWishList(mockMovieWish.mockMovieWish());
         blueRayMovie2.setBlueRayMovieDetails(mockBlueRayMovieDetails.blueRayMovieDetails().get(1));
 
@@ -34,6 +35,7 @@ public class MockBlueRayMovie {
         blueRayMovie3.setTitle("TestTitle3");
         blueRayMovie3.setImdbID("imdbID_3");
         blueRayMovie3.setPoster("www.poster13");
+        blueRayMovie3.setSupplier("BlueRayMovie");
         blueRayMovie3.setMovieWishList(mockMovieWish.mockMovieWish());
         blueRayMovie3.setBlueRayMovieDetails(mockBlueRayMovieDetails.blueRayMovieDetails().get(2));
 

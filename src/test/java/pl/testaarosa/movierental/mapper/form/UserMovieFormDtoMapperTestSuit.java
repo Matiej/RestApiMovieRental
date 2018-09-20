@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.mapper;
+package pl.testaarosa.movierental.mapper.form;
 
 import org.junit.Before;
 import org.junit.Test;
