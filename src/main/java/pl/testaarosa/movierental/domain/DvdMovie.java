@@ -32,22 +32,16 @@ public class DvdMovie extends Movie {
     }
 
     @Override
-    public String toString() {
-        return "DvdMovie{" + getTitle() +
-                ", dvdMovieDetails=" + dvdMovieDetails +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         DvdMovie dvdMovie = (DvdMovie) o;
         return Objects.equals(dvdMovieDetails, dvdMovie.dvdMovieDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dvdMovieDetails);
+        return Objects.hash(super.hashCode(), dvdMovieDetails);
     }
 }

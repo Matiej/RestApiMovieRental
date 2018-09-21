@@ -2,10 +2,9 @@ package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.MovieWish;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MovieDto {
 
@@ -71,5 +70,35 @@ public class MovieDto {
 
     public void setMovieWishList(List<MovieWish> movieWishList) {
         this.movieWishList = movieWishList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MovieDto movieDto = (MovieDto) o;
+        return Objects.equals(id, movieDto.id) &&
+                Objects.equals(title, movieDto.title) &&
+                Objects.equals(imdbID, movieDto.imdbID) &&
+                Objects.equals(poster, movieDto.poster) &&
+                Objects.equals(supplier, movieDto.supplier) &&
+                Objects.equals(movieWishList, movieDto.movieWishList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, imdbID, poster, supplier, movieWishList);
+    }
+
+    @Override
+    public String toString() {
+        return "MovieDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", imdbID='" + imdbID + '\'' +
+                ", poster='" + poster + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", movieWishList=" + movieWishList +
+                '}';
     }
 }

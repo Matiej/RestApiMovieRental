@@ -2,7 +2,7 @@ package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.DvdMovieDetails;
 
-import java.util.Optional;
+import java.util.Objects;
 
 public class DvdMovieDto {
 
@@ -68,5 +68,35 @@ public class DvdMovieDto {
 
     public void setDvdMovieDetails(DvdMovieDetails dvdMovieDetails) {
         this.dvdMovieDetails = dvdMovieDetails;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DvdMovieDto that = (DvdMovieDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(supplier, that.supplier) &&
+                Objects.equals(dvdMovieDetails, that.dvdMovieDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, imdbID, poster, supplier, dvdMovieDetails);
+    }
+
+    @Override
+    public String toString() {
+        return "DvdMovieDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", imdbID='" + imdbID + '\'' +
+                ", poster='" + poster + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", dvdMovieDetails=" + dvdMovieDetails +
+                '}';
     }
 }

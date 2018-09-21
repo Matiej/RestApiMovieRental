@@ -22,13 +22,13 @@ public class MockDvdMovie {
         dvdMovie1.setDvdMovieDetails(mockDvdMovieDetails.dvdMovieDetailsList().get(0));
 
         DvdMovie dvdMovie2 = new DvdMovie();
-        dvdMovie1.setId(2L);
-        dvdMovie1.setTitle("DvdMovie2");
-        dvdMovie1.setImdbID("DvdImdbID_2");
-        dvdMovie1.setPoster("www.DvdPoster2");
-        dvdMovie1.setSupplier("dvd supplier");
-        dvdMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
-        dvdMovie1.setDvdMovieDetails(mockDvdMovieDetails.dvdMovieDetailsList().get(1));
+        dvdMovie2.setId(2L);
+        dvdMovie2.setTitle("DvdMovie2");
+        dvdMovie2.setImdbID("DvdImdbID_2");
+        dvdMovie2.setPoster("www.DvdPoster2");
+        dvdMovie2.setSupplier("dvd supplier");
+        dvdMovie2.setMovieWishList(mockMovieWish.mockMovieWish());
+        dvdMovie2.setDvdMovieDetails(mockDvdMovieDetails.dvdMovieDetailsList().get(1));
 
         List<DvdMovie> dvdMovieList = new LinkedList<>();
         dvdMovieList.add(dvdMovie1);

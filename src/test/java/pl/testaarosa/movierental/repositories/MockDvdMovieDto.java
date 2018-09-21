@@ -16,7 +16,7 @@ public class MockDvdMovieDto {
                 "DvdMovie1",
                 "DvdImdbID_1",
                 "www.DvdPoster",
-                "dvd supplier",
+                "DVD supplier",
                 mockDvdMovieDetails.dvdMovieDetailsList().get(0));
 
         DvdMovieDto dvdMovie2 = new DvdMovieDto(
@@ -24,7 +24,7 @@ public class MockDvdMovieDto {
                 "DvdMovie2",
                 "DvdImdbID_2",
                 "www.DvdPoster2",
-                "dvd supplier",
+                "DVD supplier",
                 mockDvdMovieDetails.dvdMovieDetailsList().get(1));
 
         List<DvdMovieDto> dvdMovieList = new LinkedList<>();
