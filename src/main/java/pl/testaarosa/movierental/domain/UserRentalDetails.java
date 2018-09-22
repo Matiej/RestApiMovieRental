@@ -138,5 +138,17 @@ public class UserRentalDetails {
     public int hashCode() {
         return Objects.hash(id, birthday, city, street, userGender);
     }
+
+    @Override
+    public String toString() {
+        return "UserRentalDetails{" +
+                "id=" + id +
+                ", birthday=" + birthday +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", userGender=" + userGender +
+                ", user=" + user +
+                '}';
+    }
 }
 

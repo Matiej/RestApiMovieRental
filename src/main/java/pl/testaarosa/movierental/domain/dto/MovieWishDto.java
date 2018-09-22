@@ -5,6 +5,7 @@ import pl.testaarosa.movierental.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MovieWishDto {
 
@@ -50,5 +51,31 @@ public class MovieWishDto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MovieWishDto that = (MovieWishDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(wishName, that.wishName) &&
+                Objects.equals(moviesList, that.moviesList) &&
+                Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, wishName, moviesList, user);
+    }
+
+    @Override
+    public String toString() {
+        return "MovieWishDto{" +
+                "id=" + id +
+                ", wishName='" + wishName + '\'' +
+                ", moviesList=" + moviesList +
+                ", user=" + user +
+                '}';
     }
 }

@@ -14,15 +14,15 @@ public class MockMovieWishDto {
 
         List<User> user = mockUser.mockUser();
         MovieWishDto movieWish = new MovieWishDto(
-                1L,
-                user.get(0).getEmail() + ", " + user.get(0).getSurname(),
                 null,
+                user.get(0).getEmail() + ", " + user.get(0).getSurname(),
+                new ArrayList<>(),
                 user.get(0));
 
         MovieWishDto movieWish2 = new MovieWishDto(
-                2L,
-                user.get(1).getEmail() + ", " + user.get(1).getSurname(),
                 null,
+                user.get(1).getEmail() + ", " + user.get(1).getSurname(),
+                new ArrayList<>(),
                 user.get(1));
 
         List<MovieWishDto> movieWishList = new ArrayList<>();

@@ -27,12 +27,4 @@ public class MovieWishMapper {
                         m.getUser()))
                 .collect(Collectors.toList());
     }
-
-    public MovieWish mapToMovieWish(MovieWishDto movieWishDto) {
-        return new MovieWish.MovieWishBuilder()
-                .wishName(movieWishDto.getWishName())
-                .movieList(movieWishDto.getMoviesList())
-                .user(movieWishDto.getUser())
-                .builder();
-    }
 }

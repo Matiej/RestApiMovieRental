@@ -99,4 +99,14 @@ public class MovieWish {
     public int hashCode() {
         return Objects.hash(id, wishName, moviesList, user);
     }
+
+    @Override
+    public String toString() {
+        return "MovieWish{" +
+                "id=" + id +
+                ", wishName='" + wishName + '\'' +
+                ", moviesList=" + moviesList +
+                ", user=" + user +
+                '}';
+    }
 }
