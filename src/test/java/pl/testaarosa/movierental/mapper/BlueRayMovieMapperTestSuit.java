@@ -3,7 +3,8 @@ package pl.testaarosa.movierental.mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.InjectMocks;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.testaarosa.movierental.domain.BlueRayMovie;
 import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
 import pl.testaarosa.movierental.repositories.MockBlueRayMovie;
@@ -14,14 +15,16 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class BlueRayMovieMapperTestSuit {
 
+    @InjectMocks
+    private BlueRayMovieMapper blueRayMovieMapper;
+
     private MockBlueRayMovieDto blueRayMovieDto = new MockBlueRayMovieDto();
-    private List<BlueRayMovieDto> blueRayMovieDtoList = new ArrayList<>();
+    private List<BlueRayMovieDto> blueRayMovieDtoList;
     private MockBlueRayMovie mockBlueRayMovie = new MockBlueRayMovie();
-    private List<BlueRayMovie> blueRayMovieList = new ArrayList<>();
-    private BlueRayMovieMapper blueRayMovieMapper = new BlueRayMovieMapper();
+    private List<BlueRayMovie> blueRayMovieList;
 
     @Before
     public void init() {

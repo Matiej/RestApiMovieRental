@@ -43,7 +43,7 @@ public class OnLineMovieControllerTestSuit {
     private MockOnLineMovie mockOnLineMovie = new MockOnLineMovie();
     private CompletableFuture<List<OnLineMovie>> onLineMovies = new CompletableFuture<>();
     private MockOnLineMovieDto mockOnLineMovieDto = new MockOnLineMovieDto();
-    private List<OnLineMovieDto> onLineMovieDtoList = new ArrayList<>();
+    private List<OnLineMovieDto> onLineMovieDtoList;
 
     @Before
     public void init() throws ExecutionException, InterruptedException {

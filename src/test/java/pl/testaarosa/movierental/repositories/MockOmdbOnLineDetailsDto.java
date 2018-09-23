@@ -1,19 +1,14 @@
 package pl.testaarosa.movierental.repositories;
 
-import pl.testaarosa.movierental.domain.OnLineMovieDetails;
+import pl.testaarosa.movierental.domain.dto.OmdbOnLineDetailsDto;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
-import static java.util.Optional.ofNullable;
+public class MockOmdbOnLineDetailsDto {
 
-public class MockOnLineMovieDetails {
-
-    public CompletableFuture<List<OnLineMovieDetails>> onLineMovieDetails() {
-
-        OnLineMovieDetails onLineMovieDetails1 = new OnLineMovieDetails(
+    public List<OmdbOnLineDetailsDto> omdbOnLineDetailsDtoList() {
+        OmdbOnLineDetailsDto omdbOnLineDetailsDto1 = new OmdbOnLineDetailsDto(
                 "imdbID_O1",
                 "Online TestTitle1",
                 "1988",
@@ -27,10 +22,9 @@ public class MockOnLineMovieDetails {
                 "POLSKA",
                 "awards1",
                 "www.Online-poster11",
-                "AXN"
-        );
+                "AXN");
 
-        OnLineMovieDetails onLineMovieDetails2 = new OnLineMovieDetails(
+        OmdbOnLineDetailsDto omdbOnLineDetailsDto2 = new OmdbOnLineDetailsDto(
                 "imdbID_O2",
                 "Online TestTitle2",
                 "2010",
@@ -47,10 +41,10 @@ public class MockOnLineMovieDetails {
                 "AXN"
         );
 
-        List<OnLineMovieDetails> onLineMovieDetailsList = new ArrayList<>();
-        onLineMovieDetailsList.add(onLineMovieDetails1);
-        onLineMovieDetailsList.add(onLineMovieDetails2);
+        List<OmdbOnLineDetailsDto> omdbOnLineDetailsDto1List = new ArrayList<>();
+        omdbOnLineDetailsDto1List.add(omdbOnLineDetailsDto1);
+        omdbOnLineDetailsDto1List.add(omdbOnLineDetailsDto2);
 
-        return CompletableFuture.completedFuture(ofNullable(onLineMovieDetailsList).orElse(new LinkedList<>()));
+        return omdbOnLineDetailsDto1List;
     }
 }

@@ -106,7 +106,6 @@ public class Movie {
                 ", imdbID='" + imdbID + '\'' +
                 ", poster='" + poster + '\'' +
                 ", supplier='" + supplier + '\'' +
-                ", movieWishList=" + movieWishList +
                 '}';
     }
 }

@@ -3,26 +3,28 @@ package pl.testaarosa.movierental.mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.InjectMocks;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.repositories.MockMovieWish;
 import pl.testaarosa.movierental.repositories.MockMovieWishDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class MovieWishMapperTestSuit {
 
+    @InjectMocks
+    private MovieWishMapper movieWishMapper;
+
     private MockMovieWish mockMovieWish = new MockMovieWish();
-    private List<MovieWish> movieWishList = new ArrayList<>();
+    private List<MovieWish> movieWishList;
     private MockMovieWishDto mockMovieWishDto = new MockMovieWishDto();
-    private List<MovieWishDto> movieWishDtoList = new ArrayList<>();
-    private MovieWishMapper movieWishMapper = new MovieWishMapper();
+    private List<MovieWishDto> movieWishDtoList;
 
     @Before
     public void init() {

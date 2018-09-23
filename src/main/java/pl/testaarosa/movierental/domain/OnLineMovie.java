@@ -59,4 +59,9 @@ public class OnLineMovie extends Movie{
     public int hashCode() {
         return Objects.hash(year, onLineMovieDetails);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + year + "\n" + getOnLineMovieDetails() +"\n" + getMovieWishList();
+    }
 }

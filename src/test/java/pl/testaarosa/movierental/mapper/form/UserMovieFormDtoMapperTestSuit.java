@@ -6,25 +6,21 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import pl.testaarosa.movierental.form.UserMovieForm;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
-import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
 import pl.testaarosa.movierental.repositories.MockUserMovieForm;
 import pl.testaarosa.movierental.repositories.MockUserMovieFormDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserMovieFormDtoMapperTestSuit {
 
     private UserMovieFormDtoMapper userMovieFormDtoMapper = new UserMovieFormDtoMapper();
     private MockUserMovieForm mockUserMovieForm = new MockUserMovieForm();
-    private List<UserMovieForm> userMovieFormList = new ArrayList<>();
+    private List<UserMovieForm> userMovieFormList;
     private MockUserMovieFormDto mockUserMovieFormDto = new MockUserMovieFormDto();
-    private List<UserMovieFormDto> userMovieFormDtoList = new ArrayList<>();
+    private List<UserMovieFormDto> userMovieFormDtoList;
 
     @Before
     public void init() {

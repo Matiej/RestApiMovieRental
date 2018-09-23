@@ -22,8 +22,6 @@ import pl.testaarosa.movierental.repositories.MockUserMovie;
 import pl.testaarosa.movierental.repositories.MockUserMovieDto;
 import pl.testaarosa.movierental.repositories.MockUserMovieFormDto;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -45,11 +43,11 @@ public class UserMovieControllerTestSuit {
 
     private MockMvc mockMvc;
     private MockUserMovieDto mockUserMovieDto = new MockUserMovieDto();
-    private List<UserMovieDto> userMovieDtoList = new LinkedList<>();
+    private List<UserMovieDto> userMovieDtoList;
     private MockUserMovieFormDto mockUserMovieForm = new MockUserMovieFormDto();
-    private List<UserMovieFormDto> mockMovieFormList = new ArrayList<>();
+    private List<UserMovieFormDto> mockMovieFormList;
     private MockUserMovie mockUserMovie = new MockUserMovie();
-    private List<UserMovie> userMovieList = new ArrayList<>();
+    private List<UserMovie> userMovieList;
     private MockHttpServletRequest request = new MockHttpServletRequest();
 
     @Before

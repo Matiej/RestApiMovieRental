@@ -7,11 +7,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserRentalDetails;
 import pl.testaarosa.movierental.form.UserForm;
-import pl.testaarosa.movierental.form.dto.UserFormDto;
-import pl.testaarosa.movierental.mapper.form.UserFormMapper;
 import pl.testaarosa.movierental.repositories.MockUser;
 import pl.testaarosa.movierental.repositories.MockUserForm;
-import pl.testaarosa.movierental.repositories.MockUserFormDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +20,12 @@ public class UserFormMapperTestSuit {
 
     private UserFormMapper userFormMapper = new UserFormMapper();
     private MockUserForm mockuserForm = new MockUserForm();
-    private MockUserFormDto mockUserFormDto = new MockUserFormDto();
-    private List<UserForm> userFormList = new ArrayList<>();
-    private List<UserFormDto> userFormDtoList = new ArrayList<>();
+    private List<UserForm> userFormList;
     private MockUser mockUser = new MockUser();
 
     @Before
     public void init() {
         userFormList = mockuserForm.mockFormList();
-        userFormDtoList = mockUserFormDto.mockFormDtoList();
     }
 
     @Test

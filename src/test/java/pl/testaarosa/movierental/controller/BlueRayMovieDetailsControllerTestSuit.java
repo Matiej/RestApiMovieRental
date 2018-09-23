@@ -15,7 +15,6 @@ import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.repositories.MockBlueRayMovieDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -34,7 +33,7 @@ public class BlueRayMovieDetailsControllerTestSuit {
     private MoviesFacade moviesFacade;
 
     private MockBlueRayMovieDto mockBlueRayMovieDto = new MockBlueRayMovieDto();
-    private List<BlueRayMovieDto> blueRayMovieDtoList = new ArrayList<>();
+    private List<BlueRayMovieDto> blueRayMovieDtoList;
     private MockMvc mockMvc;
 
     @Before

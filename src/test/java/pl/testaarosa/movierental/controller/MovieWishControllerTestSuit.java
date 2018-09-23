@@ -17,8 +17,6 @@ import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.repositories.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -41,14 +39,14 @@ public class MovieWishControllerTestSuit {
 
     private MockMvc mockMvc;
     private MockMovieWishDto mockMovieWishDto = new MockMovieWishDto();
-    private List<MovieWishDto> movieWishDtos = new ArrayList<>();
+    private List<MovieWishDto> movieWishDtos;
     private MockOnLineMovieDto mockOnLineMovieDto = new MockOnLineMovieDto();
-    private List<OnLineMovieDto> onLineMovieDtoList = new ArrayList<>();
+    private List<OnLineMovieDto> onLineMovieDtoList;
     private MockMovieDto mockMovieDto = new MockMovieDto();
     private MockBlueRayMovieDto blueRayMovieDto = new MockBlueRayMovieDto();
-    private List<BlueRayMovieDto> blueRayMovieDtos = new ArrayList<>();
+    private List<BlueRayMovieDto> blueRayMovieDtos;
     private MockDvdMovieDto mockDvdMovieDto = new MockDvdMovieDto();
-    private List<DvdMovieDto> dvdMovieDtoList = new LinkedList<>();
+    private List<DvdMovieDto> dvdMovieDtoList;
 
     @Before
     public void init() throws ExecutionException, InterruptedException {

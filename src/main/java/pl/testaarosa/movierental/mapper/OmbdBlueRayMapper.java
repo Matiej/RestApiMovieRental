@@ -12,14 +12,6 @@ import java.util.stream.Collectors;
 @Component
 public class OmbdBlueRayMapper {
 
-    public BlueRayMovie mapToBlueRayMovie(final OmdbBlueRayDto omdbBlueRayDto){
-        return new BlueRayMovie(
-                omdbBlueRayDto.getTitle(),
-                omdbBlueRayDto.getImdbID(),
-                omdbBlueRayDto.getPoster(),
-                "BlueRayMovie");
-    }
-
     public List<BlueRayMovie> mapToBlueRayMoviesList(List<OmdbBlueRayDto> blueRayDto){
         List<OmdbBlueRayDto> omdbBlueRayDtoList = Optional.ofNullable(blueRayDto).orElse(new ArrayList<>());
         return omdbBlueRayDtoList.stream()
@@ -30,8 +22,6 @@ public class OmbdBlueRayMapper {
                         "BlueRayMovie"))
                         .collect(Collectors.toList());
     }
-
-
 }
 
 

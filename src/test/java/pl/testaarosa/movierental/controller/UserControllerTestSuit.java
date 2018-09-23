@@ -22,7 +22,6 @@ import pl.testaarosa.movierental.repositories.MockUser;
 import pl.testaarosa.movierental.repositories.MockUserDto;
 import pl.testaarosa.movierental.repositories.MockUserFormDto;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -44,10 +43,10 @@ public class UserControllerTestSuit {
     private MockMvc mockMvc;
     private MockUser mockUser = new MockUser();
     private MockUserDto mockUserDto = new MockUserDto();
-    private List<UserDto> userDtoList = new LinkedList<>();
+    private List<UserDto> userDtoList;
     private MockUserFormDto mockUserFormDto = new MockUserFormDto();
-    private List<User> mockUsers = new LinkedList<>();
-    private List<UserFormDto> userFormDtos = new LinkedList<>();
+    private List<User> mockUsers;
+    private List<UserFormDto> userFormDtos;
 
     @Before
     public void init() {

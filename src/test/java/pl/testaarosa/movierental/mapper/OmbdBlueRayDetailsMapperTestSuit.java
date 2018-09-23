@@ -3,24 +3,26 @@ package pl.testaarosa.movierental.mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.InjectMocks;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.testaarosa.movierental.domain.BlueRayMovieDetails;
 import pl.testaarosa.movierental.domain.dto.OmdbBlueRayDetailsDto;
 import pl.testaarosa.movierental.repositories.MockBlueRayMovieDetails;
 import pl.testaarosa.movierental.repositories.MockOmdbBlueRayDetailsDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class OmbdBlueRayDetailsMapperTestSuit {
+
+    @InjectMocks
+    private OmbdBlueRayDetailsMapper ombdBlueRayDetailsMapper;
 
     private MockOmdbBlueRayDetailsDto mockOmdbBlueRayDetailsDto = new MockOmdbBlueRayDetailsDto();
     private MockBlueRayMovieDetails mockBlueRayMovieDetails = new MockBlueRayMovieDetails();
-    private List<BlueRayMovieDetails> blueRayMovieDetailsList = new ArrayList<>();
-    private OmbdBlueRayDetailsMapper ombdBlueRayDetailsMapper = new OmbdBlueRayDetailsMapper();
+    private List<BlueRayMovieDetails> blueRayMovieDetailsList;
 
     @Before
     public void init() {

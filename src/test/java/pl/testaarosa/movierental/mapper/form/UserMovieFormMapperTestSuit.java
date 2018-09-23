@@ -11,7 +11,6 @@ import pl.testaarosa.movierental.repositories.MockUserMovie;
 import pl.testaarosa.movierental.repositories.MockUserMovieDetails;
 import pl.testaarosa.movierental.repositories.MockUserMovieForm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -20,11 +19,11 @@ import static org.junit.Assert.*;
 public class UserMovieFormMapperTestSuit {
 
     private MockUserMovie mockUserMovie = new MockUserMovie();
-    private List<UserMovie> userMovieList = new ArrayList<>();
+    private List<UserMovie> userMovieList;
     private MockUserMovieDetails mockUserMovieDetails = new MockUserMovieDetails();
-    private List<UserMovieDetails> userMovieDetailsList = new ArrayList<>();
+    private List<UserMovieDetails> userMovieDetailsList;
     private MockUserMovieForm mockUserMovieForm = new MockUserMovieForm();
-    private List<UserMovieForm> userMovieFormList = new ArrayList<>();
+    private List<UserMovieForm> userMovieFormList;
     private UserMovieFormMapper userMovieFromMapper = new UserMovieFormMapper();
 
     @Before

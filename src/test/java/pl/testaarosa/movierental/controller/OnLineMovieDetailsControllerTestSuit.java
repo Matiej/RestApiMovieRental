@@ -16,7 +16,6 @@ import pl.testaarosa.movierental.domain.dto.OnLineMovieDetailsDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.repositories.MockOnLineMovieDetailsDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +36,7 @@ public class OnLineMovieDetailsControllerTestSuit {
 
     private MockMvc mockMvc;
     private MockOnLineMovieDetailsDto mockOnLineMovieDetailsDto = new MockOnLineMovieDetailsDto();
-    private List<OnLineMovieDetailsDto> onLineMovieDetailsList = new ArrayList<>();
+    private List<OnLineMovieDetailsDto> onLineMovieDetailsList;
 
     @Before
     public void init() {

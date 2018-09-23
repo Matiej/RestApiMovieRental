@@ -16,7 +16,6 @@ import pl.testaarosa.movierental.domain.dto.DvdMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.repositories.MockDvdMovieDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -36,7 +35,7 @@ public class DvdMovieControllerTestSuit {
     private MoviesFacade dvdMoviesFacade;
 
     private MockDvdMovieDto mockDvdMovieDto = new MockDvdMovieDto();
-    private List<DvdMovieDto> dvdMovieDtoList = new ArrayList<>();
+    private List<DvdMovieDto> dvdMovieDtoList;
     private MockMvc mockMvc;
 
     @Before
