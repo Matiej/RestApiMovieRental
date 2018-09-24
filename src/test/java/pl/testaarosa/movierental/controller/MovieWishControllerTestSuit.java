@@ -91,7 +91,7 @@ public class MovieWishControllerTestSuit {
                 .andExpect(view().name("movieUserWishes"));
         //then
         verify(moviesFacade, times(1)).addOnLineMovieToDb("imdbID_O1");
-        verify(userFacade, times(1)).addMovie(null, 1L);
+        verify(userFacade, times(1)).addMovie(null, null);
         verify(userFacade, times(1)).findUsersWishForGivenUser(null);
         verifyNoMoreInteractions(moviesFacade);
         verifyNoMoreInteractions(userFacade);

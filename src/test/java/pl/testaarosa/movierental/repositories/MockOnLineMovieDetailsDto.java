@@ -10,7 +10,7 @@ public class MockOnLineMovieDetailsDto {
     public List<OnLineMovieDetailsDto> onLineMovieDetailsDtos() {
 
         OnLineMovieDetailsDto onLineMovieDetails1 = new OnLineMovieDetailsDto(
-                1L,
+                null,
                 "imdbID_O1",
                 "Online TestTitle1",
                 "1988",
@@ -28,7 +28,7 @@ public class MockOnLineMovieDetailsDto {
         );
 
         OnLineMovieDetailsDto onLineMovieDetails2 = new OnLineMovieDetailsDto(
-                2L,
+                null,
                 "imdbID_O2",
                 "Online TestTitle2",
                 "2010",

@@ -13,7 +13,6 @@ import pl.testaarosa.movierental.repositories.MockDvdMovieDto;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DvdMovieMapperTestSuit {
@@ -37,11 +36,11 @@ public class DvdMovieMapperTestSuit {
         //given
         DvdMovie dvdMovie = dvdMovieList.get(0);
         DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(0);
+        dvdMovie.setId(null);
         //when
         DvdMovieDto result = movieMapper.mapToDvdMovieDto(dvdMovie);
         //then
         assertEquals(dvdMovieDto,result);
-        assertTrue(result.getId()==1L);
     }
 
     @Test

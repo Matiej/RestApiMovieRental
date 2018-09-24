@@ -9,24 +9,22 @@ public class MockDvdMovieDetails {
 
     public List<DvdMovieDetails> dvdMovieDetailsList() {
         DvdMovieDetails dvdMovieDetails1 = new DvdMovieDetails();
-        dvdMovieDetails1.setId(1L);
         dvdMovieDetails1.setImdbID("DvdImdbID_1");
         dvdMovieDetails1.setTitle("DvdMovie1");
         dvdMovieDetails1.setCountryOfOrigin("Polska");
         dvdMovieDetails1.setType("comedy");
         dvdMovieDetails1.setPrice(11.2);
-        dvdMovieDetails1.setPoster("www.DvdPoster");
-        dvdMovieDetails1.setSupplier("ONE Supplier");
+        dvdMovieDetails1.setPoster("http://goshico.com/allegro/questionmarksmall.png");
+        dvdMovieDetails1.setSupplier("DVD MOVIE");
 
         DvdMovieDetails dvdMovieDetails2 = new DvdMovieDetails();
-        dvdMovieDetails1.setId(2L);
-        dvdMovieDetails1.setImdbID("DvdImdbID_2");
-        dvdMovieDetails1.setTitle("DvdMovie2");
-        dvdMovieDetails1.setCountryOfOrigin("USA");
-        dvdMovieDetails1.setType("comedy");
-        dvdMovieDetails1.setPrice(9.5);
-        dvdMovieDetails1.setPoster("www.DvdPoster2");
-        dvdMovieDetails1.setSupplier("ONE Supplier");
+        dvdMovieDetails2.setImdbID("DvdImdbID_2");
+        dvdMovieDetails2.setTitle("DvdMovie2");
+        dvdMovieDetails2.setCountryOfOrigin("USA");
+        dvdMovieDetails2.setType("comedy");
+        dvdMovieDetails2.setPrice(9.5);
+        dvdMovieDetails2.setPoster("http://goshico.com/allegro/questionmarksmall.png");
+        dvdMovieDetails2.setSupplier("DVD MOVIE");
 
         List<DvdMovieDetails> dvdMovieDetailsList = new LinkedList<>();
         dvdMovieDetailsList.add(dvdMovieDetails1);

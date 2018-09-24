@@ -14,22 +14,22 @@ public class MockOnLineMovieDto {
     public List<OnLineMovieDto> onLineMovieDtoList() throws ExecutionException, InterruptedException {
 
         OnLineMovieDto onLineMovie1 = new OnLineMovieDto(
-                1L,
+                null,
                 "1988",
                 "Online TestTitle1",
                 "imdbID_O1",
                 "www.Online-poster11",
-                "OnLine supplier",
+                "On Line",
 //        onLineMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
                 onLineMovieDetails.onLineMovieDetails().get().get(0));
 
         OnLineMovieDto onLineMovie2 = new OnLineMovieDto(
-                2L,
+                null,
                 "2010",
                 "Online TestTitle2",
                 "imdbID_O2",
                 "www.Online-poster12",
-                "OnLine supplier",
+                "On Line",
 //        onLineMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
                 onLineMovieDetails.onLineMovieDetails().get().get(1));
 

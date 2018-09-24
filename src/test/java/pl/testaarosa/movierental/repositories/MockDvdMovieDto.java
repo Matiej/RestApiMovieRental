@@ -12,18 +12,18 @@ public class MockDvdMovieDto {
 
     public List<DvdMovieDto> dvdMovieDtoList() {
         DvdMovieDto dvdMovie1 = new DvdMovieDto(
-                1L,
+                null,
                 "DvdMovie1",
                 "DvdImdbID_1",
-                "www.DvdPoster",
+                "http://goshico.com/allegro/questionmarksmall.png",
                 "DVD supplier",
                 mockDvdMovieDetails.dvdMovieDetailsList().get(0));
 
         DvdMovieDto dvdMovie2 = new DvdMovieDto(
-                2L,
+                null,
                 "DvdMovie2",
                 "DvdImdbID_2",
-                "www.DvdPoster2",
+                "http://goshico.com/allegro/questionmarksmall.png",
                 "DVD supplier",
                 mockDvdMovieDetails.dvdMovieDetailsList().get(1));
 

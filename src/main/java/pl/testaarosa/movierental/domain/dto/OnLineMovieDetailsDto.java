@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import java.util.Objects;
+
 public class OnLineMovieDetailsDto {
 
     private Long id;
@@ -156,5 +158,53 @@ public class OnLineMovieDetailsDto {
 
     public void setProduction(String production) {
         this.production = production;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OnLineMovieDetailsDto that = (OnLineMovieDetailsDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(released, that.released) &&
+                Objects.equals(runtime, that.runtime) &&
+                Objects.equals(genre, that.genre) &&
+                Objects.equals(writer, that.writer) &&
+                Objects.equals(actors, that.actors) &&
+                Objects.equals(plot, that.plot) &&
+                Objects.equals(language, that.language) &&
+                Objects.equals(country, that.country) &&
+                Objects.equals(awards, that.awards) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(production, that.production);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imdbID, title, year, released, runtime, genre, writer, actors, plot, language, country, awards, poster, production);
+    }
+
+    @Override
+    public String toString() {
+        return "OnLineMovieDetailsDto{" +
+                "id=" + id +
+                ", imdbID='" + imdbID + '\'' +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", released='" + released + '\'' +
+                ", runtime='" + runtime + '\'' +
+                ", genre='" + genre + '\'' +
+                ", writer='" + writer + '\'' +
+                ", actors='" + actors + '\'' +
+                ", plot='" + plot + '\'' +
+                ", language='" + language + '\'' +
+                ", country='" + country + '\'' +
+                ", awards='" + awards + '\'' +
+                ", poster='" + poster + '\'' +
+                ", production='" + production + '\'' +
+                '}';
     }
 }

@@ -13,8 +13,8 @@ public class OnLineMovieMapper {
     public OnLineMovieDto mapToOnlineMovieDto(OnLineMovie onLineMovie) {
         return new OnLineMovieDto(
                 onLineMovie.getId(),
-                onLineMovie.getTitle(),
                 onLineMovie.getYear(),
+                onLineMovie.getTitle(),
                 onLineMovie.getImdbID(),
                 onLineMovie.getPoster(),
                 onLineMovie.getSupplier(),
@@ -25,8 +25,8 @@ public class OnLineMovieMapper {
         return onLineMovies.stream()
                 .map(o -> new OnLineMovieDto(
                         o.getId(),
-                        o.getTitle(),
                         o.getYear(),
+                        o.getTitle(),
                         o.getImdbID(),
                         o.getPoster(),
                         o.getSupplier(),

@@ -114,4 +114,18 @@ public class DvdMovieDetails {
     public int hashCode() {
         return Objects.hash(id, imdbID, title, countryOfOrigin, type, price, poster, supplier);
     }
+
+    @Override
+    public String toString() {
+        return "DvdMovieDetails{" +
+                "id=" + id +
+                ", imdbID='" + imdbID + '\'' +
+                ", title='" + title + '\'' +
+                ", countryOfOrigin='" + countryOfOrigin + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", poster='" + poster + '\'' +
+                ", supplier='" + supplier + '\'' +
+                '}';
+    }
 }

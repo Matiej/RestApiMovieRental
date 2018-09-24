@@ -2,11 +2,13 @@ package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 
+import java.util.Objects;
+
 public class OnLineMovieDto {
 
     private Long id;
-    private String title;
     private String year;
+    private String title;
     private String imdbID;
 //    private String type;
     private String poster;
@@ -86,5 +88,37 @@ public class OnLineMovieDto {
 
     public void setOnLineMovieDetails(OnLineMovieDetails onLineMovieDetails) {
         this.onLineMovieDetails = onLineMovieDetails;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OnLineMovieDto that = (OnLineMovieDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(supplier, that.supplier) &&
+                Objects.equals(onLineMovieDetails, that.onLineMovieDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, year, imdbID, poster, supplier, onLineMovieDetails);
+    }
+
+    @Override
+    public String toString() {
+        return "OnLineMovieDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", imdbID='" + imdbID + '\'' +
+                ", poster='" + poster + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", onLineMovieDetails=" + onLineMovieDetails +
+                '}';
     }
 }
