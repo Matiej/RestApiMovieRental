@@ -8,6 +8,7 @@ import pl.testaarosa.movierental.domain.UserMovie;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDto {
 
@@ -143,7 +144,38 @@ public class UserDto {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", matchingPassword='" + matchingPassword + '\'' +
+                ", isEnabled=" + isEnabled +
                 ", registerDate=" + registerDate +
+                ", userRentalDetails=" + userRentalDetails +
+                ", movieWishes=" + movieWishes +
+                ", userMovies=" + userMovies +
+                ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return isEnabled == userDto.isEnabled &&
+                Objects.equals(id, userDto.id) &&
+                Objects.equals(name, userDto.name) &&
+                Objects.equals(surname, userDto.surname) &&
+                Objects.equals(email, userDto.email) &&
+                Objects.equals(password, userDto.password) &&
+                Objects.equals(matchingPassword, userDto.matchingPassword) &&
+                Objects.equals(registerDate, userDto.registerDate) &&
+                Objects.equals(userRentalDetails, userDto.userRentalDetails) &&
+                Objects.equals(movieWishes, userDto.movieWishes) &&
+                Objects.equals(userMovies, userDto.userMovies) &&
+                Objects.equals(role, userDto.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, email, password, matchingPassword, isEnabled, registerDate, userRentalDetails, movieWishes, userMovies, role);
     }
 }

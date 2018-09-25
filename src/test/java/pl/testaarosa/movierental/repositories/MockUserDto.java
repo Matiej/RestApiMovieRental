@@ -21,11 +21,11 @@ public class MockUserDto {
                 "znikenson@gmail.com",
                 "password",
                 "password",
-                true,
-                userDate,
+                false,
+                LocalDateTime.now().withNano(0),
                 mockUserDetails.userDetails().get(0),
-                null,
-                null,
+                new ArrayList<>(),
+                new ArrayList<>(),
                 role.getRole());
 
         UserDto mockUser2 = new UserDto(
@@ -35,11 +35,11 @@ public class MockUserDto {
                 "znikenson2@gmail.com",
                 "password2",
                 "password2",
-                true,
-                userDate,
-                mockUserDetails.userDetails().get(0),
-                null,
-                null,
+                false,
+                LocalDateTime.now().withNano(0),
+                mockUserDetails.userDetails().get(1),
+                new ArrayList<>(),
+                new ArrayList<>(),
                 role.getRole());
 
         List<UserDto> userList = new ArrayList<>();

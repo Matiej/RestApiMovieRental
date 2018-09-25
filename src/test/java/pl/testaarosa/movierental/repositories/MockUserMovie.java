@@ -22,7 +22,7 @@ public class MockUserMovie {
         UserMovie userMovie2 = UserMovie.builder()
                 .imdbID("xxx2")
                 .title("My Nice Movie2")
-                .genre(UserMovieGenre.COMEDY)
+                .genre(UserMovieGenre.ROMANCE)
                 .userMovieDetails(details.userMovieDetails().get(1))
                 .user(mockUser.mockUser().get(1))
                 .build();

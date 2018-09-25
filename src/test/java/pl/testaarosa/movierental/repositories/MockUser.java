@@ -33,10 +33,11 @@ public class MockUser {
                 .email("znikenson2@gmail.com")
                 .password("password2")
                 .matchingpassword("password2")
-                .registerDate(userDate)
-                .enabled(true)
+                .registerDate(LocalDateTime.now().withNano(0))
+                .enabled(false)
                 .userDetails(mockUserDetails.userDetails().get(1))
                 .build();
+        mockUser2.setRole(role.getRole());
         mockUser2.setId(2L);
 
         List<User> userList = new ArrayList<>();
