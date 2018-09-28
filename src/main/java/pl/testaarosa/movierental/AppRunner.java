@@ -34,7 +34,7 @@ public class AppRunner implements CommandLineRunner {
 //        user.setEmail("maciek@testaarosa.pl");
 //        user.setPassword("admin");
 //        user.setRegisterDate(LocalDateTime.now().withNano(0));
-//        user.setBrithday("1979-08-07");
+//        user.setBirthday("1979-08-07");
 //        user.setCitshy("Izabelin");
 //        user.setStreet("Chlopickiego 48");
 //        user.setUserGender(UserGender.NOTSURE);

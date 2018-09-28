@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register_success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        <!--#movieTitle {-->
+            <!--background-color: gray;-->
+            <!--border: 1px black;-->
+            <!--margin-left: 15px;-->
+            <!--color: black;-->
+            <!--padding: 13px;-->
+            <!--text-align: center;-->
+        <!--}-->
+
+        <!--.movieDet {-->
+            <!--background-color: darkgray;-->
+            <!--border: 5px black;-->
+            <!--margin-left: 150px;-->
+            <!--margin-right: 150px;-->
+            <!--color: white;-->
+            <!--padding: 1px;-->
+            <!--text-align: center;-->
+        <!--}-->
+
+        <!--.textdet {-->
+            <!--background-color: white;-->
+            <!--border: 11px black;-->
+            <!--margin-left: 150px;-->
+            <!--margin-right: 150px;-->
+            <!--color: black;-->
+            <!--padding: 1px;-->
+            <!--text-align: center;-->
+        <!--}-->
+        <!--img {-->
+            <!--position: center;-->
+            <!--top: 0; bottom:0; left: 400px; child-align: right;-->
+            <!--margin: auto;-->
+        <!--}-->
+    </style>
+
+</head>
+<body>
+<div th:include="navi_n :: menu_n"></div>
+<div class="container">
+<!--<form th:action="@{/users/updateuser}" th:object="${updatedRemoteUser}"> -->
+    <h2 id="movieDet">Yours account: <font color="red"><p th:text="${updatedRemoteUser.email}"></p></font> has been successfully updated! </h2>
+<!--<h1>Account details:</h1>-->
+
+<table>
+    <tr>
+        <td colspan='2'>
+            <h4 class="movieDet">ACTUAL USER DATA</h4>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">User ID: </pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.id}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">e-mail/login</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.email}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">User name:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.name}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">Surname:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.surname}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">Birthday:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.userRentalDetails.birthday}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">Register date:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.registerDate}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">City:</pre>
+        </td>
+        <td>
+            <pre class="pre1"  th:text="${updatedRemoteUser.userRentalDetails.city}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1" >Street:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.userRentalDetails.street}"></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="pre1">Gender:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.userRentalDetails.userGender}"></pre>
+        </td>
+    </tr>
+</table>
+<!--</form>-->
+</div>
+</body>
+</html>
+
+

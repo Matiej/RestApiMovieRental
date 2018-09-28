@@ -2,6 +2,7 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.domain.UserMovieDetails;
@@ -31,6 +32,7 @@ public class UserMovieServiceImpl implements UserMovieService {
         return userMovieRepository.findById(id);
     }
 
+    @Transactional
     @Override
     public UserMovie add(String remoteUser, UserMovieForm movieForm) {
         User user = userService.findRemoteUser(remoteUser);

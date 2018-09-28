@@ -8,6 +8,7 @@ import pl.testaarosa.movierental.form.UserForm;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Component
 public class UserFormMapper {
@@ -15,8 +16,9 @@ public class UserFormMapper {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final LocalDateTime currentDate = LocalDateTime.now().withNano(0);
 
+    //TODO aby uzyc tego do update usera trzeba wykorzystac id
     public User mapToUser(UserForm userForm) {
-        return User.builder()
+        User user =  User.builder()
                 .name(userForm.getName())
                 .surname(userForm.getSurname())
                 .email(userForm.getEmail())
@@ -24,10 +26,14 @@ public class UserFormMapper {
                 .matchingpassword(userForm.getMatchingPassword())
                 .registerDate(currentDate)
                 .build();
+        if(Optional.ofNullable(userForm.getId()).isPresent()) {
+            user.setId(userForm.getId());
+        }
+        return user;
     }
 
-    public UserRentalDetails mapToUserDetails(UserForm userForm){
-        LocalDate localDate = LocalDate.parse(userForm.getBrithday(), formatter);
+    public UserRentalDetails mapToUserDetails(UserForm userForm) {
+        LocalDate localDate = LocalDate.parse(userForm.getBirthday(), formatter);
         return UserRentalDetails.builder()
                 .birthday(localDate)
                 .city(userForm.getCity())
@@ -35,5 +41,21 @@ public class UserFormMapper {
                 .userGender(userForm.getUserGender())
                 .build();
     }
+
+//    public UserForm mapToUserForm(User user) {
+//        UserForm userFrom = new UserForm(
+//                user.getName(),
+//                user.getSurname(),
+//                user.getEmail(),
+//                user.getPassword(),
+//                user.getMatchingPassword(),
+//                user.getRegisterDate(),
+//                user.getUserRentalDetails().getBirthday().toString(),
+//                user.getUserRentalDetails().getCity(),
+//                user.getUserRentalDetails().getStreet(),
+//                user.getUserRentalDetails().getUserGender());
+//        userFrom.setId(user.getId());
+//        return userFrom;
+//    }
 
 }

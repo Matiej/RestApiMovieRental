@@ -12,7 +12,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import pl.testaarosa.movierental.domain.User;
+import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.facade.UserFacade;
+import pl.testaarosa.movierental.form.dto.UpdateUserFormDto;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +59,6 @@ public class UserController {
         return "userForm";
     }
 
-    @Transactional
     @PostMapping("/adduser_n")
     public String addUserN(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                            WebRequest request, Errors errors) throws EmailExistsException {
@@ -147,4 +148,45 @@ public class UserController {
         }
         return "logout_";
     }
+//TODO test
+    @PostMapping("/updateuser")
+    public String update(HttpServletRequest request, Model model, @ModelAttribute @Valid UpdateUserFormDto updateUserFormDto,
+                         BindingResult bindingResult, Errors errors) {
+        boolean emailPass = false;
+        String remoteUserEmail = request.getRemoteUser();
+        UserDto remoteUser = userFacade.findRemoteUser(remoteUserEmail);
+        if(!bindingResult.hasErrors()) {
+            emailPass = updateUserAccout(updateUserFormDto,remoteUser);
+        }
+        if (!emailPass) {
+            bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
+                    + updateUserFormDto.getEmail());
+        }
+        if(bindingResult.hasErrors()) {
+            UpdateUserFormDto remoteUserForUpdate = userFacade.findRemoteUserForUpdate(request.getRemoteUser());
+            model.addAttribute("userUpdateInfo", remoteUserForUpdate);
+            return "userUpdateForm";
+        } else {
+            model.addAttribute("updatedRemoteUser",remoteUser);
+            return "successUpdate";
+        }
+    }
+
+    private boolean updateUserAccout(UpdateUserFormDto updateUserFormDto, UserDto remoteUser) {
+        try {
+            userFacade.updateUser(updateUserFormDto, remoteUser);
+        } catch (EmailExistsException e) {
+            return false;
+        }
+        return true;
+    }
+//TODO testy
+    @GetMapping("/updateuser")
+    public String updateShowForm(HttpServletRequest request, Model model) {
+        UpdateUserFormDto remoteUserForUpdate = userFacade.findRemoteUserForUpdate(request.getRemoteUser());
+        model.addAttribute("userUpdateInfo", remoteUserForUpdate);
+        model.addAttribute("updateUserFormDto", remoteUserForUpdate);
+        return "userUpdateForm";
+    }
+
 }

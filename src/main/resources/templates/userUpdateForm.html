@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>User_Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:include="navi :: menu"></div>
+
+<datalist id="gender">
+    <select>
+        <option th:each="gen : ${T(pl.testaarosa.movierental.domain.UserGender).values()}" th:value="${gen}"
+                th:text="${gen.name}"></option>
+    </select>
+</datalist>
+<div class="container">
+    <form th:action="@{/users/updateuser}" th:object="${userUpdateInfo}" method="post">
+    <!--<form th:action="@{/users/updateuser}" method="post">-->
+        <h2 class="movieDet">Update user data:</h2>
+        <table>
+            <tr>
+                <td colspan='2'>
+                    <h4 class="movieDet">ACTUAL USER DATA</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">User ID: </pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.id}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">e-mail/login</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.email}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">User name:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.name}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Surname:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.surname}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Birthday:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.birthday}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Register date:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.registerDate}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">City:</pre>
+                </td>
+                <td>
+                    <pre class="pre1"  th:text="${userUpdateInfo.city}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1" >Street:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.street}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Gender:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userUpdateInfo.userGender}"></pre>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+        <form th:action="@{/users/updateuser}" th:object="${updateUserFormDto}" method="post">
+        <br/>
+        <h2 class="userDataOrange">Enter new user data:</h2>
+        <br/>
+        <div class="form-row">
+            <div class="col-xs-2">
+                <label>User ID:</label>
+                <input  type="text" class="form-control" disabled="disabled" th:field="${userUpdateInfo.id}"/>
+                <!--<input type="text" class="form-control" disabled="disabled"-->
+                       <!--th:if="${id != null}" th:field="*{id} ? ${id} : ${userDto.id"/>-->
+                <!--<font color="red" > <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></td>-->
+                <!--</font>-->
+            </div>
+            <div class="form-group col-md-4">
+                <label>User name:</label>
+                <input type="text" class="form-control" th:field="*{name}"/>
+                <font color="red" > <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </font>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Surname:</label>
+                <input type="text" class="form-control"
+                       th:field="*{surname}"/>
+                <font color="red" > <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
+                </font>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+        <div class="form-row">
+            <div class="col-xs-4">
+                <label>User e-mail:</label>
+                <!--<input type="email" class="form-control" placeholder="email" th:field="*{email}"/>-->
+                <input type="email" class="form-control" placeholder="email"
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" th:field="*{email}"/>
+                <font color="red" > <td th:each="error : ${#fields.errors('email')}"  th:errors="*{email}"></td></font>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+        <div class="form-row">
+            <div class="col-xs-2">
+                <label>Birthday date:</label>
+                <input type="date" class="form-control" th:field="*{birthday}"/>
+                <font color="red" > <td th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></td>
+                </font>
+            </div>
+
+            <div class="col-xs-4">
+                <label>City:</label>
+                <input type="text" class="form-control" placeholder="city"
+                       th:field="*{city}"/>
+                <font color="red" > <td rowspan="6" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
+                </font>
+            </div>
+
+            <div class="col-xs-4">
+                <label>Street:</label>
+                <input type="text" class="form-control" placeholder="street number/flat"
+                       th:field="*{street}"/>
+                <font color="red" > <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
+                </font>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+
+        <div class="form-row">
+            <div class="col-xs-4">
+                <label for="gender">Gender:</label>
+                <input list="gender" class="form-control" th:field="*{userGender}"/>
+                <td rowspan="6" th:if="${#fields.hasErrors('userGender')}" th:errors="*{userGender}"></td>
+                <br/>
+
+                <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Save</button>
+                <button type="reset" class="btn btn-lg btn-block btn-warning">Reset</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

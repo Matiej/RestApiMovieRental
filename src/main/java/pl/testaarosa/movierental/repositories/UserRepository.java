@@ -17,4 +17,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByEmail(String email);
     @Query
     User findRemoteUser(@Param("remoteUser") String remoteUser);
+    @Query
+    List<User> getUsersToCheckEmailExist(@Param("id") Long id);
 }

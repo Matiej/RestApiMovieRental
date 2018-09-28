@@ -5,30 +5,33 @@ import pl.testaarosa.movierental.domain.UserGender;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class UserForm {
+public class UpdateUserForm {
 
     private Long id;
     private String name;
     private String surname;
     private String email;
-    private String password;
-    private String matchingPassword;
     private LocalDateTime registerDate;
+    private LocalDateTime lastUpdateDate;
     private String birthday;
+    private String zip;
     private String city;
     private String street;
     private UserGender userGender;
 
-    public UserForm(String name, String surname, String email, String password, String matchingPassword,
-                    LocalDateTime registerDate, String birthday,
-                    String city, String street, UserGender userGender) {
+    public UpdateUserForm() {
+    }
+
+    public UpdateUserForm(Long id, String name, String surname, String email, LocalDateTime registerDate,
+                          LocalDateTime lastUpdateDate, String birthday, String zip, String city, String street, UserGender userGender) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.password = password;
-        this.matchingPassword = matchingPassword;
         this.registerDate = registerDate;
+        this.lastUpdateDate = lastUpdateDate;
         this.birthday = birthday;
+        this.zip = zip;
         this.city = city;
         this.street = street;
         this.userGender = userGender;
@@ -67,7 +70,7 @@ public class UserForm {
     }
 
     public LocalDateTime getRegisterDate() {
-        return LocalDateTime.now().withNano(0);
+        return registerDate;
     }
 
     public void setRegisterDate(LocalDateTime registerDate) {
@@ -80,6 +83,14 @@ public class UserForm {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public String getCity() {
@@ -106,55 +117,51 @@ public class UserForm {
         this.userGender = userGender;
     }
 
-    public String getPassword() {
-        return password;
+    public LocalDateTime getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
-    }
-
-    @Override
-    public String toString() {
-        return "UserForm{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", registerDate=" + registerDate +
-                ", birthday=" + birthday +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", userGender=" + userGender +
-                '}';
+    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserForm userForm = (UserForm) o;
-        return Objects.equals(name, userForm.name) &&
-                Objects.equals(surname, userForm.surname) &&
-                Objects.equals(email, userForm.email) &&
-                Objects.equals(password, userForm.password) &&
-                Objects.equals(matchingPassword, userForm.matchingPassword) &&
-                Objects.equals(registerDate, userForm.registerDate) &&
-                Objects.equals(birthday, userForm.birthday) &&
-                Objects.equals(city, userForm.city) &&
-                Objects.equals(street, userForm.street) &&
-                userGender == userForm.userGender;
+        UpdateUserForm that = (UpdateUserForm) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(surname, that.surname) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(registerDate, that.registerDate) &&
+                Objects.equals(lastUpdateDate, that.lastUpdateDate) &&
+                Objects.equals(birthday, that.birthday) &&
+                Objects.equals(zip, that.zip) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(street, that.street) &&
+                userGender == that.userGender;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, email, password, matchingPassword, registerDate, birthday, city, street, userGender);
+        return Objects.hash(id, name, surname, email, registerDate, lastUpdateDate, birthday, zip, city, street, userGender);
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateUserForm{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", registerDate=" + registerDate +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", birthday='" + birthday + '\'' +
+                ", zip='" + zip + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", userGender=" + userGender +
+                '}';
     }
 }

@@ -2,17 +2,15 @@ package pl.testaarosa.movierental.form.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
-import pl.testaarosa.movierental.validator.PasswordMatches;
 import pl.testaarosa.movierental.validator.ValidEmail;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@PasswordMatches()
-public class UserFormDto {
+public class UpdateUserFormDto {
 
-    private Long Id;
+    private Long id;
     @Size(min = 2, message = "I'm sorry dear user, name size must by min 2 chars here")
     private String name;
     @Size(min = 2, message = "I'm sorry dear user, name size must by min 2 chars here")
@@ -20,42 +18,42 @@ public class UserFormDto {
     @ValidEmail
     @NotEmpty
     private String email;
-    @NotEmpty
-    private String password;
-    @Size(min = 4, message = "password min size is 4")
-    private String matchingPassword;
     private LocalDateTime registerDate;
+    private LocalDateTime lastUpdateDate;
     @Size(min = 10, max = 10, message = "The year must entered in this way (yyyy-MM-dd)")
     private String birthday;
+//    @NotEmpty
+    private String zip;
     @NotEmpty
     private String city;
     @NotEmpty
     private String street;
     private UserGender userGender;
 
-    public UserFormDto() {
+    public UpdateUserFormDto() {
     }
 
-    public UserFormDto(String name, String surname, String email, String password, String matchingPassword,
-                       LocalDateTime registerDate, String birthday, String city, String street, UserGender userGender) {
+    public UpdateUserFormDto(Long id, String name, String surname, String email, LocalDateTime registerDate,
+                             LocalDateTime lastUpdateDate, String birthday, String zip, String city, String street, UserGender userGender) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.password = password;
-        this.matchingPassword = matchingPassword;
         this.registerDate = registerDate;
+        this.lastUpdateDate = lastUpdateDate;
         this.birthday = birthday;
+        this.zip = zip;
         this.city = city;
         this.street = street;
         this.userGender = userGender;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -98,6 +96,14 @@ public class UserFormDto {
         this.birthday = birthday;
     }
 
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
     public String getCity() {
         return city;
     }
@@ -122,48 +128,27 @@ public class UserFormDto {
         this.userGender = userGender;
     }
 
-    public String getPassword() {
-        return password;
+    public LocalDateTime getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
-    }
-
-    @Override
-    public String toString() {
-        return "UserFormDto{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", registerDate=" + registerDate +
-                ", birthday=" + birthday +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", userGender=" + userGender +
-                '}';
+    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserFormDto that = (UserFormDto) o;
-        return Objects.equals(name, that.name) &&
+        UpdateUserFormDto that = (UpdateUserFormDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
                 Objects.equals(surname, that.surname) &&
                 Objects.equals(email, that.email) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(matchingPassword, that.matchingPassword) &&
                 Objects.equals(registerDate, that.registerDate) &&
+                Objects.equals(lastUpdateDate, that.lastUpdateDate) &&
                 Objects.equals(birthday, that.birthday) &&
+                Objects.equals(zip, that.zip) &&
                 Objects.equals(city, that.city) &&
                 Objects.equals(street, that.street) &&
                 userGender == that.userGender;
@@ -171,6 +156,23 @@ public class UserFormDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, email, password, matchingPassword, registerDate, birthday, city, street, userGender);
+        return Objects.hash(id, name, surname, email, registerDate, lastUpdateDate, birthday, zip, city, street, userGender);
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateUserFormDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", registerDate=" + registerDate +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", birthday='" + birthday + '\'' +
+                ", zip='" + zip + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", userGender=" + userGender +
+                '}';
     }
 }

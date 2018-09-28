@@ -73,7 +73,7 @@ public class UserServiceImplTestSuit {
         when(userFormMapper.mapToUser(userFormList.get(0))).thenReturn(userList.get(0));
         when(userFormMapper.mapToUserDetails(userFormList.get(0))).thenReturn(userList.get(0).getUserRentalDetails());
         when(roleRepository.findByName("USER")).thenReturn(role.getRole());
-        doNothing().when(emailNotifierService).sendEmail(userFormList.get(0));
+        doNothing().when(emailNotifierService).sendEmailToNewUser(userFormList.get(0));
         when(userRepository.findByEmail(userFormList.get(0).getEmail()))
                 .thenReturn(java.util.Optional.ofNullable(userList.get(0)));
         when(userRepository.save(userList.get(0))).thenReturn(userList.get(0));
@@ -97,7 +97,7 @@ public class UserServiceImplTestSuit {
         when(userFormMapper.mapToUser(userFormList.get(0))).thenReturn(userList.get(0));
         when(userFormMapper.mapToUserDetails(userFormList.get(0))).thenReturn(userList.get(0).getUserRentalDetails());
         when(roleRepository.findByName("USER")).thenReturn(role.getRole());
-        doNothing().when(emailNotifierService).sendEmail(userFormList.get(0));
+        doNothing().when(emailNotifierService).sendEmailToNewUser(userFormList.get(0));
         when(userRepository.save(userList.get(0))).thenReturn(userList.get(0));
         //when
         User result = userService.add(userFormList.get(0));
@@ -106,7 +106,7 @@ public class UserServiceImplTestSuit {
         assertEquals(expected.getName(), result.getName());
         assertEquals(expected, result);
         assertNotEquals(userList.get(1).getName(), result.getName());
-        verify(emailNotifierService, times(1)).sendEmail(userFormList.get(0));
+        verify(emailNotifierService, times(1)).sendEmailToNewUser(userFormList.get(0));
     }
 
     @Test

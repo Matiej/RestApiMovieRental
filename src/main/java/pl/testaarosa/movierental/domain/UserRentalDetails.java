@@ -24,7 +24,7 @@ public class UserRentalDetails {
     }
 
     private UserRentalDetails(UserDetailsBuilder userDetailsBuilder) {
-        this.birthday = userDetailsBuilder.brithday;
+        this.birthday = userDetailsBuilder.birthday;
         this.city = userDetailsBuilder.city;
         this.street = userDetailsBuilder.street;
         this.userGender = userDetailsBuilder.userGender;
@@ -37,6 +37,10 @@ public class UserRentalDetails {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDate getBirthday() {
@@ -59,19 +63,19 @@ public class UserRentalDetails {
         return user;
     }
 
-    public static NeedBrithday builder() {
+    public static NeedBirthday builder() {
         return new UserDetailsBuilder();
     }
 
-    private static class UserDetailsBuilder implements NeedBrithday, NeedCity, NeedStreet, NeedUserGender, CanBeBuild {
-        private LocalDate brithday;
+    private static class UserDetailsBuilder implements NeedBirthday, NeedCity, NeedStreet, NeedUserGender, CanBeBuild {
+        private LocalDate birthday;
         private String city;
         private String street;
         private UserGender userGender;
         private User user;
 
-        public UserDetailsBuilder birthday(LocalDate brithday) {
-            this.brithday = brithday;
+        public UserDetailsBuilder birthday(LocalDate birthday) {
+            this.birthday = birthday;
             return this;
         }
 
@@ -100,8 +104,8 @@ public class UserRentalDetails {
         }
     }
 
-    public interface NeedBrithday {
-        public NeedCity birthday(LocalDate brithday);
+    public interface NeedBirthday {
+        public NeedCity birthday(LocalDate birthday);
     }
 
     public interface NeedCity {

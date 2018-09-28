@@ -12,7 +12,9 @@ import java.util.Objects;
 
 @NamedQueries({
         @NamedQuery(name = "User.findRemoteUser", query = "FROM User " +
-                "WHERE email = :remoteUser")})
+                "WHERE email = :remoteUser"),
+        @NamedQuery(name = "User.getUsersToCheckEmailExist", query = "FROM User " +
+                "WHERE id != :id")})
 
 @Entity
 @Table(name = "RENTAL_USER")
@@ -288,14 +290,14 @@ public class User implements org.springframework.security.core.userdetails.UserD
         }
 
         @Override
-        public UserBuilder movieWishes(MovieWish movieWish) {
-            this.movieWishes.add(movieWish);
+        public UserBuilder movieWishes(List<MovieWish> movieWish) {
+            this.movieWishes.addAll(movieWish);
             return this;
         }
 
         @Override
-        public UserBuilder userMovies(UserMovie userMovie) {
-            this.userMovies.add(userMovie);
+        public UserBuilder userMovies(List<UserMovie> userMovie) {
+            this.userMovies.addAll(userMovie);
             return this;
         }
 
@@ -338,8 +340,8 @@ public class User implements org.springframework.security.core.userdetails.UserD
     public interface CanBeBuild {
         CanBeBuild enabled(boolean enabled);
         CanBeBuild userDetails(UserRentalDetails userRentalDetails);
-        CanBeBuild movieWishes(MovieWish movieWish);
-        CanBeBuild userMovies(UserMovie userMovie);
+        CanBeBuild movieWishes(List<MovieWish> movieWish);
+        CanBeBuild userMovies(List<UserMovie> userMovie);
         CanBeBuild role(Role role);
         User build();
     }

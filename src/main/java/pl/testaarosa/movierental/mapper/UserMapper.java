@@ -27,4 +27,39 @@ public class UserMapper {
                         u.getRole()))
                 .collect(Collectors.toList());
     }
+
+    public UserDto mapToUserDto(User user) {
+        return new UserDto(
+                user.getId(),
+                user.getName(),
+                user.getSurname(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getMatchingPassword(),
+                user.isEnabled(),
+                user.getRegisterDate(),
+                user.getUserRentalDetails(),
+                user.getMovieWishes(),
+                user.getUserMovies(),
+                user.getRole());
+    }
+
+    public User mapToUser(UserDto userDto) {
+        User mapedUser = User.builder()
+                .name(userDto.getName())
+                .surname(userDto.getSurname())
+                .email(userDto.getEmail())
+                .password(userDto.getPassword())
+                .matchingpassword(userDto.getPassword())
+                .registerDate(userDto.getRegisterDate())
+                .userDetails(userDto.getUserRentalDetails())
+                .userMovies(userDto.getUserMovies())
+                .movieWishes(userDto.getMovieWishes())
+                .enabled(userDto.isEnabled())
+                .role(userDto.getRole())
+                .build();
+        mapedUser.setId(userDto.getId());
+        return mapedUser;
+    }
+
 }

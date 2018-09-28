@@ -2,6 +2,7 @@ package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.testaarosa.movierental.domain.Movie;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.User;
@@ -28,6 +29,7 @@ public class MovieWishServiceImpl {
         return movieWishRepository.findAllUsersWishForGivenUser(id);
     }
 
+    @Transactional
     public MovieWish createMowieWish(User user) {
         MovieWish movieWish = new MovieWish();
         movieWish.setUser(user);

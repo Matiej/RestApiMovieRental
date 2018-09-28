@@ -1,0 +1,71 @@
+table {
+  width: 100%;
+  background-color: transparent;
+ }
+ td {
+   text-align: center;
+   border: 2px solid black;
+   background-color: transparent;
+   text-color: white;
+ }
+.pre1 {
+    background-color: transparent;
+    text-color: white;
+    color: white;
+ }
+
+ h1{
+   background-color:whitesmoke;
+   text-align: center;
+   color:black;
+   }
+ .button {
+   display: block;
+   height: 30px;
+   margin-bottom: 10px;
+   text-align: center;
+   line-height: 30px;
+   width: 350px;
+   margin: 20px;
+  color: #BF3F6A;
+  text-align: center;
+  border: solid #427AA8 1px;
+  order-radius: 5px;
+  text-decoration: none;
+}
+
+         .movieDet {
+             background-color: darkgray;
+             border: 5px black;
+             margin-left: 150px;
+             margin-right: 150px;
+             color: white;
+             padding: 1px;
+             text-align: center;
+         }
+
+          .userDataOrange {
+              background-color: darkgray;
+              border: 5px black;
+              margin-left: 150px;
+              margin-right: 150px;
+              color: orange;
+              padding: 1px;
+              text-align: center;
+          }
+
+         img {
+             position: center;
+             top: 0;
+             bottom: 0;
+             left: 400px;
+             child-align: right;
+             margin: auto;
+         }
+                 body {
+             background: #43cea2;
+             background: -webkit-linear-gradient(to left, #4b4b4b, #9fb4ad);
+             background: linear-gradient(to left, #4b4b4b, #9fb4ad);
+             color: #fff;
+             text-align: center;
+         }

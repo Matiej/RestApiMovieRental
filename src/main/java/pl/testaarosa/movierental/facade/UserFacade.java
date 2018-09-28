@@ -8,12 +8,14 @@ import pl.testaarosa.movierental.domain.dto.MovieDto;
 import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.domain.dto.UserMovieDto;
+import pl.testaarosa.movierental.form.dto.UpdateUserFormDto;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
 import pl.testaarosa.movierental.form.dto.UserMovieFormDto;
 import pl.testaarosa.movierental.mapper.MovieMapper;
 import pl.testaarosa.movierental.mapper.MovieWishMapper;
 import pl.testaarosa.movierental.mapper.UserMapper;
 import pl.testaarosa.movierental.mapper.UserMovieMapper;
+import pl.testaarosa.movierental.mapper.form.UpdateUserFormDtoMapper;
 import pl.testaarosa.movierental.mapper.form.UserFormDtoMapper;
 import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
 import pl.testaarosa.movierental.services.MovieWishServiceImpl;
@@ -45,7 +47,8 @@ public class UserFacade {
     private MovieWishMapper movieWishMapper;
     @Autowired
     private MovieMapper movieMapper;
-
+    @Autowired
+    private UpdateUserFormDtoMapper updateUserFormDtoMapper;
 
     public List<UserDto> findAllUsers() {
         return userMapper.userList(userService.findAll());
@@ -55,6 +58,19 @@ public class UserFacade {
         User user = userService.add(userFormDtoMapper.mapToUserForm(userFormDto));
         movieWishService.createMowieWish(user);
         return user;
+    }
+
+    public User updateUser(UpdateUserFormDto updateUserFormDto, UserDto remoteUser) {
+        return userService.update(updateUserFormDtoMapper.mapToUpdateUserForm(updateUserFormDto)
+                ,userMapper.mapToUser(remoteUser));
+    }
+
+    public UserDto findRemoteUser(String remoteUser) {
+        return userMapper.mapToUserDto(userService.findRemoteUser(remoteUser));
+    }
+
+    public UpdateUserFormDto findRemoteUserForUpdate(String remoteUser){
+        return updateUserFormDtoMapper.mapToUpdateUserFormDto(userService.findRemoteUserForUpdate(remoteUser));
     }
 
     public List<UserMovieDto> findAllUserMoviesForGivenUser(String remoteUser) {
