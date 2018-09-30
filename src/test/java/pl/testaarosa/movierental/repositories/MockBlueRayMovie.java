@@ -39,10 +39,20 @@ public class MockBlueRayMovie {
         blueRayMovie3.setMovieWishList(mockMovieWish.mockMovieWish());
         blueRayMovie3.setBlueRayMovieDetails(mockBlueRayMovieDetails.blueRayMovieDetails().get(2));
 
+        BlueRayMovie blueRayMovie4Equals = new BlueRayMovie();
+        blueRayMovie4Equals.setId(3L);
+        blueRayMovie4Equals.setTitle("TestTitle3");
+        blueRayMovie4Equals.setImdbID("imdbID_3");
+        blueRayMovie4Equals.setPoster("www.poster13");
+        blueRayMovie4Equals.setSupplier("BlueRayMovie");
+        blueRayMovie4Equals.setMovieWishList(mockMovieWish.mockMovieWish());
+        blueRayMovie4Equals.setBlueRayMovieDetails(mockBlueRayMovieDetails.blueRayMovieDetails().get(2));
+
         List<BlueRayMovie> blueRayMovielist = new ArrayList<>();
         blueRayMovielist.add(blueRayMovie1);
         blueRayMovielist.add(blueRayMovie2);
         blueRayMovielist.add(blueRayMovie3);
+        blueRayMovielist.add(blueRayMovie4Equals);
 
         return blueRayMovielist;
     }

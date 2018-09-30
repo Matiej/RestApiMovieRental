@@ -18,7 +18,7 @@ import pl.testaarosa.movierental.mapper.UserMovieMapper;
 import pl.testaarosa.movierental.mapper.form.UpdateUserFormDtoMapper;
 import pl.testaarosa.movierental.mapper.form.UserFormDtoMapper;
 import pl.testaarosa.movierental.mapper.form.UserMovieFormDtoMapper;
-import pl.testaarosa.movierental.services.MovieWishServiceImpl;
+import pl.testaarosa.movierental.services.MovieWishService;
 import pl.testaarosa.movierental.services.UserMovieService;
 import pl.testaarosa.movierental.services.UserService;
 
@@ -40,9 +40,7 @@ public class UserFacade {
     @Autowired
     private UserMovieMapper userMovieMapper;
     @Autowired
-    private MovieWishServiceImpl movieWishService;
-    @Autowired
-    private MovieWishServiceImpl moviesWishListService;
+    private MovieWishService movieWishService;
     @Autowired
     private MovieWishMapper movieWishMapper;
     @Autowired
@@ -94,23 +92,23 @@ public class UserFacade {
     }
 
     public MovieWishDto addMovie(String remoteUser, Long id) {
-        return movieWishMapper.mapToMovieWishDto(moviesWishListService.addMovieToWish(remoteUser, id));
+        return movieWishMapper.mapToMovieWishDto(movieWishService.addMovieToWish(remoteUser, id));
     }
 
     public MovieWishDto findUsersWishForGivenUser(String remoteUser) {
-        return movieWishMapper.mapToMovieWishDto(moviesWishListService.findUsersWishForGivenUser(remoteUser));
+        return movieWishMapper.mapToMovieWishDto(movieWishService.findUsersWishForGivenUser(remoteUser));
     }
 
     public List<MovieWishDto> findAllWishes() {
-        return movieWishMapper.mapToMovieWishDtoList(moviesWishListService.findAllWishes());
+        return movieWishMapper.mapToMovieWishDtoList(movieWishService.findAllWishes());
     }
 
     public MovieWishDto findById(Long id) {
-        return movieWishMapper.mapToMovieWishDto(moviesWishListService.findById(id));
+        return movieWishMapper.mapToMovieWishDto(movieWishService.findById(id));
     }
 
     public List<MovieDto> findMoviesForWishByWishId(Long id) {
-        MovieWishDto movieWishDto = movieWishMapper.mapToMovieWishDto(moviesWishListService.findById(id));
+        MovieWishDto movieWishDto = movieWishMapper.mapToMovieWishDto(movieWishService.findById(id));
         return movieMapper.mapTOMovieDtoList(movieWishDto.getMoviesList());
     }
 }

@@ -111,7 +111,7 @@ public class UserController {
 //        return "userMovieSearchResult";
 //    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String getLoginView(Model model, HttpServletRequest httpServletRequest) {
         try {
             Object flash = httpServletRequest.getSession().getAttribute("flash");
@@ -123,7 +123,7 @@ public class UserController {
         return "login_u";
     }
 
-    @RequestMapping(value = "/login_new", method = RequestMethod.GET)
+    @GetMapping(value = "/login_new")
     public String getLoginViewN(Model model, HttpServletRequest httpServletRequest) {
         try {
             Object flash = httpServletRequest.getSession().getAttribute("flash");
@@ -135,12 +135,12 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping(value = "/accesdenied", method = RequestMethod.GET)
+    @GetMapping(value = "/accesdenied")
     public String accesDenied() {
         return "accesdenided";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {

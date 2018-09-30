@@ -30,9 +30,17 @@ public class MockOmdbBlueRayDto {
                 "horror",
                 "www.poster13");
 
+        OmdbBlueRayDto omdbBlueRayDto3EqualsTest = new OmdbBlueRayDto(
+                "TestTitle3",
+                "1999",
+                "imdbID_3",
+                "horror",
+                "www.poster13");
+
         omdbBlueRayDtoList.add(omdbBlueRayDto1);
         omdbBlueRayDtoList.add(omdbBlueRayDto2);
         omdbBlueRayDtoList.add(omdbBlueRayDto3);
+        omdbBlueRayDtoList.add(omdbBlueRayDto3EqualsTest);
         return omdbBlueRayDtoList;
     }
 }

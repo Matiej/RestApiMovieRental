@@ -151,7 +151,6 @@ public class UserRentalDetails {
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", userGender=" + userGender +
-                ", user=" + user +
                 '}';
     }
 }

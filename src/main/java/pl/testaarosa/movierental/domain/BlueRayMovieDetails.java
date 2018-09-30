@@ -188,8 +188,9 @@ public class BlueRayMovieDetails {
                 ", language='" + language + '\'' +
                 ", country='" + country + '\'' +
                 ", awards='" + awards + '\'' +
+                ", poster='" + poster + '\'' +
                 ", production='" + production + '\'' +
-                                '}';
+                '}';
     }
 
     @Override

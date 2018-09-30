@@ -36,21 +36,22 @@ public class OmbdBlueRayMapperTestSuit {
     @Test
     public void shouldMapToBlueRayMoviesList() {
         //given
-        blueRayMovieList.forEach(t-> {
-                    t.setId(null);
-                    t.setMovieWishList(new ArrayList<>());
-                });
+        blueRayMovieList.forEach(t -> {
+            t.setId(null);
+            t.setMovieWishList(new ArrayList<>());
+            t.setBlueRayMovieDetails(null);
+        });
         //when
         List<BlueRayMovie> result = ombdBlueRayMapper.mapToBlueRayMoviesList(omdbBlueRayDtoList);
         //then
-        assertEquals(blueRayMovieList,result);
-        assertEquals(3,result.size());
+        assertEquals(blueRayMovieList, result);
+        assertEquals(4, result.size());
     }
 
     @Test
     public void shouldNotMapToBlueRayMoviesList() {
         //given
-        blueRayMovieList.forEach(t-> {
+        blueRayMovieList.forEach(t -> {
             t.setId(null);
             t.setMovieWishList(new ArrayList<>());
         });
@@ -58,8 +59,8 @@ public class OmbdBlueRayMapperTestSuit {
         //when
         List<BlueRayMovie> result = ombdBlueRayMapper.mapToBlueRayMoviesList(omdbBlueRayDtoList);
         //then
-        assertNotEquals(blueRayMovieList,result);
-        assertEquals(3,result.size());
-        assertNotEquals(blueRayMovieList.size(),result.size());
+        assertNotEquals(blueRayMovieList, result);
+        assertEquals(4, result.size());
+        assertNotEquals(2, result.size());
     }
 }

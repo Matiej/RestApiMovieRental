@@ -11,7 +11,7 @@ import pl.testaarosa.movierental.repositories.MovieWishRepository;
 import java.util.List;
 
 @Service
-public class MovieWishServiceImpl {
+public class MovieWishServiceImpl implements MovieWishService {
 
     @Autowired
     private MovieWishRepository movieWishRepository;
@@ -20,16 +20,19 @@ public class MovieWishServiceImpl {
     @Autowired
     private MovieService movieService;
 
+    @Override
     public List<MovieWish> findAllWishes() {
         return movieWishRepository.findAll();
     }
 
+    @Override
     public MovieWish findUsersWishForGivenUser(String remoteUser) {
         Long id = userService.findRemoteUser(remoteUser).getId();
         return movieWishRepository.findAllUsersWishForGivenUser(id);
     }
 
     @Transactional
+    @Override
     public MovieWish createMowieWish(User user) {
         MovieWish movieWish = new MovieWish();
         movieWish.setUser(user);
@@ -37,6 +40,7 @@ public class MovieWishServiceImpl {
         return movieWishRepository.save(movieWish);
     }
 
+    @Override
     public MovieWish addMovieToWish(String remoteUser, Long movieId) {
         Long remoteUserId = userService.findRemoteUser(remoteUser).getId();
         Movie movie = movieService.findById(movieId);
@@ -46,6 +50,7 @@ public class MovieWishServiceImpl {
         return movieWishRepository.save(one);
     }
 
+    @Override
     public MovieWish findById(Long id) {
         return movieWishRepository.findOne(id);
     }

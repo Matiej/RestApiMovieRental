@@ -64,7 +64,7 @@ public class BlueRayMovieMapperTestSuit {
         List<BlueRayMovieDto> result = blueRayMovieMapper.mapToBlueRayMovieDtoList(blueRayMovieList);
         //then
         assertEquals(blueRayMovieDtoList,result);
-        assertEquals(3,result.size());
+        assertEquals(4,result.size());
     }
 
 }

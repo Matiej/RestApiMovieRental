@@ -42,7 +42,6 @@ public class UpdateUserFormMapper {
     }
 
     public User mapToUser(UpdateUserForm updateUserForm, User remoteUser) {
-//TODO zobaczyc czy przepisuja sie w ten sposob filmy i wishes uzytkownika
         User updatedUser = User.builder()
                 .name(updateUserForm.getName())
                 .surname(updateUserForm.getSurname())

@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -17,7 +18,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.facade.UserFacade;
+import pl.testaarosa.movierental.form.dto.UpdateUserFormDto;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
+import pl.testaarosa.movierental.repositories.MockUpdateUserFormDto;
 import pl.testaarosa.movierental.repositories.MockUser;
 import pl.testaarosa.movierental.repositories.MockUserDto;
 import pl.testaarosa.movierental.repositories.MockUserFormDto;
@@ -42,11 +45,14 @@ public class UserControllerTestSuit {
 
     private MockMvc mockMvc;
     private MockUser mockUser = new MockUser();
+    private List<User> mockUsers;
     private MockUserDto mockUserDto = new MockUserDto();
     private List<UserDto> userDtoList;
     private MockUserFormDto mockUserFormDto = new MockUserFormDto();
-    private List<User> mockUsers;
     private List<UserFormDto> userFormDtos;
+    private MockUpdateUserFormDto mockUpdateUserFormDto = new MockUpdateUserFormDto();
+    private List<UpdateUserFormDto> updateUserFormDtoList;
+    private MockHttpServletRequest request = new MockHttpServletRequest();
 
     @Before
     public void init() {
@@ -54,6 +60,7 @@ public class UserControllerTestSuit {
         mockUsers = mockUser.mockUser();
         userFormDtos = mockUserFormDto.mockFormDtoList();
         userDtoList = mockUserDto.mockUserDto();
+        updateUserFormDtoList = mockUpdateUserFormDto.updateUserFormDtoList();
     }
 
     @Test
@@ -120,6 +127,8 @@ public class UserControllerTestSuit {
                 .andExpect(view().name("userForm"));
     }
 
+
+
     @Test
     public void shouldAddUserNWhenFormIsCorrect() throws Exception {
         //given
@@ -181,6 +190,67 @@ public class UserControllerTestSuit {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(model().attribute("userFormDto", new UserFormDto()))
                 .andExpect(view().name("userForm_n"));
+    }
+
+    @Test
+    public void shouldUpdateUserNWhenFormIsNotCorrect() throws Exception {
+        //given
+        UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
+        User user = mockUsers.get(0);
+        UserDto userDto = userDtoList.get(0);
+        when(userFacade.findRemoteUser(request.getRemoteUser())).thenReturn(userDto);
+        when(userFacade.updateUser(updateUserFormDto,userDto)).thenReturn(user);
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.post("/users//updateuser")
+                .accept(MediaType.TEXT_HTML)
+                .param("name", "Maciek")
+                .param("surname", "Wójcik")
+                .param("email", "znikenson@gmail")
+                .param("birthday","1988-02-11")
+                .param("city", "Breslaw")
+                .param("street", "Zamkowa")
+                .param("userGender", "MALE"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(view().name("userUpdateForm"));
+        User result = userFacade.updateUser(updateUserFormDto, userDto);
+        //then
+        verify(userFacade, times(1)).updateUser(updateUserFormDto, userDto);
+        verify(userFacade, times(1)).findRemoteUserForUpdate(request.getRemoteUser());
+        verify(userFacade, times(1)).findRemoteUser(request.getRemoteUser());
+        verifyNoMoreInteractions(userFacade);
+        assertEquals(user, result);
+    }
+
+    @Test
+    public void shouldUpdateUserNWhenFormIsCorrect() throws Exception {
+        //given
+        UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
+        User user = mockUsers.get(0);
+        updateUserFormDto.setId(null);
+        updateUserFormDto.setLastUpdateDate(null);
+        updateUserFormDto.setZip(null);
+        UserDto userDto = userDtoList.get(0);
+        when(userFacade.findRemoteUser(request.getRemoteUser())).thenReturn(userDto);
+        when(userFacade.updateUser(updateUserFormDto,userDto)).thenReturn(user);
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.post("/users//updateuser")
+                .accept(MediaType.TEXT_HTML)
+                .param("name", "Maciek")
+                .param("surname", "Wójcik")
+                .param("email", "znikenson@gmail.com")
+                .param("birthday","1988-02-11")
+                .param("city", "Breslaw")
+                .param("street", "Zamkowa")
+                .param("userGender", "MALE"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(model().attribute("updatedRemoteUser", userDto))
+                .andExpect(view().name("successUpdate"));
+        User result = userFacade.updateUser(updateUserFormDto, userDto);
+        //then
+        verify(userFacade, times(2)).updateUser(updateUserFormDto, userDto);
+        verify(userFacade, times(1)).findRemoteUser(request.getRemoteUser());
+        verifyNoMoreInteractions(userFacade);
+        assertEquals(user, result);
     }
 
     @Test

@@ -7,7 +7,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockUser {
+public class    MockUser {
 
     private MockUserDetails mockUserDetails = new MockUserDetails();
     private MockRole role = new MockRole();

@@ -32,7 +32,7 @@ public class BlueRayMovieServiceImplTestSuit {
         when(blueRayMovieRepository.findAll()).thenReturn(blueRayMovie.blueRayMovieList());
         //when
         int result = blueRayMovieService.findAll().size();
-        int expect = 3;
+        int expect = 4;
         //then
         assertEquals(expect,result);
         assertEquals(blueRayMovie.blueRayMovieList(), blueRayMovieRepository.findAll());

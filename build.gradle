@@ -38,6 +38,6 @@ dependencies {
 	compile ('org.springframework.security:spring-security-config')
 	compile ('org.springframework.security:spring-security-taglibs')
 	compile ('org.springframework.security:spring-security-web')
-	compile ('com.google.guava:guava:25.1-jre')
+	compile ('com.google.guava:guava-testlib:25.1-jre')
 }
 
