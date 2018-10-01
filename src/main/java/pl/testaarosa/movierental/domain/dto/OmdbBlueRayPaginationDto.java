@@ -19,6 +19,14 @@ public class OmdbBlueRayPaginationDto {
         return totalResults;
     }
 
+    public void setOmdbBlueRayDtos(List<OmdbBlueRayDto> omdbBlueRayDtos) {
+        this.omdbBlueRayDtos = omdbBlueRayDtos;
+    }
+
+    public void setTotalResults(String totalResults) {
+        this.totalResults = totalResults;
+    }
+
     @Override
     public String toString() {
         return "MovieTwo{" +
