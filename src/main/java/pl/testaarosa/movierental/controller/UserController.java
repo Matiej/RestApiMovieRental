@@ -167,7 +167,8 @@ public class UserController {
             model.addAttribute("userUpdateInfo", remoteUserForUpdate);
             return "userUpdateForm";
         } else {
-            model.addAttribute("updatedRemoteUser",remoteUser);
+            model.addAttribute("updatedRemoteUser",updateUserFormDto);
+            model.addAttribute("updatedRemoteUserOldData",remoteUser);
             return "successUpdate";
         }
     }

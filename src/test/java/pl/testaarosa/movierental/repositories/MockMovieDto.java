@@ -39,11 +39,23 @@ public class MockMovieDto {
                 mockMovieWish.mockMovieWish());
     }
 
+    public MovieDto movieDtoDvdEqualsTest() {
+        return new MovieDto(
+                1L,
+                "DvdMovie1",
+                "DvdImdbID_1",
+                "www.DvdPoster",
+                "dvd supplier",
+                mockMovieWish.mockMovieWish());
+    }
+
+
     public List<MovieDto> movieDtoList() {
         List<MovieDto> movieDtoList = new ArrayList<>();
         movieDtoList.add(movieDtoOnLine());
         movieDtoList.add(movieDtoBlueRay());
         movieDtoList.add(movieDtoDvd());
+        movieDtoList.add(movieDtoDvdEqualsTest());
         return movieDtoList;
     }
 }

@@ -49,7 +49,7 @@
 
 </head>
 <body>
-<div th:include="navi_n :: menu_n"></div>
+<div th:include="navi :: menu"></div>
 <div class="container">
 <!--<form th:action="@{/users/updateuser}" th:object="${updatedRemoteUser}"> -->
     <h2 id="movieDet">Yours account: <font color="red"><p th:text="${updatedRemoteUser.email}"></p></font> has been successfully updated! </h2>
@@ -66,7 +66,7 @@
             <pre class="pre1">User ID: </pre>
         </td>
         <td>
-            <pre class="pre1" th:text="${updatedRemoteUser.id}"></pre>
+            <pre class="pre1" th:text="${updatedRemoteUserOldData.id}"></pre>
         </td>
     </tr>
     <tr>
@@ -98,7 +98,7 @@
             <pre class="pre1">Birthday:</pre>
         </td>
         <td>
-            <pre class="pre1" th:text="${updatedRemoteUser.userRentalDetails.birthday}"></pre>
+            <pre class="pre1" th:text="${updatedRemoteUser.birthday}"></pre>
         </td>
     </tr>
     <tr>
@@ -106,15 +106,34 @@
             <pre class="pre1">Register date:</pre>
         </td>
         <td>
-            <pre class="pre1" th:text="${updatedRemoteUser.registerDate}"></pre>
+            <pre class="pre1" th:text="${updatedRemoteUserOldData.registerDate}"></pre>
         </td>
     </tr>
+
+    <tr>
+        <td>
+            <pre class="pre1">Last update date:</pre>
+        </td>
+        <td>
+            <pre class="pre1" th:text="${updatedRemoteUser.lastUpdateDate}?: ${#calendars.format(#calendars.createNow(), 'YYYY-MM-dd HH:mm')}"></pre>
+        </td>
+    </tr>
+
+    <!--<tr>-->
+        <!--<td>-->
+            <!--<pre class="pre1">Postal code:</pre>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--<pre class="pre1"  th:text="${updatedRemoteUser.zip}"></pre>-->
+        <!--</td>-->
+    <!--</tr>-->
+
     <tr>
         <td>
             <pre class="pre1">City:</pre>
         </td>
         <td>
-            <pre class="pre1"  th:text="${updatedRemoteUser.userRentalDetails.city}"></pre>
+            <pre class="pre1"  th:text="${updatedRemoteUser.city}"></pre>
         </td>
     </tr>
     <tr>
@@ -122,7 +141,7 @@
             <pre class="pre1" >Street:</pre>
         </td>
         <td>
-            <pre class="pre1" th:text="${updatedRemoteUser.userRentalDetails.street}"></pre>
+            <pre class="pre1" th:text="${updatedRemoteUser.street}"></pre>
         </td>
     </tr>
     <tr>
@@ -130,7 +149,7 @@
             <pre class="pre1">Gender:</pre>
         </td>
         <td>
-            <pre class="pre1" th:text="${updatedRemoteUser.userRentalDetails.userGender}"></pre>
+            <pre class="pre1" th:text="${updatedRemoteUser.userGender}"></pre>
         </td>
     </tr>
 </table>

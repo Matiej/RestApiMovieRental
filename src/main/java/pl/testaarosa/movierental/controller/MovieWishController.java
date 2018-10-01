@@ -74,7 +74,6 @@ public class MovieWishController {
     public String wishDetail(Model model, @RequestParam Long id) {
         MovieWishDto wish = userFacade.findById(id);
         model.addAttribute("wishDetails", wish);
-        //TODO movieDTo machen dodac w facade metode, ktora mapuje na listę dto zwraca liste movieDto nie testowac do zrobienia
         List<MovieDto> movieList = userFacade.findMoviesForWishByWishId(id);
         model.addAttribute( "wishDetailsMovies", movieList);
         return "movieWishDetailsAdmin";

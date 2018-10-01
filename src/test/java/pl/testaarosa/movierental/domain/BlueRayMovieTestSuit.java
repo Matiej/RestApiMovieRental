@@ -6,12 +6,12 @@ import pl.testaarosa.movierental.repositories.MockBlueRayMovie;
 
 import java.util.List;
 
-public class BlueRayMovieDetailsDtoTestSuit {
+public class BlueRayMovieTestSuit {
 
     private MockBlueRayMovie mockBlueRayMovie = new MockBlueRayMovie();
 
     @Test
-    public void testBlueRayMovieDetailsDto() {
+    public void testBlueRayMovieDto() {
         //given
         List<BlueRayMovie> blueRayMovieList = mockBlueRayMovie.blueRayMovieList();
         BlueRayMovie blueRayMovie1 = blueRayMovieList.get(3);
@@ -19,6 +19,6 @@ public class BlueRayMovieDetailsDtoTestSuit {
         //when
         EqualsTester equalsTester = new EqualsTester();
         //then
-        equalsTester.addEqualityGroup(blueRayMovie1,blueRayMovie2).testEquals();
+        equalsTester.addEqualityGroup(blueRayMovie1, blueRayMovie2).testEquals();
     }
 }

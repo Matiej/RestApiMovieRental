@@ -22,4 +22,22 @@ public class MockOmdbBlueRayDetailsDto {
                 "www.poster11",
                 "HBO1");
     }
+
+    public OmdbBlueRayDetailsDto omdbBlueRayDetailsDtoEqualsTest() {
+        return new OmdbBlueRayDetailsDto(
+                "imdbID_1",
+                "TestTitle1",
+                "1999",
+                "released1",
+                "runtime1",
+                "genre1",
+                "writer1",
+                "actor1",
+                "plot1",
+                "polski",
+                "POLSKA",
+                "awards1",
+                "www.poster11",
+                "HBO1");
+    }
 }

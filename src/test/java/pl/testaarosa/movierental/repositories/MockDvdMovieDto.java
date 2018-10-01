@@ -27,9 +27,18 @@ public class MockDvdMovieDto {
                 "DVD supplier",
                 mockDvdMovieDetails.dvdMovieDetailsList().get(1));
 
+        DvdMovieDto dvdMovie3 = new DvdMovieDto(
+                null,
+                "DvdMovie2",
+                "DvdImdbID_2",
+                "http://goshico.com/allegro/questionmarksmall.png",
+                "DVD supplier",
+                mockDvdMovieDetails.dvdMovieDetailsList().get(1));
+
         List<DvdMovieDto> dvdMovieList = new LinkedList<>();
         dvdMovieList.add(dvdMovie1);
         dvdMovieList.add(dvdMovie2);
+        dvdMovieList.add(dvdMovie3);
         return dvdMovieList;
     }
 }
