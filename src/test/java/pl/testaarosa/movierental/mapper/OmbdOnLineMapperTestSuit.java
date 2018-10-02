@@ -95,7 +95,7 @@ public class OmbdOnLineMapperTestSuit {
         List<OnLineMovie> result = ombdOnLineMapper.mapToOnLineMovieList(omdbOnLineDtoList);
         //then
         assertEquals(onLineMovieList, result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class OmbdOnLineMapperTestSuit {
         List<OnLineMovie> result = ombdOnLineMapper.mapToOnLineMovieList(omdbOnLineDtoList);
         //then
         assertNotEquals(onLineMovieList, result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertNull(result.get(0).getOnLineMovieDetails());
     }
 

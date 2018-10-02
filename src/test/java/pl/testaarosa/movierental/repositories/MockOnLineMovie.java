@@ -36,9 +36,20 @@ public class MockOnLineMovie {
         onLineMovie2.setMovieWishList(mockMovieWish.mockMovieWish());
         onLineMovie2.setOnLineMovieDetails(onLineMovieDetails.onLineMovieDetails().get().get(1));
 
+        OnLineMovie onLineMovie2EqualsTest = new OnLineMovie();
+//        onLineMovie1.setId(2L);
+        onLineMovie2EqualsTest.setTitle("Online TestTitle2");
+        onLineMovie2EqualsTest.setImdbID("imdbID_O2");
+        onLineMovie2EqualsTest.setYear("2010");
+        onLineMovie2EqualsTest.setPoster("www.Online-poster12");
+        onLineMovie2EqualsTest.setSupplier("ONLINE MOVIE");
+        onLineMovie2EqualsTest.setMovieWishList(mockMovieWish.mockMovieWish());
+        onLineMovie2EqualsTest.setOnLineMovieDetails(onLineMovieDetails.onLineMovieDetails().get().get(1));
+
         List<OnLineMovie> onLineMovieList = new ArrayList<>();
         onLineMovieList.add(onLineMovie1);
         onLineMovieList.add(onLineMovie2);
+        onLineMovieList.add(onLineMovie2EqualsTest);
         return CompletableFuture.completedFuture(ofNullable(onLineMovieList).orElse(new ArrayList<>()));
     }
 }

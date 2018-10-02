@@ -23,9 +23,17 @@ public class MockOmdbOnLineDto {
                 "horror",
                 "www.Online-poster12");
 
+        OmdbOnLineDto omdbOnLineDto2EwualsTest = new OmdbOnLineDto(
+                "Online TestTitle2",
+                "2010",
+                "imdbID_O2",
+                "horror",
+                "www.Online-poster12");
+
         List<OmdbOnLineDto> omdbOnLineDtoList = new ArrayList<>();
         omdbOnLineDtoList.add(omdbOnLineDto1);
         omdbOnLineDtoList.add(omdbOnLineDto2);
+        omdbOnLineDtoList.add(omdbOnLineDto2EwualsTest);
         return omdbOnLineDtoList;
     }
 }

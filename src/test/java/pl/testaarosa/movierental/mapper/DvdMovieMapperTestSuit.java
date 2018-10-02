@@ -46,6 +46,7 @@ public class DvdMovieMapperTestSuit {
     @Test
     public void testMapToDvdDtoList() {
         //given
+        dvdMovieDtoList.remove(2);
         //when
         List<DvdMovieDto> result = movieMapper.mapToDvdDtoList(dvdMovieList);
         //then

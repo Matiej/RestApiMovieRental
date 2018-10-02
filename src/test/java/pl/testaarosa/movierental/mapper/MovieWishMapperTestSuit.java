@@ -71,6 +71,7 @@ public class MovieWishMapperTestSuit {
     @Test
     public void shouldMapToMovieWishDtoList() {
         //given
+        movieWishDtoList.remove(2);
         //when
         List<MovieWishDto> resultList = movieWishMapper.mapToMovieWishDtoList(movieWishList);
         //then
@@ -83,7 +84,7 @@ public class MovieWishMapperTestSuit {
     public void shouldNotMapToMovieWishDtoList() {
         //given
         List<MovieWishDto> movieWishDtoList1 = movieWishDtoList;
-        movieWishDtoList1.remove(0);
+//        movieWishDtoList1.remove(0);
         //when
         List<MovieWishDto> result = movieWishMapper.mapToMovieWishDtoList(movieWishList);
         //then

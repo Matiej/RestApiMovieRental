@@ -71,6 +71,7 @@ public class MovieMapperTestSuit {
     @Test
     public void shouldtMapTOMovieDtoList() {
         //given
+        movieDtoList.remove(3);
         //when
         List<MovieDto> result = movieMapper.mapTOMovieDtoList(movieList);
         //then

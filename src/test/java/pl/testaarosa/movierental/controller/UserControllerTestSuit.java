@@ -193,7 +193,7 @@ public class UserControllerTestSuit {
     }
 
     @Test
-    public void shouldUpdateUserNWhenFormIsNotCorrect() throws Exception {
+    public void shouldUpdateUserWhenFormIsNotCorrect() throws Exception {
         //given
         UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
         User user = mockUsers.get(0);
@@ -222,7 +222,7 @@ public class UserControllerTestSuit {
     }
 
     @Test
-    public void shouldUpdateUserNWhenFormIsCorrect() throws Exception {
+    public void shouldUpdateUserWhenFormIsCorrect() throws Exception {
         //given
         UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
         User user = mockUsers.get(0);
@@ -243,7 +243,7 @@ public class UserControllerTestSuit {
                 .param("street", "Zamkowa")
                 .param("userGender", "MALE"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(model().attribute("updatedRemoteUser", userDto))
+                .andExpect(model().attribute("updatedRemoteUser", updateUserFormDto))
                 .andExpect(view().name("successUpdate"));
         User result = userFacade.updateUser(updateUserFormDto, userDto);
         //then

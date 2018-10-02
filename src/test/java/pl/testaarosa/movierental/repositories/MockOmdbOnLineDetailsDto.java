@@ -41,10 +41,26 @@ public class MockOmdbOnLineDetailsDto {
                 "AXN"
         );
 
+        OmdbOnLineDetailsDto omdbOnLineDetailsDto2EqualsTest = new OmdbOnLineDetailsDto(
+                "imdbID_O2",
+                "Online TestTitle2",
+                "2010",
+                "released2",
+                "runtime2",
+                "genre2",
+                "writer2",
+                "actor2",
+                "plot2",
+                "syjonski",
+                "SanEskobar",
+                "awards212",
+                "www.Online-poster12",
+                "AXN");
+
         List<OmdbOnLineDetailsDto> omdbOnLineDetailsDto1List = new ArrayList<>();
         omdbOnLineDetailsDto1List.add(omdbOnLineDetailsDto1);
         omdbOnLineDetailsDto1List.add(omdbOnLineDetailsDto2);
-
+        omdbOnLineDetailsDto1List.add(omdbOnLineDetailsDto2EqualsTest);
         return omdbOnLineDetailsDto1List;
     }
 }
