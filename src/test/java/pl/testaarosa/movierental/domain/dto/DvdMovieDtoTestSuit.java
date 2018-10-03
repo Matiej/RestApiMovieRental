@@ -1,8 +1,7 @@
-package pl.testaarosa.movierental.domain;
+package pl.testaarosa.movierental.domain.dto;
 
 import com.google.common.testing.EqualsTester;
 import org.junit.Test;
-import pl.testaarosa.movierental.domain.dto.DvdMovieDto;
 import pl.testaarosa.movierental.repositories.MockDvdMovieDto;
 
 import java.util.List;

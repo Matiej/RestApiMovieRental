@@ -32,6 +32,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DETAILS_ID")
     private UserRentalDetails userRentalDetails;
+    //wiele list, uzytkownik w przyszlosci bedzie tworzyl swoje wlasne listy zyczen lub koszyki
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MovieWish> movieWishes = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

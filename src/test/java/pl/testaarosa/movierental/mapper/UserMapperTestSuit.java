@@ -41,7 +41,7 @@ public class UserMapperTestSuit {
         //then
         assertEquals(userDtoList,result);
         assertNotNull(result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
     @Test

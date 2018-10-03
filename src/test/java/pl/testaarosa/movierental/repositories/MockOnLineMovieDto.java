@@ -33,9 +33,20 @@ public class MockOnLineMovieDto {
 //        onLineMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
                 onLineMovieDetails.onLineMovieDetails().get().get(1));
 
+        OnLineMovieDto onLineMovie2EqualsTest = new OnLineMovieDto(
+                null,
+                "2010",
+                "Online TestTitle2",
+                "imdbID_O2",
+                "www.Online-poster12",
+                "On Line",
+//        onLineMovie1.setMovieWishList(mockMovieWish.mockMovieWish());
+                onLineMovieDetails.onLineMovieDetails().get().get(1));
+
         List<OnLineMovieDto> onLineMovieList = new ArrayList<>();
         onLineMovieList.add(onLineMovie1);
         onLineMovieList.add(onLineMovie2);
+        onLineMovieList.add(onLineMovie2EqualsTest);
         return onLineMovieList;
 //        return CompletableFuture.completedFuture(ofNullable(onLineMovieList).orElse(new ArrayList<>()));
     }

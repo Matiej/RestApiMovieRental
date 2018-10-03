@@ -42,9 +42,24 @@ public class MockUserDto {
                 new ArrayList<>(),
                 role.getRole());
 
+        UserDto mockUser2EqualsTest = new UserDto(
+                2L,
+                "Maciek2",
+                "Wójcik2",
+                "znikenson2@gmail.com",
+                "password2",
+                "password2",
+                false,
+                LocalDateTime.now().withNano(0),
+                mockUserDetails.userDetails().get(1),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                role.getRole());
+
         List<UserDto> userList = new ArrayList<>();
         userList.add(mockUser1);
         userList.add(mockUser2);
+        userList.add(mockUser2EqualsTest);
         return userList;
     }
 }

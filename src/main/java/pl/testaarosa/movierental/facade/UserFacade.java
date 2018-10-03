@@ -54,7 +54,6 @@ public class UserFacade {
 
     public User addUserAndWish(UserFormDto userFormDto) {
         User user = userService.add(userFormDtoMapper.mapToUserForm(userFormDto));
-        movieWishService.createMowieWish(user);
         return user;
     }
 

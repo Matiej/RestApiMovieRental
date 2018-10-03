@@ -45,9 +45,28 @@ public class MockOnLineMovieDetailsDto {
                 "AXN"
         );
 
+        OnLineMovieDetailsDto onLineMovieDetails2EqualsTest = new OnLineMovieDetailsDto(
+                null,
+                "imdbID_O2",
+                "Online TestTitle2",
+                "2010",
+                "released2",
+                "runtime2",
+                "genre2",
+                "writer2",
+                "actor2",
+                "plot2",
+                "syjonski",
+                "SanEskobar",
+                "awards212",
+                "www.Online-poster12",
+                "AXN"
+        );
+
         List<OnLineMovieDetailsDto> onLineMovieDetailsList = new ArrayList<>();
         onLineMovieDetailsList.add(onLineMovieDetails1);
         onLineMovieDetailsList.add(onLineMovieDetails2);
+        onLineMovieDetailsList.add(onLineMovieDetails2EqualsTest);
         return onLineMovieDetailsList;
     }
 }

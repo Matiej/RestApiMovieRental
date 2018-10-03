@@ -37,6 +37,8 @@ public class UserServiceImpl implements UserService {
     private UserMovieService userMovieService;
     @Autowired
     private UpdateUserFormMapper updateUserFormMapper;
+    @Autowired
+    private MovieWishService movieWishService;
 
     @Override
     public List<User> findAll() {
@@ -66,6 +68,7 @@ public class UserServiceImpl implements UserService {
         Role role = roleRepository.findByName("USER");
         user.setRole(role);
         userRepository.save(user);
+        movieWishService.createMowieWish(user);
         emailNotifierService.sendEmailToNewUser(userForm);
         return user;
     }

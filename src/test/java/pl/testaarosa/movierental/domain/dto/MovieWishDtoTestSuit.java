@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.domain;
+package pl.testaarosa.movierental.domain.dto;
 
 import com.google.common.testing.EqualsTester;
 import org.junit.Test;

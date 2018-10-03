@@ -44,6 +44,8 @@ public class UserServiceImplTestSuit {
     private EmailNotifierService emailNotifierService;
     @Mock
     private UpdateUserFormMapper updateUserFormMapper;
+    @Mock
+    private MovieWishService movieWishService;
 
 
     @Test
@@ -55,7 +57,7 @@ public class UserServiceImplTestSuit {
         List<User> result = userService.findAll();
         //then
         assertEquals(expectUserList, result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
     @Test
@@ -181,7 +183,7 @@ public class UserServiceImplTestSuit {
         List<User> resutlt = userService.findAllBySurname(surname);
         //then
         assertEquals(expect, resutlt);
-        assertEquals(2, resutlt.size());
+        assertEquals(3, resutlt.size());
     }
 
     @Test

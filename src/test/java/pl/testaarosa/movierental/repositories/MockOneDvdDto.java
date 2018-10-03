@@ -22,9 +22,17 @@ public class MockOneDvdDto {
                 .price(9.5)
                 .title("DvdMovie2")
                 .build();
+        OneDvdDto oneDvdDto2EqualsTtest = new OneDvdDto.Builder()
+                .countryOfOrigin("USA")
+                .filmGenre("comedy")
+                .movieId("DvdImdbID_2")
+                .price(9.5)
+                .title("DvdMovie2")
+                .build();
         List<OneDvdDto> oneDvdDtoList = new ArrayList<>();
         oneDvdDtoList.add(oneDvdDto1);
         oneDvdDtoList.add(oneDvdDto2);
+        oneDvdDtoList.add(oneDvdDto2EqualsTtest);
         return oneDvdDtoList;
     }
 }

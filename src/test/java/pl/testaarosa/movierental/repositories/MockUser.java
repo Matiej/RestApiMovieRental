@@ -40,9 +40,23 @@ public class    MockUser {
         mockUser2.setRole(role.getRole());
         mockUser2.setId(2L);
 
+        User mockUser2EqualsTest = User.builder()
+                .name("Maciek2")
+                .surname("Wójcik2")
+                .email("znikenson2@gmail.com")
+                .password("password2")
+                .matchingpassword("password2")
+                .registerDate(LocalDateTime.now().withNano(0))
+                .enabled(false)
+                .userDetails(mockUserDetails.userDetails().get(1))
+                .build();
+        mockUser2EqualsTest.setRole(role.getRole());
+        mockUser2EqualsTest.setId(2L);
+
         List<User> userList = new ArrayList<>();
         userList.add(mockUser1);
         userList.add(mockUser2);
+        userList.add(mockUser2EqualsTest);
         return userList;
     }
 }

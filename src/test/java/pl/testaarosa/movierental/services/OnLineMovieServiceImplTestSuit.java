@@ -46,7 +46,7 @@ public class OnLineMovieServiceImplTestSuit {
         //when
         CompletableFuture<List<OnLineMovie>> expectList = mockOnLineMovie.onLineMovieList();
         int result = resultList.size();
-        int expect = 2;
+        int expect = 3;
         //then
         assertEquals(expect,result);
         assertEquals(expectList.get(),resultList);

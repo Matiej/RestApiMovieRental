@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import java.util.Objects;
 import java.util.Optional;
 public class OneDvdDto {
     private final String movieId;
@@ -46,6 +47,23 @@ public class OneDvdDto {
                 ", filmGenre='" + filmGenre + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OneDvdDto oneDvdDto = (OneDvdDto) o;
+        return Double.compare(oneDvdDto.price, price) == 0 &&
+                Objects.equals(movieId, oneDvdDto.movieId) &&
+                Objects.equals(title, oneDvdDto.title) &&
+                Objects.equals(countryOfOrigin, oneDvdDto.countryOfOrigin) &&
+                Objects.equals(filmGenre, oneDvdDto.filmGenre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movieId, title, countryOfOrigin, filmGenre, price);
     }
 
     public static class Builder {

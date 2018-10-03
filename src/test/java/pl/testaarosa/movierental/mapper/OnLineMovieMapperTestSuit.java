@@ -75,6 +75,6 @@ public class OnLineMovieMapperTestSuit {
         List<OnLineMovieDto> result = onLineMovieMapper.mapToOnLineMovieDtoList(onLineMovieList);
         //then
         assertEquals(onLineMovieDtoList,result);
-        assertEquals(2,result.size());
+        assertEquals(3,result.size());
     }
 }
