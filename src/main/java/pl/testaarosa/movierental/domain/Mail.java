@@ -1,6 +1,8 @@
 package pl.testaarosa.movierental.domain;
 
 
+import java.util.Objects;
+
 public class Mail {
 
     private String mailTo;
@@ -54,5 +56,21 @@ public class Mail {
 
     public void setToCc(String toCc) {
         this.toCc = toCc;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mail mail = (Mail) o;
+        return Objects.equals(mailTo, mail.mailTo) &&
+                Objects.equals(subject, mail.subject) &&
+                Objects.equals(message, mail.message) &&
+                Objects.equals(toCc, mail.toCc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mailTo, subject, message, toCc);
     }
 }

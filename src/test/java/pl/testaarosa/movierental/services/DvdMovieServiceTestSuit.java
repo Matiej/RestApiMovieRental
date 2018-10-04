@@ -35,7 +35,7 @@ public class DvdMovieServiceTestSuit {
         when(dvdMovieRpository.findAll()).thenReturn(mockDvdMovie.dvdMovieList());
         //when
         int result = dvdMovieService.findAll().size();
-        int expect = 2;
+        int expect = 3;
         List<DvdMovie> resultList = dvdMovieRpository.findAll();
         //then
         assertEquals(expect,result);
@@ -63,7 +63,7 @@ public class DvdMovieServiceTestSuit {
         List<DvdMovie> result = dvdMovieService.findByTitle("DvdMovie2");
         List<DvdMovie> expect = mockDvdMovie.dvdMovieList();
         //then
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertEquals(expect, result);
     }
 

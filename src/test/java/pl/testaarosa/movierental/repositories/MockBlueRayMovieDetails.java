@@ -63,10 +63,29 @@ public class MockBlueRayMovieDetails {
         );
         blueRayMovieDetails3.setId(3L);
 
+        BlueRayMovieDetails blueRayMovieDetails3EqualsTest = new BlueRayMovieDetails(
+                "imdbID_3",
+                "TestTitle3",
+                "2008",
+                "released3",
+                "runtime3",
+                "genre3",
+                "writer3",
+                "actor3",
+                "plot3",
+                "rosyjski",
+                "CCCP",
+                "awards3",
+                "www.poster13",
+                "HBO3"
+        );
+        blueRayMovieDetails3EqualsTest.setId(3L);
+
         List<BlueRayMovieDetails> blueRayMovieDetailsList = new ArrayList<>();
         blueRayMovieDetailsList.add(blueRayMovieDetails1);
         blueRayMovieDetailsList.add(blueRayMovieDetails2);
         blueRayMovieDetailsList.add(blueRayMovieDetails3);
+        blueRayMovieDetailsList.add(blueRayMovieDetails3EqualsTest);
         return blueRayMovieDetailsList;
     }
 }

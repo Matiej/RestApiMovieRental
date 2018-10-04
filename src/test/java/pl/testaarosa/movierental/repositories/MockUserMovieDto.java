@@ -28,9 +28,19 @@ public class MockUserMovieDto {
                 userMovieDetails.userMovieDetails().get(1),
                 mockUser.mockUser().get(1)
         );
+
+        UserMovieDto userMovie2EqualsTest = new UserMovieDto(
+                null,
+                "xxx2",
+                "My Nice Movie2",
+                UserMovieGenre.ROMANCE,
+                userMovieDetails.userMovieDetails().get(1),
+                mockUser.mockUser().get(1)
+        );
         List<UserMovieDto> userMovieList = new ArrayList<>();
         userMovieList.add(userMovie1);
         userMovieList.add(userMovie2);
+        userMovieList.add(userMovie2EqualsTest);
         return userMovieList;
     }
 }

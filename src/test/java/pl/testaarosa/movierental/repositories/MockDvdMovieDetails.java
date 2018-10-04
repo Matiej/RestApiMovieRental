@@ -26,9 +26,19 @@ public class MockDvdMovieDetails {
         dvdMovieDetails2.setPoster("http://goshico.com/allegro/questionmarksmall.png");
         dvdMovieDetails2.setSupplier("DVD MOVIE");
 
+        DvdMovieDetails dvdMovieDetails2EqualsTest = new DvdMovieDetails();
+        dvdMovieDetails2EqualsTest.setImdbID("DvdImdbID_2");
+        dvdMovieDetails2EqualsTest.setTitle("DvdMovie2");
+        dvdMovieDetails2EqualsTest.setCountryOfOrigin("USA");
+        dvdMovieDetails2EqualsTest.setType("comedy");
+        dvdMovieDetails2EqualsTest.setPrice(9.5);
+        dvdMovieDetails2EqualsTest.setPoster("http://goshico.com/allegro/questionmarksmall.png");
+        dvdMovieDetails2EqualsTest.setSupplier("DVD MOVIE");
+
         List<DvdMovieDetails> dvdMovieDetailsList = new LinkedList<>();
         dvdMovieDetailsList.add(dvdMovieDetails1);
         dvdMovieDetailsList.add(dvdMovieDetails2);
+        dvdMovieDetailsList.add(dvdMovieDetails2EqualsTest);
 
         return dvdMovieDetailsList;
     }

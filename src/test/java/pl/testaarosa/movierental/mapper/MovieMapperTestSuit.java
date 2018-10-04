@@ -29,7 +29,7 @@ public class MovieMapperTestSuit {
     @Before
     public void init() {
         movieDtoList = mockMovieDto.movieDtoList();
-        movieList = mockMovie.movieDtoList();
+        movieList = mockMovie.movieList();
     }
 
     @Test

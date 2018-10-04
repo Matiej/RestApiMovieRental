@@ -44,7 +44,7 @@ public class UserMovieServicesImplTestSuit {
         List<UserMovie> result = userMovieService.findAllUsersMoviesForGivenUser("znikenson@gmail.com");
         //then
         assertEquals(expectUserMovieList,result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
     @Test
@@ -94,7 +94,7 @@ public class UserMovieServicesImplTestSuit {
         List<UserMovie> result = userMovieService.findAllUserMoviesByTitleContaining("znikenson@gmail.com", "My Nice Movie1");
         //then
         assertEquals(expect,result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
 }

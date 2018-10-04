@@ -66,7 +66,7 @@ public class UserMovieControllerTestSuit {
         mockMvc.perform(MockMvcRequestBuilders.get("/usermovie/movieslist"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("userMovies", userMovieDtoList))
-                .andExpect(model().attribute("userMovies", hasSize(2)))
+                .andExpect(model().attribute("userMovies", hasSize(3)))
                 .andExpect(MockMvcResultMatchers.view().name("userMoviesList"));
         //then
         verify(userFacade, times(1)).findAllUserMoviesForGivenUser(null);
@@ -83,7 +83,7 @@ public class UserMovieControllerTestSuit {
                 .param("title", "My Nice Movie1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("searchresult", userMovieDtoList))
-                .andExpect(model().attribute("searchresult", hasSize(2)))
+                .andExpect(model().attribute("searchresult", hasSize(3)))
                 .andExpect(MockMvcResultMatchers.view().name("userMoviesSearchResult"));
         //then
         verify(userFacade, times(1)).findAllUserMoviesByTitleContaining(null,
@@ -106,7 +106,7 @@ public class UserMovieControllerTestSuit {
                 .accept(MediaType.TEXT_HTML))
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(model().attribute("userMovies", userMovieDtoList))
-                .andExpect(model().attribute("userMovies", hasSize(2)))
+                .andExpect(model().attribute("userMovies", hasSize(3)))
                 .andExpect((view().name("userMoviesList")));
         UserMovie result = userFacade.addUserMovie("znikenson@gmail.com", userMovieForm);
         //then
