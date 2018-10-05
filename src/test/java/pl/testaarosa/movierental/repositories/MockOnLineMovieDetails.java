@@ -47,9 +47,27 @@ public class MockOnLineMovieDetails {
                 "AXN"
         );
 
+        OnLineMovieDetails onLineMovieDetails2EqualsTest = new OnLineMovieDetails(
+                "imdbID_O2",
+                "Online TestTitle2",
+                "2010",
+                "released2",
+                "runtime2",
+                "genre2",
+                "writer2",
+                "actor2",
+                "plot2",
+                "syjonski",
+                "SanEskobar",
+                "awards212",
+                "www.Online-poster12",
+                "AXN"
+        );
+
         List<OnLineMovieDetails> onLineMovieDetailsList = new ArrayList<>();
         onLineMovieDetailsList.add(onLineMovieDetails1);
         onLineMovieDetailsList.add(onLineMovieDetails2);
+        onLineMovieDetailsList.add(onLineMovieDetails2EqualsTest);
 
         return CompletableFuture.completedFuture(ofNullable(onLineMovieDetailsList).orElse(new LinkedList<>()));
     }

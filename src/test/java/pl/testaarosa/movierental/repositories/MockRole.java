@@ -10,4 +10,11 @@ public class MockRole {
         role.setName("USER");
         return role;
     }
+
+    public Role getRoleEqualsTest() {
+        Role role = new Role();
+        role.setId(1L);
+        role.setName("USER");
+        return role;
+    }
 }

@@ -13,18 +13,21 @@ public class MockMovieWish {
     public List<MovieWish> mockMovieWish()  {
         MovieWish movieWish = new MovieWish();
         List<User> user = mockUser.mockUser();
-
         movieWish.setUser(user.get(0));
         movieWish.setWishName(user.get(0).getEmail() + ", " + user.get(0).getSurname());
 
         MovieWish movieWish2 = new MovieWish();
         movieWish2.setUser(user.get(1));
         movieWish2.setWishName(user.get(1).getEmail() + ", " + user.get(1).getSurname());
-//        movieWish2.getMoviesList().add(new Movie());
+
+        MovieWish movieWish2EqualsTest = new MovieWish();
+        movieWish2EqualsTest.setUser(user.get(1));
+        movieWish2EqualsTest.setWishName(user.get(1).getEmail() + ", " + user.get(1).getSurname());
 
         List<MovieWish> movieWishList = new ArrayList<>();
         movieWishList.add(movieWish);
         movieWishList.add(movieWish2);
+        movieWishList.add(movieWish2EqualsTest);
         return movieWishList;
     }
 }

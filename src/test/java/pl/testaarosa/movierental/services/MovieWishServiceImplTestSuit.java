@@ -45,7 +45,7 @@ public class MovieWishServiceImplTestSuit {
         List<MovieWish> expect = mockMovieWish.mockMovieWish();
         List<MovieWish> result = movieWishService.findAllWishes();
         //then
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertEquals(expect, result);
     }
 

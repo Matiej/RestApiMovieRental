@@ -12,7 +12,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "MOVIES_WISH")
 public class MovieWish {
-//TODO builder idiotoodportnego zrobić
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

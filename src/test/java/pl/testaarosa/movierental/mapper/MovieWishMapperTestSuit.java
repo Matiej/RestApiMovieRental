@@ -71,12 +71,11 @@ public class MovieWishMapperTestSuit {
     @Test
     public void shouldMapToMovieWishDtoList() {
         //given
-        movieWishDtoList.remove(2);
         //when
         List<MovieWishDto> resultList = movieWishMapper.mapToMovieWishDtoList(movieWishList);
         //then
         assertEquals(movieWishDtoList,resultList);
-        assertEquals(2, resultList.size());
+        assertEquals(3, resultList.size());
         assertNotEquals(1, resultList.size());
     }
 
@@ -84,12 +83,14 @@ public class MovieWishMapperTestSuit {
     public void shouldNotMapToMovieWishDtoList() {
         //given
         List<MovieWishDto> movieWishDtoList1 = movieWishDtoList;
+        movieWishDtoList1.remove(0);
 //        movieWishDtoList1.remove(0);
         //when
         List<MovieWishDto> result = movieWishMapper.mapToMovieWishDtoList(movieWishList);
         //then
         assertNotEquals(movieWishDtoList1,result);
-        assertEquals(2,result.size());
+        assertEquals(3,result.size());
+        assertEquals(2,movieWishDtoList1.size());
         assertNotEquals(movieWishDtoList1.size(), result.size());
     }
 
