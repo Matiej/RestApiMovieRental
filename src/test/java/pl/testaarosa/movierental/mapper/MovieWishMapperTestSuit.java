@@ -84,7 +84,6 @@ public class MovieWishMapperTestSuit {
         //given
         List<MovieWishDto> movieWishDtoList1 = movieWishDtoList;
         movieWishDtoList1.remove(0);
-//        movieWishDtoList1.remove(0);
         //when
         List<MovieWishDto> result = movieWishMapper.mapToMovieWishDtoList(movieWishList);
         //then
@@ -93,6 +92,4 @@ public class MovieWishMapperTestSuit {
         assertEquals(2,movieWishDtoList1.size());
         assertNotEquals(movieWishDtoList1.size(), result.size());
     }
-
-
 }

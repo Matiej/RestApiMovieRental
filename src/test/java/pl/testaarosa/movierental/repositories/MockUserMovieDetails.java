@@ -26,9 +26,19 @@ public class MockUserMovieDetails {
                 .plot("Plot from user2")
                 .build();
 
+        UserMovieDetails userMovieDetails2EqualsTest = UserMovieDetails.builder()
+                .year("2001")
+                .poster("sUser_Poster2")
+                .runtime("User_Runtime2")
+                .userOpinion("bestmy Movie2")
+                .actors("Stefan Batory2")
+                .plot("Plot from user2")
+                .build();
+
         List<UserMovieDetails> userMovieDetails = new ArrayList<>();
         userMovieDetails.add(userMovieDetails1);
         userMovieDetails.add(userMovieDetails2);
+        userMovieDetails.add(userMovieDetails2EqualsTest);
         return userMovieDetails;
     }
 }

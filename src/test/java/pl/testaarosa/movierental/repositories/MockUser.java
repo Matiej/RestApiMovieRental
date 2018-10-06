@@ -9,7 +9,7 @@ import java.util.List;
 
 public class    MockUser {
 
-    private MockUserDetails mockUserDetails = new MockUserDetails();
+    private MockUserRentalDetails mockUserRentalDetails = new MockUserRentalDetails();
     private MockRole role = new MockRole();
 
     public List<User> mockUser() {
@@ -22,7 +22,7 @@ public class    MockUser {
                 .matchingpassword("password")
                 .registerDate(LocalDateTime.now().withNano(0))
                 .enabled(false)
-                .userDetails(mockUserDetails.userDetails().get(0))
+                .userDetails(mockUserRentalDetails.userDetails().get(0))
                 .build();
         mockUser1.setRole(role.getRole());
         mockUser1.setId(1L);
@@ -35,7 +35,7 @@ public class    MockUser {
                 .matchingpassword("password2")
                 .registerDate(LocalDateTime.now().withNano(0))
                 .enabled(false)
-                .userDetails(mockUserDetails.userDetails().get(1))
+                .userDetails(mockUserRentalDetails.userDetails().get(1))
                 .build();
         mockUser2.setRole(role.getRole());
         mockUser2.setId(2L);
@@ -48,7 +48,7 @@ public class    MockUser {
                 .matchingpassword("password2")
                 .registerDate(LocalDateTime.now().withNano(0))
                 .enabled(false)
-                .userDetails(mockUserDetails.userDetails().get(1))
+                .userDetails(mockUserRentalDetails.userDetails().get(1))
                 .build();
         mockUser2EqualsTest.setRole(role.getRole());
         mockUser2EqualsTest.setId(2L);

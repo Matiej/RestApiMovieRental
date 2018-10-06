@@ -58,6 +58,10 @@ public class MovieWish {
         this.wishName = wishName;
     }
 
+    public void setMoviesList(List<Movie> moviesList) {
+        this.moviesList = moviesList;
+    }
+
     public static class MovieWishBuilder {
         private String wishName;
         private List<Movie> moviesList = new ArrayList<>();

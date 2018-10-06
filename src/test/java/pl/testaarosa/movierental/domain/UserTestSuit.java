@@ -6,7 +6,7 @@ import pl.testaarosa.movierental.repositories.MockUser;
 
 import java.util.List;
 
-public class UserTestCase {
+public class UserTestSuit {
 
     private MockUser mockUser = new MockUser();
 

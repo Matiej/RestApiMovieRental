@@ -8,7 +8,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockUserDetails {
+public class MockUserRentalDetails {
 
     public List<UserRentalDetails> userDetails() {
         LocalDate birth = LocalDate.of(1988, Month.FEBRUARY,11);
@@ -26,9 +26,17 @@ public class MockUserDetails {
                 .userGender(UserGender.NOTSURE)
                 .build();
 
+        UserRentalDetails testUserRentalDetails1EqualsTest = UserRentalDetails.builder()
+                .birthday(birth)
+                .city("Breslaw2")
+                .street("Zamkowa2")
+                .userGender(UserGender.NOTSURE)
+                .build();
+
         List<UserRentalDetails> userRentalDetailsList = new ArrayList<>();
         userRentalDetailsList.add(testUserRentalDetails);
         userRentalDetailsList.add(testUserRentalDetails1);
+        userRentalDetailsList.add(testUserRentalDetails1EqualsTest);
         return userRentalDetailsList;
     }
 }

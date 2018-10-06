@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MockUserDto {
 
-    private MockUserDetails mockUserDetails = new MockUserDetails();
+    private MockUserRentalDetails mockUserRentalDetails = new MockUserRentalDetails();
     private MockRole role = new MockRole();
 
     public List<UserDto> mockUserDto() {
@@ -23,7 +23,7 @@ public class MockUserDto {
                 "password",
                 false,
                 LocalDateTime.now().withNano(0),
-                mockUserDetails.userDetails().get(0),
+                mockUserRentalDetails.userDetails().get(0),
                 new ArrayList<>(),
                 new ArrayList<>(),
                 role.getRole());
@@ -37,7 +37,7 @@ public class MockUserDto {
                 "password2",
                 false,
                 LocalDateTime.now().withNano(0),
-                mockUserDetails.userDetails().get(1),
+                mockUserRentalDetails.userDetails().get(1),
                 new ArrayList<>(),
                 new ArrayList<>(),
                 role.getRole());
@@ -51,7 +51,7 @@ public class MockUserDto {
                 "password2",
                 false,
                 LocalDateTime.now().withNano(0),
-                mockUserDetails.userDetails().get(1),
+                mockUserRentalDetails.userDetails().get(1),
                 new ArrayList<>(),
                 new ArrayList<>(),
                 role.getRole());
