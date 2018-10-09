@@ -35,9 +35,11 @@ public class MovieWishServiceImpl implements MovieWishService {
     @Override
     public MovieWish createMowieWish(User user) {
         MovieWish movieWish = new MovieWish();
+//        List<MovieWish> movieWishList = new ArrayList<>();
         movieWish.setUser(user);
         movieWish.setWishName(user.getEmail() + ", " + user.getSurname());
-        return movieWishRepository.save(movieWish);
+//        return movieWishRepository.save(movieWish);
+        return movieWish;
     }
 
     @Override
@@ -54,4 +56,12 @@ public class MovieWishServiceImpl implements MovieWishService {
     public MovieWish findById(Long id) {
         return movieWishRepository.findOne(id);
     }
+
+    @Override
+    public void deleteWishesForGivenUser(Long userId) {
+        MovieWish allUsersWishForGivenUser = movieWishRepository.findAllUsersWishForGivenUser(userId);
+        allUsersWishForGivenUser.getMoviesList().clear();
+        movieWishRepository.deleteWishesForGivenUser(userId);
+    }
+
 }

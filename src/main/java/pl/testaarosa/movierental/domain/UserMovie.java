@@ -7,6 +7,7 @@ import java.util.Objects;
         @NamedQuery(name = "UserMovie.findAllUsersMoviesForGivenUser", query = "FROM UserMovie WHERE user.id = :userId"),
         @NamedQuery(name = "UserMovie.findAllUserMoviesByTitleContaining", query = "FROM UserMovie " +
                 "WHERE user.id = :userId AND title LIKE CONCAT('%',:title,'%')"),
+        @NamedQuery(name = "UserMovie.deleteMoviesForGivenUser", query = "DELETE FROM UserMovie WHERE user.id = :userId")
 })
 
 @Entity
@@ -83,25 +84,25 @@ public class UserMovie {
         private User user;
 
         @Override
-        public UserMovieBuilder imdbID(String imdbID){
+        public UserMovieBuilder imdbID(String imdbID) {
             this.imdbID = imdbID;
             return this;
         }
 
         @Override
-        public UserMovieBuilder title(String title){
+        public UserMovieBuilder title(String title) {
             this.title = title;
             return this;
         }
 
         @Override
-        public UserMovieBuilder genre(UserMovieGenre gener){
+        public UserMovieBuilder genre(UserMovieGenre gener) {
             this.genre = gener;
             return this;
         }
 
         @Override
-        public UserMovieBuilder userMovieDetails(UserMovieDetails userMovieDetails){
+        public UserMovieBuilder userMovieDetails(UserMovieDetails userMovieDetails) {
             this.userMovieDetails = userMovieDetails;
             return this;
         }
@@ -113,7 +114,7 @@ public class UserMovie {
         }
 
         @Override
-        public UserMovie build(){
+        public UserMovie build() {
             return new UserMovie(this);
         }
     }
@@ -126,14 +127,16 @@ public class UserMovie {
         NeedGenre title(String title);
     }
 
-    public interface NeedGenre{
+    public interface NeedGenre {
         CanBuild genre(UserMovieGenre genre);
     }
 
 
     public interface CanBuild {
         CanBuild userMovieDetails(UserMovieDetails userMovieDetails);
+
         CanBuild user(User user);
+
         UserMovie build();
 
     }

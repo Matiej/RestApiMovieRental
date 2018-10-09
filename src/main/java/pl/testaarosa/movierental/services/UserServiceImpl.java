@@ -1,5 +1,8 @@
 package pl.testaarosa.movierental.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,6 +43,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private MovieWishService movieWishService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -67,9 +72,9 @@ public class UserServiceImpl implements UserService {
         user.setMatchingPassword(encode.encode(userForm.getMatchingPassword()));
         Role role = roleRepository.findByName("USER");
         user.setRole(role);
+        user.getMovieWishes().add(movieWishService.createMowieWish(user));
         userRepository.save(user);
-        movieWishService.createMowieWish(user);
-        emailNotifierService.sendEmailToNewUser(userForm);
+//        emailNotifierService.sendEmailToNewUser(userForm);
         return user;
     }
 
@@ -119,5 +124,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UpdateUserForm findRemoteUserForUpdate(String remoteUser) {
         return updateUserFormMapper.mapToUpdateUserForm(findRemoteUser(remoteUser));
+    }
+
+    @Transactional
+    @Override
+    public void deleteUser(Long userId) {
+//        userMovieService.delete(userId);
+//        movieWishService.deleteWishesForGivenUser(userId);
+        LOGGER.warn(Marker.ANY_MARKER, "Xxx -> trying to delete user id: "  + userId);
+        userRepository.delete(userId);
     }
 }

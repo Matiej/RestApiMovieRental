@@ -31,53 +31,55 @@
 <form  th:action="@{/usermovie/addnewmovie}" th:object="${userMovie}" method="post">
     <div  class="form-row">
         <div class="form-group col-md-6">
-            <label for="imdbID">User movie Id:</label>
+            <label>User movie Id:</label>
             <input type="text" class="form-control" th:field="*{imdbID}"/>
-            <td th:if="${#fields.hasErrors('imdbID')}" th:errors="*{imdbID}"></td>
-
+            <font color="red" ><td th:if="${#fields.hasErrors('imdbID')}" th:errors="*{imdbID}"></td>
+            </font>
         </div>
         <div class="form-group col-md-6">
-            <label for="title">Title:</label>
+            <label>Title:</label>
             <input type="text" class="form-control" th:field="*{title}"/>
-            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>
-
+            <font color="red" ><td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>
+            </font>
         </div>
         <div class="form-group col-md-6">
-            <label for="year">Year:</label>
+            <label>Year:</label>
             <input type="text" class="form-control" th:field="*{year}"/>
-            <td th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></td>
-
+            <font color="red" ><td th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></td>
+            </font>
         </div>
 
         <div class="form-group col-md-6">
-            <label for="runtime">Runtime:</label>
+            <label>Runtime:</label>
             <input type="text" class="form-control" th:field="*{runtime}"/>
-            <td th:if="${#fields.hasErrors('runtime')}" th:errors="*{runtime}"></td>
+            <font color="red" ><td th:if="${#fields.hasErrors('runtime')}" th:errors="*{runtime}"></td>
+            </font>
         </div>
     </div>
     <br />
     <br />
     <div class="form-group">
         <div class="thumbnail">
-            <label for="poster">Link to movie poster:</label>
+            <label>Link to movie poster:</label>
             <input type="text" class="form-control" th:field="*{poster}"/>
-            <td th:if="${#fields.hasErrors('poster')}" th:errors="*{poster}"></td>
+            <font color="red"><td th:if="${#fields.hasErrors('poster')}" th:errors="*{poster}"></td>
+            </font>
         </div>
         <br />
         <div class="thumbnail">
-            <label for="userOpinion">Your opinion about the movie:</label>
+            <label>Your opinion about the movie:</label>
             <input type="text" class="form-control form-control-lg" th:field="*{userOpinion}"/>
             <td rowspan="6" th:if="${#fields.hasErrors('runtime')}" th:errors="*{userOpinion}"></td>
         </div>
         <br />
         <div class="thumbnail">
-            <label for="actors">Actors:</label>
+            <label>Actors:</label>
             <input type="text" class="form-control form-control-lg" th:field="*{actors}"/>
             <td th:if="${#fields.hasErrors('runtime')}" th:errors="*{actors}"></td>
         </div>
         <br />
         <div class="thumbnail">
-            <label for="plot">Plot:</label>
+            <label>Plot:</label>
             <input type="text" class="form-control" th:field="*{plot}"/>
             <td rowspan="6" th:if="${#fields.hasErrors('plot')}" th:errors="*{plot}"></td>
         </div>

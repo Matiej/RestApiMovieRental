@@ -35,25 +35,24 @@ public class UserMovieController {
         return "userMoviesSearchResult";
     }
 
+    @GetMapping("/addnewmovie")
+    public String showForm(Model model){
+        model.addAttribute("userMovie", new UserMovieFormDto());
+        return "userMoviesForm";
+    }
+
     @PostMapping("/addnewmovie")
-    public String addNewMovie(HttpServletRequest request, Model model, @ModelAttribute @Valid UserMovieFormDto userMovieFormDto,
+    public String addNewMovie(HttpServletRequest request, Model model, @ModelAttribute("userMovie") @Valid UserMovieFormDto userMovie,
                               BindingResult bindingResult){
         String remoteUser = request.getRemoteUser();
         if(bindingResult.hasErrors()){
             return "userMoviesForm";
         } else {
-            userFacade.addUserMovie(remoteUser,userMovieFormDto);
+            userFacade.addUserMovie(remoteUser,userMovie);
             List<UserMovieDto> userMovieList = userFacade.findAllUserMoviesForGivenUser(remoteUser);
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
         }
-    }
-
-    @GetMapping("/addnewmovie")
-    public String showForm(Model model){
-        model.addAttribute("userMovie", new UserMovieFormDto());
-        return "userMoviesForm";
-
     }
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {

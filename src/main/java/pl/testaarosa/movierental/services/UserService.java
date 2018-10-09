@@ -15,4 +15,5 @@ public interface UserService extends UserDetailsService {
     List<User> findAllBySurname(String surname);
     User findRemoteUser(String remoteUser);
     UpdateUserForm findRemoteUserForUpdate(String remoteUser);
+    void deleteUser(Long id);
 }

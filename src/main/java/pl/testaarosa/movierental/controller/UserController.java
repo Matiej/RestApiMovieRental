@@ -12,7 +12,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import pl.testaarosa.movierental.domain.User;
+import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.UserDto;
+import pl.testaarosa.movierental.domain.dto.UserMovieDto;
 import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UpdateUserFormDto;
 import pl.testaarosa.movierental.form.dto.UserFormDto;
@@ -20,6 +22,7 @@ import pl.testaarosa.movierental.form.dto.UserFormDto;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -34,21 +37,21 @@ public class UserController {
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                           WebRequest request, Errors errors) {
         User registerUser = new User();
-        if(!bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
             registerUser = createUserAccout(userFormDto);
         }
-        if (registerUser==null) {
-            bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
+        if (registerUser == null) {
+            bindingResult.rejectValue("email", "message.regError", "There is an account with that email address: "
                     + userFormDto.getEmail());
         }
-        if(errors.hasGlobalErrors()) {
-            bindingResult.rejectValue("password","message.passError");
-            bindingResult.rejectValue("matchingPassword","message.passError");
+        if (errors.hasGlobalErrors()) {
+            bindingResult.rejectValue("password", "message.passError");
+            bindingResult.rejectValue("matchingPassword", "message.passError");
         }
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "userForm";
         } else {
-            model.addAttribute("userFormDto",registerUser);
+            model.addAttribute("userFormDto", registerUser);
             return "successRegister";
         }
     }
@@ -64,21 +67,21 @@ public class UserController {
                            WebRequest request, Errors errors) throws EmailExistsException {
         User registerUser = new User();
 
-        if(!bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
             registerUser = createUserAccout(userFormDto);
         }
-        if (registerUser==null) {
-            bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
+        if (registerUser == null) {
+            bindingResult.rejectValue("email", "message.regError", "There is an account with that email address: "
                     + userFormDto.getEmail());
         }
-        if(errors.hasGlobalErrors()) {
-            bindingResult.rejectValue("password","message.passError");
-            bindingResult.rejectValue("matchingPassword","message.passError");
+        if (errors.hasGlobalErrors()) {
+            bindingResult.rejectValue("password", "message.passError");
+            bindingResult.rejectValue("matchingPassword", "message.passError");
         }
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "userForm_n";
         } else {
-            model.addAttribute("userFormDto",registerUser);
+            model.addAttribute("userFormDto", registerUser);
             return "successRegister";
         }
     }
@@ -148,27 +151,28 @@ public class UserController {
         }
         return "logout_";
     }
-//TODO test
+
+    //TODO test
     @PostMapping("/updateuser")
     public String update(HttpServletRequest request, Model model, @ModelAttribute @Valid UpdateUserFormDto updateUserFormDto,
                          BindingResult bindingResult, Errors errors) {
         boolean emailPass = false;
         String remoteUserEmail = request.getRemoteUser();
         UserDto remoteUser = userFacade.findRemoteUser(remoteUserEmail);
-        if(!bindingResult.hasErrors()) {
-            emailPass = updateUserAccout(updateUserFormDto,remoteUser);
+        if (!bindingResult.hasErrors()) {
+            emailPass = updateUserAccout(updateUserFormDto, remoteUser);
         }
         if (!emailPass) {
-            bindingResult.rejectValue("email", "message.regError","There is an account with that email address: "
+            bindingResult.rejectValue("email", "message.regError", "There is an account with that email address: "
                     + updateUserFormDto.getEmail());
         }
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             UpdateUserFormDto remoteUserForUpdate = userFacade.findRemoteUserForUpdate(request.getRemoteUser());
             model.addAttribute("userUpdateInfo", remoteUserForUpdate);
             return "userUpdateForm";
         } else {
-            model.addAttribute("updatedRemoteUser",updateUserFormDto);
-            model.addAttribute("updatedRemoteUserOldData",remoteUser);
+            model.addAttribute("updatedRemoteUser", updateUserFormDto);
+            model.addAttribute("updatedRemoteUserOldData", remoteUser);
             return "successUpdate";
         }
     }
@@ -181,13 +185,32 @@ public class UserController {
         }
         return true;
     }
-//TODO testy
+
     @GetMapping("/updateuser")
     public String updateShowForm(HttpServletRequest request, Model model) {
         UpdateUserFormDto remoteUserForUpdate = userFacade.findRemoteUserForUpdate(request.getRemoteUser());
         model.addAttribute("userUpdateInfo", remoteUserForUpdate);
         model.addAttribute("updateUserFormDto", remoteUserForUpdate);
         return "userUpdateForm";
+    }
+
+    @GetMapping("/details")
+    public String userDetails(HttpServletRequest request, Model model) {
+        //TODO w templace zrobic odnośniki do list filmów i wishes.
+        String remoteUser = request.getRemoteUser();
+        UserDto remoteUserForUpdate = userFacade.findRemoteUser(remoteUser);
+        MovieWishDto wishes = userFacade.findUsersWishForGivenUser(remoteUser);
+        List<UserMovieDto> allUserMoviesForGivenUser = userFacade.findAllUserMoviesForGivenUser(remoteUser);
+        model.addAttribute("user", remoteUserForUpdate);
+        model.addAttribute("userW", wishes);
+        model.addAttribute("userM", allUserMoviesForGivenUser);
+        return "userDetails";
+    }
+
+    @GetMapping("/deleteuser")
+    public String deleteUser(HttpServletRequest request, @RequestParam Long id) {
+        userFacade.deleteUser(id);
+        return "index_n";
     }
 
 }

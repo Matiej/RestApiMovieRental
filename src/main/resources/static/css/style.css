@@ -43,6 +43,15 @@ table {
              padding: 1px;
              text-align: center;
          }
+         .movieDetDel {
+             background-color: black;
+             border: 5px black;
+             margin-left: 150px;
+             margin-right: 150px;
+             color: red;
+             padding: 1px;
+             text-align: center;
+         }
 
           .userDataOrange {
               background-color: darkgray;
@@ -52,6 +61,14 @@ table {
               color: orange;
               padding: 1px;
               text-align: center;
+          }
+
+          .bodydel {
+             background: #43cea2;
+             background: -webkit-linear-gradient(to left, #ff9933, #ff3300);
+             background: linear-gradient(to left, #ff9933, #ff3300);
+             color: #fff;
+             text-align: center;
           }
 
          img {

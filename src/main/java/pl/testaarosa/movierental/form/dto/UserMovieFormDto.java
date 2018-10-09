@@ -12,14 +12,11 @@ import java.util.Objects;
 public class UserMovieFormDto {
 
     private Long id;
-    @Size(min = 2)
     @NotEmpty
     private String imdbID;
-    @Size(min = 2)
-//    @NotEmpty
+    @Size(min = 2, message = "Title size must be longer than 2")
     private String title;
     @Size(min = 4, max = 4, message = "The year must entered it this way (1998)")
-    @NotEmpty
     private String year;
     @Size(min = 2, max = 1000)
     private String poster;

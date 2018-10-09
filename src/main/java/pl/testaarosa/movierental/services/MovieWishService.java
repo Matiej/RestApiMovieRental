@@ -12,4 +12,5 @@ public interface MovieWishService {
     MovieWish createMowieWish(User user);
     MovieWish addMovieToWish(String remoteUser, Long movieId);
     MovieWish findById(Long id);
+    void deleteWishesForGivenUser(Long userId);
 }

@@ -111,4 +111,8 @@ public class UserFacade {
 //        MovieWishDto movieWishDto = movieWishMapper.mapToMovieWishDto(movieWishService.findById(id));
         return movieMapper.mapTOMovieDtoList(movieWishDto1.getMoviesList());
     }
+
+    public void deleteUser(Long id) {
+        userService.deleteUser(id);
+    }
 }

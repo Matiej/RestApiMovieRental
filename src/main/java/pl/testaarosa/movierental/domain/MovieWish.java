@@ -7,6 +7,7 @@ import java.util.Objects;
 
 @NamedQueries({
         @NamedQuery(name = "MovieWish.findAllUsersWishForGivenUser", query = "FROM MovieWish WHERE user.id = :userId"),
+        @NamedQuery(name = "MovieWish.deleteWishesForGivenUser", query = "DELETE FROM MovieWish WHERE user.id = :userId")
 })
 
 @Entity
@@ -21,6 +22,7 @@ public class MovieWish {
     joinColumns = {@JoinColumn(name = "WISH_ID", referencedColumnName = "ID")},
     inverseJoinColumns = {@JoinColumn(name = "MOVIES_ID", referencedColumnName = "ID")})
     private List<Movie> moviesList = new ArrayList<>();
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;

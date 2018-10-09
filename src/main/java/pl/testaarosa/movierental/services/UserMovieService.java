@@ -11,4 +11,5 @@ public interface UserMovieService {
     UserMovie add(String remoteUser, UserMovieForm userMovie);
     void delete(Long id);
     List<UserMovie> findAllUserMoviesByTitleContaining(String remoteUser,String title);
+    void deleteMoviesForGivenUser(Long userId   );
 }

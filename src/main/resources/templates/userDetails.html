@@ -1,11 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>User_Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-//TODO
-zrobic tu porzadek i dodac user details i edit
+<div th:include="navi :: menu"></div>
+
+<div class="container">
+    <form th:action="@{/users/details}" th:object="${user}" method="get">
+        <!--<form th:action="@{/users/updateuser}" method="post">-->
+        <h2 class="movieDet">Update user data:</h2>
+        <table>
+            <tr>
+                <td colspan='2'>
+                    <h4 class="movieDet">ACTUAL USER DATA</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">User ID: </pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.id}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">e-mail/login</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.email}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">User name:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.name}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Surname:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.surname}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Birthday:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.userRentalDetails.birthday}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Register date:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.registerDate}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">City:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.userRentalDetails.city}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Street:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.userRentalDetails.street}"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Gender:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${user.userRentalDetails.userGender}"></pre>
+                </td>
+            </tr>
+        </table>
+        <table th:action="@{/users/details}" th:object="${userW}" method="get">
+            <tr>
+                <td colspan='3'>
+                    <pre class="pre1">Wish movies</pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Number of watchwisch movies:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userW.moviesList.size()}"></pre>
+                </td>
+                <td>
+                    <a href="/watchwish/userwishes"
+                       type="button" class="btn btn-primary btn-lg">Watchwish list<i></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <table th:action="@{/users/details}" th:object="${userM}" method="get">
+            <tr>
+                <td colspan='3'>
+                    <pre class="pre1">User Movies</pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <pre class="pre1">Number of user movies:</pre>
+                </td>
+                <td>
+                    <pre class="pre1" th:text="${userM.size()}"></pre>
+                </td>
+                <td>
+                    <a href="/usermovie/movieslist"
+                       type="button" class="btn btn-primary btn-lg">Movies list<i></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <br/>
+        <br/>
+
+        <div class="form-row">
+            <div class="col-xs-4">
+                <button type="button" class="btn btn-lg btn-primary btn-block btn-signin">
+                    <a  href="/users/updateuser"><font color="white">Edit user details</font></a>
+                </button>
+
+                <button type="button" class="btn btn-lg btn-block btn-danger">
+                    <a th:href="@{/users/deleteuser?id={id}(id=${user.id})}"><font color="black">Delete user Account</font></a>
+
+                </button>
+                <!--<button th:action="@{/users/deleteuser?id={id}(id=${user.id})}" type="button" class="btn btn-lg btn-block btn-danger">Delete user Account</button>-->
+            </div>
+        </div>
+
+    </form>
+</div>
 </body>
 </html>

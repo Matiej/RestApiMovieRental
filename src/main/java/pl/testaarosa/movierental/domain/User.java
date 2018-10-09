@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +19,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "RENTAL_USER")
-public class User implements org.springframework.security.core.userdetails.UserDetails {
+public class User implements org.springframework.security.core.userdetails.UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,9 +34,9 @@ public class User implements org.springframework.security.core.userdetails.UserD
     @JoinColumn(name = "DETAILS_ID")
     private UserRentalDetails userRentalDetails;
     //wiele list, uzytkownik w przyszlosci bedzie tworzyl swoje wlasne listy zyczen lub koszyki
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MovieWish> movieWishes = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<UserMovie> userMovies = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "ROLE_ID")

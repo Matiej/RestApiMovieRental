@@ -78,7 +78,7 @@
 </script>
 
 <div class="container">
-    <form th:action="@{/users/adduser_n}" th:object="${userFormDto}" method="post">
+    <form th:action="@{/users/adduser}" th:object="${userFormDto}" method="post">
         <h2 class="movieDet">Create new user:</h2>
         <br/>
         <br/>
@@ -116,7 +116,7 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" placeholder="password"
                        th:field="*{password}"/>
-                <font color="red" > <td th:if="${#fields.hasErrors('password')}" bgcolor="red" th:errors="*{password}"></td>
+                    <font color="red" > <td th:if="${#fields.hasErrors('password')}" bgcolor="red" th:errors="*{password}"></td>
                 </font>
 
             </div>

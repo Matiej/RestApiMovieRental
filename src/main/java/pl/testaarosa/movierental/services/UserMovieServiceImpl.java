@@ -51,10 +51,14 @@ public class UserMovieServiceImpl implements UserMovieService {
     }
 
     @Override
-    public List<UserMovie> findAllUserMoviesByTitleContaining(String remoteUser,String title) {
+    public List<UserMovie> findAllUserMoviesByTitleContaining(String remoteUser, String title) {
         User user = userService.findRemoteUser(remoteUser);
         return userMovieRepository.findAllUserMoviesByTitleContaining(user.getId(), title);
     }
 
+    @Override
+    public void deleteMoviesForGivenUser(Long userId) {
+        userMovieRepository.deleteMoviesForGivenUser(userId);
+    }
 
 }
