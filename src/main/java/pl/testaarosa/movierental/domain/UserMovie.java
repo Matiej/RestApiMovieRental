@@ -6,8 +6,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "UserMovie.findAllUsersMoviesForGivenUser", query = "FROM UserMovie WHERE user.id = :userId"),
         @NamedQuery(name = "UserMovie.findAllUserMoviesByTitleContaining", query = "FROM UserMovie " +
-                "WHERE user.id = :userId AND title LIKE CONCAT('%',:title,'%')"),
-        @NamedQuery(name = "UserMovie.deleteMoviesForGivenUser", query = "DELETE FROM UserMovie WHERE user.id = :userId")
+                "WHERE user.id = :userId AND title LIKE CONCAT('%',:title,'%')")
 })
 
 @Entity

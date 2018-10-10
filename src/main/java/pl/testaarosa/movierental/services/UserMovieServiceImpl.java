@@ -55,10 +55,4 @@ public class UserMovieServiceImpl implements UserMovieService {
         User user = userService.findRemoteUser(remoteUser);
         return userMovieRepository.findAllUserMoviesByTitleContaining(user.getId(), title);
     }
-
-    @Override
-    public void deleteMoviesForGivenUser(Long userId) {
-        userMovieRepository.deleteMoviesForGivenUser(userId);
-    }
-
 }

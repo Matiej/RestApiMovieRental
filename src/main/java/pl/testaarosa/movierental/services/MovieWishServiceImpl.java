@@ -57,11 +57,5 @@ public class MovieWishServiceImpl implements MovieWishService {
         return movieWishRepository.findOne(id);
     }
 
-    @Override
-    public void deleteWishesForGivenUser(Long userId) {
-        MovieWish allUsersWishForGivenUser = movieWishRepository.findAllUsersWishForGivenUser(userId);
-        allUsersWishForGivenUser.getMoviesList().clear();
-        movieWishRepository.deleteWishesForGivenUser(userId);
-    }
 
 }

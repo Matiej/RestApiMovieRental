@@ -131,7 +131,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) {
 //        userMovieService.delete(userId);
 //        movieWishService.deleteWishesForGivenUser(userId);
-        LOGGER.warn(Marker.ANY_MARKER, "Xxx -> trying to delete user id: "  + userId);
+        LOGGER.warn(Marker.ANY_MARKER, "Trying to delete user id: "  + userId);
         userRepository.delete(userId);
     }
 }

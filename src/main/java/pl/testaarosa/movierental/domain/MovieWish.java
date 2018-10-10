@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @NamedQueries({
-        @NamedQuery(name = "MovieWish.findAllUsersWishForGivenUser", query = "FROM MovieWish WHERE user.id = :userId"),
-        @NamedQuery(name = "MovieWish.deleteWishesForGivenUser", query = "DELETE FROM MovieWish WHERE user.id = :userId")
+        @NamedQuery(name = "MovieWish.findAllUsersWishForGivenUser", query = "FROM MovieWish WHERE user.id = :userId")
 })
 
 @Entity
