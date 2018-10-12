@@ -16,9 +16,27 @@ import pl.testaarosa.movierental.services.FlashMessage;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService userService;
+
+    private static final String[] AUTH_WISHLIST = {
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/swagger-ui.html/**",
+            "/swagger-ui.html#/**",
+            "/mrapi/",
+            "/mrapi/**",
+            "/swagger-ui.html#/swagger-welcome-controller/**",
+            "/v2/api-docs",
+            "/webjars/**",
+            "/sw",
+            "/users/adduser_n",
+            "/online/movielist_n",
+            "/online/onlinedetail_n",
+            "/home_n",
+            "/users/login",
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -48,14 +66,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         };
     }
 
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf()
                 .disable()
+//TODO dodac pozostale do wishlist
                 .authorizeRequests()
-                    .antMatchers("/users/adduser_n", "/online/movielist_n","/online/onlinedetail_n",
-                            "/users/login", "/home_n" ).permitAll()
-                .anyRequest().hasAnyAuthority("ADMIN", "USER","TESTER")
+                .antMatchers(AUTH_WISHLIST).permitAll()
+//                .antMatchers("/**/*").denyAll()
+                .anyRequest().hasAnyAuthority("ADMIN", "USER", "TESTER")
                 .and()
                 .formLogin()
                 .loginPage("/users/login").permitAll()

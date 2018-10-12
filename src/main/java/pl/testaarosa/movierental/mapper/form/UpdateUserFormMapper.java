@@ -51,6 +51,7 @@ public class UpdateUserFormMapper {
                 .registerDate(remoteUser.getRegisterDate())
                 .enabled(remoteUser.isEnabled())
                 .movieWishes(remoteUser.getMovieWishes())
+                .userMovies(remoteUser.getUserMovies())
                 .role(remoteUser.getRole())
                 .build();
         updatedUser.setId(remoteUser.getId());

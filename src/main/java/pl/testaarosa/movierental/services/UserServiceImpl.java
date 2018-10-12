@@ -129,8 +129,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void deleteUser(Long userId) {
-//        userMovieService.delete(userId);
-//        movieWishService.deleteWishesForGivenUser(userId);
         LOGGER.warn(Marker.ANY_MARKER, "Trying to delete user id: "  + userId);
         userRepository.delete(userId);
     }
