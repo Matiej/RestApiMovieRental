@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findOne(id);
     }
 
+
     @Transactional
     @Override
     public User add(UserForm userForm) throws EmailExistsException {
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
         user.setUserRentalDetails(userRentalDetails);
         user.getUserRentalDetails().setUser(user);
         userRepository.save(user);
-        emailNotifierService.sendEmailToUpdatedUser(updateUserForm);
+//        emailNotifierService.sendEmailToUpdatedUser(updateUserForm);
         return user;
     }
 

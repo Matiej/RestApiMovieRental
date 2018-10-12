@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -26,7 +27,9 @@ public class User implements org.springframework.security.core.userdetails.UserD
     private String name;
     private String surname;
     private String email;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private String matchingPassword;
     private boolean enabled;
     private LocalDateTime registerDate;

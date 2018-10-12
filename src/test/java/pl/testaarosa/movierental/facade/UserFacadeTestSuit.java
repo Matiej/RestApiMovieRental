@@ -455,4 +455,14 @@ public class UserFacadeTestSuit {
         assertNotNull(result);
         assertNotEquals(movieDtoListWrong, result);
     }
+
+    @Test
+    public void deteleUser() {
+        //given
+        //when
+        userService.deleteUser(1L);
+        //then
+        verify(userService, times(1)).deleteUser(1L);
+        verifyNoMoreInteractions(userService);
+    }
 }

@@ -11,6 +11,4 @@ public class CoreConfig {
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
-
-
 }

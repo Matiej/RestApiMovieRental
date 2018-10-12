@@ -127,8 +127,6 @@ public class UserControllerTestSuit {
                 .andExpect(view().name("userForm"));
     }
 
-
-
     @Test
     public void shouldAddUserNWhenFormIsCorrect() throws Exception {
         //given
@@ -153,8 +151,8 @@ public class UserControllerTestSuit {
         User result = userFacade.addUserAndWish(userFormDto);
         //then
         verify(userFacade, times(2)).addUserAndWish(userFormDto);
-        verifyNoMoreInteractions(userFacade);
         assertEquals(user, result);
+//        verifyNoMoreInteractions(userFacade);
     }
 
     @Test
@@ -301,5 +299,17 @@ public class UserControllerTestSuit {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/logout"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(view().name("logout_"));
+    }
+
+    @Test
+    public void testDeleteUser() throws Exception {
+        //when
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/deleteuser")
+                .param("id", String.valueOf(1L)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(view().name("index_n"));
+        //then
+        verify(userFacade,times(1)).deleteUser(1L);
+        verifyNoMoreInteractions(userFacade);
     }
 }

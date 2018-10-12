@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -23,7 +25,7 @@ public class UserMovie {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MOVIE_DETAILS_ID")
     private UserMovieDetails userMovieDetails;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;

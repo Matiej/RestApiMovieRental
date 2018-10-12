@@ -37,6 +37,7 @@ public class UserController {
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                           WebRequest request, Errors errors) {
         User registerUser = new User();
+
         if (!bindingResult.hasErrors()) {
             registerUser = createUserAccout(userFormDto);
         }
@@ -196,7 +197,6 @@ public class UserController {
 
     @GetMapping("/details")
     public String userDetails(HttpServletRequest request, Model model) {
-        //TODO w templace zrobic odnośniki do list filmów i wishes.
         String remoteUser = request.getRemoteUser();
         UserDto remoteUserForUpdate = userFacade.findRemoteUser(remoteUser);
         MovieWishDto wishes = userFacade.findUsersWishForGivenUser(remoteUser);

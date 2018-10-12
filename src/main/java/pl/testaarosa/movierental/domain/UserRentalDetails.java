@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class UserRentalDetails {
     private String street;
     @Enumerated(EnumType.STRING)
     private UserGender userGender;
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User user;

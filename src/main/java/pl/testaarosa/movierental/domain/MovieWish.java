@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class MovieWish {
     joinColumns = {@JoinColumn(name = "WISH_ID", referencedColumnName = "ID")},
     inverseJoinColumns = {@JoinColumn(name = "MOVIES_ID", referencedColumnName = "ID")})
     private List<Movie> moviesList = new ArrayList<>();
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;

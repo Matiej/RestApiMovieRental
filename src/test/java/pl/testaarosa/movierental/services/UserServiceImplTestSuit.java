@@ -40,8 +40,8 @@ public class UserServiceImplTestSuit {
     private RoleRepository roleRepository;
     @Mock
     private PasswordEncoder passwordEncoder;
-    @Mock
-    private EmailNotifierService emailNotifierService;
+//    @Mock
+//    private EmailNotifierService emailNotifierService;
     @Mock
     private UpdateUserFormMapper updateUserFormMapper;
     @Mock
@@ -82,7 +82,7 @@ public class UserServiceImplTestSuit {
         when(userFormMapper.mapToUser(userFormList.get(0))).thenReturn(userList.get(0));
         when(userFormMapper.mapToUserDetails(userFormList.get(0))).thenReturn(userList.get(0).getUserRentalDetails());
         when(roleRepository.findByName("USER")).thenReturn(role.getRole());
-        doNothing().when(emailNotifierService).sendEmailToNewUser(userFormList.get(0));
+//        doNothing().when(emailNotifierService).sendEmailToNewUser(userFormList.get(0));
         when(userRepository.findByEmail(userFormList.get(0).getEmail()))
                 .thenReturn(java.util.Optional.ofNullable(userList.get(0)));
         when(userRepository.save(userList.get(0))).thenReturn(userList.get(0));
@@ -106,7 +106,7 @@ public class UserServiceImplTestSuit {
         when(userFormMapper.mapToUser(userFormList.get(0))).thenReturn(userList.get(0));
         when(userFormMapper.mapToUserDetails(userFormList.get(0))).thenReturn(userList.get(0).getUserRentalDetails());
         when(roleRepository.findByName("USER")).thenReturn(role.getRole());
-        doNothing().when(emailNotifierService).sendEmailToNewUser(userFormList.get(0));
+//        doNothing().when(emailNotifierService).sendEmailToNewUser(userFormList.get(0));
         when(userRepository.save(userList.get(0))).thenReturn(userList.get(0));
         //when
         User result = userService.add(userFormList.get(0));
@@ -115,7 +115,7 @@ public class UserServiceImplTestSuit {
         assertEquals(expected.getName(), result.getName());
         assertEquals(expected, result);
         assertNotEquals(userList.get(1).getName(), result.getName());
-        verify(emailNotifierService, times(1)).sendEmailToNewUser(userFormList.get(0));
+//        verify(emailNotifierService, times(1)).sendEmailToNewUser(userFormList.get(0));
     }
 
     @Test
@@ -128,7 +128,7 @@ public class UserServiceImplTestSuit {
         when(updateUserFormMapper.mapToUser(updateUserForm, user)).thenReturn(user);
         when(updateUserFormMapper.mapToUserDetails(updateUserForm, user)).thenReturn(user.getUserRentalDetails());
         when(roleRepository.findByName("USER")).thenReturn(role.getRole());
-        doNothing().when(emailNotifierService).sendEmailToUpdatedUser(updateUserForm);
+//        doNothing().when(emailNotifierService).sendEmailToUpdatedUser(updateUserForm);
         when(userRepository.save(user)).thenReturn(user);
         //when
         //then
@@ -160,7 +160,7 @@ public class UserServiceImplTestSuit {
         when(updateUserFormMapper.mapToUser(changedUpdateUserForm, changedUser)).thenReturn(changedUser);
         when(updateUserFormMapper.mapToUserDetails(changedUpdateUserForm, changedUser)).thenReturn(changedUser.getUserRentalDetails());
 //        when(roleRepository.findByName("USER")).thenReturn(role.getRole());
-        doNothing().when(emailNotifierService).sendEmailToUpdatedUser(changedUpdateUserForm);
+//        doNothing().when(emailNotifierService).sendEmailToUpdatedUser(changedUpdateUserForm);
         when(userRepository.save(user)).thenReturn(changedUser);
         //when
         User result = userService.update(changedUpdateUserForm, changedUser);
@@ -169,7 +169,7 @@ public class UserServiceImplTestSuit {
         assertEquals(changedUser, result);
         assertEquals("Breslaw", user.getUserRentalDetails().getCity());
         assertNotEquals(changedUser.getUserRentalDetails(), user.getUserRentalDetails());
-        verify(emailNotifierService, times(1)).sendEmailToUpdatedUser(changedUpdateUserForm);
+//        verify(emailNotifierService, times(1)).sendEmailToUpdatedUser(changedUpdateUserForm);
     }
 
 
@@ -213,5 +213,16 @@ public class UserServiceImplTestSuit {
         assertNotEquals(mockUser.mockUser().get(1), remoteUser);
         assertTrue(!remoteUser.isEnabled());
     }
+
+    @Test
+    public void deleteUser() {
+        //given
+        //when
+        userRepository.delete(1L);
+        //then
+        verify(userRepository, times(1)).delete(1L);
+        verifyNoMoreInteractions(userRepository);
+    }
+
 
 }

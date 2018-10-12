@@ -1,10 +1,13 @@
 package pl.testaarosa.movierental.form.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
 import pl.testaarosa.movierental.validator.PasswordMatches;
 import pl.testaarosa.movierental.validator.ValidEmail;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -31,6 +34,7 @@ public class UserFormDto {
     private String city;
     @NotEmpty
     private String street;
+    @Enumerated(value = EnumType.STRING)
     private UserGender userGender;
 
     public UserFormDto() {
@@ -54,6 +58,7 @@ public class UserFormDto {
         return Id;
     }
 
+    @ApiModelProperty(hidden = true)
     public void setId(Long id) {
         Id = id;
     }
@@ -86,6 +91,7 @@ public class UserFormDto {
         return registerDate;
     }
 
+    @ApiModelProperty(hidden = true)
     public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
     }

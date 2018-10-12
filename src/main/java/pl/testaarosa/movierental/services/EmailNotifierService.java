@@ -35,7 +35,7 @@ public class EmailNotifierService {
         String subject = "Welcome " + updateUserForm.getName() + ", Testaarosa movierental app created Yours account";
 
         StringBuilder message = new StringBuilder("Yours account updated  as above: " + "\n"
-                + "Name: " +updateUserForm.getName() + ",  surname: " + updateUserForm.getSurname() + "\n"
+                + "Name: " + updateUserForm.getName() + ",  surname: " + updateUserForm.getSurname() + "\n"
                 + "City: " + updateUserForm.getCity() + ",  street: " + updateUserForm.getStreet() + "\n"
                 + " ** Birthday: " + updateUserForm.getBirthday() + "\n"    //TODO zamienić na update date
                 + "User email: " + updateUserForm.getEmail() + " \n Date of registration: " + updateUserForm.getRegisterDate() + "\n\n"
