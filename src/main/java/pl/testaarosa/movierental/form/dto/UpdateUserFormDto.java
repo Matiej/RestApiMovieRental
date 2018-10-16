@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.form.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
 import pl.testaarosa.movierental.validator.ValidEmail;
@@ -10,6 +12,7 @@ import java.util.Objects;
 
 public class UpdateUserFormDto {
 
+    @JsonIgnore
     private Long id;
     @Size(min = 2, message = "I'm sorry dear user, name size must by min 2 chars here")
     private String name;
@@ -18,8 +21,11 @@ public class UpdateUserFormDto {
     @ValidEmail
     @NotEmpty
     private String email;
+    @JsonIgnore
     private LocalDateTime registerDate;
+    @JsonIgnore
     private LocalDateTime lastUpdateDate;
+    @JsonFormat(pattern = "date")
     @Size(min = 10, max = 10, message = "The year must entered in this way (yyyy-MM-dd)")
     private String birthday;
 //    @NotEmpty

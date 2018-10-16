@@ -153,7 +153,6 @@ public class UserController {
         return "logout_";
     }
 
-    //TODO test
     @PostMapping("/updateuser")
     public String update(HttpServletRequest request, Model model, @ModelAttribute @Valid UpdateUserFormDto updateUserFormDto,
                          BindingResult bindingResult, Errors errors) {

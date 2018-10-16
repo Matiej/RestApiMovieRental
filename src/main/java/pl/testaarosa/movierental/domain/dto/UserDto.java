@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.Role;
 import pl.testaarosa.movierental.domain.UserRentalDetails;
@@ -16,13 +17,19 @@ public class UserDto {
     private String name;
     private String surname;
     private String email;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private String matchingPassword;
     private boolean isEnabled;
     private LocalDateTime registerDate;
+    @JsonIgnore
     private UserRentalDetails userRentalDetails;
+    @JsonIgnore
     private List<MovieWish> movieWishes = new ArrayList<>();
+    @JsonIgnore
     private List<UserMovie> userMovies = new ArrayList<>();
+//    @JsonIgnore
     private Role role;
 
     public UserDto(Long id, String name, String surname, String email, String password, String matchingPassword, boolean isEnabled, LocalDateTime registerDate,
