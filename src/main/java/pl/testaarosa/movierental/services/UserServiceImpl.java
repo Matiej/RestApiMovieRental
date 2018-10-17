@@ -133,4 +133,9 @@ public class UserServiceImpl implements UserService {
         LOGGER.warn(Marker.ANY_MARKER, "Trying to delete user id: "  + userId);
         userRepository.delete(userId);
     }
+
+    @Override
+    public User findUserById(Long userId) {
+        return userRepository.findById(userId);
+    }
 }

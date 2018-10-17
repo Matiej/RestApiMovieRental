@@ -3,8 +3,8 @@ package pl.testaarosa.movierental.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.Role;
-import pl.testaarosa.movierental.domain.UserRentalDetails;
 import pl.testaarosa.movierental.domain.UserMovie;
+import pl.testaarosa.movierental.domain.UserRentalDetails;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ public class UserDto {
     private String matchingPassword;
     private boolean isEnabled;
     private LocalDateTime registerDate;
-    @JsonIgnore
     private UserRentalDetails userRentalDetails;
     @JsonIgnore
     private List<MovieWish> movieWishes = new ArrayList<>();

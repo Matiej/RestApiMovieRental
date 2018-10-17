@@ -115,4 +115,8 @@ public class UserFacade {
     public void deleteUser(Long id) {
         userService.deleteUser(id);
     }
+
+    public UserDto findUserById(Long userId) {
+        return userMapper.mapToUserDto(userService.findUserById(userId));
+    }
 }

@@ -16,4 +16,5 @@ public interface UserService extends UserDetailsService {
     User findRemoteUser(String remoteUser);
     UpdateUserForm findRemoteUserForUpdate(String remoteUser);
     void deleteUser(Long id);
+    User findUserById(Long userId);
 }

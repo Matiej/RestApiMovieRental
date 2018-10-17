@@ -43,4 +43,16 @@ public class UserControllerApi {
     public List<UserDto> findAllUsers() {
         return userFacade.findAllUsers();
     }
+
+    @DeleteMapping("delUser")
+    @ApiOperation(value = "Delete user from data base by ID", response = UserDto.class)
+    @ApiImplicitParam(required = true, name = "userId", value = "userId", dataType = "long", paramType = "query")
+    public UserDto deleteUser(Long userId) {
+        UserDto userToDelete = userFacade.findUserById(userId);
+        userFacade.deleteUser(userId);
+        return userToDelete;
+    }
+
+
+
 }
