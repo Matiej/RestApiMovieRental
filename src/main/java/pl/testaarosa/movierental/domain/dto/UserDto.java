@@ -31,6 +31,9 @@ public class UserDto {
 //    @JsonIgnore
     private Role role;
 
+    public UserDto() {
+    }
+
     public UserDto(Long id, String name, String surname, String email, String password, String matchingPassword, boolean isEnabled, LocalDateTime registerDate,
                    UserRentalDetails userRentalDetails, List<MovieWish> movieWishes, List<UserMovie> userMovies, Role role) {
         this.id = id;

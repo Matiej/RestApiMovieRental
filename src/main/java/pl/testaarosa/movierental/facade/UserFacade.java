@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.testaarosa.movierental.domain.User;
@@ -27,6 +29,7 @@ import java.util.List;
 @Service
 public class UserFacade {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserFacade.class);
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -116,6 +119,7 @@ public class UserFacade {
         userService.deleteUser(id);
     }
 
+    //TODO napisać testy
     public UserDto findUserById(Long userId) {
         return userMapper.mapToUserDto(userService.findUserById(userId));
     }
