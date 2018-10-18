@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.controllerApi;
+package pl.testaarosa.movierental.controllerRestApi;
 
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/mrapi/users/")
 @Api(description = "User controller")
-public class UserControllerApi {
+public class UserControllerRestApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     @Autowired
@@ -85,7 +85,6 @@ public class UserControllerApi {
     @GetMapping("remoteUserDetails")
     @ApiOperation(value = "Get remote user details from data base. Need to be logged", response = UserDto.class)
     public UserDto getRemoteUserDetails(HttpServletRequest request) {
-        request.
         return userFacade.findRemoteUser(request.getRemoteUser());
     }
 
