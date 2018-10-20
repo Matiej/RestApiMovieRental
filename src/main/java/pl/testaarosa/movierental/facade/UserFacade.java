@@ -82,7 +82,11 @@ public class UserFacade {
     }
 
     public UserMovie addUserMovie(String remoteUser, UserMovieFormDto userMovieFormDto) {
-       return userMovieService.add(remoteUser, userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto));
+       return (userMovieService.add(remoteUser, userMovieFormDtoMapper.mapToUserMovieForm(userMovieFormDto)));
+    }
+
+    public UserMovieDto addUserMovieRest(String remoteUser, UserMovieFormDto userMovieFormDto) {
+        return userMovieMapper.mapToUserMovieDto(addUserMovie(remoteUser,userMovieFormDto));
     }
 
     public UserMovieDto findOneUserMovie(Long id) {

@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.controllerRestApi;
+package pl.testaarosa.movierental.controllerRest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

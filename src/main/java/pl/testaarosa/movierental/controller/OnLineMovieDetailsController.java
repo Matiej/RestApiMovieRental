@@ -16,7 +16,7 @@ public class OnLineMovieDetailsController {
     @Autowired
     private MoviesFacade onLineMovieFacade;
 
-    @RequestMapping("/onlinedetail")
+        @RequestMapping("/onlinedetail")
     public String onLineMovieDetail(Model model, String imdbID) {
         OnLineMovieDetailsDto movieDetDto = null;
         try {

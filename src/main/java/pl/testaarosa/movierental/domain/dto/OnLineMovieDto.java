@@ -1,11 +1,13 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 
 import java.util.Objects;
 
 public class OnLineMovieDto {
 
+    @JsonIgnore
     private Long id;
     private String year;
     private String title;
@@ -13,6 +15,7 @@ public class OnLineMovieDto {
 //    private String type;
     private String poster;
     private String supplier;
+    @JsonIgnore
     private OnLineMovieDetails onLineMovieDetails;
 
     public OnLineMovieDto(Long id, String year, String title, String imdbID, String poster,

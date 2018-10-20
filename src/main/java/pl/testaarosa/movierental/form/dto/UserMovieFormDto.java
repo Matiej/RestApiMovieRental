@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.form.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserMovieGenre;
 
@@ -8,7 +9,6 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
-//TODO walidacja
 public class UserMovieFormDto {
 
     private Long id;
@@ -48,6 +48,7 @@ public class UserMovieFormDto {
         return id;
     }
 
+    @JsonIgnore
     public void setId(Long id) {
         this.id = id;
     }

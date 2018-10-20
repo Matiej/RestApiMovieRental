@@ -26,7 +26,7 @@ public class UserMovieController {
         String remoteUser = request.getRemoteUser();
         model.put("userMovies", userFacade.findAllUserMoviesForGivenUser(remoteUser));
         return "userMoviesList";
-    }
+       }
 
     @GetMapping("/movieslistsearch")
     public String showSearchTitleResult(HttpServletRequest request, Model model, @RequestParam String title){

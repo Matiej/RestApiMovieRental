@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovieDetails;
 import pl.testaarosa.movierental.domain.UserMovieGenre;
@@ -13,6 +14,7 @@ public class UserMovieDto {
     private String title;
     private UserMovieGenre genre;
     private UserMovieDetails userMovieDetails;
+    @JsonIgnore
     private User user;
 
     public UserMovieDto(Long id, String imdbID, String title, UserMovieGenre genre, UserMovieDetails userMovieDetails, User user) {

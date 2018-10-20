@@ -1,4 +1,4 @@
-package pl.testaarosa.movierental.controllerRestApi;
+package pl.testaarosa.movierental.controllerRest;
 
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/mrapi/users/")
 @Api(description = "User controller")
-public class UserControllerRestApi {
+public class UserControllerRest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     @Autowired
@@ -35,21 +35,22 @@ public class UserControllerRestApi {
     @ResponseBody
     @PutMapping("update")
     @ApiOperation(value = "Update user data", response = User.class)
-    @ApiImplicitParam(required = true, name = "remoteUserEmail", value = "email", dataType = "string", paramType = "query",format = "email",example = "jan@example.com")
+    @ApiImplicitParam(required = true, name = "remoteUserEmail", value = "email", dataType = "string",
+            paramType = "query",format = "email",example = "jan@example.com")
     public User updateUserAccount(@RequestBody @Valid UpdateUserFormDto updateUserForm, String remoteUserEmail) {
         UserDto remoteUser = userFacade.findRemoteUser(remoteUserEmail);
         return userFacade.updateUser(updateUserForm,remoteUser);
     }
 
-    @GetMapping("allUsers")
+    @GetMapping("allusers")
     @ApiOperation(value = "Find all users in database", response = UserDto.class)
     public List<UserDto> findAllUsers() {
         return userFacade.findAllUsers();
     }
 
-    @DeleteMapping("delUserById")
+    @DeleteMapping("delusernyid")
     @ApiOperation(value = "Delete user from data base by ID", response = UserDto.class)
-    @ApiImplicitParam(required = true, name = "userId", value = "userId", dataType = "long", paramType = "query")
+    @ApiImplicitParam(required = true, name = "userId", value = "userId", paramType = "query")
     public UserDto deleteUser(Long userId) {
         UserDto userToDelete = userFacade.findUserById(userId);
         userFacade.deleteUser(userId);
@@ -57,7 +58,7 @@ public class UserControllerRestApi {
     }
 
     //TODO czy zabangla zrobic if że jak null request jest to zwraca komunikat jakiś czy numery błędów odpowiedni komentarz?
-    @DeleteMapping("delRemonteUser")
+    @DeleteMapping("delremonteuser")
     @ApiOperation(value = "Delete remote user from data base by login/email", response = UserDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No remote user found"),
@@ -76,7 +77,7 @@ public class UserControllerRestApi {
 
     @GetMapping("userById")
     @ApiOperation(value = "Find user from data base by ID", response = UserDto.class)
-    @ApiImplicitParam(required = true, name = "userId", value = "userId", dataType = "long", paramType = "query")
+    @ApiImplicitParam(required = true, name = "userId", value = "userId", paramType = "query")
     public UserDto findUserById(Long userId) {
         return userFacade.findUserById(userId);
     }
@@ -87,5 +88,4 @@ public class UserControllerRestApi {
     public UserDto getRemoteUserDetails(HttpServletRequest request) {
         return userFacade.findRemoteUser(request.getRemoteUser());
     }
-
 }

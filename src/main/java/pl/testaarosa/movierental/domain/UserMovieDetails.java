@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -17,6 +19,7 @@ public class UserMovieDetails {
     private String actors;
     @Column(length = 3000)
     private String plot;
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_MOVIE_ID")
     private UserMovie userMovie;
