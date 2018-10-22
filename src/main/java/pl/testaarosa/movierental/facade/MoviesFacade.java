@@ -1,8 +1,10 @@
 package pl.testaarosa.movierental.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.domain.Movie;
+import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.dto.*;
 import pl.testaarosa.movierental.mapper.*;
 import pl.testaarosa.movierental.services.BlueRayMovieService;
@@ -15,6 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class MoviesFacade {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MoviesFacade.class);
     @Autowired
     private BlueRayMovieService blueRayMovieService;
     @Autowired
@@ -73,7 +76,8 @@ public class MoviesFacade {
     }
 
     public OnLineMovieDto addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
-        return onLineMovieMapper.mapToOnlineMovieDto(onLineMovieService.addOnLineMovieToDb(imdbID));
+        OnLineMovie onLineMovie = onLineMovieService.addOnLineMovieToDb(imdbID);
+        return onLineMovieMapper.mapToOnlineMovieDto(onLineMovie);
     }
 
     public MovieDto findMovieById(Long id) {

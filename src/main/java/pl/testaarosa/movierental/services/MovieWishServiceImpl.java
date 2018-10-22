@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +11,8 @@ import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.repositories.MovieWishRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class MovieWishServiceImpl implements MovieWishService {
@@ -19,6 +23,7 @@ public class MovieWishServiceImpl implements MovieWishService {
     private UserService userService;
     @Autowired
     private MovieService movieService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(MovieWishServiceImpl.class);
 
     @Override
     public List<MovieWish> findAllWishes() {
@@ -27,7 +32,12 @@ public class MovieWishServiceImpl implements MovieWishService {
 
     @Override
     public MovieWish findUsersWishForGivenUser(String remoteUser) {
-        Long id = userService.findRemoteUser(remoteUser).getId();
+        Long id = null;
+        if (Optional.ofNullable(remoteUser).isPresent()) {
+            id = userService.findRemoteUser(remoteUser).getId();
+        } else {
+            throw new NoSuchElementException("No remote user!! +" + remoteUser);
+        }
         return movieWishRepository.findAllUsersWishForGivenUser(id);
     }
 
@@ -35,20 +45,24 @@ public class MovieWishServiceImpl implements MovieWishService {
     @Override
     public MovieWish createMowieWish(User user) {
         MovieWish movieWish = new MovieWish();
-//        List<MovieWish> movieWishList = new ArrayList<>();
         movieWish.setUser(user);
         movieWish.setWishName(user.getEmail() + ", " + user.getSurname());
-//        return movieWishRepository.save(movieWish);
         return movieWish;
     }
 
     @Override
     public MovieWish addMovieToWish(String remoteUser, Long movieId) {
-        Long remoteUserId = userService.findRemoteUser(remoteUser).getId();
-        Movie movie = movieService.findById(movieId);
-        MovieWish one = movieWishRepository.findAllUsersWishForGivenUser(remoteUserId);
-        movie.getMovieWishList().add(one);
-        one.getMoviesList().add(movie);
+        MovieWish one = null;
+        try {
+            Long remoteUserId = userService.findRemoteUser(remoteUser).getId();
+            Movie movie = movieService.findById(movieId);
+            one = movieWishRepository.findAllUsersWishForGivenUser(remoteUserId);
+            movie.getMovieWishList().add(one);
+            one.getMoviesList().add(movie);
+        } catch (NullPointerException e) {
+            LOGGER.error("\u001B[31mNo remote user found!!\u001B[0m");
+            throw new NullPointerException(e.getMessage() + " No remote user found!!");
+        }
         return movieWishRepository.save(one);
     }
 

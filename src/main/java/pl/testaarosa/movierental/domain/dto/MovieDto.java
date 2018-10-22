@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.testaarosa.movierental.domain.MovieWish;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class MovieDto {
         return id;
     }
 
+    @JsonIgnore
     public void setId(Long id) {
         this.id = id;
     }
@@ -64,6 +66,7 @@ public class MovieDto {
         this.supplier = supplier;
     }
 
+    @JsonIgnore
     public List<MovieWish> getMovieWishList() {
         return movieWishList;
     }

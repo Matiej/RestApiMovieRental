@@ -1,5 +1,7 @@
 package pl.testaarosa.movierental.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +75,7 @@ public class Movie {
         this.supplier = supplier;
     }
 
+    @JsonIgnore
     public List<MovieWish> getMovieWishList() {
         return movieWishList;
     }

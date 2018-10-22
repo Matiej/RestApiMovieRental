@@ -115,7 +115,6 @@ public class UserFacade {
 
     public List<MovieDto> findMoviesForWishByWishId(Long id) {
         MovieWishDto movieWishDto1 = findById(id);
-//        MovieWishDto movieWishDto = movieWishMapper.mapToMovieWishDto(movieWishService.findById(id));
         return movieMapper.mapTOMovieDtoList(movieWishDto1.getMoviesList());
     }
 

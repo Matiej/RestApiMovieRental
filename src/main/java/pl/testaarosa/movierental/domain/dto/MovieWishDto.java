@@ -1,5 +1,6 @@
 package pl.testaarosa.movierental.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.testaarosa.movierental.domain.Movie;
 import pl.testaarosa.movierental.domain.User;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 public class MovieWishDto {
 
+    @JsonIgnore
     private Long id;
     private String wishName;
     private List<Movie> moviesList = new ArrayList<>();
@@ -45,6 +47,7 @@ public class MovieWishDto {
         this.moviesList = moviesList;
     }
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }
