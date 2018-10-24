@@ -29,7 +29,11 @@ public class MovieWishController {
     @GetMapping("/addmovie")
     public String addMovieToWishList(HttpServletRequest request, Model model, @RequestParam Long id){
         String remoteUser = request.getRemoteUser();
-        userFacade.addMovie(remoteUser,id);
+        try {
+            userFacade.addMovie(remoteUser,id);
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         MovieWishDto allWishes = userFacade.findUsersWishForGivenUser(remoteUser);
         model.addAttribute("userWishes", allWishes);
         return "movieUserWishes";
@@ -45,8 +49,14 @@ public class MovieWishController {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
         }
-        userFacade.addMovie(remoteUser,onLineMovie.getId());
+        try {
+            userFacade.addMovie(remoteUser,onLineMovie.getId());
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         MovieWishDto allWishes = userFacade.findUsersWishForGivenUser(remoteUser);
         model.addAttribute("userWishes", allWishes);
         return "movieUserWishes";
@@ -90,7 +100,11 @@ public class MovieWishController {
                 model.addAttribute("onLineMovieDetailsDb", moviesFacade.findOnLineById(id));
                 return "onLineMovieDetailsDb";
             case "dvd supplier":
-                model.addAttribute("dvdMovieDetail", moviesFacade.findDvdById(id));
+                try {
+                    model.addAttribute("dvdMovieDetail", moviesFacade.findDvdById(id));
+                } catch (MovieNotFoundException movieNotFoundException) {
+                    movieNotFoundException.printStackTrace();
+                }
                 return "dvdMovieDetails";
             default:
                 return "index";

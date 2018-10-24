@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.domain.dto.MovieDto;
@@ -97,7 +98,7 @@ public class UserFacade {
         userMovieService.delete(id);
     }
 
-    public MovieWishDto addMovie(String remoteUser, Long id) {
+    public MovieWishDto addMovie(String remoteUser, Long id) throws MovieNotFoundException {
         return movieWishMapper.mapToMovieWishDto(movieWishService.addMovieToWish(remoteUser, id));
     }
 

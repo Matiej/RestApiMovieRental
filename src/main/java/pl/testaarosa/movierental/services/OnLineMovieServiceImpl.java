@@ -4,13 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 import pl.testaarosa.movierental.mapper.OmbdOnLineMapper;
 import pl.testaarosa.movierental.repositories.OnLineMovieRepository;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -39,8 +40,9 @@ public class OnLineMovieServiceImpl implements OnLineMovieService {
         return onLineMovieDetails.get();
     }
 
+    @Transactional
     @Override
-    public OnLineMovie addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
+    public OnLineMovie addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException, MovieNotFoundException {
         CompletableFuture<OnLineMovieDetails> onLineMovieDetails = onLineMovieRetriever.getOnLineMovieDetails(imdbID);
         CompletableFuture.allOf(onLineMovieDetails);
         if (Optional.ofNullable(onLineMovieDetails.get().getImdbID()).isPresent()) {
@@ -54,7 +56,7 @@ public class OnLineMovieServiceImpl implements OnLineMovieService {
             }
         } else {
             LOGGER.error("Wrong imdbID, can't fine movie with id: -> " + imdbID);
-            throw new NoSuchElementException("Wrong imdbID, can't fine movie with id: -> " + imdbID);
+            throw new MovieNotFoundException("Wrong imdbID, can't fine movie with id: -> " + imdbID);
         }
     }
 

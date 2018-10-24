@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(role);
         user.getMovieWishes().add(movieWishService.createMowieWish(user));
         userRepository.save(user);
-//        emailNotifierService.sendEmailToNewUser(userForm);
+        emailNotifierService.sendEmailToNewUser(userForm);
         return user;
     }
 
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
         user.setUserRentalDetails(userRentalDetails);
         user.getUserRentalDetails().setUser(user);
         userRepository.save(user);
-//        emailNotifierService.sendEmailToUpdatedUser(updateUserForm);
+        emailNotifierService.sendEmailToUpdatedUser(updateUserForm);
         return user;
     }
 
@@ -119,7 +119,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findRemoteUser(String remoteUser) {
-        return userRepository.findRemoteUser(remoteUser);
+        User user = null;
+        if (Optional.ofNullable(remoteUser).isPresent()) {
+            user = userRepository.findRemoteUser(remoteUser);
+        } else {
+            LOGGER.error("\u001B[31mNo remote user found!!\u001B[0m");
+            throw new UsernameNotFoundException(" No remote user found!!");
+        }
+        return user;
     }
 
     @Override
@@ -130,7 +137,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void deleteUser(Long userId) {
-        LOGGER.warn(Marker.ANY_MARKER, "Trying to delete user id: "  + userId);
+        LOGGER.warn(Marker.ANY_MARKER, "Trying to delete user id: " + userId);
         userRepository.delete(userId);
     }
 

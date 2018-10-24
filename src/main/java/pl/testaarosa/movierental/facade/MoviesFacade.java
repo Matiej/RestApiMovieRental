@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.dto.*;
 import pl.testaarosa.movierental.mapper.*;
@@ -55,7 +56,7 @@ public class MoviesFacade {
         return dvdMovieMapper.mapToDvdDtoList(dvdMovieService.findAll());
     }
 
-    public DvdMovieDto findDvdById(Long id) {
+    public DvdMovieDto findDvdById(Long id) throws MovieNotFoundException {
         return dvdMovieMapper.mapToDvdMovieDto(dvdMovieService.findById(id));
     }
 
@@ -75,7 +76,7 @@ public class MoviesFacade {
         return onLineMovieMapper.mapToOnlineMovieDto(onLineMovieService.findById(id));
     }
 
-    public OnLineMovieDto addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException {
+    public OnLineMovieDto addOnLineMovieToDb(String imdbID) throws ExecutionException, InterruptedException, MovieNotFoundException {
         OnLineMovie onLineMovie = onLineMovieService.addOnLineMovieToDb(imdbID);
         return onLineMovieMapper.mapToOnlineMovieDto(onLineMovie);
     }

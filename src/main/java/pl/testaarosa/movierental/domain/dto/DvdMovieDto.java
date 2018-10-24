@@ -1,11 +1,13 @@
 package pl.testaarosa.movierental.domain.dto;
 
 import pl.testaarosa.movierental.domain.DvdMovieDetails;
+import pl.testaarosa.movierental.validator.DigitValid;
 
 import java.util.Objects;
 
 public class DvdMovieDto {
 
+    @DigitValid
     private Long id;
     private String title;
     private String imdbID;

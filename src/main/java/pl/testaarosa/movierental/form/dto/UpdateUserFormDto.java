@@ -12,7 +12,6 @@ import java.util.Objects;
 
 public class UpdateUserFormDto {
 
-    @JsonIgnore
     private Long id;
     @Size(min = 2, message = "I'm sorry dear user, name size must by min 2 chars here")
     private String name;
@@ -58,6 +57,7 @@ public class UpdateUserFormDto {
         return id;
     }
 
+    @JsonIgnore
     public void setId(Long id) {
         this.id = id;
     }

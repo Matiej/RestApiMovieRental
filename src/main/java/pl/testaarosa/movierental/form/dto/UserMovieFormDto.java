@@ -3,6 +3,7 @@ package pl.testaarosa.movierental.form.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserMovieGenre;
+import pl.testaarosa.movierental.validator.DigitValid;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +17,7 @@ public class UserMovieFormDto {
     private String imdbID;
     @Size(min = 2, message = "Title size must be longer than 2")
     private String title;
+    @DigitValid
     @Size(min = 4, max = 4, message = "The year must entered it this way (1998)")
     private String year;
     @Size(min = 2, max = 1000)

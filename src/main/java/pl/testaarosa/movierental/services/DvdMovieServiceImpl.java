@@ -1,7 +1,10 @@
 package pl.testaarosa.movierental.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.DvdMovie;
 import pl.testaarosa.movierental.domain.DvdMovieDetails;
 import pl.testaarosa.movierental.repositories.DvdMovieRpository;
@@ -12,6 +15,8 @@ import java.util.List;
 
 @Service
 public class DvdMovieServiceImpl implements DvdMovieService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DvdMovieServiceImpl.class);
     @Autowired
     private DvdMovieRpository dvdMovieRpository;
 
@@ -28,17 +33,24 @@ public class DvdMovieServiceImpl implements DvdMovieService {
     }
 
     @Override
-    public List<DvdMovie> findAll(){
+    public List<DvdMovie> findAll() {
         return dvdMovieRpository.findAll();
     }
 
     @Override
-    public DvdMovie findById(Long id){
-        return dvdMovieRpository.findOne(id);
+    public DvdMovie findById(Long id) throws MovieNotFoundException {
+        DvdMovie one = null;
+        if (dvdMovieRpository.findOne(id) == null) {
+            LOGGER.error("\033[31mCan't find dvd movie id: " + id + "\033[0m");
+            throw new MovieNotFoundException("-> Can't find dvd movie id: " + id);
+        } else {
+            one = dvdMovieRpository.findOne(id);
+        }
+        return one;
     }
 
     @Override
-    public List<DvdMovie> findByTitle(String title){
+    public List<DvdMovie> findByTitle(String title) {
         return dvdMovieRpository.findAllByTitleContaining(title);
     }
 

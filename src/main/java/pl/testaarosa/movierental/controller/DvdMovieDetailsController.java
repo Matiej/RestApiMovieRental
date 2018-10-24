@@ -17,7 +17,11 @@ public class DvdMovieDetailsController {
 
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-        model.addAttribute("dvdMovieDetail", dvdMoviesFacade.findDvdById(id));
+        try {
+            model.addAttribute("dvdMovieDetail", dvdMoviesFacade.findDvdById(id));
+        } catch (MovieNotFoundException movieNotFoundException) {
+            movieNotFoundException.printStackTrace();
+        }
         return "dvdMovieDetails";
     }
 }
