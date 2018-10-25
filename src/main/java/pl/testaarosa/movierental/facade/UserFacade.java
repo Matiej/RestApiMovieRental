@@ -60,7 +60,7 @@ public class UserFacade {
         User user = userService.add(userFormDtoMapper.mapToUserForm(userFormDto));
         return user;
     }
-
+//TODO zmienić na USERDTO
     public User updateUser(UpdateUserFormDto updateUserFormDto, UserDto remoteUser) {
         return userService.update(updateUserFormDtoMapper.mapToUpdateUserForm(updateUserFormDto)
                 ,userMapper.mapToUser(remoteUser));

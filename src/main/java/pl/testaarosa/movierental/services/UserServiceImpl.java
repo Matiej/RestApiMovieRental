@@ -21,6 +21,7 @@ import pl.testaarosa.movierental.repositories.RoleRepository;
 import pl.testaarosa.movierental.repositories.UserRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -143,6 +144,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(Long userId) {
-        return userRepository.findById(userId);
+
+        if (Optional.ofNullable(userRepository.findById(userId)).isPresent()) {
+            return userRepository.findById(userId);
+        } else {
+            throw new NoSuchElementException("No user id: " + userId + " found!");
+        }
     }
 }

@@ -7,15 +7,13 @@ import java.util.Objects;
 
 public class OnLineMovieDto {
 
-    @JsonIgnore
     private Long id;
     private String year;
     private String title;
     private String imdbID;
-//    private String type;
     private String poster;
     private String supplier;
-    @JsonIgnore
+//    @JsonIgnore
     private OnLineMovieDetails onLineMovieDetails;
 
     public OnLineMovieDto(Long id, String year, String title, String imdbID, String poster,
@@ -33,6 +31,7 @@ public class OnLineMovieDto {
         return id;
     }
 
+    @JsonIgnore
     public void setId(Long id) {
         this.id = id;
     }

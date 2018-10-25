@@ -61,7 +61,13 @@ public class OnLineMovieServiceImpl implements OnLineMovieService {
     }
 
     @Override
-    public OnLineMovie findById(Long id) {
-        return onLineMovieRepository.findOne(id);
+    public OnLineMovie findById(Long id) throws MovieNotFoundException {
+        OnLineMovie onLine = null;
+        if (Optional.ofNullable(onLineMovieRepository.findOne(id)).isPresent()) {
+            return onLineMovieRepository.findOne(id);
+        } else {
+            LOGGER.error("\u001B[31mNo online movie found!!\u001B[0m");
+            throw new MovieNotFoundException("No online movie found");
+        }
     }
 }

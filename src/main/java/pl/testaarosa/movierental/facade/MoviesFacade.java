@@ -48,7 +48,7 @@ public class MoviesFacade {
         return blueRayMovieMapper.mapToBlueRayMovieDtoList(blueRayMovieService.findAllContainsTitle(title));
     }
 
-    public BlueRayMovieDto findBlueRaById(Long id) {
+    public BlueRayMovieDto findBlueRaById(Long id) throws MovieNotFoundException {
         return blueMovieDetailsMapper.mapToBlueRayMovieDto(blueRayMovieService.findbyId(id));
     }
 
@@ -72,7 +72,7 @@ public class MoviesFacade {
         return detailsMapper.mapToOnLineDetalisDto(onLineMovieService.getOnLineMovieDetails(movieId));
     }
 
-    public OnLineMovieDto findOnLineById(Long id) {
+    public OnLineMovieDto findOnLineById(Long id) throws MovieNotFoundException {
         return onLineMovieMapper.mapToOnlineMovieDto(onLineMovieService.findById(id));
     }
 
@@ -81,7 +81,7 @@ public class MoviesFacade {
         return onLineMovieMapper.mapToOnlineMovieDto(onLineMovie);
     }
 
-    public MovieDto findMovieById(Long id) {
+    public MovieDto findMovieById(Long id) throws MovieNotFoundException {
         return movieMapper.mapToMovieDto(movieService.findById(id));
     }
 }

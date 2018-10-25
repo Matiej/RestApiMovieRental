@@ -91,13 +91,26 @@ public class MovieWishController {
 
     @GetMapping("/moviedetails")
     public String movieDetails(Model model, @RequestParam Long id){
-        MovieDto movie = moviesFacade.findMovieById(id);
+        MovieDto movie = null;
+        try {
+            movie = moviesFacade.findMovieById(id);
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         switch (movie.getSupplier().toLowerCase()) {
             case "bluray supplier":
-                model.addAttribute("movieDetail", moviesFacade.findBlueRaById(id));
+                try {
+                    model.addAttribute("movieDetail", moviesFacade.findBlueRaById(id));
+                } catch (MovieNotFoundException e) {
+                    e.printStackTrace();
+                }
                 return "blueRayMoviesDetails";
             case "on line":
-                model.addAttribute("onLineMovieDetailsDb", moviesFacade.findOnLineById(id));
+                try {
+                    model.addAttribute("onLineMovieDetailsDb", moviesFacade.findOnLineById(id));
+                } catch (MovieNotFoundException e) {
+                    e.printStackTrace();
+                }
                 return "onLineMovieDetailsDb";
             case "dvd supplier":
                 try {

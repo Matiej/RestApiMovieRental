@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.testaarosa.movierental.controller.MovieNotFoundException;
-import pl.testaarosa.movierental.domain.dto.MovieDto;
-import pl.testaarosa.movierental.domain.dto.MovieWishDto;
-import pl.testaarosa.movierental.domain.dto.OnLineMovieDto;
+import pl.testaarosa.movierental.domain.dto.*;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.facade.UserFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -102,41 +99,60 @@ public class MovieWishControllerRest {
     @ApiOperation(value = "Show all wishes for remote user. Need to be logged in", response = MovieWishDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No remote user found"),
+            @ApiResponse(code = 401, message = "No remote user found or not user logged in"),
             @ApiResponse(code = 200, message = "Remote user found, and show wishes")})
-    public MovieWishDto showUserWishes(HttpServletRequest request) {
+    public ResponseEntity<Object> showUserWishes(HttpServletRequest request) {
         String remoteUser = null;
-        MovieWishDto wish = null;
         try {
             remoteUser = request.getRemoteUser();
-            wish = userFacade.findUsersWishForGivenUser(remoteUser);
-        } catch (NoSuchElementException e) {
-            throw e;
+            return ResponseEntity.ok(userFacade.findUsersWishForGivenUser(remoteUser));
+        } catch (UsernameNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(401).body("No remote user found ->" + remoteUser + " <- or user not logged in!!");
         }
-        return wish;
     }
 
     @GetMapping("moviedetails")
     @ApiOperation(value = "Show movies for wish ", response = MovieDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No movie for given ID"),
+            @ApiResponse(code = 400, message = "Wrong movie ID"),
             @ApiResponse(code = 200, message = "Movie found successful")})
     @ApiImplicitParam(required = true, name = "movieId", value = "movie ID from data base", dataType = "string",
             paramType = "query")
-    public Object movieDetails(Long movieId) {
-        MovieDto movie = moviesFacade.findMovieById(movieId);
+    public ResponseEntity<Object> movieDetails(Long movieId) {
+        MovieDto movie = null;
+        try {
+            movie = moviesFacade.findMovieById(movieId);
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(400).body("Wrong movie ID: " + movieId + " no movie found");
+        }
         switch (movie.getSupplier().toLowerCase()) {
             case "bluray supplier":
-               return moviesFacade.findBlueRaById(movieId);
+                try {
+                    return ResponseEntity.ok(moviesFacade.findBlueRaById(movieId));
+                } catch (MovieNotFoundException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.status(400).body("Wrong blueray movie ID: " + movieId + " no movie found");
+                }
             case "on line":
-                return moviesFacade.findOnLineById(movieId);
+                OnLineMovieDto onLineById = null;
+                try {
+                    return ResponseEntity.ok(moviesFacade.findOnLineById(movieId));
+                } catch (MovieNotFoundException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.status(400).body("Wrong onLine movie ID: " + movieId + " no movie found");
+                }
             case "dvd supplier":
                 try {
-                    return moviesFacade.findDvdById(movieId);
-                } catch (MovieNotFoundException movieNotFoundException) {
-                    movieNotFoundException.printStackTrace();
+                    return ResponseEntity.ok(moviesFacade.findDvdById(movieId));
+                } catch (MovieNotFoundException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.status(400).body("Wrong dvd movie ID: " + movieId + " no movie found");
                 }
             default:
-                return movie;
+                return ResponseEntity.ok(movie);
         }
     }
 

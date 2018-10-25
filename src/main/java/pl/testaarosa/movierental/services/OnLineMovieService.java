@@ -11,5 +11,5 @@ public interface OnLineMovieService {
     List<OnLineMovie> getOnLineMovies(String title) throws ExecutionException, InterruptedException;
     OnLineMovieDetails getOnLineMovieDetails(String movieId) throws ExecutionException, InterruptedException;
     OnLineMovie addOnLineMovieToDb(String imbdId) throws ExecutionException, InterruptedException, MovieNotFoundException;
-    OnLineMovie findById(Long id);
+    OnLineMovie findById(Long id) throws MovieNotFoundException;
 }
