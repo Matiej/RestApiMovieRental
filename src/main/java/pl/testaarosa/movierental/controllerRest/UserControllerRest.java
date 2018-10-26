@@ -1,14 +1,11 @@
 package pl.testaarosa.movierental.controllerRest;
 
 import io.swagger.annotations.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.TransactionException;
 import org.springframework.web.bind.annotation.*;
-import pl.testaarosa.movierental.controller.UserController;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.facade.UserFacade;
@@ -25,7 +22,6 @@ import java.util.NoSuchElementException;
 @Api(description = "User controller")
 public class UserControllerRest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserFacade userFacade;
 
@@ -84,7 +80,6 @@ public class UserControllerRest {
         }
     }
 
-    //TODO czy zabangla zrobic if że jak null request jest to zwraca komunikat jakiś czy numery błędów odpowiedni komentarz?
     @DeleteMapping("delremonteuser")
     @ApiOperation(value = "Delete remote user from data base by login/email", response = UserDto.class)
     @ApiResponses(value = {
@@ -103,17 +98,34 @@ public class UserControllerRest {
         }
     }
 
-    @GetMapping("userById")
+    @GetMapping("userbyid")
     @ApiOperation(value = "Find user from data base by ID", response = UserDto.class)
-    @ApiImplicitParam(required = true, name = "userId", value = "userId", paramType = "query")
-    public UserDto findUserById(Long userId) {
-        return userFacade.findUserById(userId);
+    @ApiImplicitParam(required = true, name = "userId", value = "User Id in data base", paramType = "query")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = "No user found"),
+            @ApiResponse(code = 401, message = "No  user found in data base"),
+            @ApiResponse(code = 200, message = "User found successful")})
+    public ResponseEntity<Object> findUserById(Long userId) {
+        try {
+            return ResponseEntity.ok(userFacade.findUserById(userId));
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(401).body("No user ID: " + userId + " found in data base");
+        }
     }
 
-    //TODO ifa zrobic lub odpowiedzi dać takie aby pokazał że nie jestes zalogowany, ewentualnie zrobic login lub cos
     @GetMapping("remoteUserDetails")
     @ApiOperation(value = "Get remote user details from data base. Need to be logged", response = UserDto.class)
-    public UserDto getRemoteUserDetails(HttpServletRequest request) {
-        return userFacade.findRemoteUser(request.getRemoteUser());
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = "No remote user found"),
+            @ApiResponse(code = 401, message = "No remote user found in data base or not logged in"),
+            @ApiResponse(code = 200, message = "Remote user details got successful")})
+    public ResponseEntity<Object> getRemoteUserDetails(HttpServletRequest request) {
+        try {
+            return ResponseEntity.ok(userFacade.findRemoteUser(request.getRemoteUser()));
+        } catch (UsernameNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(401).body("No user ->" + request.getRemoteUser() + "<- found ind data base or not logged in");
+        }
     }
 }

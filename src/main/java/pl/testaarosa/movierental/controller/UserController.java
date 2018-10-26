@@ -199,7 +199,12 @@ public class UserController {
         String remoteUser = request.getRemoteUser();
         UserDto remoteUserForUpdate = userFacade.findRemoteUser(remoteUser);
         MovieWishDto wishes = userFacade.findUsersWishForGivenUser(remoteUser);
-        List<UserMovieDto> allUserMoviesForGivenUser = userFacade.findAllUserMoviesForGivenUser(remoteUser);
+        List<UserMovieDto> allUserMoviesForGivenUser = null;
+        try {
+            allUserMoviesForGivenUser = userFacade.findAllUserMoviesForGivenUser(remoteUser);
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         model.addAttribute("user", remoteUserForUpdate);
         model.addAttribute("userW", wishes);
         model.addAttribute("userM", allUserMoviesForGivenUser);

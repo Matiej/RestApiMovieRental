@@ -74,7 +74,7 @@ public class UserFacade {
         return updateUserFormDtoMapper.mapToUpdateUserFormDto(userService.findRemoteUserForUpdate(remoteUser));
     }
 
-    public List<UserMovieDto> findAllUserMoviesForGivenUser(String remoteUser) {
+    public List<UserMovieDto> findAllUserMoviesForGivenUser(String remoteUser) throws MovieNotFoundException {
         return userMovieMapper.mapToUserMovieDtoList(userMovieService.findAllUsersMoviesForGivenUser(remoteUser));
     }
 
@@ -90,7 +90,7 @@ public class UserFacade {
         return userMovieMapper.mapToUserMovieDto(addUserMovie(remoteUser,userMovieFormDto));
     }
 
-    public UserMovieDto findOneUserMovie(Long id) {
+    public UserMovieDto findOneUserMovie(Long id) throws MovieNotFoundException {
         return userMovieMapper.mapToUserMovieDto(userMovieService.finaOne(id));
     }
 

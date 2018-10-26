@@ -80,19 +80,6 @@ public class User implements org.springframework.security.core.userdetails.UserD
                 '}';
     }
 
-    //    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", surname='" + surname + '\'' +
-//                ", email='" + email + '\'' +
-//                ", registerDate=" + registerDate +
-//                ", userRentalDetails=" + userRentalDetails +
-//
-//                '}';
-//    }
-
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }

@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/mrapi/dvd")
-@Api(description = "Dvd details controller")
+@Api(description = "Movie wish controller")
 public class MovieWishControllerRest {
 
     @Autowired

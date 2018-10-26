@@ -24,7 +24,11 @@ public class UserMovieController {
     @GetMapping("/movieslist")
     public String showUserMovies(HttpServletRequest request, Map<String, Object> model){
         String remoteUser = request.getRemoteUser();
-        model.put("userMovies", userFacade.findAllUserMoviesForGivenUser(remoteUser));
+        try {
+            model.put("userMovies", userFacade.findAllUserMoviesForGivenUser(remoteUser));
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         return "userMoviesList";
        }
 
@@ -49,14 +53,23 @@ public class UserMovieController {
             return "userMoviesForm";
         } else {
             userFacade.addUserMovie(remoteUser,userMovie);
-            List<UserMovieDto> userMovieList = userFacade.findAllUserMoviesForGivenUser(remoteUser);
+            List<UserMovieDto> userMovieList = null;
+            try {
+                userMovieList = userFacade.findAllUserMoviesForGivenUser(remoteUser);
+            } catch (MovieNotFoundException e) {
+                e.printStackTrace();
+            }
             model.addAttribute("userMovies",userMovieList);
             return "userMoviesList";
         }
     }
     @GetMapping("/showmovie")
     public String movieDetail(Model model, @RequestParam Long id) {
-        model.addAttribute("userMovieDetail", userFacade.findOneUserMovie(id));
+        try {
+            model.addAttribute("userMovieDetail", userFacade.findOneUserMovie(id));
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         return "userMovieDetails";
     }
 
@@ -64,7 +77,11 @@ public class UserMovieController {
     public String delUserMovie(HttpServletRequest request,Model model, @RequestParam Long id){
         String remoteUser = request.getRemoteUser();
         userFacade.deleteUserMovie(id);
-        model.addAttribute("userMovies",userFacade.findAllUserMoviesForGivenUser(remoteUser));
+        try {
+            model.addAttribute("userMovies",userFacade.findAllUserMoviesForGivenUser(remoteUser));
+        } catch (MovieNotFoundException e) {
+            e.printStackTrace();
+        }
         return "userMoviesList";
     }
 }
