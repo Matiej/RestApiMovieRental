@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.OnLineMovie;
 import pl.testaarosa.movierental.domain.OnLineMovieDetails;
 import pl.testaarosa.movierental.mapper.OmbdOnLineMapper;
@@ -66,7 +67,7 @@ public class OnLineMovieServiceImplTestSuit {
     }
 
     @Test
-    public void testAddOnLineMovieToDbFalse() throws ExecutionException, InterruptedException {
+    public void testAddOnLineMovieToDbFalse() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         OnLineMovieDetails onLineMovieDetails = mockOnLineMovieDetails.onLineMovieDetails().get().get(0);
         when(onLineMovieRetriever.getOnLineMovieDetails("xxx"))
@@ -82,7 +83,7 @@ public class OnLineMovieServiceImplTestSuit {
     }
 
     @Test
-    public void testAddOnLineMovieToDbTrue() throws ExecutionException, InterruptedException {
+    public void testAddOnLineMovieToDbTrue() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         OnLineMovieDetails onLineMovieDetails = mockOnLineMovieDetails.onLineMovieDetails().get().get(0);
         when(onLineMovieRetriever.getOnLineMovieDetails("xxx"))
@@ -98,7 +99,7 @@ public class OnLineMovieServiceImplTestSuit {
     }
 
     @Test
-    public void testFindById() throws ExecutionException, InterruptedException {
+    public void testFindById() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         OnLineMovie expectOnLineMovie = mockOnLineMovie.onLineMovieList().get().get(1);
         OnLineMovie notExpectOnLineMovie = mockOnLineMovie.onLineMovieList().get().get(0);

@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.DvdMovie;
 import pl.testaarosa.movierental.repositories.DvdMovieRpository;
 import pl.testaarosa.movierental.repositories.MockDvdMovie;
@@ -44,7 +45,7 @@ public class DvdMovieServiceTestSuit {
     }
 
     @Test
-    public void testFindById() throws ExecutionException, InterruptedException {
+    public void testFindById() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         when(dvdMovieRpository.findOne(2L)).thenReturn(mockDvdMovie.dvdMovieList().get(1));
         //when

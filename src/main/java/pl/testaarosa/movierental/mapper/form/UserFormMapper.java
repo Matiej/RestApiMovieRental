@@ -16,7 +16,6 @@ public class UserFormMapper {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final LocalDateTime currentDate = LocalDateTime.now().withNano(0);
 
-    //TODO aby uzyc tego do update usera trzeba wykorzystac id
     public User mapToUser(UserForm userForm) {
         User user =  User.builder()
                 .name(userForm.getName())
@@ -41,21 +40,4 @@ public class UserFormMapper {
                 .userGender(userForm.getUserGender())
                 .build();
     }
-
-//    public UserForm mapToUserForm(User user) {
-//        UserForm userFrom = new UserForm(
-//                user.getName(),
-//                user.getSurname(),
-//                user.getEmail(),
-//                user.getPassword(),
-//                user.getMatchingPassword(),
-//                user.getRegisterDate(),
-//                user.getUserRentalDetails().getBirthday().toString(),
-//                user.getUserRentalDetails().getCity(),
-//                user.getUserRentalDetails().getStreet(),
-//                user.getUserRentalDetails().getUserGender());
-//        userFrom.setId(user.getId());
-//        return userFrom;
-//    }
-
 }

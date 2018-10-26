@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.dto.*;
 import pl.testaarosa.movierental.mapper.*;
 import pl.testaarosa.movierental.repositories.*;
@@ -93,7 +94,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testFindBlueRaById() {
+    public void testFindBlueRaById() throws MovieNotFoundException {
         //given
         BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
         when(moviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDto);
@@ -105,7 +106,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testFindBlueRaByIdWrongResult() {
+    public void testFindBlueRaByIdWrongResult() throws MovieNotFoundException {
         //given
         BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
         BlueRayMovieDto blueRayMovieDtoWrong = blueRayMovieDtoList.get(1);
@@ -129,7 +130,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testFindDvdByIdSucces() {
+    public void testFindDvdByIdSucces() throws MovieNotFoundException {
         //given
         DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(0);
         when(moviesFacade.findDvdById(1L)).thenReturn(dvdMovieDto);
@@ -142,7 +143,7 @@ public class MoviesFacadeTestSuit {
 
 
     @Test
-    public void testFindDvdByIdWrong() {
+    public void testFindDvdByIdWrong() throws MovieNotFoundException {
         //given
         DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(0);
         DvdMovieDto dvdMovieDtoWrong = dvdMovieDtoList.get(1);
@@ -224,7 +225,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testFindOnLineByIdSucces() {
+    public void testFindOnLineByIdSucces() throws MovieNotFoundException {
         //given
         OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(0);
         when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
@@ -236,7 +237,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testFindOnLineByIdWrong() {
+    public void testFindOnLineByIdWrong() throws MovieNotFoundException {
         //given
         OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(0);
         OnLineMovieDto onLineMovieDtoWrong = onLineMovieDtoList.get(1);
@@ -249,7 +250,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testAddOnLineMovieToDbSucces() throws ExecutionException, InterruptedException {
+    public void testAddOnLineMovieToDbSucces() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(0);
         when(moviesFacade.addOnLineMovieToDb("XIMA")).thenReturn(onLineMovieDto);
@@ -261,7 +262,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void testAddOnLineMovieToDbWrong() throws ExecutionException, InterruptedException {
+    public void testAddOnLineMovieToDbWrong() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(0);
         OnLineMovieDto onLineMovieDtoWrong = onLineMovieDtoList.get(1);
@@ -274,7 +275,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void TestFindMovieByIdSucces() {
+    public void TestFindMovieByIdSucces() throws MovieNotFoundException {
         //given
         MovieDto movieDto = movieDtoList.get(0);
         when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
@@ -286,7 +287,7 @@ public class MoviesFacadeTestSuit {
     }
 
     @Test
-    public void TestFindMovieByIdWrong() {
+    public void TestFindMovieByIdWrong() throws MovieNotFoundException {
         //given
         MovieDto movieDto = movieDtoList.get(0);
         MovieDto movieDtoWrong = movieDtoList.get(1);

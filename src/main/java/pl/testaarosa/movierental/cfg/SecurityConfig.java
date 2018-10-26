@@ -71,7 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf()
                 .disable()
-//TODO dodac pozostale do wishlist
                 .authorizeRequests()
                 .antMatchers(AUTH_WISHLIST).permitAll()
 //                .antMatchers("/**/*").denyAll()

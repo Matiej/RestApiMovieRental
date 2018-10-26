@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.Movie;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.User;
@@ -76,7 +77,7 @@ public class MovieWishServiceImplTestSuit {
     }
 
     @Test
-    public void testAddMovieToWish() throws ExecutionException, InterruptedException {
+    public void testAddMovieToWish() throws ExecutionException, InterruptedException, MovieNotFoundException {
         //given
         User user = mockUser.mockUser().get(1);
         Movie onLineMovie = mockOnLineMovie.onLineMovieList().get().get(1);

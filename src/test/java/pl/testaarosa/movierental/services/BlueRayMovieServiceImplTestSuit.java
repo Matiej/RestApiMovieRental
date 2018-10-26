@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.BlueRayMovie;
 import pl.testaarosa.movierental.repositories.BlueRayMovieRepository;
 import pl.testaarosa.movierental.repositories.MockBlueRayMovie;
@@ -39,7 +40,7 @@ public class BlueRayMovieServiceImplTestSuit {
     }
 
     @Test
-    public void testFindbyId(){
+    public void testFindbyId() throws MovieNotFoundException {
         //given
         BlueRayMovie expect = blueRayMovie.blueRayMovieList().get(1);
         when(blueRayMovieRepository.findOne(2L)).thenReturn(expect);

@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.Movie;
 import pl.testaarosa.movierental.domain.MovieWish;
 import pl.testaarosa.movierental.domain.User;
@@ -211,7 +212,7 @@ public class UserFacadeTestSuit {
     }
 
     @Test
-    public void testFindAllUserMoviesForGivenUserSuccess() {
+    public void testFindAllUserMoviesForGivenUserSuccess() throws MovieNotFoundException {
         //given
         List<UserMovieDto> userMovieDtoList = this.userMovieDtoList;
         when(userFacade.findAllUserMoviesForGivenUser("user")).thenReturn(userMovieDtoList);
@@ -224,7 +225,7 @@ public class UserFacadeTestSuit {
     }
 
     @Test
-    public void testFindAllUserMoviesForGivenUserWrong() {
+    public void testFindAllUserMoviesForGivenUserWrong() throws MovieNotFoundException {
         //given
         List<UserMovieDto> userMovieDtoList = this.userMovieDtoList;
         List<UserMovieDto> userMovieDtoListWrong = new ArrayList<>();
@@ -295,7 +296,7 @@ public class UserFacadeTestSuit {
     }
 
     @Test
-    public void testFindOneUserMovieSuccess() {
+    public void testFindOneUserMovieSuccess() throws MovieNotFoundException {
         //given
         UserMovieDto userMovieDto = userMovieDtoList.get(0);
         when(userFacade.findOneUserMovie(1L)).thenReturn(userMovieDto);
@@ -307,7 +308,7 @@ public class UserFacadeTestSuit {
     }
 
     @Test
-    public void testFindOneUserMovieWrong() {
+    public void testFindOneUserMovieWrong() throws MovieNotFoundException {
         //given
         UserMovieDto userMovieDto = userMovieDtoList.get(0);
         UserMovieDto userMovieDtoWrong = userMovieDtoList.get(1);
@@ -330,7 +331,7 @@ public class UserFacadeTestSuit {
     }
 
     @Test
-    public void testaddMovieSuccess() {
+    public void testaddMovieSuccess() throws MovieNotFoundException {
         //given
         MovieWishDto movieWishDto = movieWishDtoList.get(0);
         when(userFacade.addMovie("user", 1L)).thenReturn(movieWishDto);
@@ -342,7 +343,7 @@ public class UserFacadeTestSuit {
     }
 
     @Test
-    public void testaddMovieWrong() {
+    public void testaddMovieWrong() throws MovieNotFoundException {
         //given
         MovieWishDto movieWishDto = movieWishDtoList.get(0);
         MovieWishDto movieWishDtoWrong = movieWishDtoList.get(1);

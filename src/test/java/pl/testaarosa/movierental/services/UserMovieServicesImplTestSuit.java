@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.UserMovie;
 import pl.testaarosa.movierental.form.UserMovieForm;
@@ -35,7 +36,7 @@ public class UserMovieServicesImplTestSuit {
     private UserService userService;
 
     @Test
-    public void testFindAllUsersMoviesForGivenUser() {
+    public void testFindAllUsersMoviesForGivenUser() throws MovieNotFoundException {
         //given
         List<UserMovie> expectUserMovieList = mockUserMovie.userMovieList();
         when(userService.findRemoteUser("znikenson@gmail.com")).thenReturn(expectUserMovieList.get(0).getUser());
@@ -48,7 +49,7 @@ public class UserMovieServicesImplTestSuit {
     }
 
     @Test
-    public void testFinaOne() {
+    public void testFinaOne() throws MovieNotFoundException {
         //given
         UserMovie expectUserMovie = mockUserMovie.userMovieList().get(0);
         when(userMovieRepository.findById(null)).thenReturn(expectUserMovie);
