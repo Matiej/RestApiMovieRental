@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import pl.testaarosa.movierental.controller.MovieNotFoundException;
 import pl.testaarosa.movierental.domain.dto.BlueRayMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 import pl.testaarosa.movierental.repositories.Converter;
@@ -43,7 +44,7 @@ public class BlueRayMovieDetailsControllerRestTestSuit {
     }
 
     @Test
-    public void shouldFindMovieDetail() throws Exception {
+    public void shouldFindMovieDetail1() throws Exception {
         //given
         when(bluRayMoviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDtoList.get(0));
         //when
@@ -55,6 +56,34 @@ public class BlueRayMovieDetailsControllerRestTestSuit {
                         .json(converter.jsonInString(blueRayMovieDtoList.get(0))));
         //then
         verify(bluRayMoviesFacade, times(1)).findBlueRaById(1L);
+        verifyNoMoreInteractions(bluRayMoviesFacade);
+    }
+
+    @Test
+    public void shouldFindMovieDetailStatus400() throws Exception {
+        //given
+        when(bluRayMoviesFacade.findBlueRaById(1L)).thenThrow(new MovieNotFoundException("ERROR"));
+        //when
+        String jsonContent = converter.jsonInString(blueRayMovieDtoList);
+        mockMvc.perform(MockMvcRequestBuilders.get(MAPPING + "/showmovie")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().is(400));
+        //then
+        verify(bluRayMoviesFacade, times(1)).findBlueRaById(1L);
+        verifyNoMoreInteractions(bluRayMoviesFacade);
+    }
+
+    @Test
+    public void shouldFindMovieDetailStatus404() throws Exception {
+        //given
+        when(bluRayMoviesFacade.findBlueRaById(1L)).thenReturn(null);
+        //when
+        String jsonContent = converter.jsonInString(blueRayMovieDtoList);
+        mockMvc.perform(MockMvcRequestBuilders.get(MAPPING + "/showmovie1111")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().is(404));
+        //then
+        verify(bluRayMoviesFacade, times(0)).findBlueRaById(1L);
         verifyNoMoreInteractions(bluRayMoviesFacade);
     }
 }

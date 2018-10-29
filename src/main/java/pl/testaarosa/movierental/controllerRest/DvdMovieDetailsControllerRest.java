@@ -12,14 +12,14 @@ import pl.testaarosa.movierental.domain.dto.DvdMovieDto;
 import pl.testaarosa.movierental.facade.MoviesFacade;
 
 @RestController
-@RequestMapping("/mrapi/watchwish")
+@RequestMapping("/mrapi/dvd")
 @Api(description = "Dvd movie controller")
 public class DvdMovieDetailsControllerRest {
 
     @Autowired
     private MoviesFacade dvdMoviesFacade;
 
-    @GetMapping("/onlinedetail")
+    @GetMapping("/dvdetail")
     @ApiOperation(value = "Find dvd movie by id", response = DvdMovieDto.class)
     @ApiImplicitParam(required = true, name = "movieId", value = "Dvd movie ID from data base", paramType = "query")
     @ApiResponses(value = {

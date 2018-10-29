@@ -15,7 +15,6 @@ import java.util.List;
 @Api(description = "Dvd movie rest controller")
 public class DvdMovieControllerRest {
 
-
     @Autowired
     private MoviesFacade dvdMoviesFacade;
 

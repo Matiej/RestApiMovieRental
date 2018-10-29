@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/mrapi/dvd")
+@RequestMapping("/mrapi/wish")
 @Api(description = "Movie wish controller")
 public class MovieWishControllerRest {
 
