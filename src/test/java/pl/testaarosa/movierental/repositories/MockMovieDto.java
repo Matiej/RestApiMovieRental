@@ -25,7 +25,7 @@ public class MockMovieDto {
                 "Online TestTitle1",
                 "imdbID_O1",
                 "www.Online-poster11",
-                "On line",
+                "On Line",
                 mockMovieWish.mockMovieWish());
     }
 

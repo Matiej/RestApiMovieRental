@@ -89,13 +89,13 @@ public class MovieWishControllerRest {
         }
     }
 
-    @GetMapping("wishlistadmin")
+    @GetMapping("/wishlistadmin")
     @ApiOperation(value = "Show all wishes for all users. Option for admin.", response = MovieWishDto.class)
     public List<MovieWishDto> showWishes() {
         return userFacade.findAllWishes();
     }
 
-    @GetMapping("userwishes")
+    @GetMapping("/userwishes")
     @ApiOperation(value = "Show all wishes for remote user. Need to be logged in", response = MovieWishDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No remote user found"),
@@ -112,7 +112,7 @@ public class MovieWishControllerRest {
         }
     }
 
-    @GetMapping("moviedetails")
+    @GetMapping("/moviedetails")
     @ApiOperation(value = "Show movies for wish ", response = MovieDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No movie for given ID"),
