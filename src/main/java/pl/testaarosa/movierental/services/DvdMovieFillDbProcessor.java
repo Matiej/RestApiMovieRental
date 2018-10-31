@@ -1,10 +1,7 @@
 package pl.testaarosa.movierental.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import pl.testaarosa.movierental.domain.DvdMovieDetails;
-import pl.testaarosa.movierental.mapper.DvdMovieMapper;
 import pl.testaarosa.movierental.mapper.OneDvdDetilsMapper;
 import pl.testaarosa.movierental.mapper.OneDvdMapper;
 
@@ -24,7 +21,7 @@ public class DvdMovieFillDbProcessor {
     private OneDvdDetilsMapper detailsMapper;
 
     public void fillDvdMovieDb() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
-        dvdMovieRetriver.DvdFillStructure().get().forEach(f-> {
+        dvdMovieRetriver.dvdFillStructure().get().forEach(f-> {
             try {
                 dvdMovieService.addDvdMovie(dvdMovieMapper.mapToDvdMovie(f),detailsMapper.matpToOneDvdDetails(f));
             } catch (IOException e) {

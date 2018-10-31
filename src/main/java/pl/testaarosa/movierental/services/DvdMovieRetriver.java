@@ -24,7 +24,7 @@ public class DvdMovieRetriver {
     private DvdMovieSupplier dvdMovieSupplier;
 
     @Async
-    public CompletableFuture<List<OneDvdDto>> DvdFillStructure() throws IOException, URISyntaxException {
+    public CompletableFuture<List<OneDvdDto>> dvdFillStructure() throws IOException, URISyntaxException {
         LOGGER.info("\033[35m Lokiing up for DVDS \033[0m");
         List<OneDvdDto> dvdMovies = new ArrayList<>();
         List<String> lines = dvdMovieSupplier.DvdSupplierSource();

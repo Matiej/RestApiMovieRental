@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.TransactionException;
 import org.springframework.web.bind.annotation.*;
-import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.facade.UserFacade;
 import pl.testaarosa.movierental.form.dto.UpdateUserFormDto;
@@ -27,14 +26,14 @@ public class UserControllerRest {
 
     @ResponseBody
     @PostMapping("add")
-    @ApiOperation(value = "Add new user to db", response = User.class)
-    public User createUserAccount(@RequestBody @Valid UserFormDto userFormDto) {
+    @ApiOperation(value = "Add new user to db", response = UserDto.class)
+    public UserDto createUserAccount(@RequestBody @Valid UserFormDto userFormDto) {
         return userFacade.addUserAndWish(userFormDto);
     }
 
     @ResponseBody
     @PutMapping("update")
-    @ApiOperation(value = "Update user data", response = User.class)
+    @ApiOperation(value = "Update user data", response = UserDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No remote user found"),
             @ApiResponse(code = 401, message = "No remote user found or not user logged in"),

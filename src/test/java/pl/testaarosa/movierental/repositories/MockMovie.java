@@ -14,7 +14,7 @@ public class MockMovie {
                 "TestTitle1",
                 "imdbID_1",
                 "www.poster11",
-                "bluray supplier");
+                "Blueray supplier");
         movie.setId(1L);
         movie.setMovieWishList(mockMovieWish.mockMovieWish());
         return movie;
@@ -25,7 +25,7 @@ public class MockMovie {
                 "Online TestTitle1",
                 "imdbID_O1",
                 "www.Online-poster11",
-                "On line");
+                "On Line");
 
         movie.setId(1L);
         movie.setMovieWishList(mockMovieWish.mockMovieWish());
@@ -56,7 +56,7 @@ public class MockMovie {
                 "TestTitle1",
                 "imdbID_1",
                 "www.poster11",
-                "bluray supplier");
+                "Blueray supplier");
         movie1.setId(1L);
         movie1.setMovieWishList(mockMovieWish.mockMovieWish());
 
@@ -64,7 +64,7 @@ public class MockMovie {
                 "Online TestTitle1",
                 "imdbID_O1",
                 "www.Online-poster11",
-                "On line");
+                "On Line");
 
         movie2.setId(1L);
         movie2.setMovieWishList(mockMovieWish.mockMovieWish());

@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import pl.testaarosa.movierental.domain.User;
 import pl.testaarosa.movierental.domain.dto.MovieWishDto;
 import pl.testaarosa.movierental.domain.dto.UserDto;
 import pl.testaarosa.movierental.domain.dto.UserMovieDto;
@@ -36,7 +35,7 @@ public class UserController {
     @PostMapping("/adduser")
     public String addUser(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                           WebRequest request, Errors errors) {
-        User registerUser = new User();
+        UserDto registerUser = new UserDto();
 
         if (!bindingResult.hasErrors()) {
             registerUser = createUserAccout(userFormDto);
@@ -66,7 +65,7 @@ public class UserController {
     @PostMapping("/adduser_n")
     public String addUserN(Model model, @ModelAttribute @Valid UserFormDto userFormDto, BindingResult bindingResult,
                            WebRequest request, Errors errors) throws EmailExistsException {
-        User registerUser = new User();
+        UserDto registerUser = new UserDto();
 
         if (!bindingResult.hasErrors()) {
             registerUser = createUserAccout(userFormDto);
@@ -87,8 +86,8 @@ public class UserController {
         }
     }
 
-    private User createUserAccout(UserFormDto userFormDto) {
-        User reg = null;
+    private UserDto createUserAccout(UserFormDto userFormDto) {
+        UserDto reg = null;
         try {
             reg = userFacade.addUserAndWish(userFormDto);
         } catch (EmailExistsException e) {

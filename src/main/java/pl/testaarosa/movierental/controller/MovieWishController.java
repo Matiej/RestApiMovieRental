@@ -98,7 +98,7 @@ public class MovieWishController {
             e.printStackTrace();
         }
         switch (movie.getSupplier().toLowerCase()) {
-            case "bluray supplier":
+            case "blueray supplier":
                 try {
                     model.addAttribute("movieDetail", moviesFacade.findBlueRaById(id));
                 } catch (MovieNotFoundException e) {

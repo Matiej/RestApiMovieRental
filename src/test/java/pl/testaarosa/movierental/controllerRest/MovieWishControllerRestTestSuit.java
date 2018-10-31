@@ -367,4 +367,144 @@ public class MovieWishControllerRestTestSuit {
         verifyNoMoreInteractions(moviesFacade);
     }
 
+    @Test
+    public void testMovieDetails_MovieBlueRay() throws Exception {
+        //given
+        MovieDto movieDto = movieDtoList.get(1);
+        BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
+        OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(1);
+        DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(0);
+        when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
+        when(moviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDto);
+        when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
+        when(moviesFacade.findDvdById(1L)).thenReturn(dvdMovieDto);
+        //when
+        mockMvc.perform(get(MAPPING+"/moviedetails")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(converter.jsonInString(blueRayMovieDto)));
+        //then
+        verify(moviesFacade, times(1)).findMovieById(1l);
+        verify(moviesFacade, times(1)).findBlueRaById(1l);
+        verify(moviesFacade, times(0)).findOnLineById(1l);
+        verify(moviesFacade, times(0)).findDvdById(1l);
+        verifyNoMoreInteractions(moviesFacade);
+    }
+
+    @Test
+    public void testMovieDetails_MovieBlueRay400() throws Exception {
+        //given
+        MovieDto movieDto = movieDtoList.get(1);
+        BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
+        OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(1);
+        DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(0);
+        when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
+        when(moviesFacade.findBlueRaById(1L)).thenThrow(new MovieNotFoundException("BLUERAY ERROR"));
+        when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
+        when(moviesFacade.findDvdById(1L)).thenReturn(dvdMovieDto);
+        //when
+        mockMvc.perform(get(MAPPING+"/moviedetails")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().is(400));
+        //then
+        verify(moviesFacade, times(1)).findMovieById(1l);
+        verify(moviesFacade, times(1)).findBlueRaById(1l);
+        verify(moviesFacade, times(0)).findOnLineById(1l);
+        verify(moviesFacade, times(0)).findDvdById(1l);
+        verifyNoMoreInteractions(moviesFacade);
+    }
+
+    @Test
+    public void testMovieDetails_MovieBlueRay404() throws Exception {
+        //given
+        MovieDto movieDto = movieDtoList.get(1);
+        BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
+        OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(1);
+        DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(0);
+        when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
+        when(moviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDto);
+        when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
+        when(moviesFacade.findDvdById(1L)).thenReturn(dvdMovieDto);
+        //when
+        mockMvc.perform(get(MAPPING+"/moviedetailsStatus404")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().is(404));
+        //then
+        verify(moviesFacade, times(0)).findMovieById(1l);
+        verify(moviesFacade, times(0)).findBlueRaById(1l);
+        verify(moviesFacade, times(0)).findOnLineById(1l);
+        verify(moviesFacade, times(0)).findDvdById(1l);
+        verifyNoMoreInteractions(moviesFacade);
+    }
+
+    @Test
+    public void testMovieDetails_MovieDVD() throws Exception {
+        //given
+        MovieDto movieDto = movieDtoList.get(2);
+        BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
+        OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(1);
+        DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(2);
+        when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
+        when(moviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDto);
+        when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
+        when(moviesFacade.findDvdById(1L)).thenReturn(dvdMovieDto);
+        //when
+        mockMvc.perform(get(MAPPING+"/moviedetails")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(converter.jsonInString(dvdMovieDto)));
+        //then
+        verify(moviesFacade, times(1)).findMovieById(1l);
+        verify(moviesFacade, times(0)).findBlueRaById(1l);
+        verify(moviesFacade, times(0)).findOnLineById(1l);
+        verify(moviesFacade, times(1)).findDvdById(1l);
+        verifyNoMoreInteractions(moviesFacade);
+    }
+
+    @Test
+    public void testMovieDetails_MovieDVD400() throws Exception {
+        //given
+        MovieDto movieDto = movieDtoList.get(2);
+        BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
+        OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(1);
+        DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(2);
+        when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
+        when(moviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDto);
+        when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
+        when(moviesFacade.findDvdById(1L)).thenThrow(new MovieNotFoundException("DVD ERROR"));
+        //when
+        mockMvc.perform(get(MAPPING+"/moviedetails")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().is(400));
+        //then
+        verify(moviesFacade, times(1)).findMovieById(1l);
+        verify(moviesFacade, times(0)).findBlueRaById(1l);
+        verify(moviesFacade, times(0)).findOnLineById(1l);
+        verify(moviesFacade, times(1)).findDvdById(1l);
+        verifyNoMoreInteractions(moviesFacade);
+    }
+
+    @Test
+    public void testMovieDetails_MovieDVD404() throws Exception {
+        //given
+        MovieDto movieDto = movieDtoList.get(2);
+        BlueRayMovieDto blueRayMovieDto = blueRayMovieDtoList.get(0);
+        OnLineMovieDto onLineMovieDto = onLineMovieDtoList.get(1);
+        DvdMovieDto dvdMovieDto = dvdMovieDtoList.get(2);
+        when(moviesFacade.findMovieById(1L)).thenReturn(movieDto);
+        when(moviesFacade.findBlueRaById(1L)).thenReturn(blueRayMovieDto);
+        when(moviesFacade.findOnLineById(1L)).thenReturn(onLineMovieDto);
+        when(moviesFacade.findDvdById(1L)).thenReturn(dvdMovieDto);
+        //when
+        mockMvc.perform(get(MAPPING+"/moviedetailsStatus404")
+                .param("movieId", String.valueOf(1L)))
+                .andExpect(status().is(404));
+        //then
+        verify(moviesFacade, times(0)).findMovieById(1l);
+        verify(moviesFacade, times(0)).findBlueRaById(1l);
+        verify(moviesFacade, times(0)).findOnLineById(1l);
+        verify(moviesFacade, times(0)).findDvdById(1l);
+        verifyNoMoreInteractions(moviesFacade);
+    }
+
 }

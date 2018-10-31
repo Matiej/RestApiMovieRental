@@ -129,7 +129,7 @@ public class MovieWishControllerRest {
             return ResponseEntity.status(400).body("Wrong movie ID: " + movieId + " no movie found");
         }
         switch (movie.getSupplier().toLowerCase()) {
-            case "bluray supplier":
+            case "blueray supplier":
                 try {
                     return ResponseEntity.ok(moviesFacade.findBlueRaById(movieId));
                 } catch (MovieNotFoundException e) {

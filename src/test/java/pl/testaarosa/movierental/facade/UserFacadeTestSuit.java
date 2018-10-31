@@ -122,11 +122,12 @@ public class UserFacadeTestSuit {
     @Test
     public void testAddUserAndWish() {
         //given
-        User user = mockUser.mockUser().get(0);
+        UserDto user = mockUserDto.mockUserDto().get(0);
+//        User user = mockUser.mockUser().get(0);
         UserFormDto userFormDto = userFormDtoList.get(0);
         when(userFacade.addUserAndWish(userFormDto)).thenReturn(user);
         //when
-        User result = userFacade.addUserAndWish(userFormDto);
+        UserDto result = userFacade.addUserAndWish(userFormDto);
         //then
         assertEquals(user, result);
 
@@ -137,12 +138,12 @@ public class UserFacadeTestSuit {
         //given
         UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
         UserDto userDto = userDtoList.get(0);
-        User user = userList.get(0);
-        when(userFacade.updateUser(updateUserFormDto, userDto)).thenReturn(user);
+        UserDto userDto1 = userDtoList.get(1);
+        when(userFacade.updateUser(updateUserFormDto, userDto)).thenReturn(userDto1);
         //when
-        User result = userFacade.updateUser(updateUserFormDto, userDto);
+        UserDto result = userFacade.updateUser(updateUserFormDto, userDto);
         //then
-        assertEquals(user, result);
+        assertEquals(userDto1, result);
         assertNotNull(result);
     }
 
@@ -151,11 +152,12 @@ public class UserFacadeTestSuit {
         //given
         UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
         UserDto userDto = userDtoList.get(0);
-        User user = userList.get(0);
+        UserDto userDto1 = userDtoList.get(1);
+//        User user = userList.get(0);
         User userwrong = userList.get(1);
-        when(userFacade.updateUser(updateUserFormDto, userDto)).thenReturn(user);
+        when(userFacade.updateUser(updateUserFormDto, userDto)).thenReturn(userDto1);
         //when
-        User result = userFacade.updateUser(updateUserFormDto, userDto);
+        UserDto result = userFacade.updateUser(updateUserFormDto, userDto);
         //then
         assertNotEquals(userwrong, result);
         assertNotNull(result);

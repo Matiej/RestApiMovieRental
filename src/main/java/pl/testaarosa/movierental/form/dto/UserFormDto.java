@@ -1,6 +1,5 @@
 package pl.testaarosa.movierental.form.dto;
 
-import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 import pl.testaarosa.movierental.domain.UserGender;
 import pl.testaarosa.movierental.validator.PasswordMatches;
@@ -58,7 +57,7 @@ public class UserFormDto {
         return Id;
     }
 
-    @ApiModelProperty(hidden = true)
+//    @ApiModelProperty(hidden = true)
     public void setId(Long id) {
         Id = id;
     }
@@ -91,7 +90,7 @@ public class UserFormDto {
         return registerDate;
     }
 
-    @ApiModelProperty(hidden = true)
+//    @ApiModelProperty(hidden = true)
     public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
     }

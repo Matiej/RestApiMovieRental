@@ -19,7 +19,7 @@ public class OmbdBlueRayMapper {
                         b.getTitle(),
                         b.getImdbID(),
                         b.getPoster(),
-                        "BlueRayMovie"))
+                        "Blueray supplier"))
                         .collect(Collectors.toList());
     }
 }

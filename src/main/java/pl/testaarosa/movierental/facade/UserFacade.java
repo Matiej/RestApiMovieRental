@@ -56,14 +56,14 @@ public class UserFacade {
         return userMapper.userList(userService.findAll());
     }
 
-    public User addUserAndWish(UserFormDto userFormDto) {
+    public UserDto addUserAndWish(UserFormDto userFormDto) {
         User user = userService.add(userFormDtoMapper.mapToUserForm(userFormDto));
-        return user;
+        return userMapper.mapToUserDto(user);
     }
 //TODO zmienić na USERDTO
-    public User updateUser(UpdateUserFormDto updateUserFormDto, UserDto remoteUser) {
-        return userService.update(updateUserFormDtoMapper.mapToUpdateUserForm(updateUserFormDto)
-                ,userMapper.mapToUser(remoteUser));
+    public UserDto updateUser(UpdateUserFormDto updateUserFormDto, UserDto remoteUser) {
+        return userMapper.mapToUserDto(userService.update(updateUserFormDtoMapper.mapToUpdateUserForm(updateUserFormDto)
+                ,userMapper.mapToUser(remoteUser)));
     }
 
     public UserDto findRemoteUser(String remoteUser) {

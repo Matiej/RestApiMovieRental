@@ -67,7 +67,8 @@ public class UserControllerTestSuit {
     public void shouldAddUserWhenFormIsCorrect() throws Exception {
         //given
         UserFormDto userFormDto = userFormDtos.get(0);
-        User user = mockUsers.get(0);
+        UserDto user = mockUserDto.mockUserDto().get(0);
+//        User user = mockUsers.get(0);
         when(userFacade.addUserAndWish(userFormDto)).thenReturn(user);
         //when
         mockMvc.perform(MockMvcRequestBuilders.post("/users/adduser")
@@ -84,7 +85,7 @@ public class UserControllerTestSuit {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("userFormDto", user))
                 .andExpect(view().name("successRegister"));
-        User result = userFacade.addUserAndWish(userFormDto);
+        UserDto result = userFacade.addUserAndWish(userFormDto);
         //then
         verify(userFacade, times(2)).addUserAndWish(userFormDto);
         verifyNoMoreInteractions(userFacade);
@@ -95,7 +96,8 @@ public class UserControllerTestSuit {
     public void shouldAddUserWhenFormIsWrong() throws Exception {
         //given
         UserFormDto userFormDto = userFormDtos.get(0);
-        User user = mockUsers.get(0);
+        UserDto user = mockUserDto.mockUserDto().get(0);
+//        User user = mockUsers.get(0);
         when(userFacade.addUserAndWish(userFormDto)).thenReturn(user);
         //when
         mockMvc.perform(MockMvcRequestBuilders.post("/users/adduser")
@@ -110,7 +112,7 @@ public class UserControllerTestSuit {
                 .param("userGender", "MALE"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(view().name("userForm"));
-        User result = userFacade.addUserAndWish(userFormDto);
+        UserDto result = userFacade.addUserAndWish(userFormDto);
         //then
         verify(userFacade, times(1)).addUserAndWish(userFormDto);
         verifyNoMoreInteractions(userFacade);
@@ -131,7 +133,8 @@ public class UserControllerTestSuit {
     public void shouldAddUserNWhenFormIsCorrect() throws Exception {
         //given
         UserFormDto userFormDto = userFormDtos.get(0);
-        User user = mockUsers.get(0);
+        UserDto user = mockUserDto.mockUserDto().get(0);
+//        User user = mockUsers.get(0);
         when(userFacade.addUserAndWish(userFormDto)).thenReturn(user);
         //then
         mockMvc.perform(MockMvcRequestBuilders.post("/users/adduser_n")
@@ -148,7 +151,7 @@ public class UserControllerTestSuit {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("userFormDto", user))
                 .andExpect(view().name("successRegister"));
-        User result = userFacade.addUserAndWish(userFormDto);
+        UserDto result = userFacade.addUserAndWish(userFormDto);
         //then
         verify(userFacade, times(2)).addUserAndWish(userFormDto);
         assertEquals(user, result);
@@ -159,7 +162,8 @@ public class UserControllerTestSuit {
     public void shouldAddUserNWhenFormIsWrong() throws Exception {
         //given
         UserFormDto userFormDto = userFormDtos.get(0);
-        User user = mockUsers.get(0);
+        UserDto user = mockUserDto.mockUserDto().get(0);
+//        User user = mockUsers.get(0);
         when(userFacade.addUserAndWish(userFormDto)).thenReturn(user);
         //then
         mockMvc.perform(MockMvcRequestBuilders.post("/users/adduser_n")
@@ -173,7 +177,7 @@ public class UserControllerTestSuit {
                 .param("userGender", "MALE"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(view().name("userForm_n"));
-        User result = userFacade.addUserAndWish(userFormDto);
+        UserDto result = userFacade.addUserAndWish(userFormDto);
         //then
         verify(userFacade, times(1)).addUserAndWish(userFormDto);
         assertEquals(user, result);
@@ -194,10 +198,9 @@ public class UserControllerTestSuit {
     public void shouldUpdateUserWhenFormIsNotCorrect() throws Exception {
         //given
         UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
-        User user = mockUsers.get(0);
         UserDto userDto = userDtoList.get(0);
         when(userFacade.findRemoteUser(request.getRemoteUser())).thenReturn(userDto);
-        when(userFacade.updateUser(updateUserFormDto,userDto)).thenReturn(user);
+        when(userFacade.updateUser(updateUserFormDto,userDto)).thenReturn(userDto);
         //then
         mockMvc.perform(MockMvcRequestBuilders.post("/users//updateuser")
                 .accept(MediaType.TEXT_HTML)
@@ -210,20 +213,21 @@ public class UserControllerTestSuit {
                 .param("userGender", "MALE"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(view().name("userUpdateForm"));
-        User result = userFacade.updateUser(updateUserFormDto, userDto);
+        UserDto result = userFacade.updateUser(updateUserFormDto, userDto);
         //then
         verify(userFacade, times(1)).updateUser(updateUserFormDto, userDto);
         verify(userFacade, times(1)).findRemoteUserForUpdate(request.getRemoteUser());
         verify(userFacade, times(1)).findRemoteUser(request.getRemoteUser());
         verifyNoMoreInteractions(userFacade);
-        assertEquals(user, result);
+        assertEquals(userDto, result);
     }
 
     @Test
     public void shouldUpdateUserWhenFormIsCorrect() throws Exception {
         //given
         UpdateUserFormDto updateUserFormDto = updateUserFormDtoList.get(0);
-        User user = mockUsers.get(0);
+        UserDto user = mockUserDto.mockUserDto().get(0);
+//        User user = mockUsers.get(0);
         updateUserFormDto.setId(null);
         updateUserFormDto.setLastUpdateDate(null);
         updateUserFormDto.setZip(null);
@@ -243,7 +247,7 @@ public class UserControllerTestSuit {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("updatedRemoteUser", updateUserFormDto))
                 .andExpect(view().name("successUpdate"));
-        User result = userFacade.updateUser(updateUserFormDto, userDto);
+        UserDto result = userFacade.updateUser(updateUserFormDto, userDto);
         //then
         verify(userFacade, times(2)).updateUser(updateUserFormDto, userDto);
         verify(userFacade, times(1)).findRemoteUser(request.getRemoteUser());

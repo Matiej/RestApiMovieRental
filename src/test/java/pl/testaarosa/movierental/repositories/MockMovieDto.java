@@ -15,7 +15,7 @@ public class MockMovieDto {
                 "TestTitle1",
                 "imdbID_1",
                 "www.poster11",
-                "bluray supplier",
+                "Blueray supplier",
                 mockMovieWish.mockMovieWish());
     }
 
