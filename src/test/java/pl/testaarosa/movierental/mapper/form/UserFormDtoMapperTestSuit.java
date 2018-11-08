@@ -36,6 +36,7 @@ public class UserFormDtoMapperTestSuit {
         UserFormDto userFormDto = userFormDtoList.get(0);
         //when
         UserForm result = userFormDtoMapper.mapToUserForm(userFormDto);
+        result.setRegisterDate(null);
         //then
         assertEquals(userForm, result);
         assertEquals(userForm.getEmail(),result.getEmail());
@@ -49,6 +50,7 @@ public class UserFormDtoMapperTestSuit {
         UserFormDto userFormDto = userFormDtoList.get(1);
         //when
         UserForm result = userFormDtoMapper.mapToUserForm(userFormDto);
+        result.setRegisterDate(null);
         //then
         assertEquals(userForm, result);
         assertEquals(userForm.getEmail(),result.getEmail());

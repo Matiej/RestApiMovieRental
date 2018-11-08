@@ -60,10 +60,11 @@ public class UserFacade {
         User user = userService.add(userFormDtoMapper.mapToUserForm(userFormDto));
         return userMapper.mapToUserDto(user);
     }
-//TODO zmienić na USERDTO
+
     public UserDto updateUser(UpdateUserFormDto updateUserFormDto, UserDto remoteUser) {
-        return userMapper.mapToUserDto(userService.update(updateUserFormDtoMapper.mapToUpdateUserForm(updateUserFormDto)
-                ,userMapper.mapToUser(remoteUser)));
+        User user = userService.update(updateUserFormDtoMapper.mapToUpdateUserForm(updateUserFormDto)
+                , userMapper.mapToUser(remoteUser));
+        return userMapper.mapToUserDto(user);
     }
 
     public UserDto findRemoteUser(String remoteUser) {

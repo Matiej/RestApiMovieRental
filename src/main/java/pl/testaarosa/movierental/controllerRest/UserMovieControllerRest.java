@@ -21,13 +21,12 @@ public class UserMovieControllerRest {
     @Autowired
     private UserFacade userFacade;
 
-
     @GetMapping("movieslist")
     @ApiOperation(value = "Get all remote user own movies. Need to be logged!", response = UserMovieDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No remote user found"),
             @ApiResponse(code = 401, message = "No remote user found in data base or not logged in"),
-            @ApiResponse(code = 400, message = "No remote user movies found!"),
+            @ApiResponse(code = 400, message = "No movies found!"),
             @ApiResponse(code = 200, message = "Found user movies")})
     public ResponseEntity<Object> showUserMovies(HttpServletRequest request) {
         try {

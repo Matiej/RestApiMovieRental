@@ -6,7 +6,6 @@ import pl.testaarosa.movierental.domain.UserRentalDetails;
 import pl.testaarosa.movierental.form.UserForm;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -14,7 +13,6 @@ import java.util.Optional;
 public class UserFormMapper {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final LocalDateTime currentDate = LocalDateTime.now().withNano(0);
 
     public User mapToUser(UserForm userForm) {
         User user =  User.builder()
@@ -23,7 +21,7 @@ public class UserFormMapper {
                 .email(userForm.getEmail())
                 .password(userForm.getPassword())
                 .matchingpassword(userForm.getMatchingPassword())
-                .registerDate(currentDate)
+                .registerDate(userForm.getRegisterDate())
                 .build();
         if(Optional.ofNullable(userForm.getId()).isPresent()) {
             user.setId(userForm.getId());

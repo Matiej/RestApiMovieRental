@@ -8,7 +8,6 @@ import pl.testaarosa.movierental.validator.ValidEmail;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @PasswordMatches()
@@ -26,7 +25,7 @@ public class UserFormDto {
     private String password;
     @Size(min = 4, message = "password min size is 4")
     private String matchingPassword;
-    private LocalDateTime registerDate;
+//    private LocalDateTime registerDate;
     @Size(min = 10, max = 10, message = "The year must entered in this way (yyyy-MM-dd)")
     private String birthday;
     @NotEmpty
@@ -39,14 +38,13 @@ public class UserFormDto {
     public UserFormDto() {
     }
 
-    public UserFormDto(String name, String surname, String email, String password, String matchingPassword,
-                       LocalDateTime registerDate, String birthday, String city, String street, UserGender userGender) {
+    public UserFormDto(String name, String surname, String email, String password, String matchingPassword
+            , String birthday, String city, String street, UserGender userGender) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.matchingPassword = matchingPassword;
-        this.registerDate = registerDate;
         this.birthday = birthday;
         this.city = city;
         this.street = street;
@@ -84,15 +82,6 @@ public class UserFormDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
-    }
-
-//    @ApiModelProperty(hidden = true)
-    public void setRegisterDate(LocalDateTime registerDate) {
-        this.registerDate = registerDate;
     }
 
     public String getBirthday() {
@@ -149,7 +138,7 @@ public class UserFormDto {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", registerDate=" + registerDate +
+//                ", registerDate=" + registerDate +
                 ", birthday=" + birthday +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
@@ -167,7 +156,6 @@ public class UserFormDto {
                 Objects.equals(email, that.email) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(matchingPassword, that.matchingPassword) &&
-                Objects.equals(registerDate, that.registerDate) &&
                 Objects.equals(birthday, that.birthday) &&
                 Objects.equals(city, that.city) &&
                 Objects.equals(street, that.street) &&
@@ -176,6 +164,6 @@ public class UserFormDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, email, password, matchingPassword, registerDate, birthday, city, street, userGender);
+        return Objects.hash(name, surname, email, password, matchingPassword,  birthday, city, street, userGender);
     }
 }

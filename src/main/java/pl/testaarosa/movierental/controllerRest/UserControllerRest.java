@@ -26,9 +26,17 @@ public class UserControllerRest {
 
     @ResponseBody
     @PostMapping("add")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Create user failed!!"),
+            @ApiResponse(code = 200, message = "User added successful")})
     @ApiOperation(value = "Add new user to db", response = UserDto.class)
-    public UserDto createUserAccount(@RequestBody @Valid UserFormDto userFormDto) {
-        return userFacade.addUserAndWish(userFormDto);
+    public ResponseEntity<Object> createUserAccount(@RequestBody @Valid UserFormDto userFormDto) {
+        try {
+            return ResponseEntity.ok(userFacade.addUserAndWish(userFormDto));
+        } catch (UsernameNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(400).body("Wrong movie ID: " + userFormDto + " no movie found");
+        }
     }
 
     @ResponseBody
@@ -37,9 +45,10 @@ public class UserControllerRest {
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "No remote user found"),
             @ApiResponse(code = 401, message = "No remote user found or not user logged in"),
-            @ApiResponse(code = 401, message = "Update failed!!"),
+            @ApiResponse(code = 400, message = "Update failed!!"),
             @ApiResponse(code = 200, message = "Remote user updated successful")})
-    public ResponseEntity<Object> updateUserAccount(@RequestBody @Valid UpdateUserFormDto updateUserForm, HttpServletRequest request) {
+    public ResponseEntity<Object> updateUserAccount(@RequestBody @Valid UpdateUserFormDto updateUserForm,
+                                                    HttpServletRequest request) {
         UserDto remoteUser = null;
         try {
             remoteUser = userFacade.findRemoteUser(request.getRemoteUser());
