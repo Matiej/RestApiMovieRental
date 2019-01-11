@@ -43,7 +43,7 @@ public class OnLineMovieRetriever {
         LOGGER.info("\033[33m Loooking for movie: \033[0m" + title);
         List<OnLineMovie> onLineMovieList = new ArrayList<>();
         try {
-            IntStream.range(0, (getPagination(title) / 10)).forEach(m -> {
+            IntStream.range(0, (getPagination(title) / 10)).parallel().forEach(m -> {
                 URI urlpages = supplier.OmbdSupplierSource(m, title);
 
                 OmdbOnLinePaginationDto moviepages = restTemplate.getForObject(urlpages, OmdbOnLinePaginationDto.class);

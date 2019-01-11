@@ -36,7 +36,7 @@ public class BlueRayMovieRetriever {
     @Autowired
     private OmbdBlueRayDetailsMapper detailsMapper;
 
-    @Async
+    @Async("myAsyncExec")
     public CompletableFuture<List<BlueRayMovie>> getPaginationBlueRay(String title) throws InterruptedException {
         URI url = supplier.OmbdSupplierSource(1, title);
 
@@ -53,7 +53,7 @@ public class BlueRayMovieRetriever {
         }
     }
 
-    @Async
+    @Async("myAsyncExec")
     public CompletableFuture<BlueRayMovieDetails> getMovieDetails(String movieId) {
         LOGGER.info("\033[33m Looking for movie id: " + movieId + " details \033[0m");
         URI url = supplier.OmbdSupplierDetails(movieId);

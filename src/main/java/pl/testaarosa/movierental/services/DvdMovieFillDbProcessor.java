@@ -21,7 +21,7 @@ public class DvdMovieFillDbProcessor {
     private OneDvdDetilsMapper detailsMapper;
 
     public void fillDvdMovieDb() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
-        dvdMovieRetriver.dvdFillStructure().get().forEach(f-> {
+        dvdMovieRetriver.dvdFillStructure().get().parallelStream().forEach(f-> {
             try {
                 dvdMovieService.addDvdMovie(dvdMovieMapper.mapToDvdMovie(f),detailsMapper.matpToOneDvdDetails(f));
             } catch (IOException e) {
